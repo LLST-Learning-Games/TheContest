@@ -3,14 +3,17 @@ using System;
 
 public partial class Projectile : RigidBody2D
 {
+	[Export] private string _trajectoryId = "TrajectoryStraight";
 	[Export] private int _damage = 25;
-	[Export] private float _speed = 5f;
-	[Export] private float _delay;
 	[Export] private AnimatedSprite2D _sprite;
-	private Vector2 _direction = Vector2.Zero;
+	private BaseProjectileTrajectory _trajectory;
 
 	public override void _Ready()
 	{
+		var library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
+		var trajectoryData = library.GetTrajectoryScene(_trajectoryId);
+		_trajectory = trajectoryData.Instantiate<BaseProjectileTrajectory>();
+		AddChild(_trajectory);
 		ContactMonitor = true;
 		MaxContactsReported = 1;
 		BodyEntered += OnBodyEntered;
@@ -20,21 +23,15 @@ public partial class Projectile : RigidBody2D
 
 	public void SetDirection(Vector2 dir)
 	{
-		_direction = dir;
+		_trajectory.SetTarget(dir);
 	}
 
-	public float GetDelay() => _delay;
+	public float GetDelay() => _trajectory.GetDelay();
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (_direction == Vector2.Zero)
-		{
-			return;
-		}
-		
-		ApplyForce(_direction * _speed);
-		_direction = Vector2.Zero;
+		_trajectory.UpdatePosition(this);
 	}
 	
 	private void OnBodyEntered(Node body)
