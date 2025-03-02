@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://byw3yoyjhryfy"]
+
+[ext_resource type="Script" path="res://Character/Player/PlayerProjectileSpawnComponent.cs" id="1_w4lej"]
+
+[node name="PlayerProjectileSpawnComponent" type="Node2D" node_paths=PackedStringArray("_delayTimer")]
+script = ExtResource("1_w4lej")
+_spawnOffset = 20.0
+_delayTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://fqvgj53q74qw"]
+
+[ext_resource type="Script" path="res://MiscComponents/DestroyIfFarFromPlayer.cs" id="1_e3tsd"]
+
+[node name="DestroyIfFarFromPlayer" type="Node2D" node_paths=PackedStringArray("_timer")]
+script = ExtResource("1_e3tsd")
+_timer = NodePath("Timer")
+_destroyDistance = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

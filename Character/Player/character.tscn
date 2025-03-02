@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://crevd71bgfav8"]
+
+[ext_resource type="Script" path="res://Character/Player/Character.cs" id="1_o06ql"]
+[ext_resource type="Texture2D" uid="uid://djyf0maeea6w3" path="res://icon.svg" id="2_deqmj"]
+[ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
+[ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
+[ext_resource type="PackedScene" uid="uid://dspktofxe4jk0" path="res://Projectiles/Projectile.tscn" id="5_otdgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ato57"]
+size = Vector2(128, 128)
+
+[node name="Character" type="CharacterBody2D"]
+collision_mask = 29
+script = ExtResource("1_o06ql")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_deqmj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ato57")
+
+[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("_characterBody2D") instance=ExtResource("3_7mpp7")]
+_characterBody2D = NodePath("..")
+_speed = 200.0
+
+[node name="PlayerProjectileSpawnComponent" parent="." instance=ExtResource("4_l3pay")]
+_projectilePrefab = ExtResource("5_otdgv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

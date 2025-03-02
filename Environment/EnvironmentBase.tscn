@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt068353tvhcn"]
+
+[ext_resource type="Script" path="res://Environment/EnvironmentBase.cs" id="1_wrl6k"]
+
+[node name="EnvironmentBase" type="StaticBody2D" node_paths=PackedStringArray("_visualPolygon", "_collisionPolygon")]
+collision_layer = 16
+collision_mask = 31
+script = ExtResource("1_wrl6k")
+_visualPolygon = NodePath("CollisionPolygon2D/Polygon2D")
+_collisionPolygon = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0, 48, 0, 48, -32, 24, -48, 0, -32)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
