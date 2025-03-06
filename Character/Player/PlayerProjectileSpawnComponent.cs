@@ -3,10 +3,19 @@ using System;
 
 public partial class PlayerProjectileSpawnComponent : Node2D
 {
+	[Export] private string _currentTrajectoryId = "TrajectoryStraight";
 	[Export] private PackedScene _projectilePrefab;
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
 
+	private ProjectileLibrary _library;
+	
+	public override void _Ready()
+	{
+		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
+
+	}
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -45,9 +54,10 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 		
 		direction = direction.Normalized();
 		Projectile projectileInstance = _projectilePrefab.Instantiate<Projectile>();
+		projectileInstance.Initialize(_library, _currentTrajectoryId);
 		GetTree().CurrentScene.AddChild(projectileInstance);
 		projectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
-		projectileInstance.SetDirection(direction);
+		projectileInstance.Fire(direction);
 		_delayTimer.SetWaitTime(projectileInstance.GetDelay());
 		_delayTimer.Start();
 	}

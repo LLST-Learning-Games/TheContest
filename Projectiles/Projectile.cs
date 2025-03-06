@@ -3,28 +3,35 @@ using System;
 
 public partial class Projectile : RigidBody2D
 {
-	[Export] private string _trajectoryId = "TrajectoryStraight";
 	[Export] private int _damage = 25;
 	[Export] private AnimatedSprite2D _sprite;
+	private string _trajectoryId = "TrajectoryStraight";
 	private BaseProjectileTrajectory _trajectory;
+	private ProjectileLibrary _library;
 
-	public override void _Ready()
+	public void Initialize(ProjectileLibrary library, string trajectoryId)
 	{
-		var library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
-		var trajectoryData = library.GetTrajectoryScene(_trajectoryId);
+		_library = library;
+		_trajectoryId = trajectoryId;
+	}
+
+	public void Fire(Vector2 target)
+	{
+		if (_library is null)
+		{
+			GD.PrintErr($"[{GetType().Name}] No library found. Projectile is not initialized.");
+		}
+		
+		var trajectoryData = _library.GetTrajectoryScene(_trajectoryId);
 		_trajectory = trajectoryData.Instantiate<BaseProjectileTrajectory>();
 		AddChild(_trajectory);
 		ContactMonitor = true;
 		MaxContactsReported = 1;
 		BodyEntered += OnBodyEntered;
+		_trajectory.SetTarget(target);
 	}
 
 	public int GetDamage() => _damage;
-
-	public void SetDirection(Vector2 dir)
-	{
-		_trajectory.SetTarget(dir);
-	}
 
 	public float GetDelay() => _trajectory.GetDelay();
 
