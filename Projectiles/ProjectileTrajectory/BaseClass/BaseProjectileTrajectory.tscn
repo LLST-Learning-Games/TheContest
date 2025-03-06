@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dyjownlxrm2bt"]
 
-[ext_resource type="Script" path="res://Projectiles/ProjectileTrajectory/BaseClass/BaseProjectileTrajectory.cs" id="1_r71up"]
+[ext_resource type="Script" uid="uid://dmdr0j00a2qr8" path="res://Projectiles/ProjectileTrajectory/BaseClass/BaseProjectileTrajectory.cs" id="1_r71up"]
 
 [node name="BaseProjectileTrajectory" type="Node"]
 script = ExtResource("1_r71up")

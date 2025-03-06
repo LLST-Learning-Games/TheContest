@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqqsmpqjriesu"]
 
-[ext_resource type="Script" path="res://Projectiles/ProjectileTrajectory/TrajectoryStraight.cs" id="1_73e4r"]
+[ext_resource type="Script" uid="uid://dh0fehrrm6eja" path="res://Projectiles/ProjectileTrajectory/TrajectoryStraight.cs" id="1_73e4r"]
 
 [node name="TrajectoryStraight" type="Node"]
 script = ExtResource("1_73e4r")
