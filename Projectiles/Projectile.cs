@@ -46,7 +46,7 @@ public partial class Projectile : RigidBody2D
 	
 	private void OnBodyEntered(Node body)
 	{
-		_collision.OnCollide(body);
+		_collision.OnCollide(body, this);
 		_sprite.Play("pop");
 		_sprite.AnimationFinished += QueueFree;
 	}
