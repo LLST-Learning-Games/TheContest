@@ -4,5 +4,5 @@
 
 [node name="TrajectoryStraight" type="Node"]
 script = ExtResource("1_73e4r")
-_speed = 5000.0
+_speed = 15000.0
 _delay = 0.25

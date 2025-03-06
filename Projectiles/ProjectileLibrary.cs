@@ -4,17 +4,20 @@ using Godot.Collections;
 public partial class ProjectileLibrary : Node
 {
 	[Export] private string _trajectoryPath = "res://Projectiles/ProjectileTrajectory";
+	[Export] private string _collisionPath = "res://Projectiles/ProjectileCollision";
 	private Dictionary<string, PackedScene> _trajectories;
+	private Dictionary<string, PackedScene> _collisions;
 	
 	public override void _Ready()
 	{
-		LoadTrajectories();
+		_trajectories = LoadPackedSceneData(_trajectoryPath);
+		_collisions = LoadPackedSceneData(_collisionPath);
 	}
 
-	private void LoadTrajectories()
+	private Dictionary<string, PackedScene> LoadPackedSceneData(string path)
 	{
-		_trajectories = new Dictionary<string, PackedScene>();
-		var directory = DirAccess.Open(_trajectoryPath);
+		var dictionary = new Dictionary<string, PackedScene>();
+		var directory = DirAccess.Open(path);
 		directory.ListDirBegin();
 		while (true)
 		{
@@ -25,16 +28,21 @@ public partial class ProjectileLibrary : Node
 			}
 			if(fileName.EndsWith(".tscn"))
 			{
-				var trajectory = ResourceLoader.Load<PackedScene>(_trajectoryPath + "/" + fileName);
-				_trajectories.Add(fileName[..^5], trajectory);
+				var trajectory = ResourceLoader.Load<PackedScene>(path + "/" + fileName);
+				dictionary.Add(fileName[..^5], trajectory);
 				GD.Print("Loaded trajectory: " + fileName);
 			}
-
 		}
+		return dictionary;
 	}
 
 	public PackedScene GetTrajectoryScene(string trajectoryName)
 	{
 		return _trajectories[trajectoryName];
+	}
+	
+	public PackedScene GetCollisionScene(string collisionName)
+	{
+		return _collisions[collisionName];
 	}
 }

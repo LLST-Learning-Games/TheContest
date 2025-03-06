@@ -21,7 +21,7 @@ _healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.99202, 3)
+scale = Vector2(3, 3.008)
 texture = ExtResource("1_etf27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
