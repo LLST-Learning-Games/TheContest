@@ -8,7 +8,7 @@
 rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gof73"]
-size = Vector2(24, 24)
+size = Vector2(16, 16)
 
 [node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent")]
 collision_layer = 4
