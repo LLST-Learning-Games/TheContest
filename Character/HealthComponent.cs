@@ -6,7 +6,10 @@ public partial class HealthComponent : Node
 	[Export] private int _maxHealth = 100;
 	private int _currentHealth;
 	
+	public int MaxHealth => _maxHealth;
+	
 	public Action OnDeath;
+	public Action<int> OnHealthChanged;
 
 	public override void _Ready()
 	{
@@ -15,9 +18,13 @@ public partial class HealthComponent : Node
 
 	public void UpdateHealth(int delta)
 	{
-		_currentHealth += delta;
+		var newHealth = _currentHealth + delta;
 		_currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
-		GD.Print($"Current Health: {_currentHealth}");
+		if (newHealth != _currentHealth)
+		{
+			_currentHealth = newHealth;
+			OnHealthChanged?.Invoke(_currentHealth);
+		}
 
 		if (_currentHealth == 0)
 		{

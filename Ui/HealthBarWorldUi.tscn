@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d08fusp6s2uwn"]
+
+[ext_resource type="Script" uid="uid://d2eg6eqpwg373" path="res://Ui/HealthBarWorldUi.cs" id="1_gbpom"]
+[ext_resource type="Texture2D" uid="uid://hochw6jeryy" path="res://Art/pixel.png" id="1_wj1ac"]
+
+[node name="HealthBarWorldUi" type="Node2D" node_paths=PackedStringArray("_healthBarSprite")]
+script = ExtResource("1_gbpom")
+_healthBarSprite = NodePath("HealthBarContainer/Sprite2D_BarFull")
+
+[node name="HealthBarContainer" type="Node2D" parent="."]
+scale = Vector2(25, 5)
+
+[node name="Sprite2D_BarEmpty" type="Sprite2D" parent="HealthBarContainer"]
+modulate = Color(0.201527, 0.201527, 0.201527, 1)
+scale = Vector2(1, 1)
+texture = ExtResource("1_wj1ac")
+
+[node name="Sprite2D_BarFull" type="Sprite2D" parent="HealthBarContainer"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-0.15, 0)
+scale = Vector2(0.7, 1)
+texture = ExtResource("1_wj1ac")
