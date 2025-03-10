@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=7 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_wki5p"]
 [ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
 [ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
-[ext_resource type="PackedScene" uid="uid://dspktofxe4jk0" path="res://Projectiles/Projectile.tscn" id="5_otdgv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
 atlas = ExtResource("2_wki5p")
@@ -30,7 +29,7 @@ _characterBody2D = NodePath("..")
 _speed = 200.0
 
 [node name="PlayerProjectileSpawnComponent" parent="." instance=ExtResource("4_l3pay")]
-_projectilePrefab = ExtResource("5_otdgv")
+_currentTrajectoryId = "TrajectoryStraightFast"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

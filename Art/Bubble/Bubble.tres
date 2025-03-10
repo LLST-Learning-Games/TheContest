@@ -2,10 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://7uv4pck81o43" path="res://Art/Bubble/bubble.png" id="1_h7ume"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ubuyo"]
-atlas = ExtResource("1_h7ume")
-region = Rect2(0, 0, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7r856"]
 atlas = ExtResource("1_h7ume")
 region = Rect2(48, 0, 48, 48)
@@ -22,16 +18,12 @@ region = Rect2(144, 0, 48, 48)
 atlas = ExtResource("1_h7ume")
 region = Rect2(192, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubuyo"]
+atlas = ExtResource("1_h7ume")
+region = Rect2(0, 0, 48, 48)
+
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ubuyo")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7r856")
@@ -46,6 +38,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_xr7ye")
 }],
 "loop": false,
-"name": &"pop",
+"name": &"collide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubuyo")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]

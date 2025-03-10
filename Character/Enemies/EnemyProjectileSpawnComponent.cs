@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerProjectileSpawnComponent : Node2D
+public partial class EnemyProjectileSpawnComponent : Node2D
 {
 	[Export] private string _currentTrajectoryId = "TrajectoryStraight";
 	[Export] private string _currentCollisionId = "CollisionSimpleDamage";
@@ -12,15 +12,19 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	private ProjectileLibrary _library;
 	private Vector2 _mouseDirection = Vector2.Zero;
 	
+	private Character _target;
+	
 	public override void _Ready()
 	{
 		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
 	}
 	
+	public void SetTarget(Character target) => _target = target;
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_projectilePrefab == null)
+		if (_projectilePrefab == null || _target == null)
 		{
 			return;
 		}
@@ -30,37 +34,12 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 			return;
 		}
 
-		Vector2 direction = Vector2.Zero;
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
-		{
-			direction = GetGlobalMousePosition() - GlobalPosition;
-		}
-		
-		if(Input.IsActionPressed("fire_up"))
-		{
-			direction.Y -= 1;
-		}
-		if (Input.IsActionPressed("fire_down"))
-		{
-			direction.Y += 1;
-		}
-		if (Input.IsActionPressed("fire_left"))
-		{
-			direction.X -= 1;
-		}
-		if (Input.IsActionPressed("fire_right"))
-		{
-			direction.X += 1;
-		}
-		
-		if (direction == Vector2.Zero)
-		{
-			return;
-		}
+		Vector2 direction = _target.Position - GlobalPosition;
 		
 		direction = direction.Normalized();
 		Projectile projectileInstance = _projectilePrefab.Instantiate<Projectile>();
 		projectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
+		projectileInstance.SetAsEnemyProjectile();
 		GetTree().CurrentScene.AddChild(projectileInstance);
 		projectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
 		projectileInstance.Fire(direction);

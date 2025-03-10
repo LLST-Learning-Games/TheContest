@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c47qe5lm46qiv"]
+[gd_scene load_steps=7 format=3 uid="uid://c47qe5lm46qiv"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_674jy"]
 [ext_resource type="Texture2D" uid="uid://cq5wasrumumce" path="res://Art/Enemy.tres" id="1_etf27"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_ye640"]
+[ext_resource type="PackedScene" uid="uid://c15y044mkacgd" path="res://Character/Enemies/EnemyProjectileSpawnComponent.tscn" id="4_p8sn4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gyvxm"]
 rough = true
@@ -10,7 +11,7 @@ rough = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gof73"]
 size = Vector2(16, 16)
 
-[node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent")]
+[node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent", "_projectileSpawnComponent")]
 collision_layer = 4
 collision_mask = 23
 mass = 5.0
@@ -21,6 +22,7 @@ lock_rotation = true
 linear_damp = 9.619
 script = ExtResource("1_674jy")
 _healthComponent = NodePath("HealthComponent")
+_projectileSpawnComponent = NodePath("EnemyProjectileSpawnComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -33,3 +35,5 @@ shape = SubResource("RectangleShape2D_gof73")
 [node name="Node" type="Node" parent="."]
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_ye640")]
+
+[node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("4_p8sn4")]
