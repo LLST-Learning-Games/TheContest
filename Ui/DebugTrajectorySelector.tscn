@@ -14,7 +14,9 @@ _itemList = NodePath("ItemList")
 
 [node name="ItemList" type="ItemList" parent="."]
 layout_mode = 0
-offset_right = 96.0
-offset_bottom = 167.0
+offset_left = 982.0
+offset_top = 23.0
+offset_right = 1132.0
+offset_bottom = 190.0
 item_count = 1
 item_0/text = "test"

@@ -10,3 +10,4 @@ _yoyoStrength = 55000.0
 _despawnRangeSquared = 1500.0
 _delay = 0.3
 _spriteFrames = ExtResource("2_d5yfb")
+_spriteColor = Color(0.694219, 0.0861791, 0.768312, 1)
