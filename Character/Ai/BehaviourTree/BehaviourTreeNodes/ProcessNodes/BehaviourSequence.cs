@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Behaviours
 {
-    public class BehaviourSequence : BehaviourTreeNodeBase
+    public partial class BehaviourSequence : BehaviourTreeNodeBase
     {
         public override BehaviourNodeState UpdateNode(double delta, Dictionary<BehaviourDataKeys, object> treeData)
         {

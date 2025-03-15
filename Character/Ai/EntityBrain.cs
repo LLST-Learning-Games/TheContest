@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using Behaviours;
 using Godot;
+using Godot.Collections;
 
 public partial class EntityBrain : Node
 {
     private BehaviourTree _behaviourTree;
+    [Export] private BehaviourTreeNodeBase _root;
 
     public override void _Ready()
     {
@@ -21,9 +23,9 @@ public partial class EntityBrain : Node
     {
         GD.Print($"[{GetType().Name}] New BehaviourTree created!");
         BehaviourTreeNodeBase rawTree = new BehaviourSequence();
-        List<BehaviourTreeNodeBase> children = new List<BehaviourTreeNodeBase>();
-        children.Add(new BehaviourIdle());
-        var treeData = new Dictionary<BehaviourDataKeys, object>();
+        Array<BehaviourTreeNodeBase> children = new Array<BehaviourTreeNodeBase>();
+        children.Add(_root);
+        var treeData = new System.Collections.Generic.Dictionary<BehaviourDataKeys, object>();
         rawTree.Initialize(children, treeData);
         return new BehaviourTree(rawTree, treeData);
     }

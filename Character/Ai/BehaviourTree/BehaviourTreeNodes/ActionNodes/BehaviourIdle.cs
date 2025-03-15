@@ -3,7 +3,7 @@ using Godot;
 
 namespace Behaviours;
 
-public class BehaviourIdle : BehaviourTreeNodeBase
+public partial class BehaviourIdle : BehaviourTreeNodeBase
 {
     public override BehaviourNodeState UpdateNode(double delta, Dictionary<BehaviourDataKeys, object> treeData)
     {

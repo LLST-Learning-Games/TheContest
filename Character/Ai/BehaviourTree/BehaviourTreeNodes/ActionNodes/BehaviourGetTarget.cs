@@ -1,16 +1,16 @@
-using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 namespace Behaviours;
 
-public class BehaviourGetTarget : BehaviourTreeNodeBase
+public partial class BehaviourGetTarget : BehaviourTreeNodeBase
 {
-    public override void Initialize(IList<BehaviourTreeNodeBase> children, Dictionary<BehaviourDataKeys, object> treeData)
+    public override void Initialize(Array<BehaviourTreeNodeBase> children, System.Collections.Generic.Dictionary<BehaviourDataKeys, object> treeData)
     {
         base.Initialize(children, treeData);
     }
 
-    public override BehaviourNodeState UpdateNode(double delta, Dictionary<BehaviourDataKeys, object> treeData)
+    public override BehaviourNodeState UpdateNode(double delta, System.Collections.Generic.Dictionary<BehaviourDataKeys, object> treeData)
     {
         object target = null;
         if (!treeData.TryGetValue(BehaviourDataKeys.TARGET, out target))

@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu2s8kq5b2ljs"]
+[gd_scene load_steps=5 format=3 uid="uid://bu2s8kq5b2ljs"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_l30f6"]
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/BehaviourTreeNodes/ProcessNodes/BehaviourSequence.cs" id="2_h1t5d"]
+[ext_resource type="Script" uid="uid://c1qmia0m7if1e" path="res://Character/Ai/BehaviourTree/BehaviourTreeNodes/ActionNodes/BehaviourGetTarget.cs" id="3_ogphc"]
+[ext_resource type="Script" uid="uid://b5x0o5p1hd3mg" path="res://Character/Ai/BehaviourTree/BehaviourTreeNodes/ActionNodes/BehaviourIdle.cs" id="4_2nprb"]
 
-[node name="EntityBrain" type="Node"]
+[node name="EntityBrain" type="Node" node_paths=PackedStringArray("_root")]
 script = ExtResource("1_l30f6")
+_root = NodePath("RootNode")
+
+[node name="RootNode" type="Node" parent="." node_paths=PackedStringArray("_children")]
+script = ExtResource("2_h1t5d")
+_children = [NodePath("Idle")]
+
+[node name="GetTarget" type="Node" parent="RootNode" node_paths=PackedStringArray("_children")]
+script = ExtResource("3_ogphc")
+_children = []
+
+[node name="Idle" type="Node" parent="RootNode" node_paths=PackedStringArray("_children")]
+script = ExtResource("4_2nprb")
+_children = []
