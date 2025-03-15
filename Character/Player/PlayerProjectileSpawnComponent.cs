@@ -17,6 +17,8 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
 	}
 	
+	public void SetCurrentTrajectoryId(string trajectoryId) => _currentTrajectoryId = trajectoryId;
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{

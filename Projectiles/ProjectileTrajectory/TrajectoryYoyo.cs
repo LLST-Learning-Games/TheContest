@@ -29,8 +29,6 @@ public partial class TrajectoryYoyo : BaseProjectileTrajectory
         body.ApplyForce(distanceBetweenSelfAndStart.Normalized() * -(float)delta * _yoyoStrength);
         
         _timeSinceShot += (float)delta;
-        GD.Print("Time Since Shot: " + _timeSinceShot);
-        GD.Print("Distance: " + distanceBetweenSelfAndStart.LengthSquared());
         if (_timeSinceShot < SECONDS_TO_CHECK_RETURN_TIME)
         {
             return;

@@ -1,12 +1,12 @@
+using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 
 public partial class ProjectileLibrary : Node
 {
 	[Export] private string _trajectoryPath = "res://Projectiles/ProjectileTrajectory";
 	[Export] private string _collisionPath = "res://Projectiles/ProjectileCollision";
-	private Dictionary<string, PackedScene> _trajectories;
-	private Dictionary<string, PackedScene> _collisions;
+	private Godot.Collections.Dictionary<string, PackedScene> _trajectories;
+	private Godot.Collections.Dictionary<string, PackedScene> _collisions;
 	
 	public override void _Ready()
 	{
@@ -14,9 +14,9 @@ public partial class ProjectileLibrary : Node
 		_collisions = LoadPackedSceneData(_collisionPath);
 	}
 
-	private Dictionary<string, PackedScene> LoadPackedSceneData(string path)
+	private Godot.Collections.Dictionary<string, PackedScene> LoadPackedSceneData(string path)
 	{
-		var dictionary = new Dictionary<string, PackedScene>();
+		var dictionary = new Godot.Collections.Dictionary<string, PackedScene>();
 		var directory = DirAccess.Open(path);
 		directory.ListDirBegin();
 		while (true)
@@ -45,4 +45,6 @@ public partial class ProjectileLibrary : Node
 	{
 		return _collisions[collisionName];
 	}
+	
+	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
 }

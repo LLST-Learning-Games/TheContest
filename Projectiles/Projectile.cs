@@ -31,17 +31,28 @@ public partial class Projectile : RigidBody2D
 			return;
 		}
 		
-		var trajectoryData = _library.GetTrajectoryScene(_trajectoryId);
-		_trajectory = trajectoryData.Instantiate<BaseProjectileTrajectory>();
-		_sprite.SetSpriteFrames(_trajectory.GetSpriteFrames());
-		var collisionData = _library.GetCollisionScene(_collisionId);
-		_collision = collisionData.Instantiate<BaseProjectileCollision>();
-		
-		AddChild(_trajectory);
+		InitializeTrajectory();
+		InitializeCollision();
+
 		ContactMonitor = true;
 		MaxContactsReported = 1;
 		BodyEntered += OnBodyEntered;
 		_trajectory.SetTarget(target);
+	}
+
+	private void InitializeCollision()
+	{
+		var collisionData = _library.GetCollisionScene(_collisionId);
+		_collision = collisionData.Instantiate<BaseProjectileCollision>();
+	}
+
+	private void InitializeTrajectory()
+	{
+		var trajectoryData = _library.GetTrajectoryScene(_trajectoryId);
+		_trajectory = trajectoryData.Instantiate<BaseProjectileTrajectory>();
+		_sprite.SetSpriteFrames(_trajectory.GetSpriteFrames());
+		_sprite.SetModulate(_trajectory.GetSpriteColor());
+		AddChild(_trajectory);
 	}
 
 	public float GetDelay() => _trajectory.GetDelay();
