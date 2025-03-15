@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu2s8kq5b2ljs"]
+
+[ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_l30f6"]
+
+[node name="EntityBrain" type="Node"]
+script = ExtResource("1_l30f6")
