@@ -10,7 +10,9 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	[Export] private Timer _delayTimer;
 
 	private ProjectileLibrary _library;
-	private Vector2 _mouseDirection = Vector2.Zero;
+	private Vector2 _direction;
+
+	private bool _isShooting = false;
 	
 	public override void _Ready()
 	{
@@ -18,6 +20,7 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	}
 	
 	public void SetCurrentTrajectoryId(string trajectoryId) => _currentTrajectoryId = trajectoryId;
+	public void SetCurrentCollisionId(string collisionId) => _currentCollisionId = collisionId;
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
@@ -32,42 +35,56 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 			return;
 		}
 
-		Vector2 direction = Vector2.Zero;
-		if (Input.IsMouseButtonPressed(MouseButton.Left))
+		if (_isShooting)
 		{
-			direction = GetGlobalMousePosition() - GlobalPosition;
+			_direction = GetGlobalMousePosition() - GlobalPosition;
 		}
 		
 		if(Input.IsActionPressed("fire_up"))
 		{
-			direction.Y -= 1;
+			_direction.Y -= 1;
 		}
 		if (Input.IsActionPressed("fire_down"))
 		{
-			direction.Y += 1;
+			_direction.Y += 1;
 		}
 		if (Input.IsActionPressed("fire_left"))
 		{
-			direction.X -= 1;
+			_direction.X -= 1;
 		}
 		if (Input.IsActionPressed("fire_right"))
 		{
-			direction.X += 1;
+			_direction.X += 1;
 		}
 		
-		if (direction == Vector2.Zero)
+		if (_direction == Vector2.Zero)
 		{
 			return;
 		}
 		
-		direction = direction.Normalized();
+		_direction = _direction.Normalized();
 		Projectile projectileInstance = _projectilePrefab.Instantiate<Projectile>();
 		projectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
 		GetTree().CurrentScene.AddChild(projectileInstance);
-		projectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
-		projectileInstance.Fire(direction);
+		projectileInstance.Position = GlobalPosition + (_direction * _spawnOffset);
+		projectileInstance.Fire(_direction);
 		_delayTimer.SetWaitTime(projectileInstance.GetDelay());
 		_delayTimer.Start();
-		_mouseDirection = Vector2.Zero;
+		_direction = Vector2.Zero;
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left })
+		{
+			if (@event.IsPressed())
+			{
+				_isShooting = true;
+			}
+			else
+			{
+				_isShooting = false;
+			}
+		}
 	}
 }

@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://2xhxo4bfwcu0"]
+[gd_scene load_steps=3 format=3 uid="uid://2xhxo4bfwcu0"]
 
 [ext_resource type="Script" uid="uid://bqvylehpp8x7k" path="res://Projectiles/ProjectileCollision/CollisionSimpleDamage.cs" id="1_7u6ke"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_ray4g"]
 
 [node name="CollisionSimpleDamage" type="Node"]
 script = ExtResource("1_7u6ke")
 _damageToDealOnCollision = 25
+_spriteFrames = ExtResource("2_ray4g")

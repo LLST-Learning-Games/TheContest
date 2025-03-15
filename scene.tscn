@@ -184,8 +184,15 @@ position = Vector2(285, 166)
 [node name="Enemy" parent="." instance=ExtResource("3_3a2ea")]
 position = Vector2(495, 276)
 
+[node name="Enemy2" parent="." instance=ExtResource("3_3a2ea")]
+position = Vector2(474, 313)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_3a2ea")]
+position = Vector2(-214, 414)
+
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_a3g6e")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugTrajectorySelector" parent="CanvasLayer" instance=ExtResource("5_y2354")]
+mouse_filter = 2

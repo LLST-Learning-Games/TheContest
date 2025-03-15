@@ -19,7 +19,7 @@ public partial class HealthComponent : Node
 	public void UpdateHealth(int delta)
 	{
 		var newHealth = _currentHealth + delta;
-		_currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+		newHealth = Mathf.Clamp(newHealth, 0, _maxHealth);
 		if (newHealth != _currentHealth)
 		{
 			_currentHealth = newHealth;

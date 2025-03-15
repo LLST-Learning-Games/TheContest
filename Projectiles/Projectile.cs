@@ -9,6 +9,7 @@ public partial class Projectile : RigidBody2D
 	private BaseProjectileTrajectory _trajectory;
 	private BaseProjectileCollision _collision;
 	private ProjectileLibrary _library;
+	private bool _hasCollided;
 
 	public void Initialize(ProjectileLibrary library, string trajectoryId, string collisionId)
 	{
@@ -21,6 +22,7 @@ public partial class Projectile : RigidBody2D
 	{
 		_collisionObject2D.SetCollisionLayer(0b1000);
 		_collisionObject2D.SetCollisionMask(0b10001);	// player and environment
+		_collision.SetAsEnemyCollision();
 	}
 
 	public void Fire(Vector2 target)
@@ -33,7 +35,6 @@ public partial class Projectile : RigidBody2D
 		
 		InitializeTrajectory();
 		InitializeCollision();
-
 		ContactMonitor = true;
 		MaxContactsReported = 1;
 		BodyEntered += OnBodyEntered;
@@ -42,8 +43,10 @@ public partial class Projectile : RigidBody2D
 
 	private void InitializeCollision()
 	{
+		_hasCollided = false;
 		var collisionData = _library.GetCollisionScene(_collisionId);
 		_collision = collisionData.Instantiate<BaseProjectileCollision>();
+		AddChild(_collision);
 	}
 
 	private void InitializeTrajectory()
@@ -60,12 +63,25 @@ public partial class Projectile : RigidBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_hasCollided)
+		{
+			return;
+		}
+		
 		_trajectory.UpdatePosition(this, delta);
 	}
 	
 	private void OnBodyEntered(Node body)
 	{
+		_hasCollided = true;
 		_collision.OnCollide(body, this);
+		HandleCollisionVisuals();
+	}
+
+	public void HandleCollisionVisuals()
+	{
+		_sprite.Scale = _collision.GetScale();
+		_sprite.SetSpriteFrames(_collision.GetSpriteFrames());
 		_sprite.Play("collide");
 		_sprite.AnimationFinished += QueueFree;
 	}

@@ -36,6 +36,7 @@ shape = SubResource("RectangleShape2D_gof73")
 [node name="Node" type="Node" parent="."]
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_ye640")]
+_maxHealth = 500
 
 [node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("4_p8sn4")]
 

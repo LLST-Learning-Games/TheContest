@@ -47,4 +47,5 @@ public partial class ProjectileLibrary : Node
 	}
 	
 	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
+	public ICollection<string> GetCollisionIds() => _collisions.Keys;
 }
