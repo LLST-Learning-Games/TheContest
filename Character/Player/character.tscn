@@ -29,7 +29,7 @@ _characterBody2D = NodePath("..")
 _speed = 200.0
 
 [node name="PlayerProjectileSpawnComponent" parent="." instance=ExtResource("4_l3pay")]
-_currentTrajectoryId = "TrajectoryStraightFast"
+_currentTrajectoryId = "TrajectoryYoyo"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

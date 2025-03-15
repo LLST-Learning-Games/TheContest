@@ -10,7 +10,7 @@ public partial class TrajectoryStraight : BaseProjectileTrajectory
         _direction = target;
     }
 
-    public override void UpdatePosition(RigidBody2D body)
+    public override void UpdatePosition(RigidBody2D body, double delta)
     {
         if (_direction == Vector2.Zero)
         {

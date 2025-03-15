@@ -49,7 +49,7 @@ public partial class Projectile : RigidBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		_trajectory.UpdatePosition(this);
+		_trajectory.UpdatePosition(this, delta);
 	}
 	
 	private void OnBodyEntered(Node body)

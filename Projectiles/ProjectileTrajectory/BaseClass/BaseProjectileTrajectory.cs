@@ -12,5 +12,5 @@ public abstract partial class BaseProjectileTrajectory : Node
     public SpriteFrames GetSpriteFrames() => _spriteFrames;
     
     public abstract void SetTarget(Vector2 target);
-    public abstract void UpdatePosition(RigidBody2D body);
+    public abstract void UpdatePosition(RigidBody2D body, double delta);
 }
