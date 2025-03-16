@@ -31,6 +31,7 @@ namespace Behaviours
                     GD.PrintErr($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
                     break;
                 case BehaviourState.Success:
+                    GD.Print($"[{GetType().Name}] Reached end of root behaviour. Resetting logic...");
                     ResetLogic();
                     break;
                 case BehaviourState.Running:

@@ -11,10 +11,14 @@ public partial class BehaviourAttack : BehaviourActionBase
     private EnemyProjectileSpawnComponent _spawnComponent;
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
-        GD.Print($"[{GetType().Name}] Attacking!");
+        if(_currentTime == 0)
+        {
+            GD.Print($"[{GetType().Name}] Attack starting!");
+        }
         _currentTime += delta;
         if (_currentTime > _attackTime)
         {
+            GD.Print($"[{GetType().Name}] Attack Complete!");
             _state = BehaviourState.Success;
             return _state;
         }

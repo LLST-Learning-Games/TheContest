@@ -11,12 +11,17 @@ public partial class BehaviourIdle : BehaviourBase
     
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
+        if (_currentTime == 0)
+        {
+            GD.Print($"[{GetType().Name}] Begin idle!");
+        }
         _currentTime += delta;
-        GD.Print($"[{GetType().Name}] Idling for {_currentTime} seconds!");
+        //GD.Print($"[{GetType().Name}] Idling for {_currentTime} seconds!");
         if (_currentTime < _idleTime)
         {
             return BehaviourState.Running;
         }
+        GD.Print($"[{GetType().Name}] Idle complete after {_currentTime} seconds!");
         return BehaviourState.Success;
     }
 

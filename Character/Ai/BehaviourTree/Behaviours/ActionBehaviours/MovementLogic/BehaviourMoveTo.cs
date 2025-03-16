@@ -6,15 +6,26 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 {
     [Export] private float _successDistance = 10f;
     [Export] private float _moveSpeed = 50f;
+    [Export] private double _failTimeout = 0.5;
     
     private Vector2 _moveDestination = Vector2.Zero;
+    private Vector2 _positionLastTick = Vector2.Zero;
     private RigidBody2D _actorBody;
+    private float _dampingCache;
+    private double _currentTime = 0f;
     
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
+
         _state = BehaviourState.Running;
         GetLocationFromBlackboard(blackboard);
         GetRigidBodyFromBlackboard(blackboard);
+        
+        if (_currentTime == 0)
+        {
+            GD.Print($"[{GetType().Name}] Begin move to {_moveDestination}!");
+        }
+        _currentTime += delta;
         MoveToLocation(delta);
         return _state;
     }
@@ -22,12 +33,23 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 
     private void MoveToLocation(double delta)
     {
-        if ((_moveDestination - _actorBody.Position).Length() < _successDistance)
+        var moveVector = _moveDestination - _actorBody.GlobalPosition;
+        if (moveVector.Length() < _successDistance)
         {
+            GD.Print($"[{GetType().Name}] Arrived at {_moveDestination}!");
             _state = BehaviourState.Success;
             return;
         }
-        _actorBody.Position = _actorBody.Position.Lerp(_moveDestination,  _moveSpeed * (float)delta);
+
+        if (_positionLastTick == _actorBody.GlobalPosition && _currentTime >= _failTimeout)
+        {
+            GD.Print($"[{GetType().Name}] Could not reach {_moveDestination}!");
+            _state = BehaviourState.Failure;
+            return;
+        }
+        
+        _positionLastTick = _actorBody.GlobalPosition;
+        _actorBody.ApplyForce(moveVector.Normalized() * _moveSpeed * (float)delta);
     }
 
     private void GetLocationFromBlackboard(BehaviourTreeBlackboard blackboard)
@@ -63,6 +85,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
     {
+        _currentTime = 0f;
         _actorBody = null;
         _moveDestination = Vector2.Zero;
     }

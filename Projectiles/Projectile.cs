@@ -73,9 +73,12 @@ public partial class Projectile : RigidBody2D
 	
 	private void OnBodyEntered(Node body)
 	{
+		if(!_hasCollided)
+		{
+			_collision.OnCollide(body, this);
+			HandleCollisionVisuals();
+		}
 		_hasCollided = true;
-		_collision.OnCollide(body, this);
-		HandleCollisionVisuals();
 	}
 
 	public void HandleCollisionVisuals()

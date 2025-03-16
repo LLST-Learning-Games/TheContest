@@ -10,7 +10,6 @@
 [node name="EntityBrain" type="Node" node_paths=PackedStringArray("_root")]
 script = ExtResource("1_l30f6")
 _root = NodePath("Root")
-_resetLogicTimer = 20.0
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
 script = ExtResource("2_h1t5d")
@@ -31,6 +30,7 @@ _range = 100.0
 [node name="MoveTo" type="Node" parent="Root/MoveBehaviour"]
 script = ExtResource("6_5c3ec")
 _successDistance = 5.0
-_moveSpeed = 5.0
+_moveSpeed = 900000.0
 
-[node name="AttackBehaviour" parent="Root" instance=ExtResource("3_ndrqp")]
+[node name="AttackBehaviour" parent="Root" node_paths=PackedStringArray("_children") instance=ExtResource("3_ndrqp")]
+_children = [NodePath("GetTarget"), NodePath("AttackTarget")]

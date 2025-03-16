@@ -5,12 +5,12 @@ namespace Behaviours
 {
     public partial class BehaviourSequence : BehaviourCompositeBase
     {
-        private BehaviourBase currentBehaviour;
+        private BehaviourBase _currentBehaviour;
         public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
         {
-            if (currentBehaviour != null)
+            if (_currentBehaviour != null)
             {
-                _state = currentBehaviour.UpdateNode(delta, blackboard);
+                _state = _currentBehaviour.UpdateNode(delta, blackboard);
                 if (_state == BehaviourState.Running)
                 {
                     return _state;
@@ -22,7 +22,7 @@ namespace Behaviours
                 _state = child.UpdateNode(delta, blackboard);
                 if (_state == BehaviourState.Running)
                 {
-                    currentBehaviour = child;
+                    _currentBehaviour = child;
                     break;
                 }
             }
@@ -36,6 +36,7 @@ namespace Behaviours
             {
                 child.ResetBehaviour(blackboard);
             }
+            _currentBehaviour = null;
         }
     }
 }

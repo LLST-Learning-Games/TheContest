@@ -18,3 +18,4 @@ script = ExtResource("3_un4yy")
 
 [node name="AttackTarget" type="Node" parent="."]
 script = ExtResource("4_rivor")
+_attackTime = 3.0
