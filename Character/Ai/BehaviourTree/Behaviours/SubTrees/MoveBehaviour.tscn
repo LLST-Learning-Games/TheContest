@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8pf1gw8qmto5"]
+
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="1_pahxe"]
+[ext_resource type="Script" uid="uid://b5x0o5p1hd3mg" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/BehaviourIdle.cs" id="2_4ev0v"]
+[ext_resource type="Script" uid="uid://c33uvpoogk8vn" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourGetRandomLocation.cs" id="3_wynri"]
+[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="4_lnkpc"]
+
+[node name="MoveBehaviour" type="Node" node_paths=PackedStringArray("_children")]
+script = ExtResource("1_pahxe")
+_children = [NodePath("Idle"), NodePath("GetLocation"), NodePath("MoveTo")]
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_4ev0v")
+_idleTime = 1.0
+
+[node name="GetLocation" type="Node" parent="."]
+script = ExtResource("3_wynri")
+_range = 100.0
+
+[node name="MoveTo" type="Node" parent="."]
+script = ExtResource("4_lnkpc")
+_successDistance = 5.0
+_moveSpeed = 900000.0

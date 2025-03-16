@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu2s8kq5b2ljs"]
+[gd_scene load_steps=5 format=3 uid="uid://bu2s8kq5b2ljs"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_l30f6"]
 [ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_h1t5d"]
+[ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="3_h1t5d"]
 [ext_resource type="PackedScene" uid="uid://doamjxtwwmj57" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/AttackBehaviour.tscn" id="3_ndrqp"]
-[ext_resource type="Script" uid="uid://b5x0o5p1hd3mg" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/BehaviourIdle.cs" id="4_2nprb"]
-[ext_resource type="Script" uid="uid://c33uvpoogk8vn" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourGetRandomLocation.cs" id="5_2nprb"]
-[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="6_5c3ec"]
 
 [node name="EntityBrain" type="Node" node_paths=PackedStringArray("_root")]
 script = ExtResource("1_l30f6")
@@ -15,22 +13,13 @@ _root = NodePath("Root")
 script = ExtResource("2_h1t5d")
 _children = [NodePath("MoveBehaviour"), NodePath("AttackBehaviour")]
 
-[node name="MoveBehaviour" type="Node" parent="Root" node_paths=PackedStringArray("_children")]
-script = ExtResource("2_h1t5d")
-_children = [NodePath("Idle"), NodePath("GetLocation"), NodePath("MoveTo")]
+[node name="MoveBehaviour" parent="Root" instance=ExtResource("3_h1t5d")]
 
-[node name="Idle" type="Node" parent="Root/MoveBehaviour"]
-script = ExtResource("4_2nprb")
-_idleTime = 1.0
-
-[node name="GetLocation" type="Node" parent="Root/MoveBehaviour"]
-script = ExtResource("5_2nprb")
-_range = 100.0
-
-[node name="MoveTo" type="Node" parent="Root/MoveBehaviour"]
-script = ExtResource("6_5c3ec")
-_successDistance = 5.0
-_moveSpeed = 900000.0
+[node name="GetLocation" parent="Root/MoveBehaviour" index="1"]
+_range = 250.0
 
 [node name="AttackBehaviour" parent="Root" node_paths=PackedStringArray("_children") instance=ExtResource("3_ndrqp")]
 _children = [NodePath("GetTarget"), NodePath("AttackTarget")]
+
+[editable path="Root/MoveBehaviour"]
+[editable path="Root/AttackBehaviour"]
