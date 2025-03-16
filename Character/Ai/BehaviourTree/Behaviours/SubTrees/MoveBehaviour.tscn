@@ -7,11 +7,7 @@
 
 [node name="MoveBehaviour" type="Node" node_paths=PackedStringArray("_children")]
 script = ExtResource("1_pahxe")
-_children = [NodePath("Idle"), NodePath("GetLocation"), NodePath("MoveTo")]
-
-[node name="Idle" type="Node" parent="."]
-script = ExtResource("2_4ev0v")
-_idleTime = 1.0
+_children = [NodePath("GetLocation"), NodePath("MoveTo"), NodePath("Idle")]
 
 [node name="GetLocation" type="Node" parent="."]
 script = ExtResource("3_wynri")
@@ -21,3 +17,7 @@ _range = 100.0
 script = ExtResource("4_lnkpc")
 _successDistance = 5.0
 _moveSpeed = 900000.0
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_4ev0v")
+_idleTime = 1.0

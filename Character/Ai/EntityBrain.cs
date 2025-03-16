@@ -15,7 +15,7 @@ public partial class EntityBrain : Node
         _behaviourTree = GetNewBehaviourTree();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         _behaviourTree.UpdateBehaviour(delta);
     }

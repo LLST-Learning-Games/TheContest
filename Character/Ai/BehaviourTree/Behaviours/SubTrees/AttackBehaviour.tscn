@@ -7,11 +7,7 @@
 
 [node name="AttackBehaviour" type="Node" node_paths=PackedStringArray("_children")]
 script = ExtResource("1_un4yy")
-_children = [NodePath("Idle"), NodePath("GetTarget"), NodePath("AttackTarget")]
-
-[node name="Idle" type="Node" parent="."]
-script = ExtResource("2_rivor")
-_idleTime = 1.0
+_children = [NodePath("GetTarget"), NodePath("AttackTarget"), NodePath("Idle")]
 
 [node name="GetTarget" type="Node" parent="."]
 script = ExtResource("3_un4yy")
@@ -19,3 +15,7 @@ script = ExtResource("3_un4yy")
 [node name="AttackTarget" type="Node" parent="."]
 script = ExtResource("4_rivor")
 _attackTime = 3.0
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_rivor")
+_idleTime = 1.0

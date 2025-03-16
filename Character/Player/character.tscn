@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=9 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_wki5p"]
 [ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
 [ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
+[ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="5_dtwtn"]
+[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
 atlas = ExtResource("2_wki5p")
@@ -12,9 +14,11 @@ region = Rect2(40, 0, 8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ato57"]
 size = Vector2(16, 16)
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_camera", "_healthComponent")]
 collision_mask = 29
 script = ExtResource("1_o06ql")
+_camera = NodePath("Camera2D")
+_healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -33,3 +37,10 @@ _currentTrajectoryId = "TrajectoryStraightFast"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_dtwtn")]
+_maxHealth = 200
+
+[node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("6_yc63j")]
+position = Vector2(0, -20)
+_healthComponent = NodePath("../HealthComponent")

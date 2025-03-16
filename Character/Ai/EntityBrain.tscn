@@ -15,11 +15,10 @@ _children = [NodePath("MoveBehaviour"), NodePath("AttackBehaviour")]
 
 [node name="MoveBehaviour" parent="Root" instance=ExtResource("3_h1t5d")]
 
-[node name="GetLocation" parent="Root/MoveBehaviour" index="1"]
+[node name="GetLocation" parent="Root/MoveBehaviour" index="0"]
 _range = 250.0
 
-[node name="AttackBehaviour" parent="Root" node_paths=PackedStringArray("_children") instance=ExtResource("3_ndrqp")]
-_children = [NodePath("GetTarget"), NodePath("AttackTarget")]
+[node name="AttackBehaviour" parent="Root" instance=ExtResource("3_ndrqp")]
 
 [editable path="Root/MoveBehaviour"]
 [editable path="Root/AttackBehaviour"]
