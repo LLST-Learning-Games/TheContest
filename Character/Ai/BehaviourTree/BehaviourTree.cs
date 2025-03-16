@@ -6,21 +6,40 @@ namespace Behaviours
 {
     public class BehaviourTree
     {
-        private BehaviourTreeNodeBase _rootNode;
-        private Dictionary<BehaviourDataKeys, Object> _treeData;
+        private double _resetLogicTimer;
+        private BehaviourBase _rootNode;
+        private BehaviourTreeBlackboard _treeData;
+        private double _currentTime = 0;
 
-        public BehaviourTree(BehaviourTreeNodeBase rootNode, Dictionary<BehaviourDataKeys, Object> treeData)
+        public BehaviourTree(BehaviourCompositeBase rootNode, Node2D actor, double resetLogicTimer = 0)
         {
             _rootNode = rootNode;
-            _treeData = treeData;
+            _resetLogicTimer = resetLogicTimer;
+            _treeData = new BehaviourTreeBlackboard 
+            {      
+                Actor = actor,
+                Tree = this
+            };
         }
 
         public void UpdateBehaviour(double delta)
         {
-            // todo - cache the current running node
-            if (_rootNode.UpdateNode(delta, _treeData) != BehaviourNodeState.Running)
+            BehaviourState state = _rootNode.UpdateNode(delta, _treeData);
+            if (state != BehaviourState.Running)
             {
                 GD.PrintErr($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+            }
+
+            if (_resetLogicTimer <= 0)
+            {
+                return;
+            }
+            
+            _currentTime += delta;
+            if (_currentTime >= _resetLogicTimer)
+            {
+                _rootNode.ResetBehaviour(_treeData);
+                _currentTime = 0;
             }
         }
 

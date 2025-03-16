@@ -1,4 +1,4 @@
-public enum BehaviourNodeState
+public enum BehaviourState
 {
     Undefined = 0,
     Running = 10,

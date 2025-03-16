@@ -6,7 +6,9 @@ using Godot.Collections;
 public partial class EntityBrain : Node
 {
     private BehaviourTree _behaviourTree;
-    [Export] private BehaviourTreeNodeBase _root;
+    [Export] private BehaviourCompositeBase _root;
+    [Export] private Node2D _actor;
+    [Export] private float _resetLogicTimer;
 
     public override void _Ready()
     {
@@ -22,11 +24,7 @@ public partial class EntityBrain : Node
     private BehaviourTree GetNewBehaviourTree()
     {
         GD.Print($"[{GetType().Name}] New BehaviourTree created!");
-        BehaviourTreeNodeBase rawTree = new BehaviourSequence();
-        Array<BehaviourTreeNodeBase> children = new Array<BehaviourTreeNodeBase>();
-        children.Add(_root);
-        var treeData = new System.Collections.Generic.Dictionary<BehaviourDataKeys, object>();
-        rawTree.Initialize(children, treeData);
-        return new BehaviourTree(rawTree, treeData);
+
+        return new BehaviourTree(_root, _actor, _resetLogicTimer);
     }
 }

@@ -43,4 +43,5 @@ _maxHealth = 500
 position = Vector2(0, -20)
 _healthComponent = NodePath("../HealthComponent")
 
-[node name="EntityBrain" parent="." instance=ExtResource("6_ylk83")]
+[node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("6_ylk83")]
+_actor = NodePath("..")

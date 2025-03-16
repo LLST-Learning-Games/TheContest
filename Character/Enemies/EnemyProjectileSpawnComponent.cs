@@ -12,14 +12,14 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	private ProjectileLibrary _library;
 	private Vector2 _mouseDirection = Vector2.Zero;
 	
-	private Character _target;
+	private Node2D _target;
 	
 	public override void _Ready()
 	{
 		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
 	}
 	
-	public void SetTarget(Character target) => _target = target;
+	public void SetTarget(Node2D target) => _target = target;
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)

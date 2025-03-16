@@ -2,5 +2,6 @@ namespace Behaviours;
 
 public enum BehaviourDataKeys
 {
-    TARGET = 1,
+    TARGET = 10,
+    ENEMY_SPAWN_COMPONENT = 20,
 }
