@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://doamjxtwwmj57"]
+
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="1_un4yy"]
+[ext_resource type="Script" uid="uid://b5x0o5p1hd3mg" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/BehaviourIdle.cs" id="2_rivor"]
+[ext_resource type="Script" uid="uid://ger2u4uvbud4" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourGetTarget.cs" id="3_un4yy"]
+[ext_resource type="Script" uid="uid://bgu2l0o504k5v" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourAttack.cs" id="4_rivor"]
+
+[node name="AttackBehaviour" type="Node" node_paths=PackedStringArray("_children")]
+script = ExtResource("1_un4yy")
+_children = [NodePath("Idle"), NodePath("GetTarget"), NodePath("AttackTarget")]
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_rivor")
+_idleTime = 1.0
+
+[node name="GetTarget" type="Node" parent="."]
+script = ExtResource("3_un4yy")
+
+[node name="AttackTarget" type="Node" parent="."]
+script = ExtResource("4_rivor")

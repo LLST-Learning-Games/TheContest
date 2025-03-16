@@ -4,11 +4,20 @@ namespace Behaviours;
 
 public partial class BehaviourAttack : BehaviourActionBase
 {
+    [Export] private double _attackTime = 5;
+
+    private double _currentTime = 0;
     private Node2D _attackTarget;
     private EnemyProjectileSpawnComponent _spawnComponent;
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
         GD.Print($"[{GetType().Name}] Attacking!");
+        _currentTime += delta;
+        if (_currentTime > _attackTime)
+        {
+            _state = BehaviourState.Success;
+            return _state;
+        }
         _state = BehaviourState.Running;
         GetTargetFromBlackboard(blackboard);
 
@@ -24,6 +33,7 @@ public partial class BehaviourAttack : BehaviourActionBase
         {
             ResetBehaviour(blackboard);
         }
+
         return _state;
     }
 
@@ -72,5 +82,6 @@ public partial class BehaviourAttack : BehaviourActionBase
         _spawnComponent?.SetTarget(null);
         _spawnComponent = null;
         blackboard.TreeData.Remove(BehaviourDataKeys.ENEMY_SPAWN_COMPONENT);
+        _currentTime = 0;
     }
 }

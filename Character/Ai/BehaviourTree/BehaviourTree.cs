@@ -25,9 +25,17 @@ namespace Behaviours
         public void UpdateBehaviour(double delta)
         {
             BehaviourState state = _rootNode.UpdateNode(delta, _treeData);
-            if (state != BehaviourState.Running)
+            switch (state)
             {
-                GD.PrintErr($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+                case BehaviourState.Failure:
+                    GD.PrintErr($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+                    break;
+                case BehaviourState.Success:
+                    ResetLogic();
+                    break;
+                case BehaviourState.Running:
+                    // all is good here, keep doing what you're doing
+                    break;
             }
 
             if (_resetLogicTimer <= 0)
@@ -38,10 +46,15 @@ namespace Behaviours
             _currentTime += delta;
             if (_currentTime >= _resetLogicTimer)
             {
-                _rootNode.ResetBehaviour(_treeData);
-                _currentTime = 0;
+                ResetLogic();
             }
         }
 
+        private void ResetLogic()
+        {
+            _rootNode.ResetBehaviour(_treeData);
+            GD.Print($"[{GetType().Name}] Resetting logic!");
+            _currentTime = 0;
+        }
     }
 }
