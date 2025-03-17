@@ -26,7 +26,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 
     public Node2D GetTarget()
     {
-        return GetNode<Character>("/root/Scene/Character");
+        return GetNodeOrNull<Character>("/root/Scene/Character");
     }
 
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)

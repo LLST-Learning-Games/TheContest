@@ -24,11 +24,11 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_projectilePrefab == null || _target == null)
+		if (_projectilePrefab == null || !IsInstanceValid(_target))
 		{
 			return;
 		}
-
+		
 		if (_delayTimer.TimeLeft > 0)
 		{
 			return;

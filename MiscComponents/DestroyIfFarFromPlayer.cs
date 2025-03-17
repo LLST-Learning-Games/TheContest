@@ -16,6 +16,10 @@ public partial class DestroyIfFarFromPlayer : Node2D
 
 	private void OnTimeoutCheckDistance()
 	{
+		if (!IsInstanceValid(_player))
+		{
+			return;
+		}
 		var distance = _player.GlobalPosition.DistanceTo(GlobalPosition);
 		if (distance > _destroyDistance)
 		{
