@@ -233,6 +233,12 @@ position = Vector2(474, 313)
 [node name="Enemy3" parent="." instance=ExtResource("3_3a2ea")]
 position = Vector2(-214, 414)
 
+[node name="Enemy4" parent="." instance=ExtResource("3_3a2ea")]
+position = Vector2(1586, 483)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_3a2ea")]
+position = Vector2(1727, 451)
+
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_a3g6e")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
