@@ -74,7 +74,8 @@ public partial class BehaviourAttack : BehaviourActionBase
 
         if (_attackTarget is null)
         {
-            GD.PrintErr($"[{GetType().Name}] Invalid object marked as attack target in Blackboard.");
+            GD.Print($"[{GetType().Name}] No attack target in Blackboard.");
+            blackboard.TreeData.Remove(BehaviourDataKeys.ENEMY_SPAWN_COMPONENT);
             _state = BehaviourState.Failure;
         }
         
