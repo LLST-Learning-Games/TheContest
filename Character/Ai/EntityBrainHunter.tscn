@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcabm03sb0upe"]
+
+[ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_iawvd"]
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_rkbeo"]
+[ext_resource type="Script" uid="uid://ccbshsik7s802" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourTargetWithNavmesh.cs" id="5_fhrdo"]
+[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="6_wa27n"]
+
+[node name="EntityBrainHunter" type="Node" node_paths=PackedStringArray("_root")]
+script = ExtResource("1_iawvd")
+_root = NodePath("Root")
+
+[node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
+script = ExtResource("2_rkbeo")
+_children = [NodePath("HuntBehaviour")]
+
+[node name="HuntBehaviour" type="Node" parent="Root" node_paths=PackedStringArray("_children")]
+script = ExtResource("2_rkbeo")
+_children = [NodePath("GetNavMeshTarget"), NodePath("MoveTo")]
+
+[node name="GetNavMeshTarget" type="Node" parent="Root/HuntBehaviour"]
+script = ExtResource("5_fhrdo")
+
+[node name="MoveTo" type="Node" parent="Root/HuntBehaviour"]
+script = ExtResource("6_wa27n")
+_successDistance = 5.0
+_moveSpeed = 900000.0

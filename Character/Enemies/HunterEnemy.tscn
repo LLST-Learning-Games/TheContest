@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpd4iad4gi2nl"]
+
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_bnejc"]
+[ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_siha4"]
+[ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_qbd41"]
+[ext_resource type="PackedScene" uid="uid://dcabm03sb0upe" path="res://Character/Ai/EntityBrainHunter.tscn" id="4_qbd41"]
+[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_0yq5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ea52"]
+atlas = ExtResource("1_bnejc")
+region = Rect2(88, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_siha4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ea52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qbd41"]
+radius = 11.0
+
+[node name="HunterEnemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent", "_navAgent")]
+collision_layer = 4
+collision_mask = 55
+mass = 5.0
+gravity_scale = 0.0
+inertia = 2.5
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_siha4")
+_healthComponent = NodePath("HealthComponent")
+_navAgent = NodePath("NavigationAgent2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_siha4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qbd41")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_qbd41")]
+
+[node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("4_qbd41")]
+_actor = NodePath("..")
+
+[node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("5_0yq5r")]
+position = Vector2(0, -18.435)
+_healthComponent = NodePath("../HealthComponent")

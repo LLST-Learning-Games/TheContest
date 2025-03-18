@@ -5,8 +5,10 @@ public partial class Enemy : RigidBody2D
 {
 	[Export] private HealthComponent _healthComponent;
 	[Export] private EnemyProjectileSpawnComponent _projectileSpawnComponent;
+	[Export] private NavigationAgent2D _navAgent;
 	
 	public EnemyProjectileSpawnComponent EnemyProjectileSpawnComponent => _projectileSpawnComponent;
+	public NavigationAgent2D NavAgent => _navAgent;
 	public Action<Enemy> OnDeath;
 	private Character _target;	// eventually this should not automatically be the player.
 
@@ -19,7 +21,7 @@ public partial class Enemy : RigidBody2D
 	
 	private void OnDeathHandler()
 	{
-		OnDeath(this);
+		OnDeath?.Invoke(this);
 		QueueFree();
 	}
 }
