@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="2_rui7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eaam"]
-size = Vector2(339, 269)
+size = Vector2(254, 726.5)
 
 [node name="EnemyWaveSpawner" type="Node2D" node_paths=PackedStringArray("_area", "_timer")]
 script = ExtResource("1_60rk8")

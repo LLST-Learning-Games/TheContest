@@ -7,18 +7,19 @@ public partial class Enemy : RigidBody2D
 	[Export] private EnemyProjectileSpawnComponent _projectileSpawnComponent;
 	
 	public EnemyProjectileSpawnComponent EnemyProjectileSpawnComponent => _projectileSpawnComponent;
-	
+	public Action<Enemy> OnDeath;
 	private Character _target;	// eventually this should not automatically be the player.
 
 	public override void _Ready()
 	{
 		ContactMonitor = true;
 		MaxContactsReported = 1;
-		_healthComponent.OnDeath += OnDeath;
+		_healthComponent.OnDeath += OnDeathHandler;
 	}
 	
-	private void OnDeath()
+	private void OnDeathHandler()
 	{
+		OnDeath(this);
 		QueueFree();
 	}
 }

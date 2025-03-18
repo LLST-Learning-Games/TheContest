@@ -1,7 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://e5613bfj60km"]
 
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="1_qa7is"]
-[ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="3_3a2ea"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_a3g6e"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="5_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="5_y2354"]
@@ -211,6 +210,9 @@ physics_layer_1/collision_layer = 32
 physics_layer_1/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_y2354")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7jmp"]
+size = Vector2(297, 285)
+
 [node name="Scene" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="."]
@@ -225,21 +227,6 @@ tile_set = SubResource("TileSet_ni31j")
 [node name="Character" parent="." instance=ExtResource("1_qa7is")]
 position = Vector2(285, 166)
 
-[node name="Enemy" parent="." instance=ExtResource("3_3a2ea")]
-position = Vector2(495, 276)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_3a2ea")]
-position = Vector2(474, 313)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_3a2ea")]
-position = Vector2(-214, 414)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_3a2ea")]
-position = Vector2(1586, 483)
-
-[node name="Enemy5" parent="." instance=ExtResource("3_3a2ea")]
-position = Vector2(1727, 451)
-
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_a3g6e")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -248,8 +235,27 @@ position = Vector2(1727, 451)
 mouse_filter = 2
 
 [node name="EnemyWaveSpawner" parent="." instance=ExtResource("6_y2354")]
+position = Vector2(168, 97)
+
+[node name="Area2D" parent="EnemyWaveSpawner" index="0"]
+position = Vector2(-332, 510)
+
+[node name="CollisionShape2D" parent="EnemyWaveSpawner/Area2D" index="0"]
+position = Vector2(-2, -228.75)
 
 [node name="Timer" parent="EnemyWaveSpawner" index="1"]
-wait_time = 5.0
+wait_time = 7.0
+
+[node name="EnemyWaveSpawner2" parent="." instance=ExtResource("6_y2354")]
+position = Vector2(2000, 659)
+_maxEnemies = 3
+
+[node name="CollisionShape2D" parent="EnemyWaveSpawner2/Area2D" index="0"]
+position = Vector2(-53.5, -39.5)
+shape = SubResource("RectangleShape2D_m7jmp")
+
+[node name="Timer" parent="EnemyWaveSpawner2" index="1"]
+wait_time = 15.0
 
 [editable path="EnemyWaveSpawner"]
+[editable path="EnemyWaveSpawner2"]

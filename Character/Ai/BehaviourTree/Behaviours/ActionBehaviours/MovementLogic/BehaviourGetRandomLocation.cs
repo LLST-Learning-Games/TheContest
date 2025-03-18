@@ -25,7 +25,7 @@ public partial class BehaviourGetRandomLocation : BehaviourActionBase
     {
         var directionX = _rng.RandfRange(-_range, _range);
         var directionY = _rng.RandfRange(-_range, _range);
-        return new Vector2(directionX, directionY) + blackboard.Actor.Position;
+        return new Vector2(directionX, directionY) + blackboard.Actor.GlobalPosition;
     }
 
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
