@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dt068353tvhcn"]
 
-[ext_resource type="Script" uid="uid://csf6aimw0k73q" path="res://Environment/EnvironmentBase.cs" id="1_wrl6k"]
+[ext_resource type="Script" uid="uid://csf6aimw0k73q" path="res://Environment/Prototyping/EnvironmentBase.cs" id="1_wrl6k"]
 
 [node name="EnvironmentBase" type="StaticBody2D" node_paths=PackedStringArray("_visualPolygon", "_collisionPolygon")]
 collision_layer = 16

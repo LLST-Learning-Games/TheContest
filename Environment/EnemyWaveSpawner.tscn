@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://sdc4jh73qfo5"]
+
+[ext_resource type="Script" uid="uid://cimy0pp1hpkxq" path="res://Environment/EnemyWaveSpawner.cs" id="1_60rk8"]
+[ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="2_rui7l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6eaam"]
+size = Vector2(339, 269)
+
+[node name="EnemyWaveSpawner" type="Node2D" node_paths=PackedStringArray("_area", "_timer")]
+script = ExtResource("1_60rk8")
+_area = NodePath("Area2D/CollisionShape2D")
+_timer = NodePath("Timer")
+_enemyPrefab = ExtResource("2_rui7l")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-188, 84)
+shape = SubResource("RectangleShape2D_6eaam")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

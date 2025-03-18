@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://e5613bfj60km"]
+[gd_scene load_steps=9 format=4 uid="uid://e5613bfj60km"]
 
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="1_qa7is"]
 [ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="3_3a2ea"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_a3g6e"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="5_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="5_y2354"]
+[ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="6_y2354"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2354"]
 texture = ExtResource("5_m7jmp")
@@ -245,3 +246,10 @@ position = Vector2(1727, 451)
 
 [node name="DebugTrajectorySelector" parent="CanvasLayer" instance=ExtResource("5_y2354")]
 mouse_filter = 2
+
+[node name="EnemyWaveSpawner" parent="." instance=ExtResource("6_y2354")]
+
+[node name="Timer" parent="EnemyWaveSpawner" index="1"]
+wait_time = 5.0
+
+[editable path="EnemyWaveSpawner"]
