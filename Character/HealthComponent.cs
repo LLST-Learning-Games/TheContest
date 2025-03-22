@@ -16,6 +16,11 @@ public partial class HealthComponent : Node
 		_currentHealth = _maxHealth;
 	}
 
+	public void TriggerDeath()
+	{
+		UpdateHealth(-_currentHealth);
+	}
+
 	public void UpdateHealth(int delta)
 	{
 		var newHealth = _currentHealth + delta;
