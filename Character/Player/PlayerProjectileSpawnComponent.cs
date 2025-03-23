@@ -1,11 +1,10 @@
 using Godot;
 using System;
+using TheContest.Projectiles;
 
 public partial class PlayerProjectileSpawnComponent : Node2D
 {
-	[Export] private string _currentTrajectoryId = "TrajectoryStraight";
-	[Export] private string _currentCollisionId = "CollisionSimpleDamage";
-	[Export] private PackedScene _projectilePrefab;
+	[Export] private NeuroPulse _currentPulse;
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
 
@@ -19,13 +18,10 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
 	}
 	
-	public void SetCurrentTrajectoryId(string trajectoryId) => _currentTrajectoryId = trajectoryId;
-	public void SetCurrentCollisionId(string collisionId) => _currentCollisionId = collisionId;
-	
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_projectilePrefab == null)
+		if (_currentPulse == null)
 		{
 			return;
 		}
@@ -62,13 +58,16 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 			return;
 		}
 		
-		_direction = _direction.Normalized();
-		OldProjectile oldProjectileInstance = _projectilePrefab.Instantiate<OldProjectile>();
-		oldProjectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
-		GetTree().CurrentScene.AddChild(oldProjectileInstance);
-		oldProjectileInstance.Position = GlobalPosition + (_direction * _spawnOffset);
-		oldProjectileInstance.Fire(_direction);
-		_delayTimer.SetWaitTime(oldProjectileInstance.GetDelay());
+		//_direction = _direction.Normalized();
+		// OldProjectile oldProjectileInstance = _projectilePrefab.Instantiate<OldProjectile>();
+		// oldProjectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
+		// GetTree().CurrentScene.AddChild(oldProjectileInstance);
+		// oldProjectileInstance.Position = GlobalPosition + (_direction * _spawnOffset);
+		// oldProjectileInstance.Fire(_direction);
+		
+		_currentPulse.Fire(GlobalPosition, _direction.Angle());
+		
+		_delayTimer.SetWaitTime(_currentPulse.GetDelay());
 		_delayTimer.Start();
 		_direction = Vector2.Zero;
 	}

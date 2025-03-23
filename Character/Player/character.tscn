@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=12 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_wki5p"]
 [ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
 [ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="5_dtwtn"]
+[ext_resource type="Script" uid="uid://bn3ukbepasjx1" path="res://Projectiles/NeuroPulse.cs" id="5_k81x5"]
+[ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
+[ext_resource type="Resource" uid="uid://dntn6kmhvgv4f" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectory.tres" id="7_x1deh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
 atlas = ExtResource("2_wki5p")
@@ -32,8 +35,17 @@ shape = SubResource("RectangleShape2D_ato57")
 _characterBody2D = NodePath("..")
 _speed = 200.0
 
-[node name="PlayerProjectileSpawnComponent" parent="." instance=ExtResource("4_l3pay")]
-_currentTrajectoryId = "TrajectoryStraightFast"
+[node name="PlayerProjectileSpawnComponent" parent="." node_paths=PackedStringArray("_currentPulse") instance=ExtResource("4_l3pay")]
+_currentPulse = NodePath("Weapon_1")
+
+[node name="Weapon_1" type="Node" parent="PlayerProjectileSpawnComponent" node_paths=PackedStringArray("_startingSegment")]
+script = ExtResource("5_k81x5")
+_startingSegment = NodePath("Segment_1")
+
+[node name="Segment_1" type="Node" parent="PlayerProjectileSpawnComponent/Weapon_1" node_paths=PackedStringArray("_children")]
+script = ExtResource("6_vp6oq")
+_segmentData = ExtResource("7_x1deh")
+_children = []
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

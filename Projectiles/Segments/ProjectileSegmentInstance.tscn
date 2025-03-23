@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dspktofxe4jk0"]
+[gd_scene load_steps=6 format=3 uid="uid://ce8bofac07tga"]
 
-[ext_resource type="Script" uid="uid://c7yqvii4gynmg" path="res://Projectiles/Old_Projectile/OldProjectile.cs" id="1_eje5u"]
-[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_kit0v"]
-[ext_resource type="PackedScene" uid="uid://fqvgj53q74qw" path="res://MiscComponents/DestroyIfFarFromPlayer.tscn" id="3_6qbsc"]
+[ext_resource type="Script" uid="uid://bev7e52vho5fu" path="res://Projectiles/Segments/ProjectileSegmentInstance.cs" id="1_mmv75"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_3aobb"]
+[ext_resource type="PackedScene" uid="uid://fqvgj53q74qw" path="res://MiscComponents/DestroyIfFarFromPlayer.tscn" id="3_efgfm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rf456"]
 friction = 0.0
@@ -16,18 +16,18 @@ mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_rf456")
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_eje5u")
+script = ExtResource("1_mmv75")
 _sprite = NodePath("AnimatedSprite2D")
 _collisionObject2D = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_kit0v")
+sprite_frames = ExtResource("2_3aobb")
 animation = &"idle"
 offset = Vector2(0.245, 1.725)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bausq")
 
-[node name="DestroyIfFarFromPlayer" parent="." node_paths=PackedStringArray("_nodeToDestroy") instance=ExtResource("3_6qbsc")]
+[node name="DestroyIfFarFromPlayer" parent="." node_paths=PackedStringArray("_nodeToDestroy") instance=ExtResource("3_efgfm")]
 _nodeToDestroy = NodePath("..")
 _destroyDistance = 2000.0

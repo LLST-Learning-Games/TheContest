@@ -46,7 +46,7 @@ public partial class DebugTrajectorySelector : Control
         {
             return;
         }
-        _spawnComponent.SetCurrentTrajectoryId("Trajectory" + itemName);
+        //_spawnComponent.SetCurrentTrajectoryId("Trajectory" + itemName);
     }
     
     private void OnCollisionSelected(long index)
@@ -56,7 +56,7 @@ public partial class DebugTrajectorySelector : Control
         {
             return;
         }
-        _spawnComponent.SetCurrentCollisionId("Collision" + itemName);
+        //_spawnComponent.SetCurrentCollisionId("Collision" + itemName);
     }
 
 }
