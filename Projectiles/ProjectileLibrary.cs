@@ -3,8 +3,8 @@ using Godot;
 
 public partial class ProjectileLibrary : Node
 {
-	[Export] private string _trajectoryPath = "res://Projectiles/ProjectileTrajectory";
-	[Export] private string _collisionPath = "res://Projectiles/ProjectileCollision";
+	[Export] private string _trajectoryPath = "res://Projectiles/Old_Projectile/ProjectileTrajectory";
+	[Export] private string _collisionPath = "res://Projectiles/Old_Projectile/ProjectileCollision";
 	private Godot.Collections.Dictionary<string, PackedScene> _trajectories;
 	private Godot.Collections.Dictionary<string, PackedScene> _collisions;
 	

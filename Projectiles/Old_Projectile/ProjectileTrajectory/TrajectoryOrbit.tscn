@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvos2u7sxhwj5"]
 
-[ext_resource type="Script" uid="uid://brtgut2u6m8iy" path="res://Projectiles/ProjectileTrajectory/TrajectoryOrbit.cs" id="1_x1gx3"]
+[ext_resource type="Script" uid="uid://brtgut2u6m8iy" path="res://Projectiles/Old_Projectile/ProjectileTrajectory/TrajectoryOrbit.cs" id="1_x1gx3"]
 [ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_im42o"]
 
 [node name="TrajectoryOrbit" type="Node2D"]
