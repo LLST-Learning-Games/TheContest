@@ -63,12 +63,12 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 		}
 		
 		_direction = _direction.Normalized();
-		Projectile projectileInstance = _projectilePrefab.Instantiate<Projectile>();
-		projectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
-		GetTree().CurrentScene.AddChild(projectileInstance);
-		projectileInstance.Position = GlobalPosition + (_direction * _spawnOffset);
-		projectileInstance.Fire(_direction);
-		_delayTimer.SetWaitTime(projectileInstance.GetDelay());
+		OldProjectile oldProjectileInstance = _projectilePrefab.Instantiate<OldProjectile>();
+		oldProjectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
+		GetTree().CurrentScene.AddChild(oldProjectileInstance);
+		oldProjectileInstance.Position = GlobalPosition + (_direction * _spawnOffset);
+		oldProjectileInstance.Fire(_direction);
+		_delayTimer.SetWaitTime(oldProjectileInstance.GetDelay());
 		_delayTimer.Start();
 		_direction = Vector2.Zero;
 	}

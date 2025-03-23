@@ -37,13 +37,13 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 		Vector2 direction = _target.Position - GlobalPosition;
 		
 		direction = direction.Normalized();
-		Projectile projectileInstance = _projectilePrefab.Instantiate<Projectile>();
-		projectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
-		GetTree().CurrentScene.AddChild(projectileInstance);
-		projectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
-		projectileInstance.Fire(direction);
-		projectileInstance.SetAsEnemyProjectile();
-		_delayTimer.SetWaitTime(projectileInstance.GetDelay());
+		OldProjectile oldProjectileInstance = _projectilePrefab.Instantiate<OldProjectile>();
+		oldProjectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
+		GetTree().CurrentScene.AddChild(oldProjectileInstance);
+		oldProjectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
+		oldProjectileInstance.Fire(direction);
+		oldProjectileInstance.SetAsEnemyProjectile();
+		_delayTimer.SetWaitTime(oldProjectileInstance.GetDelay());
 		_delayTimer.Start();
 		_mouseDirection = Vector2.Zero;
 	}
