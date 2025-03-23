@@ -2,7 +2,7 @@ using Godot;
 
 namespace TheContest.Projectiles;
 
-public partial class ProjectileSegmentData : Resource
+public abstract partial class ProjectileSegmentData : Resource
 {
     public string Id;
     public SpriteFrames SpriteFrames;
@@ -10,4 +10,7 @@ public partial class ProjectileSegmentData : Resource
     public Vector2 Scale;
     public int AllowedChildCount;
     public PackedScene InstancePrefab;
+
+    public abstract void OnPhysicsProcess(double delta, RigidBody2D body);
+    public abstract void OnCollide(Node otherBody);
 }

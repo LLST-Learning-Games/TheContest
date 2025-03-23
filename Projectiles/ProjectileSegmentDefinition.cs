@@ -27,5 +27,6 @@ public partial class ProjectileSegmentDefinition : Node
         {
             child.Fire(_instance.GlobalPosition, _instance.Rotation);
         }
+        _instance.QueueFree();
     }
 }
