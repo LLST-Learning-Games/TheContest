@@ -54,6 +54,11 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     }
     public void HandleCollisionVisuals()
     {
+        if (!_sprite.SpriteFrames.HasAnimation("collide"))
+        {
+            QueueFree();
+            return;
+        }
         _sprite.Play("collide");
         _sprite.AnimationFinished += QueueFree;
     }

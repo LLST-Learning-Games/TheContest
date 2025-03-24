@@ -5,7 +5,7 @@ namespace TheContest.Projectiles;
 public partial class StraightTrajectorySegment : ProjectileSegmentData
 {
     [Export] private float _speed;
-    public override void OnInitialize(RigidBody2D instanceBody)
+    public override void OnInitialize(RigidBody2D instanceBody, SceneTree tree)
     {
         var globalForce = Vector2.FromAngle(instanceBody.Rotation);
         instanceBody.ApplyForce(globalForce * _speed);

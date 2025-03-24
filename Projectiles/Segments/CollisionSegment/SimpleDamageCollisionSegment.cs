@@ -8,14 +8,13 @@ public partial class SimpleDamageCollisionSegment : ProjectileSegmentData
     
     private const string HEALTH_COMPONENT = "HealthComponent";
     
-    public override void OnInitialize(RigidBody2D instanceBody)
+    public override void OnInitialize(RigidBody2D instanceBody, SceneTree _)
     {
         instanceBody.LinearVelocity = Vector2.Zero;
     }
 
     public override void OnPhysicsProcess(double delta, RigidBody2D instanceBody)
     {
-        // ..
     }
 
     public override void OnCollide(Node otherBody, RigidBody2D instanceBody)

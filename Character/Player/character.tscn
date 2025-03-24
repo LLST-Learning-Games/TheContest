@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
 [ext_resource type="Resource" uid="uid://dntn6kmhvgv4f" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectory.tres" id="7_x1deh"]
-[ext_resource type="Resource" uid="uid://biybn8qtfsxnt" path="res://Projectiles/Segments/CollisionSegment/Explosion.tres" id="8_vp6oq"]
+[ext_resource type="Resource" uid="uid://ls1lqg3usnu3" path="res://Projectiles/Segments/CollisionSegment/Explosion.tres" id="8_vp6oq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
 atlas = ExtResource("2_wki5p")

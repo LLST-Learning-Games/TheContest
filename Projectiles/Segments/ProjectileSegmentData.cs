@@ -11,7 +11,7 @@ public abstract partial class ProjectileSegmentData : Resource
     [Export] public int AllowedChildCount = 1;
     [Export] public PackedScene InstancePrefab;
 
-    public abstract void OnInitialize(RigidBody2D instanceBody);
+    public abstract void OnInitialize(RigidBody2D instanceBody, SceneTree tree);
     public abstract void OnPhysicsProcess(double delta, RigidBody2D instanceBody);
     public abstract void OnCollide(Node otherBody, RigidBody2D instanceBody);
 }

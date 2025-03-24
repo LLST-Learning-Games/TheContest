@@ -1,15 +1,17 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://biybn8qtfsxnt"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ls1lqg3usnu3"]
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_3orw3"]
-[ext_resource type="SpriteFrames" uid="uid://b61dqkyuc1u87" path="res://Art/Magic Spell Effects All/34_explode.tres" id="2_wv6xx"]
-[ext_resource type="Script" uid="uid://c2i80nihls8el" path="res://Projectiles/Segments/CollisionSegment/SimpleDamageCollisionSegment.cs" id="3_jbku5"]
+[ext_resource type="PackedScene" uid="uid://dj8t2bbet7gij" path="res://Projectiles/SpawnableEvents/Explosion.tscn" id="1_474ml"]
+[ext_resource type="Script" uid="uid://dw2cwg2jyaper" path="res://Projectiles/Segments/CollisionSegment/PrefabSpawnerCollisionSegment.cs" id="2_3orw3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3orw3"]
 
 [resource]
-script = ExtResource("3_jbku5")
-_damageToDealOnCollision = 50
+script = ExtResource("2_3orw3")
+_prefabToSpawn = ExtResource("1_474ml")
 Id = ""
-SpriteFrames = ExtResource("2_wv6xx")
+SpriteFrames = SubResource("SpriteFrames_3orw3")
 Colour = Color(1, 1, 1, 1)
-Scale = Vector2(3, 3)
+Scale = Vector2(1, 1)
 AllowedChildCount = 1
 InstancePrefab = ExtResource("1_3orw3")

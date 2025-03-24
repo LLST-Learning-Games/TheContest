@@ -15,7 +15,7 @@ public partial class ProjectileSegmentDefinition : Node
         instance.GlobalPosition = globalPosition;
         instance.Rotation = facing;
         instance.Initialize(_segmentData, _children);
-        _segmentData.OnInitialize(instance);
+        _segmentData.OnInitialize(instance, GetTree());
         if (inheritedCollision != null)
         {
             instance.OnCollide(inheritedCollision);
@@ -25,7 +25,10 @@ public partial class ProjectileSegmentDefinition : Node
     public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
     {
         await ToSignal(GetTree(), "process_frame");
-        GetTree().CurrentScene.AddChild(instance);
+        if(IsInstanceValid(instance))
+        {
+            GetTree().CurrentScene.AddChild(instance);
+        }
     }
 
 
