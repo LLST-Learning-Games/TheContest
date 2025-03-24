@@ -8,6 +8,9 @@ public partial class ProjectileSegmentDefinition : Node
     [Export] private ProjectileSegmentData _segmentData;
     [Export] Array<ProjectileSegmentDefinition> _children;
     
+    public void SetData(ProjectileSegmentData data) => _segmentData = data;
+    public void SetChildren(Array<ProjectileSegmentDefinition> children) => _children = children;
+    
     public void Fire(Vector2 globalPosition, float facing, Node inheritedCollision = null)
     {
         var instance = _segmentData.InstancePrefab.Instantiate<ProjectileSegmentInstance>();

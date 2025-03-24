@@ -8,10 +8,10 @@ public partial class OldProjectile : RigidBody2D
 	private string _collisionId = "CollisionSimpleDamage";
 	private BaseProjectileTrajectory _trajectory;
 	private BaseProjectileCollision _collision;
-	private ProjectileLibrary _library;
+	private ProjectileLibrary_Old _library;
 	private bool _hasCollided;
 
-	public void Initialize(ProjectileLibrary library, string trajectoryId, string collisionId)
+	public void Initialize(ProjectileLibrary_Old library, string trajectoryId, string collisionId)
 	{
 		_library = library;
 		_trajectoryId = trajectoryId;

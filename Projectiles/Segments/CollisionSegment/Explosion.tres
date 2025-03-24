@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("2_3orw3")
 _prefabToSpawn = ExtResource("1_474ml")
-Id = ""
+Id = "Explosion"
 SpriteFrames = SubResource("SpriteFrames_3orw3")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)

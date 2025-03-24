@@ -1,11 +1,13 @@
 using Godot;
 using System;
+using Godot.Collections;
+using TheContest.Projectiles;
 
 public partial class DebugTrajectorySelector : Control
 {
     [Export] private ItemList _trajectoryList;
     [Export] private ItemList _collisionList;
-    private PlayerProjectileSpawnComponent _spawnComponent;
+    private NeuroPulse _playerWeapon;
     private ProjectileLibrary _library;
     
     public override void _Ready()
@@ -15,10 +17,12 @@ public partial class DebugTrajectorySelector : Control
         _collisionList.FocusMode = Control.FocusModeEnum.None;
         _library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
         PopulateList();
+        _trajectoryList.Select(0);
+        _collisionList.Select(0);
         _trajectoryList.ItemSelected += OnTrajectorySelected;
         _collisionList.ItemSelected += OnCollisionSelected;
         var character = GetNode<Character>("/root/Scene/Character");
-        _spawnComponent = character.GetNode<PlayerProjectileSpawnComponent>("PlayerProjectileSpawnComponent");
+        _playerWeapon = character.GetNode<NeuroPulse>("PlayerProjectileSpawnComponent/Weapon_1");
     }
 
 
@@ -28,14 +32,14 @@ public partial class DebugTrajectorySelector : Control
         var itemNames = _library.GetTrajectoryIds();
         foreach (var name in itemNames)
         {
-            _trajectoryList.AddItem(name.Substring(10));
+            _trajectoryList.AddItem(name);
         }
         
         _collisionList.Clear();
         itemNames = _library.GetCollisionIds();
         foreach (var name in itemNames)
         {
-            _collisionList.AddItem(name.Substring(9));
+            _collisionList.AddItem(name);
         }
     }
 
@@ -46,9 +50,38 @@ public partial class DebugTrajectorySelector : Control
         {
             return;
         }
-        //_spawnComponent.SetCurrentTrajectoryId("Trajectory" + itemName);
+
+        ProjectileSegmentDefinition definitions = CreateNewDefinitions();
+        _playerWeapon.InjectStartingSegment(definitions);
     }
-    
+
+    private ProjectileSegmentDefinition CreateNewDefinitions()
+    {
+        foreach (var child in _playerWeapon.GetChildren())
+        {
+            child.QueueFree();
+        }
+        
+        int trajectoryIndex = _trajectoryList.GetSelectedItems()[0];
+        var trajectoryData = _library.GetTrajectoryResource(_trajectoryList.GetItemText(trajectoryIndex)) as ProjectileSegmentData;
+        ProjectileSegmentDefinition trajectoryDefinition = CreateDefinition(trajectoryData);
+        
+        int collisionIndex = _collisionList.GetSelectedItems()[0];
+        var collisionData = _library.GetCollisionResource(_collisionList.GetItemText(collisionIndex)) as ProjectileSegmentData;
+        ProjectileSegmentDefinition collisionDefinition = CreateDefinition(collisionData);
+        
+        trajectoryDefinition.SetChildren(new Array<ProjectileSegmentDefinition>{collisionDefinition});
+        return trajectoryDefinition;
+    }
+
+    private ProjectileSegmentDefinition CreateDefinition(ProjectileSegmentData data)
+    {
+        var definition = new ProjectileSegmentDefinition();
+        definition.SetData(data);
+        _playerWeapon.AddChild(definition);
+        return definition;
+    }
+
     private void OnCollisionSelected(long index)
     {
         string itemName = _collisionList.GetItemText((int)index);
@@ -56,7 +89,9 @@ public partial class DebugTrajectorySelector : Control
         {
             return;
         }
-        //_spawnComponent.SetCurrentCollisionId("Collision" + itemName);
+
+        ProjectileSegmentDefinition definitions = CreateNewDefinitions();
+        _playerWeapon.InjectStartingSegment(definitions);
     }
 
 }

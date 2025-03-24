@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_d0qxk")
 _speed = 10000.0
-Id = "sStraight"
+Id = "Straight"
 SpriteFrames = ExtResource("2_khk4d")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)

@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using Godot;
+using TheContest.Projectiles;
 
 public partial class ProjectileLibrary : Node
 {
-	[Export] private string _trajectoryPath = "res://Projectiles/Old_Projectile/ProjectileTrajectory";
-	[Export] private string _collisionPath = "res://Projectiles/Old_Projectile/ProjectileCollision";
-	private Godot.Collections.Dictionary<string, PackedScene> _trajectories;
-	private Godot.Collections.Dictionary<string, PackedScene> _collisions;
+	[Export] private string _trajectoryPath = "res://Projectiles/Segments/TrajectorySegment";
+	[Export] private string _collisionPath = "res://Projectiles/Segments/CollisionSegment";
+	private Godot.Collections.Dictionary<string, Resource> _trajectories;
+	private Godot.Collections.Dictionary<string, Resource> _collisions;
 	
 	public override void _Ready()
 	{
-		_trajectories = LoadPackedSceneData(_trajectoryPath);
-		_collisions = LoadPackedSceneData(_collisionPath);
+		_trajectories = LoadData(_trajectoryPath);
+		_collisions = LoadData(_collisionPath);
 	}
 
-	private Godot.Collections.Dictionary<string, PackedScene> LoadPackedSceneData(string path)
+	private Godot.Collections.Dictionary<string, Resource> LoadData(string path)
 	{
-		var dictionary = new Godot.Collections.Dictionary<string, PackedScene>();
+		var dictionary = new Godot.Collections.Dictionary<string, Resource>();
 		var directory = DirAccess.Open(path);
 		directory.ListDirBegin();
 		while (true)
@@ -26,23 +27,33 @@ public partial class ProjectileLibrary : Node
 			{
 				break;
 			}
-			if(fileName.EndsWith(".tscn"))
+			if(fileName.EndsWith(".tres"))
 			{
-				var trajectory = ResourceLoader.Load<PackedScene>(path + "/" + fileName);
-				dictionary.Add(fileName[..^5], trajectory);
+				var resource = ResourceLoader.Load<ProjectileSegmentData>(path + "/" + fileName);
+				dictionary.Add(resource.Id, resource);
 				GD.Print("Loaded trajectory: " + fileName);
 			}
 		}
 		return dictionary;
 	}
 
-	public PackedScene GetTrajectoryScene(string trajectoryName)
+	public Resource GetTrajectoryResource(string trajectoryName)
 	{
+		if (!_trajectories.ContainsKey(trajectoryName))
+		{
+			GD.Print($"[{GetType().Name}] Resource not found: {trajectoryName}");
+			return null;
+		}
 		return _trajectories[trajectoryName];
 	}
 	
-	public PackedScene GetCollisionScene(string collisionName)
+	public Resource GetCollisionResource(string collisionName)
 	{
+		if (!_collisions.ContainsKey(collisionName))
+		{
+			GD.Print($"[{GetType().Name}] Resource not found: {collisionName}");
+			return null;
+		}
 		return _collisions[collisionName];
 	}
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://e5613bfj60km"]
+[gd_scene load_steps=12 format=4 uid="uid://e5613bfj60km"]
 
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="1_qa7is"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_a3g6e"]
+[ext_resource type="Script" uid="uid://cthdx14vrax5e" path="res://Projectiles/Old_Projectile/ProjectileLibrary_Old.cs" id="4_ni31j"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="5_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="5_y2354"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="6_ni31j"]
@@ -244,6 +245,11 @@ tile_set = SubResource("TileSet_ni31j")
 position = Vector2(285, 166)
 
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_a3g6e")]
+
+[node name="ProjectileLibrary_Old" parent="." instance=ExtResource("4_a3g6e")]
+script = ExtResource("4_ni31j")
+_trajectoryPath = "res://Projectiles/Old_Projectile/ProjectileTrajectory"
+_collisionPath = "res://Projectiles/Old_Projectile/ProjectileCollision"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

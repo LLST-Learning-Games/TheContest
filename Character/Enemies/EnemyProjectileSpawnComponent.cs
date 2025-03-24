@@ -9,14 +9,14 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
 
-	private ProjectileLibrary _library;
+	private ProjectileLibrary_Old _library;
 	private Vector2 _mouseDirection = Vector2.Zero;
 	
 	private Node2D _target;
 	
 	public override void _Ready()
 	{
-		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
+		_library = GetNode<ProjectileLibrary_Old>("/root/Scene/ProjectileLibrary_Old");
 	}
 	
 	public void SetTarget(Node2D target) => _target = target;
