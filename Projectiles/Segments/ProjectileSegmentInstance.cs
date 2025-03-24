@@ -10,6 +10,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     private Array<ProjectileSegmentDefinition> _children;
     
     private ProjectileSegmentData _segmentData;
+    private bool _hasCollided = false;
 
     public void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children)
     {
@@ -30,9 +31,13 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 
     public void OnCollide(Node body)
     {
-        SpawnChildren(body);
         _segmentData.OnCollide(body, this);
-        HandleCollisionVisuals();
+        if(!_hasCollided)
+        {
+            SpawnChildren(body);
+            HandleCollisionVisuals();
+            _hasCollided = true;
+        }
     }
     
     private void SpawnChildren(Node inheritedCollision)
