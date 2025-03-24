@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=13 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_wki5p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
 [ext_resource type="Resource" uid="uid://dntn6kmhvgv4f" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectory.tres" id="7_x1deh"]
+[ext_resource type="Resource" uid="uid://dafudeo5jqoy3" path="res://Projectiles/Segments/CollisionSegment/SimpleDamage.tres" id="8_vp6oq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
 atlas = ExtResource("2_wki5p")
@@ -45,6 +46,11 @@ _startingSegment = NodePath("Segment_1")
 [node name="Segment_1" type="Node" parent="PlayerProjectileSpawnComponent/Weapon_1" node_paths=PackedStringArray("_children")]
 script = ExtResource("6_vp6oq")
 _segmentData = ExtResource("7_x1deh")
+_children = [NodePath("../Segment_2")]
+
+[node name="Segment_2" type="Node" parent="PlayerProjectileSpawnComponent/Weapon_1" node_paths=PackedStringArray("_children")]
+script = ExtResource("6_vp6oq")
+_segmentData = ExtResource("8_vp6oq")
 _children = []
 
 [node name="Camera2D" type="Camera2D" parent="."]

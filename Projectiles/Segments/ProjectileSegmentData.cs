@@ -6,9 +6,9 @@ public abstract partial class ProjectileSegmentData : Resource
 {
     [Export] public string Id;
     [Export] public SpriteFrames SpriteFrames;
-    [Export] public Color Colour;
-    [Export] public Vector2 Scale;
-    [Export] public int AllowedChildCount;
+    [Export] public Color Colour = Colors.White;
+    [Export] public Vector2 Scale = Vector2.One;
+    [Export] public int AllowedChildCount = 1;
     [Export] public PackedScene InstancePrefab;
 
     public abstract void OnInitialize(RigidBody2D instanceBody);

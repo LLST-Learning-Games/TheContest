@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dafudeo5jqoy3"]
+
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_iggn0"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_40udc"]
+[ext_resource type="Script" uid="uid://c2i80nihls8el" path="res://Projectiles/Segments/CollisionSegment/SimpleDamageCollisionSegment.cs" id="3_uih6y"]
+
+[resource]
+script = ExtResource("3_uih6y")
+_damageToDealOnCollision = 25
+Id = ""
+SpriteFrames = ExtResource("2_40udc")
+Colour = Color(1, 1, 1, 1)
+Scale = Vector2(1, 1)
+AllowedChildCount = 1
+InstancePrefab = ExtResource("1_iggn0")

@@ -7,42 +7,28 @@ public partial class ProjectileSegmentDefinition : Node
 {
     [Export] private ProjectileSegmentData _segmentData;
     [Export] Array<ProjectileSegmentDefinition> _children;
-
-    private ProjectileSegmentInstance _instance;
-    private Vector2 _facing;
     
-    public void Fire(Vector2 globalPosition, float facing)
+    public void Fire(Vector2 globalPosition, float facing, Node inheritedCollision = null)
     {
-        _instance = _segmentData.InstancePrefab.Instantiate<ProjectileSegmentInstance>();
-        GetTree().CurrentScene.AddChild(_instance);
-        _instance.GlobalPosition = globalPosition;
-        _instance.Rotation = facing;
-        _instance.Initialize(_segmentData);
-        _segmentData.OnInitialize(_instance);
-        _instance.BodyEntered += OnCollide;
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        _segmentData.OnPhysicsProcess(delta, _instance);
-    }
-
-    private void OnCollide(Node body)
-    {
-        SpawnChildren();
-        _segmentData.OnCollide(body, _instance);
-    }
-
-    private void SpawnChildren()
-    {
-        if (_children == null || _children.Count == 0)
+        var instance = _segmentData.InstancePrefab.Instantiate<ProjectileSegmentInstance>();
+        AddChildToTreeDeferred(instance);
+        instance.GlobalPosition = globalPosition;
+        instance.Rotation = facing;
+        instance.Initialize(_segmentData, _children);
+        _segmentData.OnInitialize(instance);
+        if (inheritedCollision != null)
         {
-            return;
-        }
-
-        foreach (var child in _children)
-        {
-            child.Fire(_instance.GlobalPosition, _instance.Rotation);
+            instance.OnCollide(inheritedCollision);
         }
     }
+
+    public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
+    {
+        await ToSignal(GetTree(), "process_frame");
+        GetTree().CurrentScene.AddChild(instance);
+    }
+
+
+
+
 }
