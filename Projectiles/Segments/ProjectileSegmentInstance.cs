@@ -62,5 +62,15 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _sprite.Play("collide");
         _sprite.AnimationFinished += QueueFree;
     }
+    
+    // todo - this should be improved with a lookup system 
+    public void SetCollisionLayers(bool isEnemy)
+    {
+        if(isEnemy)
+        {
+            _collisionObject2D.SetCollisionLayer(0b1000);
+            _collisionObject2D.SetCollisionMask(0b10001);	// player and environment
+        }
+    }
 
 }

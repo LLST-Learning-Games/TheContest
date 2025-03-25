@@ -6,8 +6,8 @@ public partial class ProjectileLibrary : Node
 {
 	[Export] private string _trajectoryPath = "res://Projectiles/Segments/TrajectorySegment";
 	[Export] private string _collisionPath = "res://Projectiles/Segments/CollisionSegment";
-	private Godot.Collections.Dictionary<string, Resource> _trajectories;
-	private Godot.Collections.Dictionary<string, Resource> _collisions;
+	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _trajectories;
+	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _collisions;
 	
 	public override void _Ready()
 	{
@@ -15,9 +15,9 @@ public partial class ProjectileLibrary : Node
 		_collisions = LoadData(_collisionPath);
 	}
 
-	private Godot.Collections.Dictionary<string, Resource> LoadData(string path)
+	private Godot.Collections.Dictionary<string, ProjectileSegmentData> LoadData(string path)
 	{
-		var dictionary = new Godot.Collections.Dictionary<string, Resource>();
+		var dictionary = new Godot.Collections.Dictionary<string, ProjectileSegmentData>();
 		var directory = DirAccess.Open(path);
 		directory.ListDirBegin();
 		while (true)
@@ -37,7 +37,7 @@ public partial class ProjectileLibrary : Node
 		return dictionary;
 	}
 
-	public Resource GetTrajectoryResource(string trajectoryName)
+	public ProjectileSegmentData GetTrajectoryResource(string trajectoryName)
 	{
 		if (!_trajectories.ContainsKey(trajectoryName))
 		{
@@ -47,7 +47,7 @@ public partial class ProjectileLibrary : Node
 		return _trajectories[trajectoryName];
 	}
 	
-	public Resource GetCollisionResource(string collisionName)
+	public ProjectileSegmentData GetCollisionResource(string collisionName)
 	{
 		if (!_collisions.ContainsKey(collisionName))
 		{

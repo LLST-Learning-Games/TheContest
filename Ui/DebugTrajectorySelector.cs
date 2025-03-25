@@ -52,7 +52,7 @@ public partial class DebugTrajectorySelector : Control
         }
 
         ProjectileSegmentDefinition definitions = CreateNewDefinitions();
-        _playerWeapon.InjectStartingSegment(definitions);
+        _playerWeapon.InjectStartingSegment(definitions, false);
     }
 
     private ProjectileSegmentDefinition CreateNewDefinitions()
@@ -63,11 +63,11 @@ public partial class DebugTrajectorySelector : Control
         }
         
         int trajectoryIndex = _trajectoryList.GetSelectedItems()[0];
-        var trajectoryData = _library.GetTrajectoryResource(_trajectoryList.GetItemText(trajectoryIndex)) as ProjectileSegmentData;
+        var trajectoryData = _library.GetTrajectoryResource(_trajectoryList.GetItemText(trajectoryIndex));
         ProjectileSegmentDefinition trajectoryDefinition = CreateDefinition(trajectoryData);
         
         int collisionIndex = _collisionList.GetSelectedItems()[0];
-        var collisionData = _library.GetCollisionResource(_collisionList.GetItemText(collisionIndex)) as ProjectileSegmentData;
+        var collisionData = _library.GetCollisionResource(_collisionList.GetItemText(collisionIndex));
         ProjectileSegmentDefinition collisionDefinition = CreateDefinition(collisionData);
         
         trajectoryDefinition.SetChildren(new Array<ProjectileSegmentDefinition>{collisionDefinition});
@@ -91,7 +91,7 @@ public partial class DebugTrajectorySelector : Control
         }
 
         ProjectileSegmentDefinition definitions = CreateNewDefinitions();
-        _playerWeapon.InjectStartingSegment(definitions);
+        _playerWeapon.InjectStartingSegment(definitions, false);
     }
 
 }

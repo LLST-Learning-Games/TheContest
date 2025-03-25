@@ -10,6 +10,11 @@ public partial class NeuroPulse : Node
     public void Fire(Vector2 globalPosition, float direction) => _startingSegment.Fire(globalPosition, direction);
     
     public float GetDelay() => _pulseDelay;
+    public void SetDelay(float delay) => _pulseDelay = delay;
     
-    public void InjectStartingSegment(ProjectileSegmentDefinition startingSegment) => _startingSegment = startingSegment;
+    public void InjectStartingSegment(ProjectileSegmentDefinition startingSegment, bool isEnemy)
+    {
+        _startingSegment = startingSegment;
+        _startingSegment.SetIsEnemy(isEnemy);
+    }
 }

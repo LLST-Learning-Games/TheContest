@@ -1,30 +1,53 @@
 using Godot;
 using System;
+using Godot.Collections;
+using TheContest.Projectiles;
 
 public partial class EnemyProjectileSpawnComponent : Node2D
 {
-	[Export] private string _currentTrajectoryId = "TrajectoryStraight";
-	[Export] private string _currentCollisionId = "CollisionSimpleDamage";
-	[Export] private PackedScene _projectilePrefab;
-	[Export] private float _spawnOffset;
+	[Export] private string _currentTrajectoryId = "Straight";
+	[Export] private string _currentCollisionId = "SimpleDamage";
+	[Export] private float _spawnOffset = 20f;
 	[Export] private Timer _delayTimer;
 
-	private ProjectileLibrary_Old _library;
+	private ProjectileLibrary _library;
 	private Vector2 _mouseDirection = Vector2.Zero;
 	
 	private Node2D _target;
+	private NeuroPulse _currentPulse;
 	
 	public override void _Ready()
 	{
-		_library = GetNode<ProjectileLibrary_Old>("/root/Scene/ProjectileLibrary_Old");
+		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
+		GenerateNeuroPulse();
+	}
+
+	private void GenerateNeuroPulse()
+	{
+		_currentPulse = new NeuroPulse();
+		AddChild(_currentPulse);
+		var trajectoryData = _library.GetTrajectoryResource(_currentTrajectoryId);
+		ProjectileSegmentDefinition trajectoryDefinition = CreateDefinition(trajectoryData);
+		var collisionData = _library.GetCollisionResource(_currentCollisionId);
+		ProjectileSegmentDefinition collisionDefinition = CreateDefinition(collisionData);
+		trajectoryDefinition.SetChildren(new Array<ProjectileSegmentDefinition>{collisionDefinition});
+		_currentPulse.InjectStartingSegment(trajectoryDefinition, true);
 	}
 	
+	private ProjectileSegmentDefinition CreateDefinition(ProjectileSegmentData data)
+	{
+		var definition = new ProjectileSegmentDefinition();
+		definition.SetData(data);
+		_currentPulse.AddChild(definition);
+		return definition;
+	}
+
 	public void SetTarget(Node2D target) => _target = target;
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_projectilePrefab == null || !IsInstanceValid(_target))
+		if (!IsInstanceValid(_target))
 		{
 			return;
 		}
@@ -37,13 +60,10 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 		Vector2 direction = _target.Position - GlobalPosition;
 		
 		direction = direction.Normalized();
-		OldProjectile oldProjectileInstance = _projectilePrefab.Instantiate<OldProjectile>();
-		oldProjectileInstance.Initialize(_library, _currentTrajectoryId, _currentCollisionId);
-		GetTree().CurrentScene.AddChild(oldProjectileInstance);
-		oldProjectileInstance.Position = GlobalPosition + (direction * _spawnOffset);
-		oldProjectileInstance.Fire(direction);
-		oldProjectileInstance.SetAsEnemyProjectile();
-		_delayTimer.SetWaitTime(oldProjectileInstance.GetDelay());
+		var spawnPosition = GlobalPosition + direction * _spawnOffset;
+		
+		_currentPulse.Fire(spawnPosition, direction.Angle());
+		_delayTimer.SetWaitTime(_currentPulse.GetDelay());
 		_delayTimer.Start();
 		_mouseDirection = Vector2.Zero;
 	}
