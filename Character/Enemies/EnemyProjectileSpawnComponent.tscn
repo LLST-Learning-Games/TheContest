@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c15y044mkacgd"]
+[gd_scene load_steps=2 format=3 uid="uid://c15y044mkacgd"]
 
 [ext_resource type="Script" uid="uid://b52s3w7058f1n" path="res://Character/Enemies/EnemyProjectileSpawnComponent.cs" id="1_hkuh3"]
-[ext_resource type="PackedScene" uid="uid://dspktofxe4jk0" path="res://Projectiles/Old_Projectile/OldProjectile.tscn" id="2_pwe8f"]
 
 [node name="EnemyProjectileSpawnComponent" type="Node2D" node_paths=PackedStringArray("_delayTimer")]
 script = ExtResource("1_hkuh3")
-_projectilePrefab = ExtResource("2_pwe8f")
-_spawnOffset = 20.0
 _delayTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
