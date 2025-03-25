@@ -38,6 +38,7 @@ shape = SubResource("RectangleShape2D_gof73")
 _maxHealth = 500
 
 [node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("4_p8sn4")]
+_currentTrajectoryId = "EnemyBullet"
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("5_p8sn4")]
 position = Vector2(0, -20)

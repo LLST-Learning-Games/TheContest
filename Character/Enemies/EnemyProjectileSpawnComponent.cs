@@ -25,6 +25,7 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	private void GenerateNeuroPulse()
 	{
 		_currentPulse = new NeuroPulse();
+		_currentPulse.SetDelay(1f);
 		AddChild(_currentPulse);
 		var trajectoryData = _library.GetTrajectoryResource(_currentTrajectoryId);
 		ProjectileSegmentDefinition trajectoryDefinition = CreateDefinition(trajectoryData);

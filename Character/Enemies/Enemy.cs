@@ -25,6 +25,7 @@ public partial class Enemy : RigidBody2D
 		if(_onDeathSpawnPrefab != null)
 		{
 			var deathInstance = _onDeathSpawnPrefab.Instantiate<Node2D>();
+			GetTree().CurrentScene.AddChild(deathInstance);
 			deathInstance.GlobalPosition = GlobalPosition;
 		}
 		OnDeath?.Invoke(this);
