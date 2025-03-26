@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cop1s0k8641k6"]
+
+[ext_resource type="Script" uid="uid://bms7r5emi0col" path="res://Systems/SystemLoader.cs" id="1_q1yjg"]
+[ext_resource type="Script" uid="uid://7vtieglcw6ci" path="res://Systems/CurrencySystem/CurrencySystem.cs" id="2_b0gg8"]
+[ext_resource type="Resource" uid="uid://bf7lus0eqo5p" path="res://Systems/CurrencySystem/Currencies/CurrencyCash.tres" id="3_udnkd"]
+
+[node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
+script = ExtResource("1_q1yjg")
+_systemBootstrap = [NodePath("CurrencySystem")]
+
+[node name="CurrencySystem" type="Node" parent="."]
+script = ExtResource("2_b0gg8")
+_currencyBootstrap = Array[Resource]([ExtResource("3_udnkd")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://e5613bfj60km"]
+[gd_scene load_steps=12 format=4 uid="uid://e5613bfj60km"]
 
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="1_qa7is"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_a3g6e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="5_y2354"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="6_ni31j"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="6_y2354"]
+[ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="7_ni31j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m7jmp"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -275,6 +276,8 @@ shape = SubResource("RectangleShape2D_m7jmp")
 wait_time = 10.0
 
 [node name="HunterEnemy" parent="." instance=ExtResource("6_ni31j")]
+
+[node name="SystemLoader" parent="." instance=ExtResource("7_ni31j")]
 
 [editable path="EnemyWaveSpawner"]
 [editable path="EnemyWaveSpawner2"]
