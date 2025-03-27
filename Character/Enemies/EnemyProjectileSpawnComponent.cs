@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using Systems;
 using TheContest.Projectiles;
 
 public partial class EnemyProjectileSpawnComponent : Node2D
@@ -10,7 +11,7 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	[Export] private float _spawnOffset = 20f;
 	[Export] private Timer _delayTimer;
 
-	private ProjectileLibrary _library;
+	private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 	private Vector2 _mouseDirection = Vector2.Zero;
 	
 	private Node2D _target;
@@ -18,8 +19,14 @@ public partial class EnemyProjectileSpawnComponent : Node2D
 	
 	public override void _Ready()
 	{
-		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
-		GenerateNeuroPulse();
+		if (SystemLoader.IsSystemLoadComplete)
+		{
+			GenerateNeuroPulse();
+		}
+		else
+		{
+			SystemLoader.OnSystemLoadComplete += GenerateNeuroPulse;
+		}
 	}
 
 	private void GenerateNeuroPulse()

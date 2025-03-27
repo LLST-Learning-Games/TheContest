@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Systems;
 using TheContest.Projectiles;
 
 public partial class PlayerProjectileSpawnComponent : Node2D
@@ -8,15 +9,11 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
 
-	private ProjectileLibrary _library;
+	private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 	private Vector2 _direction;
 
 	private bool _isShooting = false;
 	
-	public override void _Ready()
-	{
-		_library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
-	}
 	
 
 	public override void _PhysicsProcess(double delta)

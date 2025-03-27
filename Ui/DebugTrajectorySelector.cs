@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using Systems;
 using TheContest.Projectiles;
 
 public partial class DebugTrajectorySelector : Control
@@ -8,21 +9,24 @@ public partial class DebugTrajectorySelector : Control
     [Export] private ItemList _trajectoryList;
     [Export] private ItemList _collisionList;
     private NeuroPulse _playerWeapon;
-    private ProjectileLibrary _library;
+    private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
     
     public override void _Ready()
     {
-        base._Ready();
         _trajectoryList.FocusMode = Control.FocusModeEnum.None;
         _collisionList.FocusMode = Control.FocusModeEnum.None;
-        _library = GetNode<ProjectileLibrary>("/root/Scene/ProjectileLibrary");
+        var character = GetNode<Character>("/root/Scene/Character");
+        _playerWeapon = character.GetNode<NeuroPulse>("PlayerProjectileSpawnComponent/Weapon_1");
+        SystemLoader.OnSystemLoadComplete += OnSystemLoadComplete;
+    }
+
+    private void OnSystemLoadComplete()
+    {
         PopulateList();
         _trajectoryList.Select(0);
         _collisionList.Select(0);
         _trajectoryList.ItemSelected += OnTrajectorySelected;
         _collisionList.ItemSelected += OnCollisionSelected;
-        var character = GetNode<Character>("/root/Scene/Character");
-        _playerWeapon = character.GetNode<NeuroPulse>("PlayerProjectileSpawnComponent/Weapon_1");
     }
 
 

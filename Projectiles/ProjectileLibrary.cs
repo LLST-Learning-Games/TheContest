@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using Godot;
+using Systems;
 using TheContest.Projectiles;
 
-public partial class ProjectileLibrary : Node
+public partial class ProjectileLibrary : BaseSystem
 {
 	[Export] private string _trajectoryPath = "res://Projectiles/Segments/TrajectorySegment";
 	[Export] private string _collisionPath = "res://Projectiles/Segments/CollisionSegment";
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _trajectories;
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _collisions;
 	
-	public override void _Ready()
+	public override void Initialize()
 	{
 		_trajectories = LoadData(_trajectoryPath);
 		_collisions = LoadData(_collisionPath);
@@ -59,4 +60,5 @@ public partial class ProjectileLibrary : Node
 	
 	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
 	public ICollection<string> GetCollisionIds() => _collisions.Keys;
+
 }
