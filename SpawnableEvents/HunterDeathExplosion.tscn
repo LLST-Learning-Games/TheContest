@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://be873dd5twnvm"]
 
-[ext_resource type="Script" uid="uid://b35r8mncd2rkq" path="res://Projectiles/SpawnableEvents/Explosion.cs" id="1_2cdwd"]
+[ext_resource type="Script" uid="uid://b35r8mncd2rkq" path="res://SpawnableEvents/Explosion.cs" id="1_2cdwd"]
 [ext_resource type="SpriteFrames" uid="uid://chexi7uls5u2b" path="res://Art/Magic Spell Effects All/41_explode.tres" id="2_2cdwd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_611fu"]

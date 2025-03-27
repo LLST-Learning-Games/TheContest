@@ -19,7 +19,7 @@ public partial class SystemLoader : Node
         foreach (var system in _systemBootstrap)
         {
             system.Initialize();
-            _initializedSystems.Add(system.GetType().ToString(), system);
+            _initializedSystems.Add(system.GetType().Name, system);
         }
         OnSystemLoadComplete?.Invoke();
         IsSystemLoadComplete = true;

@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://e5613bfj60km"]
+[gd_scene load_steps=13 format=4 uid="uid://e5613bfj60km"]
 
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="1_qa7is"]
+[ext_resource type="Script" uid="uid://covop3xoujf8b" path="res://Ui/CurrencyUi.cs" id="4_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="5_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="5_y2354"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="6_ni31j"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="6_y2354"]
 [ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="7_ni31j"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="7_xlvrw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m7jmp"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -248,6 +250,12 @@ position = Vector2(285, 166)
 [node name="DebugTrajectorySelector" parent="CanvasLayer" instance=ExtResource("5_y2354")]
 mouse_filter = 2
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "$0"
+script = ExtResource("4_xlvrw")
+
 [node name="EnemyWaveSpawner" parent="." instance=ExtResource("6_y2354")]
 position = Vector2(168, 97)
 
@@ -275,6 +283,9 @@ wait_time = 10.0
 [node name="HunterEnemy" parent="." instance=ExtResource("6_ni31j")]
 
 [node name="SystemLoader" parent="." instance=ExtResource("7_ni31j")]
+
+[node name="Pickup" parent="." instance=ExtResource("7_xlvrw")]
+position = Vector2(387, 185)
 
 [editable path="EnemyWaveSpawner"]
 [editable path="EnemyWaveSpawner2"]

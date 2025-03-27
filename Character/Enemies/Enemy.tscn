@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c47qe5lm46qiv"]
+[gd_scene load_steps=10 format=3 uid="uid://c47qe5lm46qiv"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_674jy"]
 [ext_resource type="Texture2D" uid="uid://cq5wasrumumce" path="res://Art/Enemy.tres" id="1_etf27"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="2_2w5qr"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_ye640"]
 [ext_resource type="PackedScene" uid="uid://c15y044mkacgd" path="res://Character/Enemies/EnemyProjectileSpawnComponent.tscn" id="4_p8sn4"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_p8sn4"]
@@ -25,6 +26,7 @@ linear_damp = 9.619
 script = ExtResource("1_674jy")
 _healthComponent = NodePath("HealthComponent")
 _projectileSpawnComponent = NodePath("EnemyProjectileSpawnComponent")
+_onDeathSpawnPrefab = ExtResource("2_2w5qr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
