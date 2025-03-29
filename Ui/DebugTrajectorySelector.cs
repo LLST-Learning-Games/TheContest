@@ -15,7 +15,7 @@ public partial class DebugTrajectorySelector : Control
     {
         _trajectoryList.FocusMode = Control.FocusModeEnum.None;
         _collisionList.FocusMode = Control.FocusModeEnum.None;
-        var character = GetNode<Character>("/root/Scene/Character");
+        var character = GetNode<Character>("../../Character");
         _playerWeapon = character.GetNode<NeuroPulse>("PlayerProjectileSpawnComponent/Weapon_1");
         SystemLoader.OnSystemLoadComplete += OnSystemLoadComplete;
     }

@@ -44,7 +44,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
 
     private Node2D GetNavMeshTarget()
     {
-        Node2D target = GetNodeOrNull<Character>("/root/Scene/Character");
+        Node2D target = GetTree().GetNodesInGroup("Player")[0] as Node2D;
         if (target == null)
         {
             _state = BehaviourState.Failure;
