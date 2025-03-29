@@ -5,21 +5,36 @@ using Systems.Currency;
 
 public partial class CurrencyUi : Label
 {
+    private Currency _currency;
+    
     public override void _Ready()
     {
-        SystemLoader.OnSystemLoadComplete += Initialize;
-        UpdateUi(0);
+        if (SystemLoader.IsSystemLoadComplete)
+        {
+            Initialize();
+        }
+        else
+        {
+            SystemLoader.OnSystemLoadComplete += Initialize;
+        }
+        UpdateUi(_currency.Balance);
     }
 
     private void Initialize()
     {
         var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
-        var cash = currencySystem.GetCurrency("cash");
-        cash.OnCurrencyChanged += UpdateUi;
+        _currency = currencySystem.GetCurrency("cash");
+        _currency.OnCurrencyChanged += UpdateUi;
     }
 
     private void UpdateUi(float value)
     {
         Text = "$" + value;
+    }
+
+    public override void _ExitTree()
+    {
+        _currency.OnCurrencyChanged -= UpdateUi;
+        base._ExitTree();
     }
 }
