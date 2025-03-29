@@ -1,56 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://q0x8s57p4m8l"]
+[gd_scene load_steps=5 format=3 uid="uid://q0x8s57p4m8l"]
 
 [ext_resource type="Script" uid="uid://dytb2ksmj64gc" path="res://Systems/Bootstrap.cs" id="1_llmnf"]
 [ext_resource type="PackedScene" uid="uid://e5613bfj60km" path="res://Scenes/scene.tscn" id="2_1wwj0"]
+[ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="3_blela"]
+[ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="3_ejojg"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_na84l"]
-line_spacing = 10.0
-paragraph_spacing = 10.0
-font_size = 38
-font_color = Color(0.933333, 0, 1, 1)
-shadow_size = 7
-shadow_color = Color(0.3905, 0.31, 1, 1)
-shadow_offset = Vector2(2, 2)
-
-[node name="Bootstrap" type="Node2D" node_paths=PackedStringArray("_mainScreenUi")]
+[node name="Bootstrap" type="Node2D" node_paths=PackedStringArray("_canvas")]
 script = ExtResource("1_llmnf")
+_canvas = NodePath("CanvasLayer")
 _gameplayScene = ExtResource("2_1wwj0")
-_mainScreenUi = NodePath("Control")
+_mainMenu = ExtResource("3_ejojg")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SystemLoader" parent="." instance=ExtResource("3_blela")]
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 28.8
-anchor_bottom = 16.2
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="CenterContainer" type="CenterContainer" parent="Control/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/CenterContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "The 1%"
-label_settings = SubResource("LabelSettings_na84l")
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Enter The Contest"
-
-[connection signal="pressed" from="Control/ColorRect/CenterContainer/VBoxContainer/Button" to="." method="OnStartButton"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

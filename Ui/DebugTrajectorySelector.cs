@@ -17,7 +17,14 @@ public partial class DebugTrajectorySelector : Control
         _collisionList.FocusMode = Control.FocusModeEnum.None;
         var character = GetNode<Character>("../../Character");
         _playerWeapon = character.GetNode<NeuroPulse>("PlayerProjectileSpawnComponent/Weapon_1");
-        SystemLoader.OnSystemLoadComplete += OnSystemLoadComplete;
+        if (SystemLoader.IsSystemLoadComplete)
+        {
+            OnSystemLoadComplete();
+        }
+        else
+        {
+            SystemLoader.OnSystemLoadComplete += OnSystemLoadComplete;
+        }
     }
 
     private void OnSystemLoadComplete()
