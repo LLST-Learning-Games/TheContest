@@ -59,6 +59,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
             GD.PrintErr(
                 $"[{GetType().Name}] No location in blackboard. Try adding a GetLocation behaviour before this one.");
             _state = BehaviourState.Failure;
+            return;
         }
 
         _moveDestination = (Vector2)locationData;

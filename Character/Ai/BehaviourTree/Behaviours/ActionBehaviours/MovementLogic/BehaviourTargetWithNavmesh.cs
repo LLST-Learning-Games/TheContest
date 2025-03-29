@@ -20,6 +20,10 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         if (_navMeshTarget == null)
         {
             _navMeshTarget = GetNavMeshTarget();
+            if (_navMeshTarget == null)
+            {
+                return BehaviourState.Failure;
+            }
             _navAgent.SetTargetPosition(_navMeshTarget.GlobalPosition);
         }
         
@@ -44,7 +48,12 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
 
     private Node2D GetNavMeshTarget()
     {
-        Node2D target = GetTree().GetNodesInGroup("Player")[0] as Node2D;
+        var playerGroup = GetTree().GetNodesInGroup("Player");
+        if (playerGroup.Count == 0)
+        {
+            return null;
+        }
+        Node2D target = playerGroup[0] as Node2D;
         if (target == null)
         {
             _state = BehaviourState.Failure;

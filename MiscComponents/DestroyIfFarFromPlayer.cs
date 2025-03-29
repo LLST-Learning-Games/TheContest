@@ -10,7 +10,13 @@ public partial class DestroyIfFarFromPlayer : Node2D
 		
 	public override void _Ready()
 	{
-		_player = GetTree().GetNodesInGroup("Player")[0] as CharacterBody2D;
+		var playerGroup = GetTree().GetNodesInGroup("Player");
+		if (playerGroup.Count == 0)
+		{
+			return;
+		}
+		
+		_player = playerGroup[0] as CharacterBody2D;
 		_timer.Timeout += OnTimeoutCheckDistance;
 	}
 

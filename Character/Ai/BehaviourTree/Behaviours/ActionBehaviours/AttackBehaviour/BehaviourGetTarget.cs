@@ -26,7 +26,12 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 
     public Node2D GetTarget()
     {
-        return GetTree().GetNodesInGroup("Player")[0] as Node2D;
+        var playerGroup = GetTree().GetNodesInGroup("Player");
+        if (playerGroup.Count == 0)
+        {
+            return null;
+        }
+        return playerGroup[0] as Node2D;
     }
 
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
