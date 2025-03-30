@@ -44,3 +44,7 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" groups=["StartButton"]]
 layout_mode = 2
 text = "Enter The Contest"
+
+[node name="Button2" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" groups=["CustomizeButton"]]
+layout_mode = 2
+text = "Customize Weapon"

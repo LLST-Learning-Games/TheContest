@@ -5,16 +5,30 @@ using TheContest.Projectiles;
 
 public partial class PlayerProjectileSpawnComponent : Node2D
 {
-	[Export] private NeuroPulse _currentPulse;
+	[Export] private NeuroPulse _defaultWeapon;
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
 
 	private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
+	private NeuroPulse _currentPulse;
 	private Vector2 _direction;
 
 	private bool _isShooting = false;
-	
-	
+
+	public override void _Ready()
+	{
+		var children = _library.GetChildren();
+		foreach (var child in children)
+		{
+			if (child is NeuroPulse neuroPulse)
+			{
+				_currentPulse = neuroPulse;
+				return;
+			}
+		}
+
+		_currentPulse = _defaultWeapon;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{

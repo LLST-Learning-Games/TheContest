@@ -37,8 +37,8 @@ shape = SubResource("RectangleShape2D_ato57")
 _characterBody2D = NodePath("..")
 _speed = 200.0
 
-[node name="PlayerProjectileSpawnComponent" parent="." node_paths=PackedStringArray("_currentPulse") instance=ExtResource("4_l3pay")]
-_currentPulse = NodePath("Weapon_1")
+[node name="PlayerProjectileSpawnComponent" parent="." node_paths=PackedStringArray("_defaultWeapon") instance=ExtResource("4_l3pay")]
+_defaultWeapon = NodePath("Weapon_1")
 
 [node name="Weapon_1" type="Node" parent="PlayerProjectileSpawnComponent" node_paths=PackedStringArray("_startingSegment")]
 script = ExtResource("5_k81x5")

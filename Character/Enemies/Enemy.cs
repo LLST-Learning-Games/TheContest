@@ -17,7 +17,7 @@ public partial class Enemy : RigidBody2D
 	{
 		ContactMonitor = true;
 		MaxContactsReported = 1;
-		_healthComponent.OnDeath += OnDeathHandler;
+		_healthComponent.OnDeath += () => CallDeferred("OnDeathHandler");
 	}
 	
 	private void OnDeathHandler()

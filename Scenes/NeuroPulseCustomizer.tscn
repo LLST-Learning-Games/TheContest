@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://covqthx5aulh"]
+
+[ext_resource type="PackedScene" uid="uid://danqnawceo761" path="res://Ui/DebugTrajectorySelector.tscn" id="1_gt8ad"]
+
+[node name="NeuroPulseCustomizer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DebugTrajectorySelector" parent="." instance=ExtResource("1_gt8ad")]
+layout_mode = 1
+offset_right = 3825.0
+offset_bottom = 2048.0
+
+[node name="TrajectoryList" parent="DebugTrajectorySelector" index="0"]
+offset_left = 472.0
+offset_top = 67.0
+offset_right = 622.0
+offset_bottom = 234.0
+
+[node name="CollisionList" parent="DebugTrajectorySelector" index="1"]
+offset_left = 472.0
+offset_top = 250.0
+offset_right = 622.0
+offset_bottom = 417.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 429.0
+offset_right = 621.0
+offset_bottom = 460.0
+text = "Confirm Selection"
+
+[connection signal="pressed" from="Button" to="DebugTrajectorySelector" method="OnConfirmSelection"]
+
+[editable path="DebugTrajectorySelector"]
