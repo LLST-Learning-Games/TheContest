@@ -1,16 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://q0x8s57p4m8l"]
+[gd_scene load_steps=3 format=3 uid="uid://q0x8s57p4m8l"]
 
 [ext_resource type="Script" uid="uid://dytb2ksmj64gc" path="res://Systems/Bootstrap.cs" id="1_llmnf"]
-[ext_resource type="PackedScene" uid="uid://e5613bfj60km" path="res://Scenes/scene.tscn" id="2_1wwj0"]
 [ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="3_blela"]
-[ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="3_ejojg"]
 
 [node name="Bootstrap" type="Node2D" node_paths=PackedStringArray("_canvas")]
 script = ExtResource("1_llmnf")
-_canvas = NodePath("CanvasLayer")
-_gameplayScene = ExtResource("2_1wwj0")
-_mainMenu = ExtResource("3_ejojg")
+_canvas = NodePath("MainMenuCanvas")
 
 [node name="SystemLoader" parent="." instance=ExtResource("3_blela")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MainMenuCanvas" type="CanvasLayer" parent="."]

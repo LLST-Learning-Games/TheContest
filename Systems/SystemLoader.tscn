@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cop1s0k8641k6"]
+[gd_scene load_steps=8 format=3 uid="uid://cop1s0k8641k6"]
 
 [ext_resource type="Script" uid="uid://bms7r5emi0col" path="res://Systems/SystemLoader.cs" id="1_q1yjg"]
 [ext_resource type="Script" uid="uid://7vtieglcw6ci" path="res://Systems/CurrencySystem/CurrencySystem.cs" id="2_b0gg8"]
 [ext_resource type="Resource" uid="uid://bf7lus0eqo5p" path="res://Systems/CurrencySystem/Currencies/CurrencyCash.tres" id="3_udnkd"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_b0gg8"]
+[ext_resource type="Script" uid="uid://b7614wfd2fbhp" path="res://Systems/SceneManagerSystem/SceneManagerSystem.cs" id="5_ifnho"]
+[ext_resource type="PackedScene" uid="uid://e5613bfj60km" path="res://Scenes/scene.tscn" id="6_0q3xv"]
+[ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
 
 [node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
 script = ExtResource("1_q1yjg")
-_systemBootstrap = [NodePath("CurrencySystem"), NodePath("ProjectileLibrary")]
+_systemBootstrap = [NodePath("CurrencySystem"), NodePath("ProjectileLibrary"), NodePath("SceneManager")]
 
 [node name="CurrencySystem" type="Node" parent="."]
 script = ExtResource("2_b0gg8")
@@ -16,3 +19,10 @@ _id = "CurrencySystem"
 
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_b0gg8")]
 _id = "ProjectileLibrary"
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("5_ifnho")
+_scenePrefabs = Dictionary[String, PackedScene]({
+"Gameplay": ExtResource("6_0q3xv"),
+"MainMenu": ExtResource("7_0q3xv")
+})

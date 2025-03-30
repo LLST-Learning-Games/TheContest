@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bib083t88x8ad"]
+
+[node name="MainMenuCanvas" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GraphEdit" type="GraphEdit" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphFrame" type="GraphFrame" parent="Control/GraphEdit"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 168.0
+offset_right = 192.0
+offset_bottom = 231.0
+mouse_filter = 1
+position_offset = Vector2(105, 168)
+
+[node name="GraphNode" type="GraphNode" parent="Control/GraphEdit"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 175.0
+offset_right = 302.0
+offset_bottom = 230.0
+mouse_filter = 1
+position_offset = Vector2(223, 175)
+
+[node name="GraphNode2" type="GraphNode" parent="Control/GraphEdit"]
+layout_mode = 2
+offset_left = 398.0
+offset_top = 213.0
+offset_right = 441.0
+offset_bottom = 268.0
+mouse_filter = 1
+position_offset = Vector2(398, 213)

@@ -1,22 +1,27 @@
 using Godot;
+using Systems;
+using Systems.SceneManager;
 
 public partial class Bootstrap : Node2D
 {
     [Export] private CanvasLayer _canvas;
-    [Export] private PackedScene _gameplayScene;
-    [Export] private PackedScene _mainMenu;
     
     private Control _mainScreenUi;
     private Node _gameplaySceneInstantiated;
+    
+    private SceneManagerSystem SceneManager => _sceneManager ?? SystemLoader.GetSystem<SceneManagerSystem>();
+    private SceneManagerSystem _sceneManager;
 
     public override void _Ready()
-    {
+    { 
         InstantiateMainMenu();
+        //SystemLoader.OnSystemLoadComplete += InstantiateMainMenu;
     }
 
     private void InstantiateMainMenu()
     {
-        _mainScreenUi = _mainMenu.Instantiate<Control>();
+        var mainMenu = SceneManager.GetScenePrefab("MainMenu");
+        _mainScreenUi = mainMenu.Instantiate<Control>();
         _canvas.AddChild(_mainScreenUi);
         var startButtonNode = GetTree().GetFirstNodeInGroup("StartButton");
         GD.Print($"Found a startButton Node with the name: {startButtonNode.Name}");
@@ -26,7 +31,8 @@ public partial class Bootstrap : Node2D
 
     private void OnStartButton()
     {
-        _gameplaySceneInstantiated = _gameplayScene.Instantiate();
+        var gameplayScene = SceneManager.GetScenePrefab("Gameplay");
+        _gameplaySceneInstantiated = gameplayScene.Instantiate();
         AddChild(_gameplaySceneInstantiated);
         _mainScreenUi.QueueFree();
     }
