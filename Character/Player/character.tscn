@@ -59,7 +59,7 @@ position_smoothing_enabled = true
 script = ExtResource("9_x1deh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_dtwtn")]
-_maxHealth = 50
+_maxHealth = 500
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("6_yc63j")]
 position = Vector2(0, -20)

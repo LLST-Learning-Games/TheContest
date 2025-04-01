@@ -14,6 +14,9 @@ public partial class CollisionDeathTrigger : Node
 
     private void OnCollide(Node body)
     {
-        _healthComponent.TriggerDeath();
+        if(body is CharacterBody2D character)
+        {
+            _healthComponent.TriggerDeath();
+        }
     }
 }
