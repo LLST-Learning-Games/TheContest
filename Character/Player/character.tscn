@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=13 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
-[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_wki5p"]
+[ext_resource type="Texture2D" uid="uid://br34r2ypp2o1q" path="res://Art/Characters/quick_export.jpg" id="2_x1deh"]
 [ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
 [ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="5_dtwtn"]
@@ -12,12 +12,8 @@
 [ext_resource type="Resource" uid="uid://ls1lqg3usnu3" path="res://Projectiles/Segments/CollisionSegment/Explosion.tres" id="8_vp6oq"]
 [ext_resource type="Script" uid="uid://dev6modtwcdj7" path="res://Character/Player/CurrentCamera.cs" id="9_x1deh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtwtn"]
-atlas = ExtResource("2_wki5p")
-region = Rect2(40, 0, 8, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ato57"]
-size = Vector2(16, 16)
+size = Vector2(23, 25)
 
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_camera", "_healthComponent")]
 collision_mask = 61
@@ -27,10 +23,12 @@ _healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3, 3)
-texture = SubResource("AtlasTexture_dtwtn")
+position = Vector2(-0.499999, 0.572059)
+scale = Vector2(0.0397059, 0.0397059)
+texture = ExtResource("2_x1deh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ato57")
 
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("_characterBody2D") instance=ExtResource("3_7mpp7")]
