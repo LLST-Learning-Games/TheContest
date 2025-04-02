@@ -12,4 +12,6 @@ SpriteFrames = ExtResource("2_2liiw")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)
 AllowedChildCount = 1
+Delay = 0.5
+Speed = 0.0
 InstancePrefab = ExtResource("1_2liiw")

@@ -1,30 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpd4iad4gi2nl"]
+[gd_scene load_steps=10 format=3 uid="uid://dpd4iad4gi2nl"]
 
-[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_bnejc"]
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_siha4"]
 [ext_resource type="PackedScene" uid="uid://be873dd5twnvm" path="res://SpawnableEvents/HunterDeathExplosion.tscn" id="2_xpnp1"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_qbd41"]
+[ext_resource type="Texture2D" uid="uid://c4xa870t6qxkn" path="res://Art/Characters/UGLY.jpg" id="3_xpnp1"]
 [ext_resource type="PackedScene" uid="uid://dcabm03sb0upe" path="res://Character/Ai/EntityBrainHunter.tscn" id="4_qbd41"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_0yq5r"]
 [ext_resource type="Script" uid="uid://ffmtfd6f1pu0" path="res://Character/Enemies/CollisionDeathTrigger.cs" id="7_xpnp1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ea52"]
-atlas = ExtResource("1_bnejc")
-region = Rect2(88, 8, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_siha4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ea52")
+"texture": ExtResource("3_xpnp1")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qbd41"]
-radius = 11.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ymbd"]
+size = Vector2(20, 28)
 
 [node name="HunterEnemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent", "_navAgent")]
 collision_layer = 4
@@ -41,11 +37,12 @@ _onDeathSpawnPrefab = ExtResource("2_xpnp1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3, 3)
+position = Vector2(4.17233e-07, -6.41942e-05)
+scale = Vector2(0.0446927, 0.0446928)
 sprite_frames = SubResource("SpriteFrames_siha4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_qbd41")
+shape = SubResource("RectangleShape2D_0ymbd")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
@@ -56,7 +53,7 @@ path_postprocessing = 1
 _actor = NodePath("..")
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("5_0yq5r")]
-position = Vector2(0, -18.435)
+position = Vector2(0, -22)
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionDeathTrigger" type="Node" parent="." node_paths=PackedStringArray("_healthComponent", "_rb")]
