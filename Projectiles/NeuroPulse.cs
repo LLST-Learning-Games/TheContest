@@ -14,6 +14,7 @@ public partial class NeuroPulse : Node
     
     public void InjectStartingSegment(ProjectileSegmentDefinition startingSegment, bool isEnemy)
     {
+        SetDelay(startingSegment.GetData().Delay);
         _startingSegment = startingSegment;
         _startingSegment.SetIsEnemy(isEnemy);
     }

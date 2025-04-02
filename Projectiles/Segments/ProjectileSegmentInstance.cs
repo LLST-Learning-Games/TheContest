@@ -16,6 +16,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     {
         _segmentData = data;
         _sprite.SetSpriteFrames(data.SpriteFrames);
+        _sprite.Play();
         _sprite.Modulate = data.Colour;
         _children = children;
         Scale = data.Scale;

@@ -11,6 +11,7 @@ public partial class ProjectileSegmentDefinition : Node
     private bool _isEnemy;
     
     public void SetData(ProjectileSegmentData data) => _segmentData = data;
+    public ProjectileSegmentData GetData() => _segmentData;
     public void SetChildren(Array<ProjectileSegmentDefinition> children)
     {
         _children = children;

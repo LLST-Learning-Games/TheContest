@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://biilri6qla5y7"]
+
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_eoktj"]
+[ext_resource type="SpriteFrames" uid="uid://bivjd5nr0mwi5" path="res://Art/SmallProjectile.tres" id="2_utgj6"]
+[ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_x6kbc"]
+
+[resource]
+script = ExtResource("3_x6kbc")
+_speed = 25000.0
+Id = "MachineGun"
+SpriteFrames = ExtResource("2_utgj6")
+Colour = Color(1, 1, 1, 1)
+Scale = Vector2(1, 1)
+AllowedChildCount = 1
+Delay = 0.1
+Speed = 0.0
+InstancePrefab = ExtResource("1_eoktj")
