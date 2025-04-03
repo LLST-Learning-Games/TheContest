@@ -50,6 +50,11 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 
         foreach (var child in _children)
         {
+            if (!IsInstanceValid(child))
+            {
+                return;
+            }
+            
             child.Fire(GlobalPosition, Rotation, inheritedCollision);
         }
     }

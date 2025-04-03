@@ -7,6 +7,8 @@ public partial class GameOverUi : Button
     public override void _Ready()
     {
         Visible = false;
+        MouseFilter = MouseFilterEnum.Pass;
+        Disabled = true;
         var character = GetTree().GetFirstNodeInGroup("Player");
         var characterHealth = character.GetNode<HealthComponent>("HealthComponent");
         characterHealth.OnDeath += OnDeath;
@@ -14,6 +16,8 @@ public partial class GameOverUi : Button
 
     private void OnDeath()
     {
+        MouseFilter = MouseFilterEnum.Stop;
+        Disabled = false;
         Visible = true;
     }
 

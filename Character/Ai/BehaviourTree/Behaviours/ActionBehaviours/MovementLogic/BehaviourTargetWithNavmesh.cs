@@ -65,14 +65,21 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
     {
         if (blackboard.Actor is not Enemy actor)
         {
-            GD.PrintErr($"[{GetType().Name}] Actor in blackboard is not an enemy.");
+            
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] Actor in blackboard is not an enemy.");
+            }
             _state = BehaviourState.Failure;
             return null;
         }
 
         if (actor.NavAgent is null)
         {
-            GD.PrintErr($"[{GetType().Name}] Enemy in blackboard has no NavAgent.");
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] Enemy in blackboard has no NavAgent.");
+            }
             _state = BehaviourState.Failure;
             return null;
         }

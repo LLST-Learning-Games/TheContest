@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using Systems;
+using Systems.Currency;
 
 public partial class Character : CharacterBody2D
 {
@@ -17,4 +19,12 @@ public partial class Character : CharacterBody2D
         _camera.Reparent(GetTree().Root);
         QueueFree();
     }
+
+    private void NerfCurrencyOnDeath()
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        currency.SetCurrency(currency.Balance / 2f);
+    }
+    
 }

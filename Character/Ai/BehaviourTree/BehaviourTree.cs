@@ -11,14 +11,15 @@ namespace Behaviours
         private BehaviourTreeBlackboard _treeData;
         private double _currentTime = 0;
 
-        public BehaviourTree(BehaviourCompositeBase rootNode, Node2D actor, double resetLogicTimer = 0)
+        public BehaviourTree(BehaviourCompositeBase rootNode, Node2D actor, double resetLogicTimer = 0, bool isVerbose = false)
         {
             _rootNode = rootNode;
             _resetLogicTimer = resetLogicTimer;
             _treeData = new BehaviourTreeBlackboard 
             {      
                 Actor = actor,
-                Tree = this
+                Tree = this,
+                IsVerbose = isVerbose
             };
         }
 
@@ -28,10 +29,16 @@ namespace Behaviours
             switch (state)
             {
                 case BehaviourState.Failure:
-                    GD.PrintErr($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+                    if(_treeData.IsVerbose)
+                    {
+                        GD.Print($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+                    }
                     break;
                 case BehaviourState.Success:
-                    GD.Print($"[{GetType().Name}] Reached end of root behaviour. Resetting logic...");
+                    if(_treeData.IsVerbose)
+                    {
+                        GD.Print($"[{GetType().Name}] Reached end of root behaviour. Resetting logic...");
+                    }
                     ResetLogic();
                     break;
                 case BehaviourState.Running:
@@ -54,7 +61,6 @@ namespace Behaviours
         private void ResetLogic()
         {
             _rootNode.ResetBehaviour(_treeData);
-            GD.Print($"[{GetType().Name}] Resetting logic!");
             _currentTime = 0;
         }
     }

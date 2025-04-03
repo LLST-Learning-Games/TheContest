@@ -6,7 +6,10 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 {
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
-        GD.Print($"[{GetType().Name}] Getting target!");
+        if(blackboard.IsVerbose)
+        {
+            GD.Print($"[{GetType().Name}] Getting target!");
+        }
         object target = null;
         if (!blackboard.TreeData.TryGetValue(BehaviourDataKeys.TARGET, out target))
         {

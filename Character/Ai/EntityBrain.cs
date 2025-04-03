@@ -9,6 +9,7 @@ public partial class EntityBrain : Node
     [Export] private BehaviourCompositeBase _root;
     [Export] private Node2D _actor;
     [Export] private float _resetLogicTimer;
+    [Export] private bool _isVerbose;
 
     public override void _Ready()
     {
@@ -25,6 +26,6 @@ public partial class EntityBrain : Node
     {
         GD.Print($"[{GetType().Name}] New BehaviourTree created!");
 
-        return new BehaviourTree(_root, _actor, _resetLogicTimer);
+        return new BehaviourTree(_root, _actor, _resetLogicTimer, _isVerbose);
     }
 }

@@ -21,29 +21,36 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         GetLocationFromBlackboard(blackboard);
         GetRigidBodyFromBlackboard(blackboard);
         
-        if (_currentTime == 0)
+        if (blackboard.IsVerbose && _currentTime == 0)
         {
             GD.Print($"[{GetType().Name}] Begin move to {_moveDestination}!");
         }
         _currentTime += delta;
-        MoveToLocation(delta);
+        MoveToLocation(delta, blackboard);
         return _state;
     }
 
 
-    private void MoveToLocation(double delta)
+    private void MoveToLocation(double delta, BehaviourTreeBlackboard blackboard)
     {
         var moveVector = _moveDestination - _actorBody.GlobalPosition;
         if (moveVector.Length() < _successDistance)
         {
-            GD.Print($"[{GetType().Name}] Arrived at {_moveDestination}!");
+            if(blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] Arrived at {_moveDestination}!");
+            }
             _state = BehaviourState.Success;
             return;
         }
 
         if (_positionLastTick == _actorBody.GlobalPosition && _currentTime >= _failTimeout)
         {
-            GD.Print($"[{GetType().Name}] Could not reach {_moveDestination}!");
+            
+            if(blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] Could not reach {_moveDestination}!");
+            }
             _state = BehaviourState.Failure;
             return;
         }
@@ -56,8 +63,10 @@ public partial class BehaviourMoveTo : BehaviourActionBase
     {
         if (!blackboard.TreeData.TryGetValue(BehaviourDataKeys.LOCATION, out var locationData))
         {
-            GD.PrintErr(
-                $"[{GetType().Name}] No location in blackboard. Try adding a GetLocation behaviour before this one.");
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] No location in blackboard. Try adding a GetLocation behaviour before this one.");
+            }
             _state = BehaviourState.Failure;
             return;
         }
@@ -66,7 +75,10 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 
         if (_moveDestination == Vector2.Zero)
         {
-            GD.PrintErr($"[{GetType().Name}] Invalid object marked as location in Blackboard.");
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] Invalid object marked as location in Blackboard.");
+            }
             _state = BehaviourState.Failure;
         }
     }
@@ -75,7 +87,10 @@ public partial class BehaviourMoveTo : BehaviourActionBase
     {
         if (blackboard.Actor is not RigidBody2D actor)
         {
-            GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+            }
             _state = BehaviourState.Failure;
             return;
         }

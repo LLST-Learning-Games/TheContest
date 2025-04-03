@@ -15,7 +15,11 @@ public partial class BehaviourGetRandomLocation : BehaviourActionBase
         {
             _randomLocation = GetRandomLocationInRange(blackboard);
             blackboard.TreeData[BehaviourDataKeys.LOCATION] = _randomLocation;
-            GD.Print($"[{GetType().Name}] Found RandomLocation: {_randomLocation}");
+            
+            if(blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] Found RandomLocation: {_randomLocation}");
+            }
         }
 
         return BehaviourState.Success;
