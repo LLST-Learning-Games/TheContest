@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -7,7 +8,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 {
     [Export] private AnimatedSprite2D _sprite;
     [Export] private CollisionObject2D _collisionObject2D;
-    private Array<ProjectileSegmentDefinition> _children;
+    private List<ProjectileSegmentDefinition> _children;
     
     private ProjectileSegmentData _segmentData;
     private bool _hasCollided = false;
@@ -18,7 +19,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _sprite.SetSpriteFrames(data.SpriteFrames);
         _sprite.Play();
         _sprite.Modulate = data.Colour;
-        _children = children;
+        _children = new(children);
         Scale = data.Scale;
         BodyEntered += OnCollide;
         ContactMonitor = true;
@@ -32,6 +33,11 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 
     public void OnCollide(Node body)
     {
+        if (!IsInstanceValid(this))
+        {
+            return;
+        }
+        
         _segmentData.OnCollide(body, this);
         if(!_hasCollided)
         {
@@ -48,14 +54,10 @@ public partial class ProjectileSegmentInstance : RigidBody2D
             return;
         }
 
-        foreach (var child in _children)
+        //foreach (var child in _children)
+        for (int i = 0; i < _children.Count; i++)
         {
-            if (!IsInstanceValid(child))
-            {
-                return;
-            }
-            
-            child.Fire(GlobalPosition, Rotation, inheritedCollision);
+            _children[i].Fire(GlobalPosition, Rotation, inheritedCollision);
         }
     }
     public void HandleCollisionVisuals()
@@ -82,6 +84,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     public override void _ExitTree()
     {
         BodyEntered -= OnCollide;
+        _children.Clear();
     }
 
 }

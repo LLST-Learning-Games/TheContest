@@ -26,7 +26,7 @@ size = Vector2(652.5, 469)
 
 [node name="Scene" type="Node2D"]
 
-[node name="Map" type="Node2D" parent="."]
+[node name="Map" type="Node2D" parent="." groups=["CurrentMap"]]
 position = Vector2(475, 173)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Map"]
@@ -100,6 +100,14 @@ shape = SubResource("RectangleShape2D_h5s6u")
 [node name="Timer" parent="Map/EnemyWaveSpawner_Hunter2" index="1"]
 wait_time = 1.5
 
+[node name="ExitZone" parent="Map" node_paths=PackedStringArray("_escapeUi") instance=ExtResource("7_j0g0q")]
+position = Vector2(3893, 1483)
+_escapeUi = NodePath("../../CanvasLayer/EscapeUi")
+
+[node name="ExitZone2" parent="Map" node_paths=PackedStringArray("_escapeUi") instance=ExtResource("7_j0g0q")]
+position = Vector2(597, 2699)
+_escapeUi = NodePath("../../CanvasLayer/EscapeUi")
+
 [node name="Character" parent="." groups=["Player"] instance=ExtResource("2_e11n1")]
 position = Vector2(-88, -88)
 
@@ -128,14 +136,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Restart"
 script = ExtResource("4_ya8by")
-
-[node name="ExitZone" parent="." node_paths=PackedStringArray("_escapeUi") instance=ExtResource("7_j0g0q")]
-position = Vector2(4368, 1656)
-_escapeUi = NodePath("../CanvasLayer/EscapeUi")
-
-[node name="ExitZone2" parent="." node_paths=PackedStringArray("_escapeUi") instance=ExtResource("7_j0g0q")]
-position = Vector2(1072, 2872)
-_escapeUi = NodePath("../CanvasLayer/EscapeUi")
 
 [editable path="Map/EnemyWaveSpawner"]
 [editable path="Map/EnemyWaveSpawner3"]
