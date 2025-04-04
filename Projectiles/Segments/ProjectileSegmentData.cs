@@ -12,6 +12,7 @@ public abstract partial class ProjectileSegmentData : Resource
     [Export] public float Delay = 0.5f;
     [Export] public float Speed;
     [Export] public PackedScene InstancePrefab;
+    [Export] public bool ShouldInheritCollisions = false;
 
     public abstract void OnInitialize(RigidBody2D instanceBody, SceneTree tree);
     public abstract void OnPhysicsProcess(double delta, RigidBody2D instanceBody);
