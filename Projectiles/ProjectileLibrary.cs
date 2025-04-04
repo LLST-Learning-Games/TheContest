@@ -16,6 +16,11 @@ public partial class ProjectileLibrary : BaseSystem
 		_collisions = LoadData(_collisionPath);
 	}
 
+	public override void OnGameplayEnd()
+	{
+		//..
+	}
+
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> LoadData(string path)
 	{
 		var dictionary = new Godot.Collections.Dictionary<string, ProjectileSegmentData>();

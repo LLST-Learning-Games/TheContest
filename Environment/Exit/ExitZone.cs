@@ -32,7 +32,6 @@ public partial class ExitZone : Area2D
                 return;
             }
             
-            GD.Print("Exit!");
             _escapeUi.OnEscape();
             _hasEscaped = true;
             return;
@@ -65,6 +64,10 @@ public partial class ExitZone : Area2D
         
         _isPlayerPresent = false;
     }
-    
-    
+
+    public override void _ExitTree()
+    {
+        BodyEntered -= OnBodyEntered;
+        BodyExited -= OnBodyExited;
+    }
 }

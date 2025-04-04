@@ -10,6 +10,11 @@ public partial class SceneManagerSystem : BaseSystem
     {
         // ..
     }
-    
+
+    public override void OnGameplayEnd()
+    {
+        // ..
+    }
+
     public PackedScene GetScenePrefab(string sceneName) => _scenePrefabs[sceneName];
 }

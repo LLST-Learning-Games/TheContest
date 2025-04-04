@@ -46,7 +46,7 @@ public partial class ProjectileSegmentDefinition : Node
         instance.Initialize(_segmentData, _children);
         instance.SetCollisionLayers(_isEnemy);
         _segmentData.OnInitialize(instance, GetTree());
-        if (inheritedCollision != null)
+        if (IsInstanceValid(inheritedCollision))
         {
             instance.OnCollide(inheritedCollision);
         }
@@ -55,11 +55,24 @@ public partial class ProjectileSegmentDefinition : Node
     public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
     {
         await ToSignal(GetTree(), "process_frame");
-        if(IsInstanceValid(instance))
+        if(IsInstanceValid(this) && IsInstanceValid(instance))
         {
             GetTree().CurrentScene.AddChild(instance);
         }
     }
+    
+    // public void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
+    // {
+    //     CallDeferred(nameof(AddChildToTreeDeferred), instance);
+    // }
+    //
+    // private void AddChildToTree(ProjectileSegmentInstance instance)
+    // {
+    //     if(IsInstanceValid(instance))
+    //     {
+    //         GetTree().CurrentScene.AddChild(instance);
+    //     }
+    // }
 
 
 

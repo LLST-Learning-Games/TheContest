@@ -78,5 +78,10 @@ public partial class ProjectileSegmentInstance : RigidBody2D
             _collisionObject2D.SetCollisionMask(0b10001);	// player and environment
         }
     }
+    
+    public override void _ExitTree()
+    {
+        BodyEntered -= OnCollide;
+    }
 
 }

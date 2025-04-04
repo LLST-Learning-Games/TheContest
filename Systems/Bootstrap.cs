@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Systems;
 using Systems.SceneManager;
@@ -12,10 +13,11 @@ public partial class Bootstrap : Node2D
     private SceneManagerSystem SceneManager => _sceneManager ?? SystemLoader.GetSystem<SceneManagerSystem>();
     private SceneManagerSystem _sceneManager;
 
+    public Action OnGameplayEnd;
+
     public override void _Ready()
     { 
         InstantiateMainMenu();
-        //SystemLoader.OnSystemLoadComplete += InstantiateMainMenu;
     }
 
     private void InstantiateMainMenu()
@@ -51,6 +53,7 @@ public partial class Bootstrap : Node2D
 
     public void RestartGame()
     {
+        OnGameplayEnd?.Invoke();
         _gameplaySceneInstantiated.QueueFree();
         InstantiateMainMenu();
     }

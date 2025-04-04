@@ -37,4 +37,10 @@ public partial class Explosion : Node2D
         _explosionArea.SetCollisionLayer(0b1000);
         _explosionArea.SetCollisionMask(0b10001);	// player and environment
     } 
+    
+    public override void _ExitTree()
+    {
+        _explosionArea.BodyEntered -= OnBodyEntered;
+        _sprite.AnimationFinished -= QueueFree;
+    }
 }

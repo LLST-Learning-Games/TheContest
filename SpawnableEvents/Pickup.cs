@@ -25,4 +25,9 @@ public partial class Pickup : Node2D
             QueueFree();
         }
     }
+    
+    public override void _ExitTree()
+    {
+        _area2D.BodyEntered -= OnBodyEntered;
+    }
 }

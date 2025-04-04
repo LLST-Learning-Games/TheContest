@@ -19,4 +19,9 @@ public partial class CollisionDeathTrigger : Node
             _healthComponent.TriggerDeath();
         }
     }
+    
+    public override void _ExitTree()
+    {
+        _rb.BodyEntered -= OnCollide;
+    }
 }

@@ -21,7 +21,6 @@ public partial class EnemyWaveSpawner : Node2D
 
     private void OnSpawnTimer()
     {
-        GD.Print($"Enemies: {_enemies.Count}");
         if (_enemies.Count >= _maxEnemies)
         {
             return;

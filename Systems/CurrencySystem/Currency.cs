@@ -28,5 +28,10 @@ public partial class Currency : Node
         Balance = newValue;
         OnCurrencyChanged?.Invoke(Balance);
         GD.Print("[Currency] Set currency: " + Definition.Id + " to " + newValue);
-    } 
+    }
+
+    public void OnGameplayEnd()
+    {
+        OnCurrencyChanged = null;
+    }
 }

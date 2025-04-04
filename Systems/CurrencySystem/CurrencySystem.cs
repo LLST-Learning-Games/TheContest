@@ -31,4 +31,12 @@ public partial class CurrencySystem : BaseSystem
         GD.PrintErr("[CurrencySystem] Attempting to look up currency {" + id + "} but it doesn't exist.");
         return null;
     }
+    
+    public override void OnGameplayEnd()
+    {
+        foreach (var currency in _currencies.Values)
+        {
+            currency.OnGameplayEnd();
+        }
+    }
 }
