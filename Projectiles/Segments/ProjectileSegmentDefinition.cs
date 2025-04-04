@@ -46,7 +46,7 @@ public partial class ProjectileSegmentDefinition : Node
         instance.Initialize(_segmentData, _children);
         instance.SetCollisionLayers(_isEnemy);
         _segmentData.OnInitialize(instance, GetTree());
-        if (IsInstanceValid(inheritedCollision))
+        if (inheritedCollision != null && _segmentData.ShouldInheritCollisions)
         {
             instance.OnCollide(inheritedCollision);
         }
