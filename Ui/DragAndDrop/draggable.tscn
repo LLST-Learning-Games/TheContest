@@ -8,6 +8,7 @@ atlas = ExtResource("2_cp61e")
 region = Rect2(640, 0, 64, 64)
 
 [node name="Draggable" type="ColorRect" node_paths=PackedStringArray("_textureRect")]
+custom_minimum_size = Vector2(40, 40)
 offset_left = 528.0
 offset_top = 345.0
 offset_right = 568.0
