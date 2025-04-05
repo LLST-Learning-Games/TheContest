@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Systems;
 using TheContest.Projectiles;
@@ -65,5 +66,7 @@ public partial class ProjectileLibrary : BaseSystem
 	
 	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
 	public ICollection<string> GetCollisionIds() => _collisions.Keys;
+	
+	public IEnumerable<string> GetAllPulseIds() => GetTrajectoryIds().Concat(GetCollisionIds());
 
 }

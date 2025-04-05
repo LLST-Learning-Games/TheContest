@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b313w1jhrp4vp"]
+
+[ext_resource type="Script" uid="uid://dj3e0adtowqte" path="res://Ui/DragAndDrop/Draggable.cs" id="1_jj2im"]
+[ext_resource type="Texture2D" uid="uid://c0llbos17p2c8" path="res://Art/Magic Spell Effects All/41.png" id="2_cp61e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j6w2"]
+atlas = ExtResource("2_cp61e")
+region = Rect2(640, 0, 64, 64)
+
+[node name="Draggable" type="ColorRect" node_paths=PackedStringArray("_textureRect")]
+offset_left = 528.0
+offset_top = 345.0
+offset_right = 568.0
+offset_bottom = 385.0
+script = ExtResource("1_jj2im")
+_textureRect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_4j6w2")

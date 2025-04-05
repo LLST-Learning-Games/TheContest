@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbllln6nyvd1o"]
+[gd_scene load_steps=7 format=3 uid="uid://bbllln6nyvd1o"]
 
 [ext_resource type="Script" uid="uid://dj3e0adtowqte" path="res://Ui/DragAndDrop/Draggable.cs" id="1_2voyk"]
+[ext_resource type="PackedScene" uid="uid://b313w1jhrp4vp" path="res://Ui/DragAndDrop/draggable.tscn" id="1_75puu"]
 [ext_resource type="Texture2D" uid="uid://c0llbos17p2c8" path="res://Art/Magic Spell Effects All/41.png" id="3_12gl2"]
 [ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="4_4j6w2"]
+[ext_resource type="Script" uid="uid://bsybvc1h1xmvq" path="res://Ui/DragAndDrop/PulseLibraryControl.cs" id="4_7fgs4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4j6w2"]
 atlas = ExtResource("3_12gl2")
@@ -20,29 +22,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Draggable" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("_textureRect")]
-offset_left = 528.0
-offset_top = 345.0
-offset_right = 568.0
-offset_bottom = 385.0
-script = ExtResource("1_2voyk")
-_textureRect = NodePath("TextureRect")
+[node name="Draggable" parent="CanvasLayer" instance=ExtResource("1_75puu")]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Draggable"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 28.0
-offset_bottom = 28.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_4j6w2")
-
-[node name="Draggable2" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("_textureRect")]
+[node name="DraggableTarget" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("_textureRect")]
 offset_left = 528.0
 offset_top = 234.0
 offset_right = 568.0
@@ -51,7 +33,7 @@ script = ExtResource("1_2voyk")
 _projectileId = "empty"
 _textureRect = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Draggable2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DraggableTarget"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,5 +46,44 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_4j6w2")
+
+[node name="PulseLibraryControl" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_container")]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -158.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_7fgs4")
+_draggablePrefab = ExtResource("1_75puu")
+_container = NodePath("FlowContainer")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PulseLibraryControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/PulseLibraryControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Available Pulses:"
+
+[node name="FlowContainer" type="FlowContainer" parent="CanvasLayer/PulseLibraryControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.234
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0279999
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
 
 [node name="SystemLoader" parent="." instance=ExtResource("4_4j6w2")]

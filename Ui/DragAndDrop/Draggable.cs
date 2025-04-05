@@ -21,6 +21,12 @@ public partial class Draggable : ColorRect
             SystemLoader.OnSystemLoadComplete += LookupProjectileData;
         }
     }
+    
+    public void SetId(string id)
+    {
+        _projectileId = id;
+        LookupProjectileData();
+    }
 
     private void LookupProjectileData()
     {
@@ -32,6 +38,10 @@ public partial class Draggable : ColorRect
         }
         _textureRect.Visible = true;
         var projectile = _library.GetTrajectoryResource(_projectileId);
+        if(projectile is null)
+        {
+            return;
+        }
         var texture = projectile.SpriteFrames.GetFrameTexture("idle", 0);
         _textureRect.Texture = texture;
     }
