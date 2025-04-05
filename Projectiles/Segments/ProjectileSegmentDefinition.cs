@@ -6,11 +6,9 @@ namespace TheContest.Projectiles;
 public partial class ProjectileSegmentDefinition : Node
 {
     [Export] private ProjectileSegmentData _segmentData;
-    [Export] private Array<ProjectileSegmentDefinition> _children = new ();
-    
-    private Array<ProjectileSegmentInstance> _instancesQueuedToAdd = new ();
+    [Export] Array<ProjectileSegmentDefinition> _children;
+
     private bool _isEnemy;
-    private Node2D _currentMap;
     
     public void SetData(ProjectileSegmentData data) => _segmentData = data;
     public ProjectileSegmentData GetData() => _segmentData;
@@ -40,16 +38,13 @@ public partial class ProjectileSegmentDefinition : Node
     
     public void Fire(Vector2 globalPosition, float facing, Node inheritedCollision = null)
     {
-        if (!IsInstanceValid(this))
-        {
-            return;
-        }
-        
         var instance = _segmentData.InstancePrefab.Instantiate<ProjectileSegmentInstance>();
 
-        _instancesQueuedToAdd.Add(instance);
+        AddChildToTreeDeferred(instance);
         instance.GlobalPosition = globalPosition;
         instance.Rotation = facing;
+        instance.Initialize(_segmentData, _children);
+        instance.SetCollisionLayers(_isEnemy);
         _segmentData.OnInitialize(instance, GetTree());
         if (inheritedCollision != null && _segmentData.ShouldInheritCollisions)
         {
@@ -57,62 +52,14 @@ public partial class ProjectileSegmentDefinition : Node
         }
     }
 
-    private Node2D GetCurrentMap()
+    public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
     {
-        var mapGroup = GetTree().GetNodesInGroup("CurrentMap");
-        if (mapGroup.Count == 0)
+        await ToSignal(GetTree(), "process_frame");
+        if(IsInstanceValid(instance))
         {
-            return null;
+            GetTree().CurrentScene.AddChild(instance);
         }
-        return mapGroup[0] as Node2D;
     }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        if (_instancesQueuedToAdd.Count == 0)
-        {
-            return;
-        }
-
-        _currentMap ??= GetCurrentMap();
-        
-        foreach (var instance in _instancesQueuedToAdd)
-        {
-            if(IsInstanceValid(this) && IsInstanceValid(instance))
-            {
-                instance.Initialize(_segmentData, _children);
-                instance.SetCollisionLayers(_isEnemy);
-                var oldPosition = instance.GlobalPosition;
-                _currentMap.AddChild(instance);
-                instance.GlobalPosition = oldPosition;     //this is a bit of a sloppy hack but it gets us there
-                
-            }
-        }
-        
-        _instancesQueuedToAdd.Clear();
-    }
-
-    // public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
-    // {
-    //     await ToSignal(GetTree(), "process_frame");
-    //     if(IsInstanceValid(this) && IsInstanceValid(instance))
-    //     {
-    //         GetTree().CurrentScene.AddChild(instance);
-    //     }
-    // }
-    
-    // public void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
-    // {
-    //     CallDeferred(nameof(AddChildToTreeDeferred), instance);
-    // }
-    //
-    // private void AddChildToTree(ProjectileSegmentInstance instance)
-    // {
-    //     if(IsInstanceValid(instance))
-    //     {
-    //         GetTree().CurrentScene.AddChild(instance);
-    //     }
-    // }
 
 
 
