@@ -63,14 +63,12 @@ alignment = 1
 
 [node name="Draggable" parent="CanvasLayer" instance=ExtResource("1_75puu")]
 
-[node name="DraggableTarget" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("_textureRect")]
+[node name="DraggableTarget" type="ColorRect" parent="CanvasLayer"]
 offset_left = 528.0
 offset_top = 234.0
 offset_right = 568.0
 offset_bottom = 274.0
 script = ExtResource("1_2voyk")
-_projectileId = "empty"
-_textureRect = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/DraggableTarget"]
 layout_mode = 1

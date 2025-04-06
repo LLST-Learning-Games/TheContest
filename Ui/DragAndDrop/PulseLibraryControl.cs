@@ -31,6 +31,7 @@ public partial class PulseLibraryControl : Control
         {
             var newDraggable = _draggablePrefab.Instantiate<Draggable>();
             newDraggable.SetId(id);
+            newDraggable.IsDraggableSource = true;
             _draggables.Add(newDraggable);
             _container.AddChild(newDraggable);
         }

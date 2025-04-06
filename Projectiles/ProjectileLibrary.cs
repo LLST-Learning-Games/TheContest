@@ -63,6 +63,16 @@ public partial class ProjectileLibrary : BaseSystem
 		}
 		return _collisions[collisionName];
 	}
+
+	public ProjectileSegmentData GetResource(string projectileName)
+	{
+		var data = GetTrajectoryResource(projectileName);
+		if (data != null)
+		{
+			return data;
+		}
+		return GetCollisionResource(projectileName);
+	}
 	
 	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
 	public ICollection<string> GetCollisionIds() => _collisions.Keys;

@@ -7,7 +7,9 @@ public partial class Draggable : ColorRect
     private const string IS_EMPTY = "empty";
     [Export] internal string _projectileId = "YellowMagic";
     [Export] private TextureRect _textureRect;
-    
+
+    public bool IsDraggableSource = false; 
+        
     private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 
     public override void _Ready()
@@ -37,12 +39,13 @@ public partial class Draggable : ColorRect
             return;
         }
         _textureRect.Visible = true;
-        var projectile = _library.GetTrajectoryResource(_projectileId);
+        var projectile = _library.GetResource(_projectileId);
         if(projectile is null)
         {
             return;
         }
-        var texture = projectile.SpriteFrames.GetFrameTexture("idle", 0);
+
+        var texture = projectile.Icon;
         _textureRect.Texture = texture;
     }
 
@@ -69,7 +72,7 @@ public partial class Draggable : ColorRect
         if (what == NotificationDragEnd)
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
-            if(!IsDragSuccessful())
+            if(IsDraggableSource || !IsDragSuccessful())
             {
                 Color = Colors.White;
             }
@@ -80,8 +83,11 @@ public partial class Draggable : ColorRect
     public override void _DropData(Vector2 atPosition, Variant data)
     {
         var otherDraggable = data.AsGodotObject() as Draggable;
-        _projectileId = otherDraggable._projectileId;
-        otherDraggable._projectileId = IS_EMPTY;
+        if(!otherDraggable.IsDraggableSource)
+        {
+            _projectileId = otherDraggable._projectileId;
+            otherDraggable._projectileId = IS_EMPTY;
+        }
         otherDraggable.LookupProjectileData();
         Color = Colors.White;
         LookupProjectileData();

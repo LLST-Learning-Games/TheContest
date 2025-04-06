@@ -5,6 +5,7 @@ namespace TheContest.Projectiles;
 public abstract partial class ProjectileSegmentData : Resource
 {
     [Export] public string Id;
+    [Export] public Texture2D Icon;
     [Export] public SpriteFrames SpriteFrames;
     [Export] public Color Colour = Colors.White;
     [Export] public Vector2 Scale = Vector2.One;
