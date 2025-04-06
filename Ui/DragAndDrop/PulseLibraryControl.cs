@@ -8,6 +8,7 @@ public partial class PulseLibraryControl : Control
 {
     [Export] private PackedScene _draggablePrefab;
     [Export] private Control _container;
+    [Export] private Label _descriptionLabel;
 
     private List<Control> _draggables = new();
     private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
@@ -32,6 +33,7 @@ public partial class PulseLibraryControl : Control
             var newDraggable = _draggablePrefab.Instantiate<Draggable>();
             newDraggable.SetId(id);
             newDraggable.IsDraggableSource = true;
+            newDraggable.SetDescriptionLabel(_descriptionLabel);
             _draggables.Add(newDraggable);
             _container.AddChild(newDraggable);
         }

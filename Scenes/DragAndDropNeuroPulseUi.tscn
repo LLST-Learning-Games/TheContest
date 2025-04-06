@@ -32,6 +32,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 32.0
+offset_right = -333.0
 offset_bottom = 408.0
 grow_horizontal = 2
 script = ExtResource("1_qpe54")
@@ -52,15 +53,16 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Build Your NeuroPulse:"
 
-[node name="Draggable_TrajectoryNode" parent="NeuroPulseFactoryControl" instance=ExtResource("2_k3doa")]
+[node name="Draggable_TrajectoryNode" parent="NeuroPulseFactoryControl" node_paths=PackedStringArray("_descriptionLabel") instance=ExtResource("2_k3doa")]
 layout_mode = 0
 offset_left = 448.0
 offset_top = 167.0
 offset_right = 488.0
 offset_bottom = 207.0
 _projectileId = "empty"
+_descriptionLabel = NodePath("../../InformationPanel/DescriptionLabel")
 
-[node name="Draggable_CollisionNode" type="ColorRect" parent="NeuroPulseFactoryControl" node_paths=PackedStringArray("_textureRect")]
+[node name="Draggable_CollisionNode" type="ColorRect" parent="NeuroPulseFactoryControl" node_paths=PackedStringArray("_textureRect", "_descriptionLabel")]
 layout_mode = 0
 offset_left = 592.0
 offset_top = 167.0
@@ -69,6 +71,7 @@ offset_bottom = 207.0
 script = ExtResource("3_l15pa")
 _projectileId = "empty"
 _textureRect = NodePath("TextureRect")
+_descriptionLabel = NodePath("../../InformationPanel/DescriptionLabel")
 
 [node name="TextureRect" type="TextureRect" parent="NeuroPulseFactoryControl/Draggable_CollisionNode"]
 layout_mode = 1
@@ -104,7 +107,7 @@ offset_bottom = -6.0
 grow_vertical = 0
 text = "CONFIRM NEUROPULSE"
 
-[node name="PulseLibraryControl" type="Control" parent="." node_paths=PackedStringArray("_container")]
+[node name="PulseLibraryControl" type="Control" parent="." node_paths=PackedStringArray("_container", "_descriptionLabel")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -116,6 +119,7 @@ grow_vertical = 0
 script = ExtResource("5_mrf8q")
 _draggablePrefab = ExtResource("2_k3doa")
 _container = NodePath("FlowContainer")
+_descriptionLabel = NodePath("../InformationPanel/DescriptionLabel")
 
 [node name="ColorRect" type="ColorRect" parent="PulseLibraryControl"]
 layout_mode = 1
@@ -142,5 +146,38 @@ offset_top = 0.0279999
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="InformationPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 32.0
+offset_right = 4.0
+offset_bottom = 402.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="InformationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="InformationPanel"]
+layout_mode = 0
+offset_right = 177.0
+offset_bottom = 23.0
+text = "Pulse Information:"
+
+[node name="DescriptionLabel" type="Label" parent="InformationPanel"]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 313.0
+offset_bottom = 370.0
+autowrap_mode = 2
 
 [connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl" method="OnConfirmSelection"]

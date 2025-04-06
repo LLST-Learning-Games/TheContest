@@ -17,4 +17,8 @@ AllowedChildCount = 1
 Delay = 0.5
 Speed = 0.0
 InstancePrefab = ExtResource("1_iggn0")
-ShouldInheritCollisions = false
+ShouldInheritCollisions = true
+Description = "KINETIC IMPACT
+
+Deals a small amount of instant damage on a single opponent.
+Damage: 25"

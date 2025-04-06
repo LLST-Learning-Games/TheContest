@@ -24,3 +24,7 @@ Delay = 0.5
 Speed = 0.0
 InstancePrefab = ExtResource("1_3orw3")
 ShouldInheritCollisions = true
+Description = "EXPLOSION
+
+Deals a large amount of damage to an area.
+Damage: 50"

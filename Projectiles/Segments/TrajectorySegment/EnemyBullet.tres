@@ -22,3 +22,8 @@ Delay = 0.75
 Speed = 0.0
 InstancePrefab = ExtResource("1_cjgjg")
 ShouldInheritCollisions = false
+Description = "SLOW BLAST
+
+Travels in a straight line. Fires slowly. Moves slowly.
+Delay: 0.75s
+Speed: slow"

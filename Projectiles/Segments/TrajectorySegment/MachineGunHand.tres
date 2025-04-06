@@ -22,3 +22,8 @@ Delay = 0.1
 Speed = 0.0
 InstancePrefab = ExtResource("1_eoktj")
 ShouldInheritCollisions = false
+Description = "RAPID BULLET
+
+Travels in a straight line. Fires quickly, moves quickly.
+Delay: 0.1s
+Speed: fast"

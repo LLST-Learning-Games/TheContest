@@ -1,19 +1,23 @@
 using Godot;
-using System;
 using Systems;
+using TheContest.Projectiles;
 
 public partial class Draggable : ColorRect
 {
     private const string IS_EMPTY = "empty";
     [Export] internal string _projectileId = "YellowMagic";
     [Export] private TextureRect _textureRect;
+    [Export] private Label _descriptionLabel;
 
     public string ProjectileId => _projectileId;
+    public ProjectileSegmentData Data { get; private set; } 
     public bool IsDraggableSource = false;
     private bool _isDragging = false;
         
     private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 
+    public void SetDescriptionLabel(Label label) => _descriptionLabel = label;
+    
     public override void _Ready()
     {
         if (SystemLoader.IsSystemLoadComplete)
@@ -24,6 +28,9 @@ public partial class Draggable : ColorRect
         {
             SystemLoader.OnSystemLoadComplete += LookupProjectileData;
         }
+        
+        MouseEntered += OnMouseEntered;
+        MouseExited += OnMouseExited;
     }
     
     public void SetId(string id)
@@ -41,13 +48,13 @@ public partial class Draggable : ColorRect
             return;
         }
         _textureRect.Visible = true;
-        var projectile = _library.GetAnyResource(_projectileId);
-        if(projectile is null)
+        Data = _library.GetAnyResource(_projectileId);
+        if(Data is null)
         {
             return;
         }
 
-        var texture = projectile.Icon;
+        var texture = Data.Icon;
         Color = Colors.White;
         _textureRect.Texture = texture;
     }
@@ -89,6 +96,7 @@ public partial class Draggable : ColorRect
                 {
                     SetIsEmpty();
                 }
+                _descriptionLabel.Text = "";
             }
             _isDragging = false;
         }
@@ -139,6 +147,26 @@ public partial class Draggable : ColorRect
         {
             SetIsEmpty();
         }
+    }
+
+    private void OnMouseEntered()
+    {
+        if (Data is null)
+        {
+            return;
+        }
+        
+        _descriptionLabel.Text = Data.Description;
+    }
+
+    private void OnMouseExited()
+    {
+        if (_isDragging)
+        {
+            return;
+        }
+        
+        _descriptionLabel.Text = "";  
     }
     
 }
