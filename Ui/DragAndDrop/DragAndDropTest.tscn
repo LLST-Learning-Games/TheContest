@@ -22,6 +22,66 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="NeuroPulseFactoryControl" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 408.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/NeuroPulseFactoryControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/NeuroPulseFactoryControl"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Build Your NeuroPulse:"
+
+[node name="Draggable_TrajectoryNode" parent="CanvasLayer/NeuroPulseFactoryControl" instance=ExtResource("1_75puu")]
+offset_left = 360.0
+offset_top = 184.0
+offset_right = 400.0
+offset_bottom = 224.0
+_projectileId = "empty"
+
+[node name="Draggable_CollisionNode" type="ColorRect" parent="CanvasLayer/NeuroPulseFactoryControl" node_paths=PackedStringArray("_textureRect")]
+offset_left = 504.0
+offset_top = 184.0
+offset_right = 544.0
+offset_bottom = 224.0
+script = ExtResource("1_2voyk")
+_projectileId = "empty"
+_textureRect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NeuroPulseFactoryControl/Draggable_CollisionNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_4j6w2")
+
+[node name="Line" type="ColorRect" parent="CanvasLayer/NeuroPulseFactoryControl"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 504.0
+offset_bottom = 208.0
+color = Color(0.212305, 0.212305, 0.212305, 1)
+
 [node name="PulseLibraryControl" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_container")]
 layout_mode = 3
 anchors_preset = 12
@@ -60,29 +120,5 @@ offset_top = 0.0279999
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
-
-[node name="Draggable" parent="CanvasLayer" instance=ExtResource("1_75puu")]
-
-[node name="DraggableTarget" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("_textureRect")]
-offset_left = 528.0
-offset_top = 234.0
-offset_right = 568.0
-offset_bottom = 274.0
-script = ExtResource("1_2voyk")
-_textureRect = NodePath("TextureRect")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DraggableTarget"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 28.0
-offset_bottom = 28.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_4j6w2")
 
 [node name="SystemLoader" parent="." instance=ExtResource("4_4j6w2")]
