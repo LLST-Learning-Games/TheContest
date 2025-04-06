@@ -40,11 +40,13 @@ grow_vertical = 2
 color = Color(0.385493, 0.385492, 0.385492, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/NeuroPulseFactoryControl"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Build Your NeuroPulse:"
 
 [node name="Draggable_TrajectoryNode" parent="CanvasLayer/NeuroPulseFactoryControl" instance=ExtResource("1_75puu")]
+layout_mode = 0
 offset_left = 360.0
 offset_top = 184.0
 offset_right = 400.0
@@ -52,6 +54,7 @@ offset_bottom = 224.0
 _projectileId = "empty"
 
 [node name="Draggable_CollisionNode" type="ColorRect" parent="CanvasLayer/NeuroPulseFactoryControl" node_paths=PackedStringArray("_textureRect")]
+layout_mode = 0
 offset_left = 504.0
 offset_top = 184.0
 offset_right = 544.0
