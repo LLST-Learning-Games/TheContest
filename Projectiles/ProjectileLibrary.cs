@@ -6,15 +6,19 @@ using TheContest.Projectiles;
 
 public partial class ProjectileLibrary : BaseSystem
 {
+	[Export] private NeuroPulseFactory _factory;
 	[Export] private string _trajectoryPath = "res://Projectiles/Segments/TrajectorySegment";
 	[Export] private string _collisionPath = "res://Projectiles/Segments/CollisionSegment";
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _trajectories;
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _collisions;
 	
+	public NeuroPulseFactory Factory => _factory;
+	
 	public override void Initialize()
 	{
 		_trajectories = LoadData(_trajectoryPath);
 		_collisions = LoadData(_collisionPath);
+		_factory.Initialize(this);
 	}
 
 	public override void OnGameplayEnd()
@@ -64,7 +68,7 @@ public partial class ProjectileLibrary : BaseSystem
 		return _collisions[collisionName];
 	}
 
-	public ProjectileSegmentData GetResource(string projectileName)
+	public ProjectileSegmentData GetAnyResource(string projectileName)
 	{
 		var data = GetTrajectoryResource(projectileName);
 		if (data != null)

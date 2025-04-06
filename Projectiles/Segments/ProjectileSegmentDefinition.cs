@@ -6,7 +6,7 @@ namespace TheContest.Projectiles;
 public partial class ProjectileSegmentDefinition : Node
 {
     [Export] private ProjectileSegmentData _segmentData;
-    [Export] Array<ProjectileSegmentDefinition> _children;
+    [Export] Array<ProjectileSegmentDefinition> _children = new ();
 
     private bool _isEnemy;
     
@@ -15,6 +15,18 @@ public partial class ProjectileSegmentDefinition : Node
     public void SetChildren(Array<ProjectileSegmentDefinition> children)
     {
         _children = children;
+    }
+
+    public bool TryAddChild(ProjectileSegmentDefinition candidateChild)
+    {
+        _children ??= new Array<ProjectileSegmentDefinition>();
+        if (_children.Count < _segmentData.AllowedChildCount)
+        {
+            _children.Add(candidateChild);
+            return true;
+        }
+
+        return false;
     }
 
     public void SetIsEnemy(bool isEnemy)

@@ -9,13 +9,13 @@ public partial class DebugTrajectorySelector : Control
     [Export] private ItemList _collisionList;
     
     private NeuroPulse _playerWeapon;
-    private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
+    private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
+    private ProjectileLibrary _library;
     
     public override void _Ready()
     {
         _trajectoryList.FocusMode = Control.FocusModeEnum.None;
         _collisionList.FocusMode = Control.FocusModeEnum.None;
-        _playerWeapon = new NeuroPulse();
         if (SystemLoader.IsSystemLoadComplete)
         {
             OnSystemLoadComplete();
@@ -29,91 +29,47 @@ public partial class DebugTrajectorySelector : Control
     private void OnSystemLoadComplete()
     {
         PopulateList();
-        _trajectoryList.Select(0);
-        _collisionList.Select(0);
-        _trajectoryList.ItemSelected += OnTrajectorySelected;
-        _collisionList.ItemSelected += OnCollisionSelected;
     }
-
-
+    
     private void PopulateList()
     {
         _trajectoryList.Clear();
-        var itemNames = _library.GetTrajectoryIds();
+        var itemNames = Library.GetTrajectoryIds();
         foreach (var name in itemNames)
         {
             _trajectoryList.AddItem(name);
         }
+        _trajectoryList.Select(0);
         
         _collisionList.Clear();
-        itemNames = _library.GetCollisionIds();
+        itemNames = Library.GetCollisionIds();
         foreach (var name in itemNames)
         {
             _collisionList.AddItem(name);
         }
+        _collisionList.Select(0);
     }
-
-    private void OnTrajectorySelected(long index)
-    {
-        string itemName = _trajectoryList.GetItemText((int)index);
-        if (string.IsNullOrEmpty(itemName))
-        {
-            return;
-        }
-
-        ProjectileSegmentDefinition definitions = CreateNewDefinitions();
-        _playerWeapon.InjectStartingSegment(definitions, false);
-    }
-
-    private ProjectileSegmentDefinition CreateNewDefinitions()
-    {
-        foreach (var child in _playerWeapon.GetChildren())
-        {
-            child.QueueFree();
-        }
-        
-        int trajectoryIndex = _trajectoryList.GetSelectedItems()[0];
-        var trajectoryData = _library.GetTrajectoryResource(_trajectoryList.GetItemText(trajectoryIndex));
-        ProjectileSegmentDefinition trajectoryDefinition = CreateDefinition(trajectoryData);
-        
-        int collisionIndex = _collisionList.GetSelectedItems()[0];
-        var collisionData = _library.GetCollisionResource(_collisionList.GetItemText(collisionIndex));
-        ProjectileSegmentDefinition collisionDefinition = CreateDefinition(collisionData);
-        
-        trajectoryDefinition.SetChildren(new Array<ProjectileSegmentDefinition>{collisionDefinition});
-        return trajectoryDefinition;
-    }
-
-    private ProjectileSegmentDefinition CreateDefinition(ProjectileSegmentData data)
-    {
-        var definition = new ProjectileSegmentDefinition();
-        definition.SetData(data);
-        _playerWeapon.AddChild(definition);
-        return definition;
-    }
-
-    private void OnCollisionSelected(long index)
-    {
-        string itemName = _collisionList.GetItemText((int)index);
-        if (string.IsNullOrEmpty(itemName))
-        {
-            return;
-        }
-
-        ProjectileSegmentDefinition definitions = CreateNewDefinitions();
-        _playerWeapon.InjectStartingSegment(definitions, false);
-    }
-
+    
     public void OnConfirmSelection()
     {
-        var children = _library.GetChildren();
+        var children = Library.GetChildren();
         foreach (var child in children)
         {
             child.QueueFree();
             return;
         }
+
+        int trajectoryIndex = _trajectoryList.GetSelectedItems()[0];
+        var trajectoryId = _trajectoryList.GetItemText(trajectoryIndex);
+        ProjectileSegmentDefinition trajectoryDefinition = Library.Factory.TryAddPulse(trajectoryId);
         
-        _library.AddChild(_playerWeapon);
+        int collisionIndex = _collisionList.GetSelectedItems()[0];
+        var collisionId = _collisionList.GetItemText(collisionIndex);
+        Library.Factory.TryAddPulse(collisionId,trajectoryDefinition);
+        
+        _playerWeapon = Library.Factory.ExportNeuroPulse();
+        Library.AddChild(_playerWeapon);
+        
         GetParent().QueueFree();        // clear the selection UI
     }
 }

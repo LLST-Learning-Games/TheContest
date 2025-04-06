@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ulsvplmtfi1e"]
+[gd_scene load_steps=3 format=3 uid="uid://ulsvplmtfi1e"]
 
 [ext_resource type="Script" uid="uid://dp3behbldeqp6" path="res://Projectiles/ProjectileLibrary.cs" id="1_iynq0"]
+[ext_resource type="Script" uid="uid://7r0wvvr5stgo" path="res://Projectiles/NeuroPulseFactory.cs" id="2_8xyce"]
 
-[node name="ProjectileManager" type="Node"]
+[node name="ProjectileManager" type="Node" node_paths=PackedStringArray("_factory")]
 script = ExtResource("1_iynq0")
+_factory = NodePath("NeuroPulseFactory")
+
+[node name="NeuroPulseFactory" type="Node" parent="."]
+script = ExtResource("2_8xyce")

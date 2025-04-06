@@ -39,7 +39,7 @@ public partial class Draggable : ColorRect
             return;
         }
         _textureRect.Visible = true;
-        var projectile = _library.GetResource(_projectileId);
+        var projectile = _library.GetAnyResource(_projectileId);
         if(projectile is null)
         {
             return;
@@ -51,7 +51,6 @@ public partial class Draggable : ColorRect
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
-        GD.Print("Draggable!");
         SetDragPreview(GetDragPreview());
         Color = Colors.Gray;
         Input.MouseMode = Input.MouseModeEnum.Hidden;
@@ -61,10 +60,6 @@ public partial class Draggable : ColorRect
     public Control GetDragPreview()
     {
         return this.Duplicate() as Control;
-        // var colorRect = new ColorRect();
-        // colorRect.Color = this.Color;
-        // colorRect.Size = this.Size;
-        // return colorRect;
     }
 
     public override void _Notification(int what)
@@ -76,16 +71,18 @@ public partial class Draggable : ColorRect
             {
                 Color = Colors.White;
             }
-            
         }
     }
     
     public override void _DropData(Vector2 atPosition, Variant data)
     {
         var otherDraggable = data.AsGodotObject() as Draggable;
-        if(!otherDraggable.IsDraggableSource)
+        if(!IsDraggableSource && otherDraggable._projectileId != IS_EMPTY)
         {
             _projectileId = otherDraggable._projectileId;
+        }
+        if(!otherDraggable.IsDraggableSource)
+        {
             otherDraggable._projectileId = IS_EMPTY;
         }
         otherDraggable.LookupProjectileData();
