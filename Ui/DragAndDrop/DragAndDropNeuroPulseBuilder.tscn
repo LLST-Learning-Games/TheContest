@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbllln6nyvd1o"]
+
+[ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="1_wg1c2"]
+
+[node name="DragAndDropTest" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DragAndDropNeuroPulseUi" parent="CanvasLayer" instance=ExtResource("1_wg1c2")]

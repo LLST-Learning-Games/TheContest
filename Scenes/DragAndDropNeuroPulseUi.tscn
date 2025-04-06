@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxovvp355lpee"]
+
+[ext_resource type="Script" uid="uid://cyqun5x8yaund" path="res://Ui/DragAndDrop/NeuroPulseFactoryControl.cs" id="1_qpe54"]
+[ext_resource type="PackedScene" uid="uid://b313w1jhrp4vp" path="res://Ui/DragAndDrop/draggable.tscn" id="2_k3doa"]
+[ext_resource type="Script" uid="uid://dj3e0adtowqte" path="res://Ui/DragAndDrop/Draggable.cs" id="3_l15pa"]
+[ext_resource type="Texture2D" uid="uid://c0llbos17p2c8" path="res://Art/Magic Spell Effects All/41.png" id="4_j6mf7"]
+[ext_resource type="Script" uid="uid://bsybvc1h1xmvq" path="res://Ui/DragAndDrop/PulseLibraryControl.cs" id="5_mrf8q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j6w2"]
+atlas = ExtResource("4_j6mf7")
+region = Rect2(640, 0, 64, 64)
+
+[node name="DragAndDropNeuroPulseUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NeuroPulseFactoryControl" type="Control" parent="." node_paths=PackedStringArray("_pulses")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 408.0
+grow_horizontal = 2
+script = ExtResource("1_qpe54")
+_pulses = [NodePath("Draggable_TrajectoryNode"), NodePath("Draggable_CollisionNode")]
+
+[node name="ColorRect" type="ColorRect" parent="NeuroPulseFactoryControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="NeuroPulseFactoryControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Build Your NeuroPulse:"
+
+[node name="Draggable_TrajectoryNode" parent="NeuroPulseFactoryControl" instance=ExtResource("2_k3doa")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 167.0
+offset_right = 488.0
+offset_bottom = 207.0
+_projectileId = "empty"
+
+[node name="Draggable_CollisionNode" type="ColorRect" parent="NeuroPulseFactoryControl" node_paths=PackedStringArray("_textureRect")]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 167.0
+offset_right = 632.0
+offset_bottom = 207.0
+script = ExtResource("3_l15pa")
+_projectileId = "empty"
+_textureRect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="NeuroPulseFactoryControl/Draggable_CollisionNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_4j6w2")
+
+[node name="Line" type="ColorRect" parent="NeuroPulseFactoryControl"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 183.0
+offset_right = 592.0
+offset_bottom = 191.0
+color = Color(0.212305, 0.212305, 0.212305, 1)
+
+[node name="ConfirmButton" type="Button" parent="NeuroPulseFactoryControl"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -30.0
+offset_right = 129.0
+offset_bottom = -6.0
+grow_vertical = 0
+text = "CONFIRM NEUROPULSE"
+
+[node name="PulseLibraryControl" type="Control" parent="." node_paths=PackedStringArray("_container")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -158.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("5_mrf8q")
+_draggablePrefab = ExtResource("2_k3doa")
+_container = NodePath("FlowContainer")
+
+[node name="ColorRect" type="ColorRect" parent="PulseLibraryControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="PulseLibraryControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Available Pulses:"
+
+[node name="FlowContainer" type="FlowContainer" parent="PulseLibraryControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.234
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0279999
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl" method="OnConfirmSelection"]

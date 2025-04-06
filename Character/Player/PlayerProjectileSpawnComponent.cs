@@ -17,7 +17,7 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 
 	public override void _Ready()
 	{
-		var children = _library.GetChildren();
+		var children = _library.Factory.GetChildren();
 		foreach (var child in children)
 		{
 			if (child is NeuroPulse neuroPulse)

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b7614wfd2fbhp" path="res://Systems/SceneManagerSystem/SceneManagerSystem.cs" id="5_ifnho"]
 [ext_resource type="PackedScene" uid="uid://dqnq1o6exsydm" path="res://Scenes/TestMap.tscn" id="6_rmhsp"]
 [ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
-[ext_resource type="PackedScene" uid="uid://covqthx5aulh" path="res://Scenes/NeuroPulseCustomizer.tscn" id="8_rmhsp"]
+[ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="8_rmhsp"]
 
 [node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
 script = ExtResource("1_q1yjg")

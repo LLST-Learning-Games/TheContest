@@ -8,6 +8,7 @@ public partial class Draggable : ColorRect
     [Export] internal string _projectileId = "YellowMagic";
     [Export] private TextureRect _textureRect;
 
+    public string ProjectileId => _projectileId;
     public bool IsDraggableSource = false;
     private bool _isDragging = false;
         
@@ -127,6 +128,17 @@ public partial class Draggable : ColorRect
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
         return data.AsGodotObject() is Draggable;
+    }
+    
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (!IsDraggableSource &&
+            @event is InputEventMouseButton mouseButtonEvent &&
+            mouseButtonEvent.Pressed &&
+            mouseButtonEvent.ButtonIndex == MouseButton.Right)
+        {
+            SetIsEmpty();
+        }
     }
     
 }
