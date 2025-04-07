@@ -1,22 +1,18 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dtcd3cgp2tweg"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dtcd3cgp2tweg"]
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_cjgjg"]
-[ext_resource type="Texture2D" uid="uid://7uv4pck81o43" path="res://Art/Bubble/bubble.png" id="1_ogu25"]
-[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_cjgjg"]
+[ext_resource type="Texture2D" uid="uid://j8b8bc8o7e0d" path="res://Art/Effects Pack 12/2/30.png" id="1_ogu25"]
+[ext_resource type="SpriteFrames" uid="uid://cetsv7plomoxe" path="res://Art/Effects Pack 12/2/EvilPulse.tres" id="3_mugyl"]
 [ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_pcdv1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pcdv1"]
-atlas = ExtResource("1_ogu25")
-region = Rect2(0, 0, 48, 48)
 
 [resource]
 script = ExtResource("3_pcdv1")
 _speed = 7500.0
 Id = "EnemyBullet"
-Icon = SubResource("AtlasTexture_pcdv1")
-SpriteFrames = ExtResource("2_cjgjg")
+Icon = ExtResource("1_ogu25")
+SpriteFrames = ExtResource("3_mugyl")
 Colour = Color(1, 1, 1, 1)
-Scale = Vector2(0.7, 0.7)
+Scale = Vector2(1, 1)
 Cost = 5
 AllowedChildCount = 1
 Delay = 0.75
