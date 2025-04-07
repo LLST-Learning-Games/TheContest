@@ -5,6 +5,7 @@ using Systems.Currency;
 
 public partial class CurrencyUi : Label
 {
+    [Export] private string _id = "cash"; 
     private Currency _currency;
     
     public override void _Ready()
@@ -23,7 +24,7 @@ public partial class CurrencyUi : Label
     private void Initialize()
     {
         var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
-        _currency = currencySystem.GetCurrency("cash");
+        _currency = currencySystem.GetCurrency(_id);
         _currency.OnCurrencyChanged += UpdateUi;
     }
 

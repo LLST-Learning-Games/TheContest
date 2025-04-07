@@ -34,9 +34,22 @@ public partial class CurrencySystem : BaseSystem
     
     public override void OnGameplayEnd()
     {
+        MoveNewCashToCash();
         foreach (var currency in _currencies.Values)
         {
             currency.OnGameplayEnd();
         }
+    }
+
+    public void MoveNewCashToCash()
+    {
+        var newCurrency = GetCurrency("newCash");
+        if (newCurrency == null)
+        {
+            return;
+        }
+        var currency = GetCurrency("cash");
+        currency.UpdateCurrencyByDelta(newCurrency.Balance);
+        newCurrency.Balance = 0;
     }
 }

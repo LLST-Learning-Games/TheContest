@@ -54,6 +54,7 @@ public partial class Bootstrap : Node2D
     public void RestartGame()
     {
         OnGameplayEnd?.Invoke();
+        SystemLoader.OnGameplayEnd();
         _gameplaySceneInstantiated.QueueFree();
         InstantiateMainMenu();
     }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cop1s0k8641k6"]
+[gd_scene load_steps=10 format=3 uid="uid://cop1s0k8641k6"]
 
 [ext_resource type="Script" uid="uid://bms7r5emi0col" path="res://Systems/SystemLoader.cs" id="1_q1yjg"]
 [ext_resource type="Script" uid="uid://7vtieglcw6ci" path="res://Systems/CurrencySystem/CurrencySystem.cs" id="2_b0gg8"]
 [ext_resource type="Resource" uid="uid://bf7lus0eqo5p" path="res://Systems/CurrencySystem/Currencies/CurrencyCash.tres" id="3_udnkd"]
+[ext_resource type="Resource" uid="uid://c4dp6hcetv3tm" path="res://Systems/CurrencySystem/Currencies/CurrencyCashCurrentMap.tres" id="4_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_b0gg8"]
 [ext_resource type="Script" uid="uid://b7614wfd2fbhp" path="res://Systems/SceneManagerSystem/SceneManagerSystem.cs" id="5_ifnho"]
 [ext_resource type="PackedScene" uid="uid://dqnq1o6exsydm" path="res://Scenes/TestMap.tscn" id="6_rmhsp"]
@@ -15,7 +16,7 @@ _systemBootstrap = [NodePath("CurrencySystem"), NodePath("ProjectileLibrary"), N
 
 [node name="CurrencySystem" type="Node" parent="."]
 script = ExtResource("2_b0gg8")
-_currencyBootstrap = Array[Resource]([ExtResource("3_udnkd")])
+_currencyBootstrap = Array[Resource]([ExtResource("3_udnkd"), ExtResource("4_1j2ki")])
 _id = "CurrencySystem"
 
 [node name="ProjectileLibrary" parent="." instance=ExtResource("4_b0gg8")]

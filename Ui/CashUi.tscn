@@ -3,7 +3,15 @@
 [ext_resource type="Script" uid="uid://covop3xoujf8b" path="res://Ui/CurrencyUi.cs" id="1_n2vbm"]
 
 [node name="CashUi" type="Label"]
-offset_right = 40.0
+offset_left = 150.0
+offset_right = 190.0
 offset_bottom = 23.0
 text = "$0"
 script = ExtResource("1_n2vbm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -150.0
+offset_right = -36.0
+offset_bottom = 23.0
+text = "Family Wealth:"

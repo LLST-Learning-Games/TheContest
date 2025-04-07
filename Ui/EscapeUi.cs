@@ -1,10 +1,13 @@
 using Godot;
 using System;
 using Godot.Collections;
+using Systems;
+using Systems.Currency;
 
 public partial class EscapeUi : ColorRect
 {
     [Export] private Array<Control> _nodesToShowOnEscape;
+    [Export] private Label _celebrationLabel;
 
     public override void _Ready()
     {
@@ -28,6 +31,7 @@ public partial class EscapeUi : ColorRect
 
     public void OnEscape()
     {
+        CelebrateWealth();
         foreach (Control node in _nodesToShowOnEscape)
         {
             node.SetVisible(true);
@@ -56,5 +60,12 @@ public partial class EscapeUi : ColorRect
         ClearUi();
         var bootstrap = GetTree().Root.GetNode<Bootstrap>("Bootstrap");
         bootstrap.RestartGame();
+    }
+    
+    private void CelebrateWealth()
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("newCash");
+        _celebrationLabel.Text = $"You have contributed ${currency.Balance} to the hallowed treasury of your family.";
     }
 }

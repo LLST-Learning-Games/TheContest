@@ -12,6 +12,7 @@ region = Rect2(72, 40, 8, 8)
 
 [node name="Pickup" type="Node2D" node_paths=PackedStringArray("_area2D")]
 script = ExtResource("1_ej2kh")
+_rewardId = "newCash"
 _area2D = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4dp6hcetv3tm"]
+
+[ext_resource type="Script" uid="uid://b8ne80u51m0ih" path="res://Systems/CurrencySystem/CurrencyDefinition.cs" id="1_ixdft"]
+
+[resource]
+script = ExtResource("1_ixdft")
+Id = "newCash"
+StartingBalance = 0.0

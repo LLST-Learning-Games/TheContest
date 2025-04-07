@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkibeva0o84yp"]
+
+[ext_resource type="Script" uid="uid://0osjomhvfb1f" path="res://Ui/GameOverUi.cs" id="1_fb7ho"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fb7ho"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_j15ff"]
+
+[node name="GameOverButton" type="Button" node_paths=PackedStringArray("_penaltyLabel")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PASS WINNINGS TO SIBLINGS"
+script = ExtResource("1_fb7ho")
+_penaltyLabel = NodePath("WinningsLabel")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = -92.665
+offset_right = 118.0
+offset_bottom = -50.665
+grow_horizontal = 2
+text = "YOU HAVE DIED."
+label_settings = SubResource("LabelSettings_fb7ho")
+horizontal_alignment = 1
+
+[node name="WinningsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = -50.5
+offset_right = 119.0
+offset_bottom = -8.49999
+grow_horizontal = 2
+text = "Here we mock you"
+label_settings = SubResource("LabelSettings_j15ff")
+horizontal_alignment = 1

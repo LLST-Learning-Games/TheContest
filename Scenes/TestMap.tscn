@@ -2,12 +2,12 @@
 
 [ext_resource type="TileSet" uid="uid://dkim6hsg7n0s2" path="res://Environment/TileMap/TileMap.tres" id="1_00jar"]
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="2_e11n1"]
-[ext_resource type="Script" uid="uid://0osjomhvfb1f" path="res://Ui/GameOverUi.cs" id="4_ya8by"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="5_62i8n"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="6_4lmyf"]
 [ext_resource type="PackedScene" uid="uid://jicy8s60x7k3" path="res://Ui/CashUi.tscn" id="6_e11n1"]
 [ext_resource type="PackedScene" uid="uid://c1aono5acfnlg" path="res://Ui/EscapeUi.tscn" id="7_e11n1"]
 [ext_resource type="PackedScene" uid="uid://ddtp17eqi5bsf" path="res://Environment/Exit/exit_zone.tscn" id="7_j0g0q"]
+[ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_e11n1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
@@ -115,23 +115,18 @@ position = Vector2(-88, -88)
 
 [node name="CashUi" parent="CanvasLayer" instance=ExtResource("6_e11n1")]
 
+[node name="CashUi2" parent="CanvasLayer" instance=ExtResource("6_e11n1")]
+offset_top = 30.0
+offset_bottom = 53.0
+_id = "newCash"
+
+[node name="Label" parent="CanvasLayer/CashUi2" index="0"]
+text = "Wealth this map:"
+
 [node name="EscapeUi" parent="CanvasLayer" instance=ExtResource("7_e11n1")]
 
-[node name="GameOverButton" type="Button" parent="CanvasLayer"]
+[node name="GameOverButton" parent="CanvasLayer" instance=ExtResource("8_e11n1")]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Restart"
-script = ExtResource("4_ya8by")
 
 [editable path="Map/EnemyWaveSpawner"]
 [editable path="Map/EnemyWaveSpawner3"]
@@ -139,3 +134,4 @@ script = ExtResource("4_ya8by")
 [editable path="Map/EnemyWaveSpawner5"]
 [editable path="Map/EnemyWaveSpawner_Hunter"]
 [editable path="Map/EnemyWaveSpawner_Hunter2"]
+[editable path="CanvasLayer/CashUi2"]

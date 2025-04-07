@@ -41,4 +41,12 @@ public partial class SystemLoader : Node
         return GetSystem(typeof(T).Name) as T;
     }
 
+    public static void OnGameplayEnd()
+    {
+        foreach (var system in _initializedSystems.Values)
+        {
+            system.OnGameplayEnd();
+        }
+    }
+
 }
