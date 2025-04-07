@@ -17,13 +17,10 @@ Icon = SubResource("AtlasTexture_pcdv1")
 SpriteFrames = ExtResource("2_cjgjg")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(0.7, 0.7)
+Cost = 5
 AllowedChildCount = 1
 Delay = 0.75
-Speed = 0.0
 InstancePrefab = ExtResource("1_cjgjg")
 ShouldInheritCollisions = false
-Description = "SLOW BLAST
-
-Travels in a straight line. Fires slowly. Moves slowly.
-Delay: 0.75s
-Speed: slow"
+SegmentName = "Evil Pulse"
+Description = "Travels in a straight line. Fires slowly. Moves slowly."

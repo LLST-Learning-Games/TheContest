@@ -27,4 +27,9 @@ public partial class PrefabSpawnerCollisionSegment : ProjectileSegmentData
         await ToSignal(tree, "process_frame");
         tree.CurrentScene.AddChild(instance);
     }
+    
+    public override string GetDescription()
+    {
+        return base.GetDescription() + $"\n Damage: 50";
+    }
 }

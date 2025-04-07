@@ -13,13 +13,10 @@ Icon = ExtResource("1_khk4d")
 SpriteFrames = ExtResource("2_2liiw")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)
+Cost = 10
 AllowedChildCount = 1
 Delay = 0.5
-Speed = 0.0
 InstancePrefab = ExtResource("1_2liiw")
 ShouldInheritCollisions = false
-Description = "YELLOW PULSE
-
-Travels in a straight line. 
-Delay: 0.5s
-Speed: Medium"
+SegmentName = "Yellow Pulse"
+Description = "Travels in a straight line."

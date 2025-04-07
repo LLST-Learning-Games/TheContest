@@ -17,13 +17,10 @@ Icon = SubResource("AtlasTexture_36dpu")
 SpriteFrames = ExtResource("2_utgj6")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)
+Cost = 30
 AllowedChildCount = 1
 Delay = 0.1
-Speed = 0.0
 InstancePrefab = ExtResource("1_eoktj")
 ShouldInheritCollisions = false
-Description = "RAPID BULLET
-
-Travels in a straight line. Fires quickly, moves quickly.
-Delay: 0.1s
-Speed: fast"
+SegmentName = "Rapid Pulse"
+Description = "Travels in a straight line. Fires quickly, moves quickly."

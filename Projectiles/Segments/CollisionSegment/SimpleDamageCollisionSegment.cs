@@ -26,4 +26,9 @@ public partial class SimpleDamageCollisionSegment : ProjectileSegmentData
         
         healthComponent.UpdateHealth(-_damageToDealOnCollision);
     }
+    
+    public override string GetDescription()
+    {
+        return base.GetDescription() + $"\n Damage: {_damageToDealOnCollision}";
+    }
 }

@@ -12,6 +12,8 @@ public partial class ProjectileLibrary : BaseSystem
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _trajectories;
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _collisions;
 	
+	[Export] public NeuroPulse PlayerPulse { get; private set; }
+	
 	public NeuroPulseFactory Factory => _factory;
 	
 	public override void Initialize()
@@ -24,6 +26,13 @@ public partial class ProjectileLibrary : BaseSystem
 	public override void OnGameplayEnd()
 	{
 		//..
+	}
+
+	public void SetPlayerPulse(NeuroPulse playerPulse)
+	{
+		PlayerPulse?.QueueFree();
+		PlayerPulse = playerPulse;
+		AddChild(PlayerPulse);
 	}
 
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> LoadData(string path)

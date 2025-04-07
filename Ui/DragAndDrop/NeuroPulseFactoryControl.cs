@@ -10,20 +10,34 @@ public partial class NeuroPulseFactoryControl : Control
     private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
     private ProjectileLibrary _library;
     
+    public override void _Ready()
+    {
+        if (SystemLoader.IsSystemLoadComplete)
+        {
+            LookupProjectileData();
+        }
+        else
+        {
+            SystemLoader.OnSystemLoadComplete += LookupProjectileData;
+        }
+    }
+
+    private void LookupProjectileData()
+    {
+        var startingSegment = Library.PlayerPulse.StartingSegment;
+        _pulses[0].InitializeId(startingSegment.GetData().Id);
+        var nextSegment = startingSegment.Children[0];
+        _pulses[1].InitializeId(nextSegment.GetData().Id);
+    }
+
+
     public void OnConfirmSelection()
     {
-        var children = Library.Factory.GetChildren();
-        foreach (var child in children)
-        {
-            child.QueueFree();
-            return;
-        }
-
         ProjectileSegmentDefinition trajectoryDefinition = Library.Factory.TryAddPulse(_pulses[0].ProjectileId);
         Library.Factory.TryAddPulse(_pulses[1].ProjectileId,trajectoryDefinition);
         
         var newWeapon = Library.Factory.ExportNeuroPulse();
-        Library.Factory.AddChild(newWeapon);
+        Library.SetPlayerPulse(newWeapon);
         
         GetParent().QueueFree();        // clear the selection UI
     }

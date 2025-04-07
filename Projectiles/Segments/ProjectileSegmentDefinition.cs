@@ -6,8 +6,10 @@ namespace TheContest.Projectiles;
 public partial class ProjectileSegmentDefinition : Node
 {
     [Export] private ProjectileSegmentData _segmentData;
-    [Export] Array<ProjectileSegmentDefinition> _children = new ();
+    [Export] private Array<ProjectileSegmentDefinition> _children = new ();
 
+    public Array<ProjectileSegmentDefinition> Children => _children;
+    
     private bool _isEnemy;
     
     public void SetData(ProjectileSegmentData data) => _segmentData = data;

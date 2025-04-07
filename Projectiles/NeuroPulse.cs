@@ -7,6 +7,8 @@ public partial class NeuroPulse : Node
     [Export] private ProjectileSegmentDefinition _startingSegment;
     [Export] private float _pulseDelay = 0.5f;
     
+    public ProjectileSegmentDefinition StartingSegment => _startingSegment;
+    
     public void Fire(Vector2 globalPosition, float direction) => _startingSegment.Fire(globalPosition, direction);
     
     public float GetDelay() => _pulseDelay;

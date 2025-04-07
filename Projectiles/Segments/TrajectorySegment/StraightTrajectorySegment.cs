@@ -24,4 +24,9 @@ public partial class StraightTrajectorySegment : ProjectileSegmentData
         }
         instanceBody.QueueFree();
     }
+
+    public override string GetDescription()
+    {
+        return base.GetDescription() + $"\n Speed: {_speed / 100}";
+    }
 }

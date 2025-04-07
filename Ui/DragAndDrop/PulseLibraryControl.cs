@@ -31,7 +31,7 @@ public partial class PulseLibraryControl : Control
         foreach (var id in ids)
         {
             var newDraggable = _draggablePrefab.Instantiate<Draggable>();
-            newDraggable.SetId(id);
+            newDraggable.InitializeId(id);
             newDraggable.IsDraggableSource = true;
             newDraggable.SetDescriptionLabel(_descriptionLabel);
             _draggables.Add(newDraggable);

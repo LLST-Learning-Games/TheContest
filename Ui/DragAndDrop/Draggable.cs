@@ -1,5 +1,7 @@
+using System;
 using Godot;
 using Systems;
+using Systems.Currency;
 using TheContest.Projectiles;
 
 public partial class Draggable : ColorRect
@@ -12,6 +14,7 @@ public partial class Draggable : ColorRect
     public string ProjectileId => _projectileId;
     public ProjectileSegmentData Data { get; private set; } 
     public bool IsDraggableSource = false;
+    public bool IsPulseTarget = false;
     private bool _isDragging = false;
         
     private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
@@ -22,27 +25,32 @@ public partial class Draggable : ColorRect
     {
         if (SystemLoader.IsSystemLoadComplete)
         {
-            LookupProjectileData();
+            Initialize();
         }
         else
         {
-            SystemLoader.OnSystemLoadComplete += LookupProjectileData;
+            SystemLoader.OnSystemLoadComplete += Initialize;
         }
-        
+    }
+    
+    public void InitializeId(string id)
+    {
+        _projectileId = id;
+        InitializeProjectileData();
+    }
+
+    private void Initialize()
+    {
+        InitializeProjectileData();
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
     }
     
-    public void SetId(string id)
-    {
-        _projectileId = id;
-        LookupProjectileData();
-    }
-
-    private void LookupProjectileData()
+    private void InitializeProjectileData()
     {
         if (_projectileId == IS_EMPTY)
         {
+            Data = null;
             _textureRect.Visible = false;
             Color = Colors.Gray;
             return;
@@ -59,12 +67,73 @@ public partial class Draggable : ColorRect
         _textureRect.Texture = texture;
     }
 
+    private bool TryUpdateProjectileData(string newId)
+    {
+        if (newId == _projectileId)
+        {
+            return false;
+        }
+        
+        _projectileId = newId;
+        
+        float updatedCost = Data?.Cost ?? 0;
+        
+        if (newId == IS_EMPTY)
+        {
+            _projectileId = newId;
+            Data = null;
+            _textureRect.Visible = false;
+            Color = Colors.Gray;
+            UpdateCash(updatedCost);
+            return true;
+        }
+        
+        var newCandidateData = _library.GetAnyResource(newId);
+        if (!CanAfford(newCandidateData.Cost - updatedCost))
+        {
+            return false;
+        }
+        
+        _projectileId = newId;
+        _textureRect.Visible = true;
+        Data = newCandidateData;
+        
+        if(Data is null)
+        {
+            return false;
+        }
+
+        var texture = Data.Icon;
+        Color = Colors.White;
+        _textureRect.Texture = texture;
+        
+        updatedCost -= Data?.Cost ?? 0;
+        
+        UpdateCash(updatedCost);
+        return true;
+    }
+    
+    private void UpdateCash(float amount)
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        currency.UpdateCurrencyByDelta(amount);
+    }
+
+    private bool CanAfford(float amount)
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        return currency.Balance >= amount;
+    }
+
     public override Variant _GetDragData(Vector2 atPosition)
     {
         if (_projectileId == IS_EMPTY)
         {
             return IS_EMPTY;
         }
+        
         SetDragPreview(GetDragPreview());
         Color = Colors.Gray;
         Input.MouseMode = Input.MouseModeEnum.Hidden;
@@ -104,8 +173,7 @@ public partial class Draggable : ColorRect
 
     private void SetIsEmpty()
     {
-        _projectileId = IS_EMPTY;
-        LookupProjectileData();
+        TryUpdateProjectileData(IS_EMPTY);
     }
     
     public override void _DropData(Vector2 atPosition, Variant data)
@@ -121,16 +189,19 @@ public partial class Draggable : ColorRect
             Color = Colors.White;
             return;
         }
+        
         if(!IsDraggableSource && otherDraggable._projectileId != IS_EMPTY)
         {
-            _projectileId = otherDraggable._projectileId;
+            TryUpdateProjectileData(otherDraggable._projectileId);
         }
         if(!otherDraggable.IsDraggableSource)
         {
-            otherDraggable._projectileId = IS_EMPTY;
+            otherDraggable.TryUpdateProjectileData(IS_EMPTY);
         }
-        otherDraggable.LookupProjectileData();
-        LookupProjectileData();
+        else
+        {
+            otherDraggable.Color = Colors.White; 
+        }
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
@@ -156,7 +227,7 @@ public partial class Draggable : ColorRect
             return;
         }
         
-        _descriptionLabel.Text = Data.Description;
+        _descriptionLabel.Text = Data.GetDescription();
     }
 
     private void OnMouseExited()
