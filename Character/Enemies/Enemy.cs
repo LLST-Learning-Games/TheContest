@@ -11,7 +11,6 @@ public partial class Enemy : RigidBody2D
 	public EnemyProjectileSpawnComponent EnemyProjectileSpawnComponent => _projectileSpawnComponent;
 	public NavigationAgent2D NavAgent => _navAgent;
 	public Action<Enemy> OnDeath;
-	private Character _target;	// eventually this should not automatically be the player.
 
 	public override void _Ready()
 	{

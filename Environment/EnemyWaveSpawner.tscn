@@ -6,9 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eaam"]
 size = Vector2(254, 726.5)
 
-[node name="EnemyWaveSpawner" type="Node2D" node_paths=PackedStringArray("_area", "_timer")]
+[node name="EnemyWaveSpawner" type="Node2D" node_paths=PackedStringArray("_timer")]
 script = ExtResource("1_60rk8")
-_area = NodePath("Area2D/CollisionShape2D")
 _timer = NodePath("Timer")
 _enemyPrefab = ExtResource("2_rui7l")
 

@@ -183,5 +183,7 @@ autowrap_mode = 2
 
 [node name="CashUi" parent="." instance=ExtResource("6_k3doa")]
 layout_mode = 0
+offset_left = 0.0
+offset_right = 40.0
 
 [connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl" method="OnConfirmSelection"]
