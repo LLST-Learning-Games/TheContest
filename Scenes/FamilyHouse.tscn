@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbqjtr62lb0on"]
+
+[ext_resource type="Texture2D" uid="uid://dxynjivlpyh4n" path="res://Art/Ui/MainMenu.png" id="1_05sey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_na84l"]
+line_spacing = 10.0
+paragraph_spacing = 10.0
+font_size = 38
+font_color = Color(0.933333, 0, 1, 1)
+shadow_size = 7
+shadow_color = Color(0.3905, 0.31, 1, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="FamilyHouse_Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.2
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_05sey")
+
+[node name="Button" type="Button" parent="ColorRect" groups=["StartButton"]]
+layout_mode = 2
+offset_left = 482.0
+offset_top = 391.0
+offset_right = 656.0
+offset_bottom = 422.0
+text = "Proceed to The Arena"
+
+[node name="Button2" type="Button" parent="ColorRect" groups=["CustomizeButton"]]
+layout_mode = 2
+offset_left = 926.0
+offset_top = 425.0
+offset_right = 1030.0
+offset_bottom = 479.0
+text = "Customize
+NeuroPulse
+Weapon"
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 35.0
+offset_right = 809.0
+offset_bottom = 98.0
+color = Color(1, 1, 0.666667, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 450.0
+offset_bottom = 59.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 2
+offset_left = 26.0
+offset_top = 3.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "House Of The Father"
+label_settings = SubResource("LabelSettings_na84l")
+horizontal_alignment = 1

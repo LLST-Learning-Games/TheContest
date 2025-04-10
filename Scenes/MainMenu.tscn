@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://x5dqi6htbqo5"]
+[gd_scene load_steps=3 format=3 uid="uid://x5dqi6htbqo5"]
+
+[ext_resource type="PackedScene" uid="uid://dbqjtr62lb0on" path="res://Scenes/FamilyHouse.tscn" id="1_tt5f1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na84l"]
 line_spacing = 10.0
@@ -24,6 +26,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
@@ -41,10 +51,11 @@ text = "The 1%"
 label_settings = SubResource("LabelSettings_na84l")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" groups=["StartButton"]]
+[node name="Button" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Enter The Contest"
 
-[node name="Button2" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" groups=["CustomizeButton"]]
-layout_mode = 2
-text = "Customize Weapon"
+[node name="FamilyHouse_Control" parent="ColorRect" instance=ExtResource("1_tt5f1")]
+visible = false
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Button" to="ColorRect/FamilyHouse_Control" method="show"]
