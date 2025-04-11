@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://vyujljknltgl"]
+
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_8syi2"]
+[ext_resource type="Script" uid="uid://c71wh02e8fttw" path="res://Projectiles/Segments/TrajectorySegment/YoYoTrajectorySegment.cs" id="1_dxlyr"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="2_7remy"]
+[ext_resource type="SpriteFrames" uid="uid://iwnorfq1qnp8" path="res://Art/YoyoProjectile.tres" id="3_gaty1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gy83"]
+atlas = ExtResource("1_8syi2")
+region = Rect2(8, 64, 8, 8)
+
+[resource]
+script = ExtResource("1_dxlyr")
+_startSpeed = 25000.0
+_yoyoStrength = 35000.0
+_despawnRangeSquared = 25.0
+Id = "Yoyo"
+Icon = SubResource("AtlasTexture_5gy83")
+SpriteFrames = ExtResource("3_gaty1")
+Colour = Color(1, 1, 1, 1)
+Scale = Vector2(1, 1)
+Cost = 30
+AllowedChildCount = 1
+Delay = 0.3
+InstancePrefab = ExtResource("2_7remy")
+ShouldInheritCollisions = false
+SegmentName = "Synthwave Death Yo-Yo"
+Description = "Build momentum to crush your opponents."

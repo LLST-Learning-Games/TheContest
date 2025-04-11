@@ -31,6 +31,12 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _segmentData.OnPhysicsProcess(delta, this);
     }
 
+    public override void _Draw()
+    {
+        _segmentData.OnDraw(this);
+        base._Draw();
+    }
+
     public void OnCollide(Node body)
     {
         if (!IsInstanceValid(this))

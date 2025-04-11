@@ -29,4 +29,9 @@ public abstract partial class ProjectileSegmentData : Resource
         description += $"\n Delay: {Delay}";
         return description;
     }
+
+    public virtual void OnDraw(RigidBody2D instanceBody)
+    {
+        // ..
+    }
 }
