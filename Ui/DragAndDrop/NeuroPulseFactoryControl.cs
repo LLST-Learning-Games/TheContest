@@ -5,7 +5,8 @@ using TheContest.Projectiles;
 
 public partial class NeuroPulseFactoryControl : Control
 {
-    [Export] private Array<Draggable> _pulses; 
+    [Export] private Array<Draggable> _pulses = new(); 
+    [Export] private PackedScene _pulsePrefab;
     
     private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
     private ProjectileLibrary _library;
