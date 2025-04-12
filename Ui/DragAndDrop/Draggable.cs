@@ -6,7 +6,7 @@ using TheContest.Projectiles;
 
 public partial class Draggable : ColorRect
 {
-    private const string IS_EMPTY = "empty";
+    public const string IS_EMPTY = "empty";
     [Export] internal string _projectileId = "YellowMagic";
     [Export] private TextureRect _textureRect;
     [Export] private Label _descriptionLabel;

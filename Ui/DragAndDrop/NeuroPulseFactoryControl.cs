@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using Systems;
@@ -5,8 +6,10 @@ using TheContest.Projectiles;
 
 public partial class NeuroPulseFactoryControl : Control
 {
-    [Export] private Array<Draggable> _pulses = new(); 
+    [Export] private Control _container;
     [Export] private PackedScene _pulsePrefab;
+    [Export] private Label _descriptionLabel;
+    private Array<Draggable> _pulses = new(); 
     
     private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
     private ProjectileLibrary _library;
@@ -26,11 +29,31 @@ public partial class NeuroPulseFactoryControl : Control
     private void LookupProjectileData()
     {
         var startingSegment = Library.PlayerPulse.StartingSegment;
-        _pulses[0].InitializeId(startingSegment.GetData().Id);
-        var nextSegment = startingSegment.Children[0];
-        _pulses[1].InitializeId(nextSegment.GetData().Id);
+        CreateNewPulseUi(startingSegment);
     }
 
+    private void CreateNewPulseUi(ProjectileSegmentDefinition currentSegment)
+    {
+        var newPulses = new List<Draggable>();
+        for(int i = 0; i < currentSegment.GetData().AllowedChildCount; i++)
+        {
+            Draggable newPulse = _pulsePrefab.Instantiate() as Draggable;
+            newPulse.SetDescriptionLabel(_descriptionLabel);
+            newPulse.InitializeId(currentSegment.GetData().Id);
+            newPulses.Add(newPulse);
+            _pulses.Add(newPulse);
+            _container.AddChild(newPulse);
+            if (i < currentSegment.Children.Count)
+            {
+                var child = currentSegment.Children[i];
+                CreateNewPulseUi(child);
+            }
+            else
+            {
+                newPulses[i].InitializeId(Draggable.IS_EMPTY);
+            }
+        }
+    }
 
     public void OnConfirmSelection()
     {
