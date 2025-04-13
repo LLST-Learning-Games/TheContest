@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Systems;
 using Systems.Currency;
@@ -16,7 +17,12 @@ public partial class Draggable : ColorRect
     public bool IsDraggableSource = false;
     public bool IsPulseTarget = false;
     private bool _isDragging = false;
-        
+
+    public bool IsEmpty => _projectileId == IS_EMPTY;
+    public Draggable Parent { get; private set; }
+    public List<Draggable> Children { get; private set; }
+    public Action<Draggable> OnUpdated;
+
     private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 
     public void SetDescriptionLabel(Label label) => _descriptionLabel = label;
@@ -37,6 +43,28 @@ public partial class Draggable : ColorRect
     {
         _projectileId = id;
         InitializeProjectileData();
+    }
+    
+    public void SetTreeParent(Draggable parent) => Parent = parent;
+    public void AddTreeChild(Draggable child)
+    {
+        Children ??= new List<Draggable>();
+        Children.Add(child);
+        child.SetTreeParent(this);
+    }
+
+    public void ClearChildren()
+    {
+        if (Children is null)
+        {
+            return;
+        }
+        foreach (var child in Children)
+        {
+            child.SetTreeParent(null);
+            child.QueueFree();
+        }
+        Children.Clear();
     }
 
     private void Initialize()
@@ -85,6 +113,7 @@ public partial class Draggable : ColorRect
             _textureRect.Visible = false;
             Color = Colors.Gray;
             UpdateCash(updatedCost);
+            OnUpdated?.Invoke(this);
             return true;
         }
         
@@ -94,12 +123,12 @@ public partial class Draggable : ColorRect
             return false;
         }
         
-        _projectileId = newId;
         _textureRect.Visible = true;
         Data = newCandidateData;
         
         if(Data is null)
         {
+            GD.PrintErr($"[{GetType().Name}] Could not find any data in library for {_projectileId}");
             return false;
         }
 
@@ -110,6 +139,7 @@ public partial class Draggable : ColorRect
         updatedCost -= Data?.Cost ?? 0;
         
         UpdateCash(updatedCost);
+        OnUpdated?.Invoke(this);
         return true;
     }
     

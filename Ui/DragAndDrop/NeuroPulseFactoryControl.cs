@@ -29,30 +29,58 @@ public partial class NeuroPulseFactoryControl : Control
     private void LookupProjectileData()
     {
         var startingSegment = Library.PlayerPulse.StartingSegment;
-        CreateNewPulseUi(startingSegment);
+        RecursivelyInitializePulseUi(startingSegment);
     }
 
-    private void CreateNewPulseUi(ProjectileSegmentDefinition currentSegment)
+    private Draggable RecursivelyInitializePulseUi(ProjectileSegmentDefinition currentSegment)
     {
-        var newPulses = new List<Draggable>();
+        var currentDraggable = CreateNewPulseUiInstance(currentSegment.GetData().Id);
+        
         for(int i = 0; i < currentSegment.GetData().AllowedChildCount; i++)
         {
-            Draggable newPulse = _pulsePrefab.Instantiate() as Draggable;
-            newPulse.SetDescriptionLabel(_descriptionLabel);
-            newPulse.InitializeId(currentSegment.GetData().Id);
-            newPulses.Add(newPulse);
-            _pulses.Add(newPulse);
-            _container.AddChild(newPulse);
+            Draggable childDraggable;
             if (i < currentSegment.Children.Count)
             {
                 var child = currentSegment.Children[i];
-                CreateNewPulseUi(child);
+                childDraggable = RecursivelyInitializePulseUi(child);
             }
             else
             {
-                newPulses[i].InitializeId(Draggable.IS_EMPTY);
+                childDraggable = CreateNewPulseUiInstance(Draggable.IS_EMPTY);
+                childDraggable.OnUpdated += UpdatePulseUi;
             }
+            currentDraggable.AddTreeChild(childDraggable);
         }
+
+        currentDraggable.OnUpdated += UpdatePulseUi;
+        return currentDraggable;
+    }
+
+    private void UpdatePulseUi(Draggable draggable)
+    {
+        draggable.ClearChildren();
+        if (draggable.IsEmpty)
+        {
+            return;
+        }
+        
+        var currentSegment = draggable.Data;
+
+        for(int i = 0; i < currentSegment.AllowedChildCount; i++)
+        {
+            var childDraggable = CreateNewPulseUiInstance(Draggable.IS_EMPTY);
+            draggable.AddTreeChild(childDraggable);
+        }
+    }
+    
+    private Draggable CreateNewPulseUiInstance(string currentSegmentId)
+    {
+        Draggable newPulse = _pulsePrefab.Instantiate() as Draggable;
+        newPulse.SetDescriptionLabel(_descriptionLabel);
+        newPulse.InitializeId(currentSegmentId);
+        _pulses.Add(newPulse);
+        _container.AddChild(newPulse);
+        return newPulse;
     }
 
     public void OnConfirmSelection()
