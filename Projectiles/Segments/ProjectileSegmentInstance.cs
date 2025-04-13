@@ -72,7 +72,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         if (!_segmentData.ShouldInheritCollisions)
         {
             if (_bodiesPresentOnInitialization is null &&
-                body is not TileMapLayer &&
+                body is not TileMapLayer &&     // todo - eventually we will want to bounce instead of blow up
                 !_bodiesPresentOnInitialization.Contains(body as Node2D))
             {
                 return;
