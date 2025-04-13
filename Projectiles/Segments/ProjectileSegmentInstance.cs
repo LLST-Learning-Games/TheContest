@@ -7,7 +7,7 @@ namespace TheContest.Projectiles;
 public partial class ProjectileSegmentInstance : RigidBody2D
 {
     [Export] private AnimatedSprite2D _sprite;
-    [Export] private CollisionObject2D _collisionObject2D;
+    [Export] private Area2D _triggerArea;
     private List<ProjectileSegmentDefinition> _children;
     
     private ProjectileSegmentData _segmentData;
@@ -21,7 +21,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _sprite.Modulate = data.Colour;
         _children = new(children);
         Scale = data.Scale;
-        BodyEntered += OnCollide;
+        _triggerArea.BodyEntered += OnCollide;
         ContactMonitor = true;
         MaxContactsReported = 1;
     }
@@ -82,14 +82,14 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     {
         if(isEnemy)
         {
-            _collisionObject2D.SetCollisionLayer(0b1000);
-            _collisionObject2D.SetCollisionMask(0b10001);	// player and environment
+            _triggerArea.SetCollisionLayer(0b1000);
+            _triggerArea.SetCollisionMask(0b10001);	// player and environment
         }
     }
     
     public override void _ExitTree()
     {
-        BodyEntered -= OnCollide;
+        _triggerArea.BodyEntered -= OnCollide;
         _children.Clear();
     }
 
