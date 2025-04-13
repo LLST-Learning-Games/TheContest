@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://dtcd3cgp2tweg"]
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_cjgjg"]
-[ext_resource type="Texture2D" uid="uid://j8b8bc8o7e0d" path="res://Art/Effects Pack 12/2/30.png" id="1_ogu25"]
-[ext_resource type="SpriteFrames" uid="uid://cetsv7plomoxe" path="res://Art/Effects Pack 12/2/EvilPulse.tres" id="3_mugyl"]
+[ext_resource type="Texture2D" uid="uid://j8b8bc8o7e0d" path="res://Art/FX/Effects Pack 12/2/30.png" id="1_ogu25"]
+[ext_resource type="SpriteFrames" uid="uid://cetsv7plomoxe" path="res://Art/FX/Effects Pack 12/2/EvilPulse.tres" id="3_mugyl"]
 [ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_pcdv1"]
 
 [resource]

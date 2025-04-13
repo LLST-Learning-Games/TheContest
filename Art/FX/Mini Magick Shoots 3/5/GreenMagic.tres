@@ -1,0 +1,90 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://bjfpbhggp82bm"]
+
+[ext_resource type="Texture2D" uid="uid://b16ljvj1yyggp" path="res://Art/FX/Mini Magick Shoots 3/5/1_000.png" id="1_dh4te"]
+[ext_resource type="Texture2D" uid="uid://ctdmbyam044on" path="res://Art/FX/Mini Magick Shoots 3/5/1_001.png" id="2_piia5"]
+[ext_resource type="Texture2D" uid="uid://d3ql2lrlf7tiy" path="res://Art/FX/Mini Magick Shoots 3/5/1_002.png" id="3_grau2"]
+[ext_resource type="Texture2D" uid="uid://bop28l0yx52cc" path="res://Art/FX/Mini Magick Shoots 3/5/1_003.png" id="4_oeuf6"]
+[ext_resource type="Texture2D" uid="uid://dhvytverpfha1" path="res://Art/FX/Mini Magick Shoots 3/5/1_004.png" id="5_kdqni"]
+[ext_resource type="Texture2D" uid="uid://dhoxfh7hmabws" path="res://Art/FX/Mini Magick Shoots 3/5/1_005.png" id="6_iejbb"]
+[ext_resource type="Texture2D" uid="uid://ckid1k7erkshj" path="res://Art/FX/Mini Magick Shoots 3/5/1_006.png" id="7_mrw8u"]
+[ext_resource type="Texture2D" uid="uid://ccq43wnnskoxq" path="res://Art/FX/Mini Magick Shoots 3/5/1_007.png" id="8_so6gt"]
+[ext_resource type="Texture2D" uid="uid://dfbtv33sh1y2t" path="res://Art/FX/Mini Magick Shoots 3/5/1_008.png" id="9_0mywm"]
+[ext_resource type="Texture2D" uid="uid://dt4habigqeyik" path="res://Art/FX/Mini Magick Shoots 3/5/1_009.png" id="10_55jg2"]
+[ext_resource type="Texture2D" uid="uid://c8ccy46s2jqt4" path="res://Art/FX/Mini Magick Shoots 3/5/1_010.png" id="11_ew3pi"]
+[ext_resource type="Texture2D" uid="uid://d08jxlwwl778q" path="res://Art/FX/Mini Magick Shoots 3/5/1_011.png" id="12_jo6ca"]
+[ext_resource type="Texture2D" uid="uid://dfeapytqko65v" path="res://Art/FX/Mini Magick Shoots 3/5/1_012.png" id="13_socij"]
+[ext_resource type="Texture2D" uid="uid://bkc3gseajsc4d" path="res://Art/FX/Mini Magick Shoots 3/5/1_013.png" id="14_umlcr"]
+[ext_resource type="Texture2D" uid="uid://qpi1e2xfmdc3" path="res://Art/FX/Mini Magick Shoots 3/5/1_014.png" id="15_2tumj"]
+[ext_resource type="Texture2D" uid="uid://c8epshprjrua0" path="res://Art/FX/Mini Magick Shoots 3/5/1_015.png" id="16_r8gvi"]
+[ext_resource type="Texture2D" uid="uid://bfvvxy3xvi6ho" path="res://Art/FX/Mini Magick Shoots 3/5/1_016.png" id="17_pmgx1"]
+[ext_resource type="Texture2D" uid="uid://defc0yq1r2ip4" path="res://Art/FX/Mini Magick Shoots 3/5/1_017.png" id="18_s5cvf"]
+[ext_resource type="Texture2D" uid="uid://cj1110e8k3vex" path="res://Art/FX/Mini Magick Shoots 3/5/1_018.png" id="19_gcj6r"]
+[ext_resource type="Texture2D" uid="uid://dawwi0yextf0f" path="res://Art/FX/Mini Magick Shoots 3/5/1_019.png" id="20_mum7a"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dh4te")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_piia5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_grau2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oeuf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kdqni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iejbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mrw8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_so6gt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0mywm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_55jg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ew3pi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jo6ca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_socij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_umlcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2tumj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_r8gvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pmgx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_s5cvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gcj6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_mum7a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 30.0
+}]

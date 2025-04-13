@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_3orw3"]
 [ext_resource type="PackedScene" uid="uid://dj8t2bbet7gij" path="res://SpawnableEvents/Explosion.tscn" id="1_474ml"]
-[ext_resource type="Texture2D" uid="uid://djp5igedpqfwy" path="res://Art/Magic Spell Effects All/34.png" id="1_wv6xx"]
+[ext_resource type="Texture2D" uid="uid://djp5igedpqfwy" path="res://Art/FX/Magic Spell Effects All/34.png" id="1_wv6xx"]
 [ext_resource type="Script" uid="uid://dw2cwg2jyaper" path="res://Projectiles/Segments/CollisionSegment/PrefabSpawnerCollisionSegment.cs" id="2_3orw3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbku5"]

@@ -1,16 +1,16 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://dntn6kmhvgv4f"]
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_2liiw"]
-[ext_resource type="Texture2D" uid="uid://c7vmrjagolm8h" path="res://Art/Effects Pack 12/3/18.png" id="1_khk4d"]
-[ext_resource type="SpriteFrames" uid="uid://dhgc254dhghas" path="res://Art/Effects Pack 12/3/YellowMagic.tres" id="2_2liiw"]
+[ext_resource type="Texture2D" uid="uid://c7vmrjagolm8h" path="res://Art/FX/Effects Pack 12/3/18.png" id="1_khk4d"]
 [ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_d0qxk"]
+[ext_resource type="SpriteFrames" uid="uid://dhgc254dhghas" path="res://Art/FX/Effects Pack 12/3/YellowMagic.tres" id="3_hmkob"]
 
 [resource]
 script = ExtResource("3_d0qxk")
 _speed = 10000.0
 Id = "YellowMagic"
 Icon = ExtResource("1_khk4d")
-SpriteFrames = ExtResource("2_2liiw")
+SpriteFrames = ExtResource("3_hmkob")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)
 Cost = 10

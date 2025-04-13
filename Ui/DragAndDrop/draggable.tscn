@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b313w1jhrp4vp"]
 
 [ext_resource type="Script" uid="uid://dj3e0adtowqte" path="res://Ui/DragAndDrop/Draggable.cs" id="1_jj2im"]
-[ext_resource type="Texture2D" uid="uid://c0llbos17p2c8" path="res://Art/Magic Spell Effects All/41.png" id="2_cp61e"]
+[ext_resource type="Texture2D" uid="uid://c0llbos17p2c8" path="res://Art/FX/Magic Spell Effects All/41.png" id="2_cp61e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4j6w2"]
 atlas = ExtResource("2_cp61e")

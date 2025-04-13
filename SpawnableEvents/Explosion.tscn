@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj8t2bbet7gij"]
 
 [ext_resource type="Script" uid="uid://b35r8mncd2rkq" path="res://SpawnableEvents/Explosion.cs" id="1_611fu"]
-[ext_resource type="SpriteFrames" uid="uid://b61dqkyuc1u87" path="res://Art/Magic Spell Effects All/34_explode.tres" id="2_8ay55"]
+[ext_resource type="SpriteFrames" uid="uid://b61dqkyuc1u87" path="res://Art/FX/Magic Spell Effects All/34_explode.tres" id="2_8ay55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_611fu"]
 radius = 29.0689

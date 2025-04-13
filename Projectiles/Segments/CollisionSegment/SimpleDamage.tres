@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://dafudeo5jqoy3"]
 
-[ext_resource type="Texture2D" uid="uid://dygq3n7u7tc40" path="res://Art/Mini Magick Shoots 3/4/1_000.png" id="1_40udc"]
+[ext_resource type="Texture2D" uid="uid://dygq3n7u7tc40" path="res://Art/FX/Mini Magick Shoots 3/4/1_000.png" id="1_40udc"]
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_iggn0"]
 [ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_40udc"]
 [ext_resource type="Script" uid="uid://c2i80nihls8el" path="res://Projectiles/Segments/CollisionSegment/SimpleDamageCollisionSegment.cs" id="3_uih6y"]
