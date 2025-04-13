@@ -12,6 +12,7 @@ public abstract partial class ProjectileSegmentData : Resource
     [Export] public int Cost = 10;
     [Export] public int AllowedChildCount = 1;
     [Export] public float Delay = 0.5f;
+    [Export] public float EnergyDrain = 10f;
     [Export] public PackedScene InstancePrefab;
     [Export] public bool ShouldInheritCollisions = false;
     [Export] public string SegmentName = "";
