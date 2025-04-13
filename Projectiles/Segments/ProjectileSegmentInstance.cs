@@ -26,9 +26,17 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         ContactMonitor = true;
         MaxContactsReported = 1;
     }
-    
-    public override void _PhysicsProcess(double delta)
+
+    public override void _EnterTree()
     {
+        CallDeferred(nameof(CheckForInitialCollisionsDeferred));
+    }
+
+    private async void CheckForInitialCollisionsDeferred()
+    {
+        // well, this is clearly not ideal... perhaps this whole structure needs a rethink.
+        await ToSignal(GetTree(), "physics_frame");
+        await ToSignal(GetTree(), "physics_frame");
         if(_bodiesPresentOnInitialization is null)
         {
             _bodiesPresentOnInitialization = _triggerArea.GetOverlappingBodies();
@@ -41,7 +49,10 @@ public partial class ProjectileSegmentInstance : RigidBody2D
                 GD.Print("BODY: " + body.GetType().Name);
             }
         }
-        
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
         _segmentData.OnPhysicsProcess(delta, this);
     }
 
@@ -60,8 +71,9 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 
         if (!_segmentData.ShouldInheritCollisions)
         {
-            if (body is not TileMapLayer &&
-                _bodiesPresentOnInitialization.Contains(body as Node2D))
+            if (_bodiesPresentOnInitialization is null &&
+                body is not TileMapLayer &&
+                !_bodiesPresentOnInitialization.Contains(body as Node2D))
             {
                 return;
             }
