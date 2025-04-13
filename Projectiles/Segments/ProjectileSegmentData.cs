@@ -19,7 +19,7 @@ public abstract partial class ProjectileSegmentData : Resource
 
     public abstract void OnInitialize(RigidBody2D instanceBody, SceneTree tree);
     public abstract void OnPhysicsProcess(double delta, RigidBody2D instanceBody);
-    public abstract void OnCollide(Node otherBody, RigidBody2D instanceBody);
+    public abstract void OnTriggerEntered(Node otherBody, RigidBody2D instanceBody);
     public virtual string GetDescription()
     {
         string description = "";

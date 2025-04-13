@@ -9,7 +9,8 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     [Export] private AnimatedSprite2D _sprite;
     [Export] private Area2D _triggerArea;
     private List<ProjectileSegmentDefinition> _children;
-    
+
+    private Array<Node2D> _bodiesPresentOnInitialization;
     private ProjectileSegmentData _segmentData;
     private bool _hasCollided = false;
 
@@ -21,13 +22,26 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _sprite.Modulate = data.Colour;
         _children = new(children);
         Scale = data.Scale;
-        _triggerArea.BodyEntered += OnCollide;
+        _triggerArea.BodyEntered += OnTriggerEntered;
         ContactMonitor = true;
         MaxContactsReported = 1;
     }
     
     public override void _PhysicsProcess(double delta)
     {
+        if(_bodiesPresentOnInitialization is null)
+        {
+            _bodiesPresentOnInitialization = _triggerArea.GetOverlappingBodies();
+            if (_bodiesPresentOnInitialization.Count == 0)
+            {
+                GD.Print("No body!");
+            }
+            foreach (var body in _bodiesPresentOnInitialization)
+            {
+                GD.Print("BODY: " + body.GetType().Name);
+            }
+        }
+        
         _segmentData.OnPhysicsProcess(delta, this);
     }
 
@@ -37,14 +51,23 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         base._Draw();
     }
 
-    public void OnCollide(Node body)
+    public void OnTriggerEntered(Node body)
     {
         if (!IsInstanceValid(this))
         {
             return;
         }
+
+        if (!_segmentData.ShouldInheritCollisions)
+        {
+            if (body is not TileMapLayer &&
+                _bodiesPresentOnInitialization.Contains(body as Node2D))
+            {
+                return;
+            }
+        }
         
-        _segmentData.OnCollide(body, this);
+        _segmentData.OnTriggerEntered(body, this);
         if(!_hasCollided)
         {
             SpawnChildren(body);
@@ -89,7 +112,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     
     public override void _ExitTree()
     {
-        _triggerArea.BodyEntered -= OnCollide;
+        _triggerArea.BodyEntered -= OnTriggerEntered;
         _children.Clear();
     }
 

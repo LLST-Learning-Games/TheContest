@@ -62,7 +62,7 @@ public partial class ProjectileSegmentDefinition : Node
         _segmentData.OnInitialize(instance, GetTree());
         if (inheritedCollision != null && _segmentData.ShouldInheritCollisions)
         {
-            instance.OnCollide(inheritedCollision);
+            instance.OnTriggerEntered(inheritedCollision);
         }
     }
 

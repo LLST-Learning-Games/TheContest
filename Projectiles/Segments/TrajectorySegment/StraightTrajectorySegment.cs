@@ -16,7 +16,7 @@ public partial class StraightTrajectorySegment : ProjectileSegmentData
         // ..
     }
 
-    public override void OnCollide(Node otherBody, RigidBody2D instanceBody)
+    public override void OnTriggerEntered(Node otherBody, RigidBody2D instanceBody)
     {
         if(!IsInstanceValid(instanceBody))
         {
