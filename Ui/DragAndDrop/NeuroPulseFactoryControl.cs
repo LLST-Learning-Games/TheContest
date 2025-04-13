@@ -9,7 +9,8 @@ public partial class NeuroPulseFactoryControl : Control
     [Export] private Control _container;
     [Export] private PackedScene _pulsePrefab;
     [Export] private Label _descriptionLabel;
-    private Array<Draggable> _pulses = new(); 
+    private Array<Draggable> _pulses = new();
+    private Draggable _rootPulse;
     
     private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
     private ProjectileLibrary _library;
@@ -29,7 +30,7 @@ public partial class NeuroPulseFactoryControl : Control
     private void LookupProjectileData()
     {
         var startingSegment = Library.PlayerPulse.StartingSegment;
-        RecursivelyInitializePulseUi(startingSegment);
+        _rootPulse = RecursivelyInitializePulseUi(startingSegment);
     }
 
     private Draggable RecursivelyInitializePulseUi(ProjectileSegmentDefinition currentSegment)
@@ -85,12 +86,26 @@ public partial class NeuroPulseFactoryControl : Control
 
     public void OnConfirmSelection()
     {
-        ProjectileSegmentDefinition trajectoryDefinition = Library.Factory.TryAddPulse(_pulses[0].ProjectileId);
-        Library.Factory.TryAddPulse(_pulses[1].ProjectileId,trajectoryDefinition);
+        ProjectileSegmentDefinition trajectoryDefinition = Library.Factory.TryAddPulse(_rootPulse._projectileId);
+        RecursivelyGeneratePulseTree(trajectoryDefinition, _rootPulse);
         
         var newWeapon = Library.Factory.ExportNeuroPulse();
         Library.SetPlayerPulse(newWeapon);
         
         GetParent().QueueFree();        // clear the selection UI
+    }
+
+    private void RecursivelyGeneratePulseTree(ProjectileSegmentDefinition definition, Draggable draggable)
+    {
+        if (draggable.IsEmpty || draggable.Children is null || draggable.Children.Count == 0)
+        {
+            return;
+        }
+        
+        foreach (var child in draggable.Children)
+        {
+            var newDefinition = Library.Factory.TryAddPulse(child._projectileId, definition);
+            RecursivelyGeneratePulseTree(newDefinition, child);
+        }
     }
 }
