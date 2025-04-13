@@ -175,6 +175,7 @@ position = Vector2(-88, -88)
 [node name="CashUi2" parent="CanvasLayer" instance=ExtResource("6_e11n1")]
 offset_top = 30.0
 offset_bottom = 53.0
+_id = "newCash"
 
 [node name="Label" parent="CanvasLayer/CashUi2" index="0"]
 text = "Wealth this map:"
