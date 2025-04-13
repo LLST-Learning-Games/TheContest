@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4xa870t6qxkn"
-path="res://.godot/imported/UGLY.jpg-d97472b1304d0a26f1d86e417cc3d0b3.ctex"
+uid="uid://dxmey084orure"
+path="res://.godot/imported/PlayerExperiment.png-8def2542c99055c73f3a67fdd36d14f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/UGLY.jpg"
-dest_files=["res://.godot/imported/UGLY.jpg-d97472b1304d0a26f1d86e417cc3d0b3.ctex"]
+source_file="res://Art/Characters/PlayerExperiment.png"
+dest_files=["res://.godot/imported/PlayerExperiment.png-8def2542c99055c73f3a67fdd36d14f6.ctex"]
 
 [params]
 

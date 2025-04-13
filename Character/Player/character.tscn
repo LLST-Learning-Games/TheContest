@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
-[ext_resource type="Texture2D" uid="uid://br34r2ypp2o1q" path="res://Art/Characters/quick_export.jpg" id="2_x1deh"]
+[ext_resource type="Texture2D" uid="uid://dxmey084orure" path="res://Art/Characters/PlayerExperiment.png" id="2_x1deh"]
 [ext_resource type="PackedScene" uid="uid://bpjgbwk4cvjjr" path="res://Character/Player/PlayerMovementComponent.tscn" id="3_7mpp7"]
 [ext_resource type="PackedScene" uid="uid://byw3yoyjhryfy" path="res://Character/Player/PlayerProjectileSpawnComponent.tscn" id="4_l3pay"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="5_dtwtn"]
@@ -23,8 +23,8 @@ _healthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-0.499999, 0.572059)
-scale = Vector2(0.0397059, 0.0397059)
+position = Vector2(-0.5, 0.572061)
+scale = Vector2(0.484375, 0.484375)
 texture = ExtResource("2_x1deh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

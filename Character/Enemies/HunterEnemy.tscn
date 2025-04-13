@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_siha4"]
 [ext_resource type="PackedScene" uid="uid://be873dd5twnvm" path="res://SpawnableEvents/HunterDeathExplosion.tscn" id="2_xpnp1"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_qbd41"]
-[ext_resource type="Texture2D" uid="uid://c4xa870t6qxkn" path="res://Art/Characters/UGLY.jpg" id="3_xpnp1"]
+[ext_resource type="Texture2D" uid="uid://3wegahfrm713" path="res://Art/Characters/UglyBoy.png" id="3_xpnp1"]
 [ext_resource type="PackedScene" uid="uid://dcabm03sb0upe" path="res://Character/Ai/EntityBrainHunter.tscn" id="4_qbd41"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_0yq5r"]
 [ext_resource type="Script" uid="uid://ffmtfd6f1pu0" path="res://Character/Enemies/CollisionDeathTrigger.cs" id="7_xpnp1"]
@@ -37,8 +37,8 @@ _onDeathSpawnPrefab = ExtResource("2_xpnp1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(4.17233e-07, -6.41942e-05)
-scale = Vector2(0.0446927, 0.0446928)
+position = Vector2(-2, -1.00006)
+scale = Vector2(0.5625, 0.562501)
 sprite_frames = SubResource("SpriteFrames_siha4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

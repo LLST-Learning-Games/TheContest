@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br34r2ypp2o1q"
-path="res://.godot/imported/quick_export.jpg-265c70e78058378342516cbd321efc84.ctex"
+uid="uid://3wegahfrm713"
+path="res://.godot/imported/UglyBoy.png-e516ea809cc0024a9999f728e01b81bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/quick_export.jpg"
-dest_files=["res://.godot/imported/quick_export.jpg-265c70e78058378342516cbd321efc84.ctex"]
+source_file="res://Art/Characters/UglyBoy.png"
+dest_files=["res://.godot/imported/UglyBoy.png-e516ea809cc0024a9999f728e01b81bc.ctex"]
 
 [params]
 
