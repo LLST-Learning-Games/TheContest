@@ -15,6 +15,7 @@ public abstract partial class ProjectileSegmentData : Resource
     [Export] public float Delay = 0.5f;
     [Export] public PackedScene InstancePrefab;
     [Export] public bool ShouldInheritCollisions = false;
+    [Export] public bool ShouldTriggerOnInit = false;
     [Export] public string SegmentName = "";
     [Export(PropertyHint.MultilineText)] public string Description;
 
@@ -35,4 +36,6 @@ public abstract partial class ProjectileSegmentData : Resource
     {
         // ..
     }
+
+    public virtual float GetRotationOffset(int childIndex, int childCount) => 0f;
 }

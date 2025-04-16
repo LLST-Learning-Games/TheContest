@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bkupixr8aibfb"]
+
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_so7cs"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="2_1yqcx"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="3_nsd3j"]
+[ext_resource type="Script" uid="uid://7qdrt0cjkqvc" path="res://Projectiles/Segments/CollisionSegment/SplitterSegment.cs" id="4_2lnu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8olc"]
+atlas = ExtResource("1_so7cs")
+region = Rect2(32, 64, 8, 8)
+
+[resource]
+script = ExtResource("4_2lnu7")
+_spread = 15.0
+IncludeInLibrary = true
+Id = "TripleSplitter"
+Icon = SubResource("AtlasTexture_a8olc")
+SpriteFrames = ExtResource("3_nsd3j")
+Colour = Color(1, 1, 1, 1)
+Scale = Vector2(1, 1)
+Cost = 10
+AllowedChildCount = 3
+Delay = 0.5
+InstancePrefab = ExtResource("2_1yqcx")
+ShouldInheritCollisions = true
+ShouldTriggerOnInit = true
+SegmentName = "Triple Splitter"
+Description = "Splits one bolt into multiple children."

@@ -37,17 +37,18 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         // well, this is clearly not ideal... perhaps this whole structure needs a rethink.
         await ToSignal(GetTree(), "physics_frame");
         await ToSignal(GetTree(), "physics_frame");
+
         if(_bodiesPresentOnInitialization is null)
         {
             _bodiesPresentOnInitialization = _triggerArea.GetOverlappingBodies();
-            if (_bodiesPresentOnInitialization.Count == 0)
-            {
-                GD.Print("No body!");
-            }
-            foreach (var body in _bodiesPresentOnInitialization)
-            {
-                GD.Print("BODY: " + body.GetType().Name);
-            }
+            // if (_bodiesPresentOnInitialization.Count == 0)
+            // {
+            //     GD.Print("No body!");
+            // }
+            // foreach (var body in _bodiesPresentOnInitialization)
+            // {
+            //     GD.Print("BODY: " + body.GetType().Name);
+            // }
         }
     }
 
@@ -88,7 +89,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         }
     }
     
-    private void SpawnChildren(Node inheritedCollision)
+    private void SpawnChildren(Node inheritedCollision = null)
     {
         if (_children == null || _children.Count == 0)
         {
@@ -96,9 +97,11 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         }
 
         //foreach (var child in _children)
-        for (int i = 0; i < _children.Count; i++)
+        int childCount = _children.Count;
+        for (int i = 0; i < childCount; i++)
         {
-            _children[i].Fire(GlobalPosition, Rotation, inheritedCollision);
+            float rotationOffset = _segmentData.GetRotationOffset(i, childCount);
+            _children[i].Fire(GlobalPosition, Rotation + rotationOffset, inheritedCollision);
         }
     }
     public void HandleCollisionVisuals()
