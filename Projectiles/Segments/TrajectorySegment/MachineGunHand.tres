@@ -1,19 +1,21 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://biilri6qla5y7"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://djrx06lfu13v1"]
 
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_eoktj"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_utgj6"]
 [ext_resource type="SpriteFrames" uid="uid://bivjd5nr0mwi5" path="res://Art/SmallProjectile.tres" id="2_utgj6"]
-[ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_x6kbc"]
+[ext_resource type="Script" uid="uid://brf72vp7ny1ip" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectoryDamageSegment.cs" id="4_utgj6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36dpu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6kbc"]
 atlas = ExtResource("1_utgj6")
 region = Rect2(64, 40, 8, 8)
 
 [resource]
-script = ExtResource("3_x6kbc")
+script = ExtResource("4_utgj6")
 _speed = 25000.0
+_damageToDealOnCollision = 20
+IncludeInLibrary = true
 Id = "MachineGun"
-Icon = SubResource("AtlasTexture_36dpu")
+Icon = SubResource("AtlasTexture_x6kbc")
 SpriteFrames = ExtResource("2_utgj6")
 Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)

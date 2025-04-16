@@ -8,6 +8,7 @@ public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
     
     [Export] private float _speed;
     [Export] private int _damageToDealOnCollision = 25;
+    [Export] private bool _stopMotionOnCollision = true;
     
     public override void OnInitialize(RigidBody2D instanceBody, SceneTree tree)
     {
@@ -31,8 +32,12 @@ public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
         {
             healthComponent.UpdateHealth(-_damageToDealOnCollision);
         }
-        
-        instanceBody.QueueFree();
+
+        if (_stopMotionOnCollision)
+        {
+            instanceBody.LinearVelocity = Vector2.Zero;
+        }
+        //instanceBody.QueueFree();
     }
 
     public override string GetDescription()

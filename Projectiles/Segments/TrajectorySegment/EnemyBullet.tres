@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("3_pcdv1")
 _speed = 7500.0
+IncludeInLibrary = true
 Id = "EnemyBullet"
 Icon = ExtResource("1_ogu25")
 SpriteFrames = ExtResource("3_mugyl")

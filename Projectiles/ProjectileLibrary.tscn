@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ulsvplmtfi1e"]
+[gd_scene load_steps=6 format=3 uid="uid://ulsvplmtfi1e"]
 
 [ext_resource type="Script" uid="uid://dp3behbldeqp6" path="res://Projectiles/ProjectileLibrary.cs" id="1_iynq0"]
 [ext_resource type="Script" uid="uid://7r0wvvr5stgo" path="res://Projectiles/NeuroPulseFactory.cs" id="2_8xyce"]
 [ext_resource type="Script" uid="uid://bn3ukbepasjx1" path="res://Projectiles/NeuroPulse.cs" id="3_itygy"]
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="4_y73fn"]
-[ext_resource type="Resource" uid="uid://dntn6kmhvgv4f" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectory.tres" id="5_rojd3"]
-[ext_resource type="Resource" uid="uid://dafudeo5jqoy3" path="res://Projectiles/Segments/CollisionSegment/SimpleDamage.tres" id="6_itygy"]
+[ext_resource type="Resource" uid="uid://dugnywn0ftdbd" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="5_88lgl"]
 
 [node name="ProjectileManager" type="Node" node_paths=PackedStringArray("_factory", "PlayerPulse")]
 script = ExtResource("1_iynq0")
@@ -19,11 +18,6 @@ script = ExtResource("2_8xyce")
 script = ExtResource("3_itygy")
 _startingSegment = NodePath("Segment_1")
 
-[node name="Segment_1" type="Node" parent="Weapon_1" node_paths=PackedStringArray("_children")]
+[node name="Segment_1" type="Node" parent="Weapon_1"]
 script = ExtResource("4_y73fn")
-_segmentData = ExtResource("5_rojd3")
-_children = [NodePath("../Segment_2")]
-
-[node name="Segment_2" type="Node" parent="Weapon_1"]
-script = ExtResource("4_y73fn")
-_segmentData = ExtResource("6_itygy")
+_segmentData = ExtResource("5_88lgl")

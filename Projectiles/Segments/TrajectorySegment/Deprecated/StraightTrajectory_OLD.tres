@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("3_d0qxk")
 _speed = 10000.0
+IncludeInLibrary = false
 Id = "YellowMagic"
 Icon = ExtResource("1_khk4d")
 SpriteFrames = ExtResource("3_hmkob")
