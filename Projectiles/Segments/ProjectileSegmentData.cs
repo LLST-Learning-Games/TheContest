@@ -4,6 +4,7 @@ namespace TheContest.Projectiles;
 
 public abstract partial class ProjectileSegmentData : Resource
 {
+    [Export] public bool IncludeInLibrary = true;
     [Export] public string Id;
     [Export] public Texture2D Icon;
     [Export] public SpriteFrames SpriteFrames;

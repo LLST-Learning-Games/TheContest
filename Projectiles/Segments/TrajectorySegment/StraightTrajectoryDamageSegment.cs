@@ -2,9 +2,13 @@ using Godot;
 
 namespace TheContest.Projectiles;
 
-public partial class StraightTrajectorySegment : ProjectileSegmentData
+public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
 {
+    private const string HEALTH_COMPONENT = "HealthComponent";
+    
     [Export] private float _speed;
+    [Export] private int _damageToDealOnCollision = 25;
+    
     public override void OnInitialize(RigidBody2D instanceBody, SceneTree tree)
     {
         var globalForce = Vector2.FromAngle(instanceBody.Rotation);
@@ -22,11 +26,20 @@ public partial class StraightTrajectorySegment : ProjectileSegmentData
         {
             return;
         }
+        
+        if (otherBody.FindChild(HEALTH_COMPONENT) is HealthComponent healthComponent)
+        {
+            healthComponent.UpdateHealth(-_damageToDealOnCollision);
+        }
+        
         instanceBody.QueueFree();
     }
 
     public override string GetDescription()
     {
-        return base.GetDescription() + $"\n Speed: {_speed / 100}";
+        var description = base.GetDescription();
+        description += $"\nDamage: {_damageToDealOnCollision}";
+        description += $"\nSpeed: {_speed / 100}";
+        return description;
     }
 }

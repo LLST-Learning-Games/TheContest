@@ -50,8 +50,13 @@ public partial class ProjectileLibrary : BaseSystem
 			if(fileName.EndsWith(".tres"))
 			{
 				var resource = ResourceLoader.Load<ProjectileSegmentData>(path + "/" + fileName);
+				if (!resource.IncludeInLibrary)
+				{
+					GD.Print($"[{GetType().Name}] Trajectory {resource.Id} marked for exclusion from library.");
+					continue;
+				}
 				dictionary.Add(resource.Id, resource);
-				GD.Print("Loaded trajectory: " + fileName);
+				GD.Print($"[{GetType().Name}] Loaded trajectory: " + fileName);
 			}
 		}
 		return dictionary;

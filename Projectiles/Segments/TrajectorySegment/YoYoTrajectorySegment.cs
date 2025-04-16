@@ -4,10 +4,13 @@ namespace TheContest.Projectiles;
 
 public partial class YoYoTrajectorySegment : ProjectileSegmentData
 {
+    private const string HEALTH_COMPONENT = "HealthComponent";
     private const float SECONDS_TO_CHECK_RETURN_TIME = 0.4f;
+    
     [Export] private float _startSpeed;
     [Export] private float _yoyoStrength;
     [Export] private float _despawnRangeSquared;
+    [Export] private int _damageToDealOnCollision = 25;
     
     private Node2D _homingTarget;
     private float _timeSinceShot;
@@ -62,6 +65,19 @@ public partial class YoYoTrajectorySegment : ProjectileSegmentData
         {
             return;
         }
+        if (otherBody.FindChild(HEALTH_COMPONENT) is HealthComponent healthComponent)
+        {
+            healthComponent.UpdateHealth(-_damageToDealOnCollision);
+        }
         instanceBody.QueueFree();
+    }
+    
+    public override string GetDescription()
+    {
+        var description = base.GetDescription();
+        description += $"\nDamage: {_damageToDealOnCollision}";
+        description += $"\nThrow Speed: {_startSpeed / 100}";
+        description += $"\nRetraction Force: {_yoyoStrength / 100}";
+        return description;
     }
 }
