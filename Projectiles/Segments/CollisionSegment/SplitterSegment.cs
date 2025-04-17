@@ -29,4 +29,12 @@ public partial class SplitterSegment : ProjectileSegmentData
         float angle = startAngle + childIndex * _spread;
         return Mathf.DegToRad(angle);
     }
+
+    public override string GetDescription()
+    {
+        string description = base.GetDescription();
+        description += "\nFragments: " + AllowedChildCount;
+        description += "\nSpread: " + _spread;
+        return description;
+    }
 }
