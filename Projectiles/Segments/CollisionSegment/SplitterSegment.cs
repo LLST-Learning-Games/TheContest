@@ -26,7 +26,7 @@ public partial class SplitterSegment : ProjectileSegmentData
         float totalSpread = (childCount - 1) * _spread;
         float startAngle = -totalSpread / 2f;
         
-        float angle = startAngle + childIndex * _spread / childCount;
-        return angle;
+        float angle = startAngle + childIndex * _spread;
+        return Mathf.DegToRad(angle);
     }
 }
