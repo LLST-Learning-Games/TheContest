@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://djrx06lfu13v1"]
 
-[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_eoktj"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="1_eoktj"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_utgj6"]
 [ext_resource type="SpriteFrames" uid="uid://bivjd5nr0mwi5" path="res://Art/SmallProjectile.tres" id="2_utgj6"]
 [ext_resource type="Script" uid="uid://brf72vp7ny1ip" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectoryDamageSegment.cs" id="4_utgj6"]

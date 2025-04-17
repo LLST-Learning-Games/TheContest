@@ -11,10 +11,10 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     private List<ProjectileSegmentDefinition> _children;
 
     private Array<Node2D> _bodiesPresentOnInitialization;
-    private ProjectileSegmentData _segmentData;
+    protected ProjectileSegmentData _segmentData;
     private bool _hasCollided = false;
 
-    public void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children)
+    public virtual void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children)
     {
         _segmentData = data;
         _sprite.SetSpriteFrames(data.SpriteFrames);

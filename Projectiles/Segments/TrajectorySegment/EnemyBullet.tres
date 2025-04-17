@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://dtcd3cgp2tweg"]
 
-[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="1_cjgjg"]
 [ext_resource type="Texture2D" uid="uid://j8b8bc8o7e0d" path="res://Art/FX/Effects Pack 12/2/30.png" id="1_ogu25"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="2_ogu25"]
 [ext_resource type="SpriteFrames" uid="uid://cetsv7plomoxe" path="res://Art/FX/Effects Pack 12/2/EvilPulse.tres" id="3_mugyl"]
 [ext_resource type="Script" uid="uid://dlkavohdl3r2a" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectorySegment.cs" id="3_pcdv1"]
 
@@ -12,12 +12,13 @@ IncludeInLibrary = true
 Id = "EnemyBullet"
 Icon = ExtResource("1_ogu25")
 SpriteFrames = ExtResource("3_mugyl")
-Colour = Color(1, 1, 1, 1)
+Colour = Color(1.82897e-06, 0.827855, 0.392386, 1)
 Scale = Vector2(1, 1)
 Cost = 5
 AllowedChildCount = 1
 Delay = 0.75
-InstancePrefab = ExtResource("1_cjgjg")
+InstancePrefab = ExtResource("2_ogu25")
 ShouldInheritCollisions = false
+ShouldTriggerOnInit = false
 SegmentName = "Evil Pulse"
 Description = "Travels in a straight line. Fires slowly. Moves slowly."

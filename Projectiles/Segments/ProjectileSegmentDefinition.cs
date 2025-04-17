@@ -59,15 +59,9 @@ public partial class ProjectileSegmentDefinition : Node
         instance.Rotation = facing;
         instance.Initialize(_segmentData, _children);
         instance.SetCollisionLayers(_isEnemy);
-        if (_segmentData.ShouldTriggerOnInit)
-        {
-            instance.OnTriggerEntered(inheritedCollision);
-        }
-        else
-        {
-            _segmentData.OnInitialize(instance, GetTree());
-        }
-        if (inheritedCollision != null && _segmentData.ShouldInheritCollisions)
+        
+        _segmentData.OnInitialize(instance, GetTree());
+        if (_segmentData.ShouldTriggerOnInit || inheritedCollision != null && _segmentData.ShouldInheritCollisions)
         {
             instance.OnTriggerEntered(inheritedCollision);
         }

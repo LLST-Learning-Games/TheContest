@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://crs53627li8ma"]
+
+[ext_resource type="Script" uid="uid://cmgl5noe3vc4w" path="res://Projectiles/Segments/Instances/ProjectileSegmentTimedInstance.cs" id="1_btsw6"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_fk6ci"]
+[ext_resource type="PackedScene" uid="uid://fqvgj53q74qw" path="res://MiscComponents/DestroyIfFarFromPlayer.tscn" id="3_k4040"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rf456"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bausq"]
+
+[node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("_sprite", "_triggerArea")]
+collision_layer = 0
+collision_mask = 0
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_rf456")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_btsw6")
+_sprite = NodePath("AnimatedSprite2D")
+_triggerArea = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bausq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_fk6ci")
+animation = &"idle"
+offset = Vector2(0.245, 1.725)
+
+[node name="DestroyIfFarFromPlayer" parent="." node_paths=PackedStringArray("_nodeToDestroy") instance=ExtResource("3_k4040")]
+_nodeToDestroy = NodePath("..")
+_destroyDistance = 2000.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bausq")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://dugnywn0ftdbd"]
 
 [ext_resource type="Texture2D" uid="uid://c7vmrjagolm8h" path="res://Art/FX/Effects Pack 12/3/18.png" id="1_p8ryr"]
-[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="2_0hrnw"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="2_0hrnw"]
 [ext_resource type="SpriteFrames" uid="uid://dhgc254dhghas" path="res://Art/FX/Effects Pack 12/3/YellowMagic.tres" id="3_y0mwq"]
 [ext_resource type="Script" uid="uid://brf72vp7ny1ip" path="res://Projectiles/Segments/TrajectorySegment/StraightTrajectoryDamageSegment.cs" id="4_r8oet"]
 

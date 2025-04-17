@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://i7vvhwgh3cce"]
+
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_12nxd"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="2_383c2"]
+[ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="3_pc0aj"]
+[ext_resource type="Script" uid="uid://7qdrt0cjkqvc" path="res://Projectiles/Segments/CollisionSegment/SplitterSegment.cs" id="4_kmxe2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8olc"]
+atlas = ExtResource("1_12nxd")
+region = Rect2(24, 64, 8, 8)
+
+[resource]
+script = ExtResource("4_kmxe2")
+_spread = 72.0
+IncludeInLibrary = true
+Id = "FlakBurst"
+Icon = SubResource("AtlasTexture_a8olc")
+SpriteFrames = ExtResource("3_pc0aj")
+Colour = Color(1, 1, 1, 1)
+Scale = Vector2(1, 1)
+Cost = 10
+AllowedChildCount = 5
+Delay = 0.5
+InstancePrefab = ExtResource("2_383c2")
+ShouldInheritCollisions = true
+ShouldTriggerOnInit = true
+SegmentName = "Flak Burst"
+Description = "Hurls bolts in all directions"

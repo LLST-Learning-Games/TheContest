@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://ds7ejffwyax4r"]
+
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_51iaw"]
+[ext_resource type="PackedScene" uid="uid://crs53627li8ma" path="res://Projectiles/Segments/Instances/ProjectileSegmentTimedInstance.tscn" id="2_pe3tr"]
+[ext_resource type="SpriteFrames" uid="uid://bjfpbhggp82bm" path="res://Art/FX/Mini Magick Shoots 3/5/GreenMagic.tres" id="3_gqona"]
+[ext_resource type="Script" uid="uid://d3eygywl2raq8" path="res://Projectiles/Segments/TrajectorySegment/StraightTimedSegment.cs" id="4_so58t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2dt7"]
+atlas = ExtResource("1_51iaw")
+region = Rect2(24, 48, 8, 8)
+
+[resource]
+script = ExtResource("4_so58t")
+_lifetime = 0.3
+_speed = 8000.0
+_damageToDealOnCollision = 25
+_stopMotionOnCollision = true
+IncludeInLibrary = true
+Id = "TimedShort"
+Icon = SubResource("AtlasTexture_h2dt7")
+SpriteFrames = ExtResource("3_gqona")
+Colour = Color(1, 0.205844, 0.631396, 1)
+Scale = Vector2(1, 1)
+Cost = 5
+AllowedChildCount = 1
+Delay = 0.4
+InstancePrefab = ExtResource("2_pe3tr")
+ShouldInheritCollisions = true
+ShouldTriggerOnInit = false
+SegmentName = "Short Timed Bolt"
+Description = "A bolt that triggers after a set period of time, capable of triggering powerful chain reactions."

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://bkupixr8aibfb"]
 
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_so7cs"]
-[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/ProjectileSegmentInstance.tscn" id="2_1yqcx"]
+[ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="2_1yqcx"]
 [ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="3_nsd3j"]
 [ext_resource type="Script" uid="uid://7qdrt0cjkqvc" path="res://Projectiles/Segments/CollisionSegment/SplitterSegment.cs" id="4_2lnu7"]
 

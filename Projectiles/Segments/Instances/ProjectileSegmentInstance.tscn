@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ce8bofac07tga"]
 
-[ext_resource type="Script" uid="uid://bev7e52vho5fu" path="res://Projectiles/Segments/ProjectileSegmentInstance.cs" id="1_mmv75"]
+[ext_resource type="Script" uid="uid://bev7e52vho5fu" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.cs" id="1_mmv75"]
 [ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_3aobb"]
 [ext_resource type="PackedScene" uid="uid://fqvgj53q74qw" path="res://MiscComponents/DestroyIfFarFromPlayer.tscn" id="3_efgfm"]
 

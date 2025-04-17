@@ -28,7 +28,7 @@ public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
             return;
         }
         
-        if (otherBody.FindChild(HEALTH_COMPONENT) is HealthComponent healthComponent)
+        if (otherBody?.FindChild(HEALTH_COMPONENT) is HealthComponent healthComponent)
         {
             healthComponent.UpdateHealth(-_damageToDealOnCollision);
         }
