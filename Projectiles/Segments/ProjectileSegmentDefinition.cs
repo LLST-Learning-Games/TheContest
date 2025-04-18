@@ -9,7 +9,6 @@ public partial class ProjectileSegmentDefinition : Node
     [Export] private Array<ProjectileSegmentDefinition> _children = new ();
 
     public Array<ProjectileSegmentDefinition> Children => _children;
-    
     private bool _isEnemy;
     
     public void SetData(ProjectileSegmentData data) => _segmentData = data;
@@ -50,14 +49,19 @@ public partial class ProjectileSegmentDefinition : Node
         }
     }
     
-    public void Fire(Vector2 globalPosition, float facing, Node inheritedCollision = null)
+    public void Fire(Vector2 globalPosition, float facing, NeuroPulse parent, Node inheritedCollision = null)
     {
+        if (!parent.CanFire)
+        {
+            return;
+        }
+        parent.UpdateEnergyByDelta(-_segmentData.EnergyDrain);
         var instance = _segmentData.InstancePrefab.Instantiate<ProjectileSegmentInstance>();
 
         AddChildToTreeDeferred(instance);
         instance.GlobalPosition = globalPosition;
         instance.Rotation = facing;
-        instance.Initialize(_segmentData, _children);
+        instance.Initialize(_segmentData, _children, parent);
         instance.SetCollisionLayers(_isEnemy);
         
         _segmentData.OnInitialize(instance, GetTree());

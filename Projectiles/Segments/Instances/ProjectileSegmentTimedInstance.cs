@@ -10,9 +10,9 @@ public partial class ProjectileSegmentTimedInstance : ProjectileSegmentInstance
 
    private ITimedSegment _timedSegment;
    
-   public override void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children)
+   public override void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children, NeuroPulse parent)
    {
-      base.Initialize(data, children);
+      base.Initialize(data, children, parent);
       _timeSinceInit = 0;
       _timedSegment = _segmentData as ITimedSegment;
       

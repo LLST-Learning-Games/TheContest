@@ -13,9 +13,12 @@ public partial class ProjectileSegmentInstance : RigidBody2D
     private Array<Node2D> _bodiesPresentOnInitialization;
     protected ProjectileSegmentData _segmentData;
     private bool _hasCollided = false;
+    private NeuroPulse _parent;
 
-    public virtual void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children)
+
+    public virtual void Initialize(ProjectileSegmentData data, Array<ProjectileSegmentDefinition> children, NeuroPulse parent)
     {
+        _parent = parent;
         _segmentData = data;
         _sprite.SetSpriteFrames(data.SpriteFrames);
         _sprite.Play();
@@ -102,7 +105,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         for (int i = 0; i < childCount; i++)
         {
             float rotationOffset = _segmentData.GetRotationOffset(i, childCount);
-            _children[i].Fire(GlobalPosition, Rotation + rotationOffset, inheritedCollision);
+            _children[i].Fire(GlobalPosition, Rotation + rotationOffset, _parent, inheritedCollision);
         }
     }
     public void HandleCollisionVisuals()
