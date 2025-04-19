@@ -7,13 +7,13 @@ public partial class PulseGraphNode : GraphNode
     [Export] private TextureRect _textureRect;
     [Export] private Label _descriptionLabel;
 
-    private ProjectileSegmentData _data;
+    public ProjectileSegmentData Data { get; private set; }
 
     public void Initialize(ProjectileSegmentData data, Label label)
     {
-        _data = data;
-        SetTexture(_data.Icon);
-        SetTitle(_data.SegmentName);
+        Data = data;
+        SetTexture(Data.Icon);
+        SetTitle(Data.SegmentName);
         SetDescriptionLabel(label);
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
@@ -35,12 +35,12 @@ public partial class PulseGraphNode : GraphNode
     
     private void OnMouseEntered()
     {
-        if (_data is null)
+        if (Data is null)
         {
             return;
         }
         
-        _descriptionLabel.Text = _data.GetDescription();
+        _descriptionLabel.Text = Data.GetDescription();
     }
 
     private void OnMouseExited()
