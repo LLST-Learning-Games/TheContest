@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://krfsnunhetvj"]
+
+[ext_resource type="Script" uid="uid://dy1d86m7b0ppf" path="res://Ui/DragAndDrop_v2/PulseGraphNode.cs" id="1_dex7k"]
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_icsu3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x87j"]
+atlas = ExtResource("2_icsu3")
+region = Rect2(24, 64, 8, 8)
+filter_clip = true
+
+[node name="PulseGraphNode" type="GraphNode" node_paths=PackedStringArray("_textureRect")]
+offset_right = 120.0
+offset_bottom = 104.0
+mouse_filter = 1
+position_offset = Vector2(28.45, 53.61)
+title = "Node"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_dex7k")
+_textureRect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1x87j")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxovvp355lpee"]
+[gd_scene load_steps=6 format=3 uid="uid://cxovvp355lpee"]
 
 [ext_resource type="Script" uid="uid://cyqun5x8yaund" path="res://Ui/DragAndDrop/NeuroPulseFactoryControl.cs" id="1_qpe54"]
 [ext_resource type="PackedScene" uid="uid://b313w1jhrp4vp" path="res://Ui/DragAndDrop/draggable.tscn" id="2_k3doa"]
+[ext_resource type="PackedScene" uid="uid://cdgeyafoosf8p" path="res://Ui/DragAndDrop_v2/NeuroPulseFactoryGraphControl.tscn" id="3_qpe54"]
 [ext_resource type="Script" uid="uid://bsybvc1h1xmvq" path="res://Ui/DragAndDrop/PulseLibraryControl.cs" id="5_mrf8q"]
 [ext_resource type="PackedScene" uid="uid://jicy8s60x7k3" path="res://Ui/CashUi.tscn" id="6_k3doa"]
 
@@ -22,7 +23,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="NeuroPulseFactoryControl" type="Control" parent="." node_paths=PackedStringArray("_container", "_descriptionLabel")]
+[node name="NeuroPulseFactoryControl_OLD" type="Control" parent="." node_paths=PackedStringArray("_container", "_descriptionLabel")]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -35,7 +37,7 @@ _container = NodePath("BoxContainer")
 _pulsePrefab = ExtResource("2_k3doa")
 _descriptionLabel = NodePath("../InformationPanel/DescriptionLabel")
 
-[node name="ColorRect" type="ColorRect" parent="NeuroPulseFactoryControl"]
+[node name="ColorRect" type="ColorRect" parent="NeuroPulseFactoryControl_OLD"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,13 +46,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.385493, 0.385492, 0.385492, 1)
 
-[node name="Label" type="Label" parent="NeuroPulseFactoryControl"]
+[node name="Label" type="Label" parent="NeuroPulseFactoryControl_OLD"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Build Your NeuroPulse:"
 
-[node name="ConfirmButton" type="Button" parent="NeuroPulseFactoryControl"]
+[node name="ConfirmButton" type="Button" parent="NeuroPulseFactoryControl_OLD"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -62,12 +64,15 @@ offset_bottom = -9.0
 grow_vertical = 0
 text = "CONFIRM NEUROPULSE"
 
-[node name="BoxContainer" type="BoxContainer" parent="NeuroPulseFactoryControl"]
+[node name="BoxContainer" type="BoxContainer" parent="NeuroPulseFactoryControl_OLD"]
 layout_mode = 0
 offset_left = 179.0
 offset_top = 162.0
 offset_right = 665.0
 offset_bottom = 202.0
+
+[node name="NeuroPulseFactoryControl" parent="." instance=ExtResource("3_qpe54")]
+layout_mode = 1
 
 [node name="PulseLibraryControl" type="Control" parent="." node_paths=PackedStringArray("_container", "_descriptionLabel")]
 layout_mode = 1
@@ -147,4 +152,4 @@ layout_mode = 0
 offset_left = 0.0
 offset_right = 40.0
 
-[connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl" method="OnConfirmSelection"]
+[connection signal="pressed" from="NeuroPulseFactoryControl_OLD/ConfirmButton" to="NeuroPulseFactoryControl_OLD" method="OnConfirmSelection"]

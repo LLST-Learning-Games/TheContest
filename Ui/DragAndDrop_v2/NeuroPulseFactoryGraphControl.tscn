@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdgeyafoosf8p"]
+
+[ext_resource type="Script" uid="uid://b7rdkxnn6r4qa" path="res://Scenes/PulseGraphEdit.cs" id="1_wwmpe"]
+[ext_resource type="PackedScene" uid="uid://krfsnunhetvj" path="res://Ui/DragAndDrop_v2/PulseGraphNode.tscn" id="2_2sx18"]
+
+[node name="NeuroPulseFactoryControl" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_right = -333.0
+offset_bottom = 408.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Build Your NeuroPulse:"
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 616.0
+offset_top = 8.0
+offset_right = 807.0
+offset_bottom = 39.0
+grow_vertical = 0
+text = "CONFIRM NEUROPULSE"
+
+[node name="PulseGraphEdit" type="GraphEdit" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 808.0
+offset_bottom = 368.0
+scroll_offset = Vector2(-218, -104)
+zoom = 0.5
+minimap_enabled = false
+show_grid_buttons = false
+script = ExtResource("1_wwmpe")
+_pulseGraphNodePrefab = ExtResource("2_2sx18")

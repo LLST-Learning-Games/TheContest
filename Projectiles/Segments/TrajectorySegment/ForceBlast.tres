@@ -9,6 +9,7 @@
 script = ExtResource("4_r8oet")
 _speed = 10000.0
 _damageToDealOnCollision = 25
+_stopMotionOnCollision = true
 IncludeInLibrary = true
 Id = "YellowMagic"
 Icon = ExtResource("1_p8ryr")
@@ -18,7 +19,9 @@ Scale = Vector2(1, 1)
 Cost = 10
 AllowedChildCount = 1
 Delay = 0.5
+EnergyDrain = 10.0
 InstancePrefab = ExtResource("2_0hrnw")
 ShouldInheritCollisions = false
+ShouldTriggerOnInit = false
 SegmentName = "Force Blast"
 Description = "Travels in a straight line and moves at a moderate speed. A reliable place to start."
