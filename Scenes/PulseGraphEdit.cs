@@ -4,6 +4,7 @@ using System;
 public partial class PulseGraphEdit : GraphEdit
 {
     [Export] private PackedScene _pulseGraphNodePrefab;
+    [Export] private Label _descriptionLabel;
 
     public override void _Ready()
     {
@@ -22,7 +23,7 @@ public partial class PulseGraphEdit : GraphEdit
         {
             var instance = _pulseGraphNodePrefab.Instantiate<PulseGraphNode>();
             AddChild(instance);
-            instance.Initialize(draggable.Data);
+            instance.Initialize(draggable.Data, _descriptionLabel);
             instance.PositionOffset = new Vector2(atPosition.X - draggable.Size.X * 3f/2f,
                 atPosition.Y - draggable.Size.Y * 3f/2f);
         }
