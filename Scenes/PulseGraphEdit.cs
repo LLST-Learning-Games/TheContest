@@ -1,6 +1,9 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Systems;
+using Systems.Currency;
 using TheContest.Projectiles;
 
 public partial class PulseGraphEdit : GraphEdit
@@ -16,10 +19,50 @@ public partial class PulseGraphEdit : GraphEdit
     public override void _Ready()
     {
         ConnectionRequest += OnConnectionRequest;
+        if (SystemLoader.IsSystemLoadComplete)
+        {
+            LookupProjectileData();
+        }
+        else
+        {
+            SystemLoader.OnSystemLoadComplete += LookupProjectileData;
+        }
+    }
+    
+    private void LookupProjectileData()
+    {
+        var startingSegment = Library.PlayerPulse.StartingSegment;
+        _rootPulse = RecursivelyInitializePulseUi(startingSegment);
+    }
+    
+    private PulseGraphNode RecursivelyInitializePulseUi(ProjectileSegmentDefinition currentSegment, int depth = 1)
+    {
+        var node = CreateNewPulseGraphNode(currentSegment.GetData());
+
+        for (int i = 0; i < currentSegment.Children.Count; i++)
+        {
+            var child = currentSegment.Children[i];
+            var childNode = RecursivelyInitializePulseUi(child, depth + 1);
+            childNode.PositionOffset = new Vector2(node.PositionOffset.X + node.Size.X * 2f * depth,
+                node.PositionOffset.Y + node.Size.Y * 1.3f * i);
+            ConnectNode(node.Name, 0, childNode.Name, 0);
+        }
+
+        return node;
     }
 
     private void OnConnectionRequest(StringName fromNode, long fromSlot, StringName toNode, long toSlot)
     {
+        var node = GetPulseNode((string)fromNode);
+        var children = GetChildConnections((string)fromNode);
+        if(children.Count >= node.Data.AllowedChildCount)
+        {
+            GD.Print($"[{GetType().Name}] Node has max children already.");
+            return;
+        }
+        
+        // todo - check to ensure we don't have multiple parents!
+        
         ConnectNode(fromNode, (int)fromSlot, toNode, (int)toSlot);
     }
 
@@ -28,22 +71,37 @@ public partial class PulseGraphEdit : GraphEdit
         var draggable = data.AsGodotObject() as Draggable;
         if (draggable != null)
         {
-            var instance = _pulseGraphNodePrefab.Instantiate<PulseGraphNode>();
-            AddChild(instance);
-            instance.Initialize(draggable.Data, _descriptionLabel);
+            UpdateCash(-draggable.Data.Cost);
+            
+            var instance = CreateNewPulseGraphNode(draggable.Data);
             instance.PositionOffset = new Vector2(atPosition.X - draggable.Size.X * 3f/2f,
                 atPosition.Y - draggable.Size.Y * 3f/2f);
 
-            if (_rootPulse is null)
+            if (!IsInstanceValid(_rootPulse))
             {
                 _rootPulse = instance;
             }
         }
     }
 
+    private PulseGraphNode CreateNewPulseGraphNode(ProjectileSegmentData data)
+    {
+        var instance = _pulseGraphNodePrefab.Instantiate<PulseGraphNode>();
+        AddChild(instance);
+        instance.Initialize(data, _descriptionLabel);
+        return instance;
+    }
+
+
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        return data.AsGodotObject() is Draggable;
+        var draggable = data.AsGodotObject() as Draggable;
+        if (draggable is null)
+        {
+            return false;
+        }
+        
+        return CanAfford(draggable.Data.Cost);
     }
     
     public void OnConfirmSelection()
@@ -54,36 +112,61 @@ public partial class PulseGraphEdit : GraphEdit
         var newWeapon = Library.Factory.ExportNeuroPulse();
         Library.SetPlayerPulse(newWeapon);
         
-        GetParent().QueueFree();        // clear the selection UI
+        GetParent().GetParent().QueueFree();        // clear the selection UI
     }
 
     private void RecursivelyGeneratePulseTree(ProjectileSegmentDefinition definition, PulseGraphNode graphNode)
     {
-        if (!graphNode.)
+        var children = GetChildConnections(graphNode.Name);
+        if (!children.Any())
         {
             return;
         }
         
-        foreach (var child in graphNode.Children)
+        foreach (var child in children)
         {
-            var newDefinition = Library.Factory.TryAddPulse(child._projectileId, definition);
+            var newDefinition = Library.Factory.TryAddPulse(child.Data.Id, definition);
             RecursivelyGeneratePulseTree(newDefinition, child);
         }
     }
     
-    private void GetChildConnections(string nodeName)
+    private List<PulseGraphNode> GetChildConnections(string nodeName)
     {
+        List<PulseGraphNode> children = new List<PulseGraphNode>();
+        
         var connections = GetConnectionList();
-
         foreach (var conn in connections)
         {
             var fromNode = (string)conn["from_node"];
             var toNode = (string)conn["to_node"];
 
-            if (fromNode == nodeName || toNode == nodeName)
+            if (fromNode == nodeName)
             {
                 GD.Print($"Connection: {fromNode}[{conn["from_port"]}] → {toNode}[{conn["to_port"]}]");
+                children.Add(GetNode<PulseGraphNode>(toNode));
             }
         }
+
+        return children;
+    }
+    
+    private PulseGraphNode GetPulseNode(string nodeName)
+    {
+        var node = GetNodeOrNull<PulseGraphNode>(nodeName);
+        return node;
+    }
+    
+    private void UpdateCash(float amount)
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        currency.UpdateCurrencyByDelta(amount);
+    }
+
+    private bool CanAfford(float amount)
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        return currency.Balance >= amount;
     }
 }

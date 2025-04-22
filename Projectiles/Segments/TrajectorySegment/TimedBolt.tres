@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bpv6vqlc1ijbn"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://s2y3swraiku0"]
 
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_0ncfy"]
 [ext_resource type="PackedScene" uid="uid://crs53627li8ma" path="res://Projectiles/Segments/Instances/ProjectileSegmentTimedInstance.tscn" id="2_0ncfy"]
@@ -24,6 +24,7 @@ Scale = Vector2(1, 1)
 Cost = 25
 AllowedChildCount = 1
 Delay = 0.4
+EnergyDrain = 10.0
 InstancePrefab = ExtResource("2_0ncfy")
 ShouldInheritCollisions = true
 ShouldTriggerOnInit = false

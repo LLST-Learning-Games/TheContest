@@ -17,6 +17,7 @@ Scale = Vector2(1, 1)
 Cost = 5
 AllowedChildCount = 1
 Delay = 0.75
+EnergyDrain = 10.0
 InstancePrefab = ExtResource("2_ogu25")
 ShouldInheritCollisions = false
 ShouldTriggerOnInit = false

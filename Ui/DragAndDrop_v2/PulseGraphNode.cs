@@ -1,5 +1,6 @@
 using Godot;
-using System;
+using Systems;
+using Systems.Currency;
 using TheContest.Projectiles;
 
 public partial class PulseGraphNode : GraphNode
@@ -21,16 +22,25 @@ public partial class PulseGraphNode : GraphNode
     public void SetTexture(Texture2D texture) => _textureRect.Texture = texture;
     public void SetDescriptionLabel(Label label) => _descriptionLabel = label;
     
+    
     public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseButtonEvent &&
             mouseButtonEvent.Pressed &&
             mouseButtonEvent.ButtonIndex == MouseButton.Right)
         {
+            UpdateCash(Data.Cost);
             MouseEntered -= OnMouseEntered;
             MouseExited -= OnMouseExited;
             QueueFree();
         }
+    }
+    
+    private void UpdateCash(float amount)
+    {
+        var currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        currency.UpdateCurrencyByDelta(amount);
     }
     
     private void OnMouseEntered()

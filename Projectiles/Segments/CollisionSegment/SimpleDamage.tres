@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("3_uih6y")
 _damageToDealOnCollision = 25
+IncludeInLibrary = true
 Id = "SimpleDamage"
 Icon = ExtResource("1_40udc")
 SpriteFrames = ExtResource("2_40udc")
@@ -16,7 +17,9 @@ Scale = Vector2(1, 1)
 Cost = 10
 AllowedChildCount = 1
 Delay = 0.5
+EnergyDrain = 10.0
 InstancePrefab = ExtResource("1_iggn0")
 ShouldInheritCollisions = true
+ShouldTriggerOnInit = false
 SegmentName = "Kinetic Impact"
 Description = "Deals instant impact damage on collision."

@@ -156,5 +156,6 @@ offset_left = 0.0
 offset_right = 40.0
 
 [connection signal="pressed" from="NeuroPulseFactoryControl_OLD/ConfirmButton" to="NeuroPulseFactoryControl_OLD" method="OnConfirmSelection"]
+[connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl/PulseGraphEdit" method="OnConfirmSelection"]
 
 [editable path="NeuroPulseFactoryControl"]

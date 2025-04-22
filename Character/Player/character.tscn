@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://bn3ukbepasjx1" path="res://Projectiles/NeuroPulse.cs" id="5_k81x5"]
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
-[ext_resource type="Resource" uid="uid://dugnywn0ftdbd" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="7_vp6oq"]
+[ext_resource type="Resource" uid="uid://cjsctbdcgfuw1" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="7_vp6oq"]
 [ext_resource type="Script" uid="uid://dev6modtwcdj7" path="res://Character/Player/CurrentCamera.cs" id="9_x1deh"]
-[ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/PulseEnergyWorldUi.tscn" id="11_x1deh"]
+[ext_resource type="PackedScene" path="res://Ui/PulseEnergyWorldUi.tscn" id="11_x1deh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ato57"]
 size = Vector2(23, 25)

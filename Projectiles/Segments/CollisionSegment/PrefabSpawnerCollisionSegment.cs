@@ -1,6 +1,6 @@
 using Godot;
 
-namespace TheContest.Projectiles;
+namespace TheContest.Projectiles.CollisionSegment;
 
 public partial class PrefabSpawnerCollisionSegment : ProjectileSegmentData
 {

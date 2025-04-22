@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7r0wvvr5stgo" path="res://Projectiles/NeuroPulseFactory.cs" id="2_8xyce"]
 [ext_resource type="Script" uid="uid://bn3ukbepasjx1" path="res://Projectiles/NeuroPulse.cs" id="3_itygy"]
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="4_y73fn"]
-[ext_resource type="Resource" uid="uid://dugnywn0ftdbd" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="5_88lgl"]
+[ext_resource type="Resource" uid="uid://cjsctbdcgfuw1" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="5_88lgl"]
 
 [node name="ProjectileManager" type="Node" node_paths=PackedStringArray("_factory", "PlayerPulse")]
 script = ExtResource("1_iynq0")
@@ -17,8 +17,8 @@ script = ExtResource("2_8xyce")
 [node name="Weapon_1" type="Node" parent="." node_paths=PackedStringArray("_startingSegment")]
 script = ExtResource("3_itygy")
 _startingSegment = NodePath("Segment_1")
-_maxEnergy = 200.0
-_rechargeRate = 400.0
+_maxEnergy = 500.0
+_rechargeRate = 500.0
 
 [node name="Segment_1" type="Node" parent="Weapon_1"]
 script = ExtResource("4_y73fn")

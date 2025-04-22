@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dugnywn0ftdbd"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cjsctbdcgfuw1"]
 
 [ext_resource type="Texture2D" uid="uid://c7vmrjagolm8h" path="res://Art/FX/Effects Pack 12/3/18.png" id="1_p8ryr"]
 [ext_resource type="PackedScene" uid="uid://ce8bofac07tga" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.tscn" id="2_0hrnw"]
