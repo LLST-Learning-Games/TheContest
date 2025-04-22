@@ -42,6 +42,8 @@ _energyUi = NodePath("../PulseEnergyWorldUi")
 [node name="Weapon_1" type="Node" parent="PlayerProjectileSpawnComponent" node_paths=PackedStringArray("_startingSegment")]
 script = ExtResource("5_k81x5")
 _startingSegment = NodePath("Segment_1")
+_maxEnergy = 2000.0
+_rechargeRate = 6000.0
 
 [node name="Segment_1" type="Node" parent="PlayerProjectileSpawnComponent/Weapon_1"]
 script = ExtResource("6_vp6oq")

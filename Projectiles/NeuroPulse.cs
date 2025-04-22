@@ -7,8 +7,8 @@ public partial class NeuroPulse : Node
 {
     [Export] private ProjectileSegmentDefinition _startingSegment;
     [Export] private float _pulseDelay = 0.5f;
-    [Export] private float _maxEnergy = 100f;
-    [Export] private float _rechargeRate = 10f;
+    [Export] private float _maxEnergy = 250f;
+    [Export] private float _rechargeRate = 50f;
     private float _currentEnergy;
     private bool _isEnemy = false;
 
