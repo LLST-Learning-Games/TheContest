@@ -51,7 +51,7 @@ public partial class ProjectileSegmentDefinition : Node
     
     public void Fire(Vector2 globalPosition, float facing, NeuroPulse parent, Node inheritedCollision = null)
     {
-        if (!parent.CanFire)
+        if (!parent.CanFire || !IsInstanceValid(this))
         {
             return;
         }
@@ -63,7 +63,7 @@ public partial class ProjectileSegmentDefinition : Node
         instance.Rotation = facing;
         instance.Initialize(_segmentData, _children, parent);
         instance.SetCollisionLayers(_isEnemy);
-        
+
         _segmentData.OnInitialize(instance, GetTree());
         if (_segmentData.ShouldTriggerOnInit || inheritedCollision != null && _segmentData.ShouldInheritCollisions)
         {
@@ -71,7 +71,7 @@ public partial class ProjectileSegmentDefinition : Node
         }
     }
 
-    public async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
+    private async void AddChildToTreeDeferred(ProjectileSegmentInstance instance)
     {
         await ToSignal(GetTree(), "process_frame");
         if(IsInstanceValid(instance))
