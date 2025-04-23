@@ -84,4 +84,9 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 			}
 		}
 	}
+
+	public override void _ExitTree()
+	{
+		_currentPulse.OnEnergyUpdated -= _energyUi.OnEnergyChanged;
+	}
 }
