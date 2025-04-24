@@ -46,6 +46,8 @@ shape = SubResource("RectangleShape2D_0ymbd")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_qbd41")]
 
