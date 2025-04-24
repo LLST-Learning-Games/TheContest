@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
 [ext_resource type="Resource" uid="uid://cjsctbdcgfuw1" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="7_vp6oq"]
 [ext_resource type="Script" uid="uid://dev6modtwcdj7" path="res://Character/Player/CurrentCamera.cs" id="9_x1deh"]
-[ext_resource type="PackedScene" path="res://Ui/PulseEnergyWorldUi.tscn" id="11_x1deh"]
+[ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/PulseEnergyWorldUi.tscn" id="11_x1deh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ato57"]
 size = Vector2(23, 25)
@@ -50,7 +50,9 @@ script = ExtResource("6_vp6oq")
 _segmentData = ExtResource("7_vp6oq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 script = ExtResource("9_x1deh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_dtwtn")]
