@@ -6,8 +6,8 @@
 [ext_resource type="Resource" uid="uid://c4dp6hcetv3tm" path="res://Systems/CurrencySystem/Currencies/CurrencyCashCurrentMap.tres" id="4_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_b0gg8"]
 [ext_resource type="Script" uid="uid://b7614wfd2fbhp" path="res://Systems/SceneManagerSystem/SceneManagerSystem.cs" id="5_ifnho"]
-[ext_resource type="PackedScene" uid="uid://dqnq1o6exsydm" path="res://Scenes/TestMap.tscn" id="6_rmhsp"]
 [ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
+[ext_resource type="PackedScene" uid="uid://cdom5m82i6fit" path="res://Scenes/TestMap_48px.tscn" id="7_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="8_rmhsp"]
 
 [node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
@@ -25,7 +25,7 @@ _id = "ProjectileLibrary"
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("5_ifnho")
 _scenePrefabs = Dictionary[String, PackedScene]({
-"Gameplay": ExtResource("6_rmhsp"),
+"Gameplay": ExtResource("7_1j2ki"),
 "MainMenu": ExtResource("7_0q3xv"),
 "NeuroPulseCustomizer": ExtResource("8_rmhsp")
 })

@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dkim6hsg7n0s2"]
 
-[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_60q0s"]
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="1_s284w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m7jmp"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -9,7 +9,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2354"]
-texture = ExtResource("1_60q0s")
+texture = ExtResource("1_s284w")
 texture_region_size = Vector2i(8, 8)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
@@ -136,6 +136,7 @@ texture_region_size = Vector2i(8, 8)
 9:7/0 = 0
 10:7/0 = 0
 11:7/0 = 0
+11:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 11:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(4, -4, 4, 4, -4, 4, -4, -4)
 12:7/0 = 0
 12:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(4, -4, 4, 4, -4, 4)

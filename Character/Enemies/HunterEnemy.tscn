@@ -51,6 +51,7 @@ avoidance_enabled = true
 radius = 30.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_qbd41")]
+_maxHealth = 50
 
 [node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("4_qbd41")]
 _actor = NodePath("..")
