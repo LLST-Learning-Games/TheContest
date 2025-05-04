@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce8bofac07tga"]
+[gd_scene load_steps=8 format=3 uid="uid://ce8bofac07tga"]
 
 [ext_resource type="Script" uid="uid://bev7e52vho5fu" path="res://Projectiles/Segments/Instances/ProjectileSegmentInstance.cs" id="1_mmv75"]
 [ext_resource type="SpriteFrames" uid="uid://cqk3ujwck8uph" path="res://Art/Bubble/Bubble.tres" id="2_3aobb"]
@@ -8,6 +8,17 @@
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bausq"]
+
+[sub_resource type="Gradient" id="Gradient_fyxr8"]
+offsets = PackedFloat32Array(0.174419, 0.47093, 0.747093)
+colors = PackedColorArray(1, 1, 1, 1, 0.412088, 0.412088, 0.412088, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q00as"]
+gradient = SubResource("Gradient_fyxr8")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("_sprite", "_triggerArea")]
 collision_layer = 0
@@ -38,3 +49,6 @@ collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_bausq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_q00as")

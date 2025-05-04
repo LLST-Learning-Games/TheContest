@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dqnq1o6exsydm"]
+[gd_scene load_steps=16 format=4 uid="uid://dqnq1o6exsydm"]
 
 [ext_resource type="TileSet" uid="uid://dkim6hsg7n0s2" path="res://Environment/TileMap/TileMap.tres" id="1_00jar"]
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="2_e11n1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1aono5acfnlg" path="res://Ui/EscapeUi.tscn" id="7_e11n1"]
 [ext_resource type="PackedScene" uid="uid://ddtp17eqi5bsf" path="res://Environment/Exit/exit_zone.tscn" id="7_j0g0q"]
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_e11n1"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_h5s6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
@@ -184,6 +185,14 @@ text = "Wealth this map:"
 
 [node name="GameOverButton" parent="CanvasLayer" instance=ExtResource("8_e11n1")]
 visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-96, -8)
+scale = Vector2(1.06098, 1)
+texture = ExtResource("9_h5s6u")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [editable path="Map/EnemyWaveSpawner"]
 [editable path="Map/EnemyWaveSpawner3"]

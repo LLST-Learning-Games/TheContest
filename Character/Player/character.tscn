@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crevd71bgfav8"]
+[gd_scene load_steps=14 format=3 uid="uid://crevd71bgfav8"]
 
 [ext_resource type="Script" uid="uid://dkstv3i5h80cf" path="res://Character/Player/Character.cs" id="1_o06ql"]
 [ext_resource type="Texture2D" uid="uid://dxmey084orure" path="res://Art/Characters/PlayerExperiment.png" id="2_x1deh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
 [ext_resource type="Resource" uid="uid://cjsctbdcgfuw1" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="7_vp6oq"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_cpcb7"]
 [ext_resource type="Script" uid="uid://dev6modtwcdj7" path="res://Character/Player/CurrentCamera.cs" id="9_x1deh"]
 [ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/PulseEnergyWorldUi.tscn" id="11_x1deh"]
 
@@ -54,6 +55,11 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 script = ExtResource("9_x1deh")
+
+[node name="PointLight2D" type="PointLight2D" parent="Camera2D"]
+scale = Vector2(1.06098, 1)
+texture = ExtResource("9_cpcb7")
+texture_scale = 3.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_dtwtn")]
 _maxHealth = 150

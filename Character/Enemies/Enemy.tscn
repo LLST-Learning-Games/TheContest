@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c47qe5lm46qiv"]
+[gd_scene load_steps=11 format=3 uid="uid://c47qe5lm46qiv"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_674jy"]
 [ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="2_2w5qr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c15y044mkacgd" path="res://Character/Enemies/EnemyProjectileSpawnComponent.tscn" id="4_p8sn4"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_p8sn4"]
 [ext_resource type="PackedScene" uid="uid://bu2s8kq5b2ljs" path="res://Character/Ai/EntityBrain.tscn" id="6_ylk83"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="8_gmgm2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gyvxm"]
 rough = true
@@ -48,3 +49,9 @@ _healthComponent = NodePath("../HealthComponent")
 
 [node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("6_ylk83")]
 _actor = NodePath("..")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.06098, 1)
+energy = 0.5
+texture = ExtResource("8_gmgm2")
+texture_scale = 2.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpd4iad4gi2nl"]
+[gd_scene load_steps=11 format=3 uid="uid://dpd4iad4gi2nl"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_siha4"]
 [ext_resource type="PackedScene" uid="uid://be873dd5twnvm" path="res://SpawnableEvents/HunterDeathExplosion.tscn" id="2_xpnp1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dcabm03sb0upe" path="res://Character/Ai/EntityBrainHunter.tscn" id="4_qbd41"]
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_0yq5r"]
 [ext_resource type="Script" uid="uid://ffmtfd6f1pu0" path="res://Character/Enemies/CollisionDeathTrigger.cs" id="7_xpnp1"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="8_0ymbd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_siha4"]
 animations = [{
@@ -62,3 +63,9 @@ _healthComponent = NodePath("../HealthComponent")
 script = ExtResource("7_xpnp1")
 _healthComponent = NodePath("../HealthComponent")
 _rb = NodePath("..")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.06098, 1)
+energy = 0.5
+texture = ExtResource("8_0ymbd")
+texture_scale = 2.0
