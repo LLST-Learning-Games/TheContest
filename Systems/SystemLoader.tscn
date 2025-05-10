@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cop1s0k8641k6"]
+[gd_scene load_steps=11 format=3 uid="uid://cop1s0k8641k6"]
 
 [ext_resource type="Script" uid="uid://bms7r5emi0col" path="res://Systems/SystemLoader.cs" id="1_q1yjg"]
 [ext_resource type="Script" uid="uid://7vtieglcw6ci" path="res://Systems/CurrencySystem/CurrencySystem.cs" id="2_b0gg8"]
@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
 [ext_resource type="PackedScene" uid="uid://cdom5m82i6fit" path="res://Scenes/TestMap_48px.tscn" id="7_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="8_rmhsp"]
+[ext_resource type="Script" uid="uid://bsw216m72i8mr" path="res://Systems/CameraSystem/CameraSystem.cs" id="10_nvh5w"]
 
 [node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
 script = ExtResource("1_q1yjg")
-_systemBootstrap = [NodePath("CurrencySystem"), NodePath("ProjectileLibrary"), NodePath("SceneManager")]
+_systemBootstrap = [NodePath("CurrencySystem"), NodePath("ProjectileLibrary"), NodePath("SceneManager"), NodePath("CameraSystem")]
 
 [node name="CurrencySystem" type="Node" parent="."]
 script = ExtResource("2_b0gg8")
@@ -29,3 +30,10 @@ _scenePrefabs = Dictionary[String, PackedScene]({
 "MainMenu": ExtResource("7_0q3xv"),
 "NeuroPulseCustomizer": ExtResource("8_rmhsp")
 })
+
+[node name="CameraSystem" type="Node" parent="." node_paths=PackedStringArray("_camera")]
+script = ExtResource("10_nvh5w")
+_camera = NodePath("Camera2D")
+_id = "CameraSystem"
+
+[node name="Camera2D" type="Camera2D" parent="CameraSystem"]

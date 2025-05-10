@@ -49,4 +49,12 @@ public partial class SystemLoader : Node
         }
     }
 
+    public static void OnGameplayStart()
+    {
+        foreach (var system in _initializedSystems.Values)
+        {
+            system.OnGameplayStart();
+        }
+    }
+
 }

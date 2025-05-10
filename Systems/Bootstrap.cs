@@ -14,6 +14,7 @@ public partial class Bootstrap : Node2D
     private SceneManagerSystem _sceneManager;
 
     public Action OnGameplayEnd;
+    public Action OnGameplayStart;
 
     public override void _Ready()
     { 
@@ -49,6 +50,8 @@ public partial class Bootstrap : Node2D
         _gameplaySceneInstantiated = gameplayScene.Instantiate();
         AddChild(_gameplaySceneInstantiated);
         _mainScreenUi.QueueFree();
+        OnGameplayStart?.Invoke();
+        SystemLoader.OnGameplayStart();
     }
 
     public void RestartGame()
