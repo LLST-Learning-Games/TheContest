@@ -25,6 +25,13 @@ public partial class SimpleDamageCollisionSegment : ProjectileSegmentData
         }
         
         healthComponent.UpdateHealth(-_damageToDealOnCollision);
+
+        if (otherBody is RigidBody2D rigidBody2D)
+        {
+            Vector2 forceVector = instanceBody.GlobalPosition - rigidBody2D.GlobalPosition;
+            forceVector *= _damageToDealOnCollision * 1000f;
+            rigidBody2D.ApplyForce(forceVector);
+        }
     }
     
     public override string GetDescription()

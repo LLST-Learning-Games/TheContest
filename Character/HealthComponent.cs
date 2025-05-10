@@ -10,6 +10,7 @@ public partial class HealthComponent : Node
 	[Export] private bool _shouldShake = false;
 	[Export] private float _shakeSize = 5f;
 	[Export] private double _shakeDuration = 0.3;
+	
 	private int _currentHealth;
 	
 	public int MaxHealth => _maxHealth;
@@ -40,15 +41,20 @@ public partial class HealthComponent : Node
 			_currentHealth = newHealth;
 			OnHealthChanged?.Invoke(_currentHealth);
 			
-			if(_shouldShake && delta < 0)
-			{
-				CameraSystem.TriggerCameraShake(_shakeSize * -delta, _shakeDuration);
-			}
+			HandleShake(delta);
 		}
 
 		if (_currentHealth == 0)
 		{
 			OnDeath?.Invoke();
+		}
+	}
+
+	private void HandleShake(int delta)
+	{
+		if(_shouldShake && delta < 0)
+		{
+			CameraSystem.TriggerCameraShake(_shakeSize * -delta, _shakeDuration);
 		}
 	}
 }

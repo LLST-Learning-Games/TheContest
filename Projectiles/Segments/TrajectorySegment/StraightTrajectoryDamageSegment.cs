@@ -37,6 +37,15 @@ public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
         {
             instanceBody.LinearVelocity = Vector2.Zero;
         }
+        
+        if (otherBody is RigidBody2D rigidBody2D)
+        {
+            Vector2 forceVector = rigidBody2D.GlobalPosition - instanceBody.GlobalPosition ;
+            forceVector = forceVector.Normalized();
+            forceVector *= _damageToDealOnCollision * 10000f;
+            rigidBody2D.ApplyForce(forceVector);
+        }
+        
         //instanceBody.QueueFree();
     }
 
