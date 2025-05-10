@@ -1,15 +1,25 @@
 using Godot;
 using System;
+using Systems;
 
 public partial class HealthComponent : Node
 {
 	[Export] private int _maxHealth = 100;
+	
+	// todo - as noted below, let's bust CameraShake out into a subcomponent
+	[Export] private bool _shouldShake = false;
+	[Export] private float _shakeSize = 5f;
+	[Export] private double _shakeDuration = 0.3;
 	private int _currentHealth;
 	
 	public int MaxHealth => _maxHealth;
 	
 	public Action OnDeath;
 	public Action<int> OnHealthChanged;
+	
+	// probably should make this some kind of decoupled component, I don't love this hard reference
+	private CameraSystem CameraSystem => _cameraSystem ?? SystemLoader.GetSystem<CameraSystem>();
+	private CameraSystem _cameraSystem;
 
 	public override void _Ready()
 	{
@@ -29,6 +39,11 @@ public partial class HealthComponent : Node
 		{
 			_currentHealth = newHealth;
 			OnHealthChanged?.Invoke(_currentHealth);
+			
+			if(_shouldShake && delta < 0)
+			{
+				CameraSystem.TriggerCameraShake(_shakeSize * -delta, _shakeDuration);
+			}
 		}
 
 		if (_currentHealth == 0)

@@ -54,7 +54,8 @@ texture = ExtResource("9_cpcb7")
 texture_scale = 3.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_dtwtn")]
-_maxHealth = 150
+_maxHealth = 15000
+_shouldShake = true
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("6_yc63j")]
 position = Vector2(0, -29)
