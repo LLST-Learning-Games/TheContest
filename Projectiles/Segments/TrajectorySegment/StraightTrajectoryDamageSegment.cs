@@ -42,7 +42,7 @@ public partial class StraightTrajectoryDamageSegment : ProjectileSegmentData
         {
             Vector2 forceVector = rigidBody2D.GlobalPosition - instanceBody.GlobalPosition ;
             forceVector = forceVector.Normalized();
-            forceVector *= _damageToDealOnCollision * 10000f;
+            forceVector *= _damageToDealOnCollision * 5000f;
             rigidBody2D.ApplyForce(forceVector);
         }
         

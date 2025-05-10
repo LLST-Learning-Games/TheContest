@@ -76,6 +76,16 @@ public partial class YoYoTrajectorySegment : ProjectileSegmentData
             instanceBody.LinearVelocity = Vector2.Zero;
         }
         //instanceBody.QueueFree();
+        
+        if (otherBody is RigidBody2D rigidBody2D)
+        {
+            Vector2 forceVector = rigidBody2D.GlobalPosition - instanceBody.GlobalPosition ;
+            forceVector = forceVector.Normalized();
+            forceVector *= _damageToDealOnCollision * 5000f;
+            rigidBody2D.ApplyForce(forceVector);
+        }
+
+        
     }
     
     public override string GetDescription()

@@ -30,6 +30,15 @@ public partial class Explosion : Node2D
         }
         
         healthComponent.UpdateHealth(-_damageToDealOnExplosion);;
+        
+        if (body is RigidBody2D rigidBody2D)
+        {
+            Vector2 forceVector = rigidBody2D.GlobalPosition - GlobalPosition ;
+            forceVector = forceVector.Normalized();
+            forceVector *= _damageToDealOnExplosion * 5000f;
+            rigidBody2D.ApplyForce(forceVector);
+        }
+
     }
     
     public void SetAsEnemyCollision()
