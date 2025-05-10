@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://spf1ql7jyb4h"]
+
+[ext_resource type="Texture2D" uid="uid://q27cahbvx4n" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-skeleton.png" id="1_qmt4p"]
+[ext_resource type="Texture2D" uid="uid://dqh2g6xhvl3mf" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-detail-only.png" id="2_rnv61"]
+[ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="3_e5ydy"]
+[ext_resource type="LabelSettings" uid="uid://d1xt8ui48hwhs" path="res://Scenes/TextSettings.tres" id="4_rnv61"]
+
+[node name="PaterfamaliasRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Skeleton" type="TextureRect" parent="."]
+self_modulate = Color(0.169245, 0.169245, 0.169245, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_qmt4p")
+
+[node name="DetailOnly" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -648.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_rnv61")
+
+[node name="Neon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_e5ydy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -562.0
+offset_top = 33.0
+offset_right = -33.0
+offset_bottom = 232.0
+grow_horizontal = 0
+text = "Finally you stand before me
+all wreathed in light,
+my golden child..."
+label_settings = ExtResource("4_rnv61")
