@@ -193,7 +193,7 @@ _data = {
 &"RESET": SubResource("Animation_83uuk")
 }
 
-[node name="PaterfamaliasRoom" type="Control" node_paths=PackedStringArray("_animationPlayer", "_narrativeLabel_Narrator", "_narrativeLabel_Father", "_communeWithPaterButton")]
+[node name="PaterfamaliasRoom" type="Control" node_paths=PackedStringArray("_animationPlayer", "_narrativeLabel_Narrator", "_narrativeLabel_Father", "_communeWithPaterButton", "_advanceConversationButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +204,8 @@ script = ExtResource("1_e5ydy")
 _animationPlayer = NodePath("AnimationPlayer")
 _narrativeLabel_Narrator = NodePath("NarrativeLabel_Narrator")
 _narrativeLabel_Father = NodePath("NarrativeLabel_Father")
-_communeWithPaterButton = NodePath("Button")
+_communeWithPaterButton = NodePath("StartButton")
+_advanceConversationButton = NodePath("ConverseButton")
 
 [node name="NarrativeLabel_Narrator" type="Label" parent="."]
 layout_mode = 1
@@ -274,20 +275,29 @@ text = "Finally you stand before me all wreathed in light, my golden child..."
 label_settings = ExtResource("4_rnv61")
 autowrap_mode = 2
 script = ExtResource("6_ggnpx")
-_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child..."])
+_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "Is there anything more glorious than you?", "I have such confidence that you will uphold our Great Name on the Arena Floor."])
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 574.0
 offset_top = 39.0
 offset_right = 703.0
 offset_bottom = 93.0
-text = "Commune WIth
-The Father"
+text = "Commune with your
+PATERFAMALIAS"
+
+[node name="ConverseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 975.0
+offset_top = 171.0
+offset_right = 1104.0
+offset_bottom = 225.0
+text = "Listen"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_p4bnj")
 }
 
-[connection signal="pressed" from="Button" to="." method="OnStartClick"]
+[connection signal="pressed" from="StartButton" to="." method="OnStartClick"]
+[connection signal="pressed" from="ConverseButton" to="." method="OnAdvanceConversationClick"]

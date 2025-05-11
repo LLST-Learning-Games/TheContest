@@ -8,15 +8,23 @@ public partial class PaterfamaliasRoom : Control
     [Export] private NarrativeLabel _narrativeLabel_Narrator;
     [Export] private NarrativeLabel _narrativeLabel_Father;
     [Export] private Button _communeWithPaterButton;
+    [Export] private Button _advanceConversationButton;
+
     
     public override void _Ready()
     {
         base._Ready();
         _animationPlayer.Play("OnPaterEnter");
         _animationPlayer.AnimationFinished += OnFatherEnterAnimationComplete;
-        var buttonModulate = _communeWithPaterButton.Modulate;
+        HideButton(_communeWithPaterButton);
+        HideButton(_advanceConversationButton);
+    }
+
+    private void HideButton(Button button)
+    {
+        var buttonModulate = button.Modulate;
         buttonModulate.A = 0;
-        _communeWithPaterButton.Modulate = buttonModulate;
+        button.Modulate = buttonModulate;
     }
 
     private async void OnFatherEnterAnimationComplete(StringName _)
@@ -42,9 +50,17 @@ public partial class PaterfamaliasRoom : Control
     private async void OnFatherGlowAnimationComplete(StringName animName)
     {
         await _narrativeLabel_Narrator.AdvanceNarrative();
-        await Task.Delay(1000);
+        await Task.Delay(2000);
         _narrativeLabel_Narrator.ResetNarrative();
-        _narrativeLabel_Father.InitializeNarrative();
+        await Task.Delay(1000);
+        await _narrativeLabel_Father.InitializeNarrative();
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(_advanceConversationButton, "modulate:a", 1, 0.5);
         _animationPlayer.AnimationFinished -= OnFatherGlowAnimationComplete;
+    }
+
+    public async void OnAdvanceConversationClick()
+    {
+        await _narrativeLabel_Father.AdvanceNarrative();
     }
 }

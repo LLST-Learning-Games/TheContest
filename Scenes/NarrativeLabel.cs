@@ -28,6 +28,11 @@ public partial class NarrativeLabel : Label
     {
         await FadeToAlpha(0);
         ++_currentStep;
+        if (_currentStep >= _narrativeSteps.Count)
+        {
+            ResetNarrative();
+            return;
+        }
         Text = _narrativeSteps[_currentStep];
         await FadeToAlpha(1);
     }
