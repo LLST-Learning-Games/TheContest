@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxylu8n8gn2c5"]
+[gd_scene load_steps=8 format=3 uid="uid://dxylu8n8gn2c5"]
 
 [ext_resource type="Script" uid="uid://debnoisftoaaj" path="res://SpawnableEvents/Pickup.cs" id="1_ej2kh"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_jf3t3"]
+[ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/ProgressBarWorldUi.tscn" id="3_jf3t3"]
+[ext_resource type="Texture2D" uid="uid://cg47wyfavlbkg" path="res://Art/Ui/xbox_button_a.png" id="4_2vurf"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="5_6f6bf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_611fu"]
 radius = 13.86
@@ -10,10 +13,11 @@ radius = 13.86
 atlas = ExtResource("2_jf3t3")
 region = Rect2(72, 40, 8, 8)
 
-[node name="Pickup" type="Node2D" node_paths=PackedStringArray("_area2D")]
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("_area2D", "_pickupProgressBar")]
 script = ExtResource("1_ej2kh")
 _rewardId = "newCash"
 _area2D = NodePath("Area2D")
+_pickupProgressBar = NodePath("ProgressBar")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 10
@@ -26,3 +30,21 @@ shape = SubResource("CircleShape2D_611fu")
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_2vurf")
+
+[node name="ProgressBar" parent="." instance=ExtResource("3_jf3t3")]
+position = Vector2(5, 22)
+
+[node name="Sprite2D_BarFull" parent="ProgressBar/Container" index="1"]
+modulate = Color(0.916774, 0.520841, 3.85046e-07, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ProgressBar"]
+modulate = Color(0.917647, 0.521569, 0, 1)
+position = Vector2(-20, 0)
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("4_2vurf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.856473, 0.637708, 0.178372, 1)
+texture = ExtResource("5_6f6bf")
+
+[editable path="ProgressBar"]

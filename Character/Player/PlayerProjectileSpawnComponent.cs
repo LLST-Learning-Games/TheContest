@@ -8,7 +8,7 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	[Export] private NeuroPulse _defaultWeapon;
 	[Export] private float _spawnOffset;
 	[Export] private Timer _delayTimer;
-	[Export] private PulseEnergyWorldUi _energyUi;
+	[Export] private ProgressBarUi _energyUi;
 
 	private ProjectileLibrary _library => SystemLoader.GetSystem<ProjectileLibrary>();
 	private NeuroPulse _currentPulse;
@@ -19,8 +19,8 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 	public override void _Ready()
 	{
 		_currentPulse = _library.PlayerPulse;
-		_energyUi.MaxEnergy = _currentPulse.MaxEnergy;
-		_currentPulse.OnEnergyUpdated += _energyUi.OnEnergyChanged;
+		_energyUi.MaxValue = _currentPulse.MaxEnergy;
+		_currentPulse.OnEnergyUpdated += _energyUi.OnCurrentValueChanged;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -87,6 +87,6 @@ public partial class PlayerProjectileSpawnComponent : Node2D
 
 	public override void _ExitTree()
 	{
-		_currentPulse.OnEnergyUpdated -= _energyUi.OnEnergyChanged;
+		_currentPulse.OnEnergyUpdated -= _energyUi.OnCurrentValueChanged;
 	}
 }

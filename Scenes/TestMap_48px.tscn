@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cdom5m82i6fit"]
+[gd_scene load_steps=17 format=4 uid="uid://cdom5m82i6fit"]
 
 [ext_resource type="TileSet" uid="uid://bo4kqn80agbmc" path="res://Environment/TileMap_48px/TileSet_48.tres" id="1_4exq4"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="2_bq22f"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c1aono5acfnlg" path="res://Ui/EscapeUi.tscn" id="7_bxgkc"]
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_sml4d"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_a3gyn"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="10_bq22f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
@@ -192,6 +193,9 @@ texture = ExtResource("9_a3gyn")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.29219, 0.29219, 0.29219, 1)
+
+[node name="Pickup" parent="." instance=ExtResource("10_bq22f")]
+position = Vector2(-444, -329)
 
 [editable path="Map/EnemyWaveSpawner"]
 [editable path="Map/EnemyWaveSpawner3"]

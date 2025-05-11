@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ds072666y5i"]
+
+[ext_resource type="Script" uid="uid://b664ijhc1im1h" path="res://Ui/ProgressBarUi.cs" id="1_c2a4h"]
+[ext_resource type="Texture2D" uid="uid://hochw6jeryy" path="res://Art/pixel.png" id="2_uk1he"]
+
+[node name="PulseEnergyWorldUi" type="Node2D" node_paths=PackedStringArray("_progressBarSprite")]
+script = ExtResource("1_c2a4h")
+_progressBarSprite = NodePath("Container/Sprite2D_BarFull")
+
+[node name="Container" type="Node2D" parent="."]
+scale = Vector2(25, 5)
+
+[node name="Sprite2D_BarEmpty" type="Sprite2D" parent="Container"]
+modulate = Color(0.201527, 0.201527, 0.201527, 1)
+texture = ExtResource("2_uk1he")
+
+[node name="Sprite2D_BarFull" type="Sprite2D" parent="Container"]
+modulate = Color(0.525704, 0.414648, 0.99785, 1)
+position = Vector2(-0.15, 0)
+scale = Vector2(0.7, 1)
+texture = ExtResource("2_uk1he")
