@@ -1,20 +1,228 @@
-[gd_scene load_steps=5 format=3 uid="uid://spf1ql7jyb4h"]
+[gd_scene load_steps=12 format=3 uid="uid://spf1ql7jyb4h"]
 
+[ext_resource type="Script" uid="uid://dnn5toxx0qclt" path="res://Scenes/PaterfamaliasRoom.cs" id="1_e5ydy"]
 [ext_resource type="Texture2D" uid="uid://q27cahbvx4n" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-skeleton.png" id="1_qmt4p"]
+[ext_resource type="LabelSettings" uid="uid://dttvytf7diudb" path="res://Scenes/TextSettings_Grey.tres" id="2_83uuk"]
 [ext_resource type="Texture2D" uid="uid://dqh2g6xhvl3mf" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-detail-only.png" id="2_rnv61"]
 [ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="3_e5ydy"]
 [ext_resource type="LabelSettings" uid="uid://d1xt8ui48hwhs" path="res://Scenes/TextSettings.tres" id="4_rnv61"]
+[ext_resource type="Script" uid="uid://b2brstlqju1rj" path="res://Scenes/NarrativeLabel.cs" id="6_ggnpx"]
 
-[node name="PaterfamaliasRoom" type="Control"]
+[sub_resource type="Animation" id="Animation_p4bnj"]
+resource_name = "OnPaterEnter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.32, 0.32, 0.32, 0), Color(0.31802, 0.31802, 0.31802, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DetailOnly:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ggnpx"]
+resource_name = "OnPaterGlow"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.03333, 4.33333, 4.4, 4.5, 4.66667, 4.76667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.497981), Color(1, 1, 1, 0.180392), Color(1, 1, 1, 0.568627), Color(1, 1, 1, 0.0509804), Color(1, 1, 1, 0.568627), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DetailOnly:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.03333, 1.6, 1.66667, 1.83333, 1.9, 2.16667, 2.23333, 2.4, 2.83333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.933333, 0, 1, 0), Color(0.933333, 0, 1, 1), Color(0.933333, 0, 1, 0), Color(0.933333, 0, 1, 1), Color(0.933333, 0, 1, 0), Color(0.933333, 0, 1, 1), Color(0.933333, 0, 1, 0), Color(0.933333, 0, 1, 1), Color(0.933333, 0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.533333, 1.03333, 2.96667, 5.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.31802, 0.31802, 0.31802, 1), Color(0.31802, 0.31802, 0.31802, 1), Color(0.505344, 0.505344, 0.505344, 1), Color(0.197937, 0.197937, 0.197937, 1), Color(0.197937, 0.197937, 0.197937, 1), Color(0.2, 0.2, 0.2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DetailOnly:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.03333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.03537),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_83uuk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DetailOnly:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.933333, 0, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NarrativeLabel_Father:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DetailOnly:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neon:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4bnj"]
+_data = {
+&"OnPaterEnter": SubResource("Animation_p4bnj"),
+&"OnPaterGlow": SubResource("Animation_ggnpx"),
+&"RESET": SubResource("Animation_83uuk")
+}
+
+[node name="PaterfamaliasRoom" type="Control" node_paths=PackedStringArray("_animationPlayer", "_narrativeLabel_Narrator", "_narrativeLabel_Father", "_communeWithPaterButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_e5ydy")
+_animationPlayer = NodePath("AnimationPlayer")
+_narrativeLabel_Narrator = NodePath("NarrativeLabel_Narrator")
+_narrativeLabel_Father = NodePath("NarrativeLabel_Father")
+_communeWithPaterButton = NodePath("Button")
+
+[node name="NarrativeLabel_Narrator" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1115.0
+offset_top = 31.0
+offset_right = -586.0
+offset_bottom = 230.0
+grow_horizontal = 0
+text = "You feel the familiar pinch as the NeuroInduction Current takes hold..."
+label_settings = ExtResource("2_83uuk")
+autowrap_mode = 2
+script = ExtResource("6_ggnpx")
+_narrativeSteps = Array[String](["The bones of the FATHER rest silently before you.", "You feel the familiar pinch as the NeuroInduction Current takes hold...", "As the induction takes hold, his eyes glitter and his voice rasps in the dark..."])
 
 [node name="Skeleton" type="TextureRect" parent="."]
-self_modulate = Color(0.169245, 0.169245, 0.169245, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -27,6 +235,7 @@ texture = ExtResource("1_qmt4p")
 
 [node name="DetailOnly" type="TextureRect" parent="."]
 visible = false
+modulate = Color(0.933333, 0, 1, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -40,6 +249,7 @@ grow_vertical = 0
 texture = ExtResource("2_rnv61")
 
 [node name="Neon" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -50,7 +260,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_e5ydy")
 
-[node name="Label" type="Label" parent="."]
+[node name="NarrativeLabel_Father" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -60,7 +270,24 @@ offset_top = 33.0
 offset_right = -33.0
 offset_bottom = 232.0
 grow_horizontal = 0
-text = "Finally you stand before me
-all wreathed in light,
-my golden child..."
+text = "Finally you stand before me all wreathed in light, my golden child..."
 label_settings = ExtResource("4_rnv61")
+autowrap_mode = 2
+script = ExtResource("6_ggnpx")
+_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child..."])
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 39.0
+offset_right = 703.0
+offset_bottom = 93.0
+text = "Commune WIth
+The Father"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p4bnj")
+}
+
+[connection signal="pressed" from="Button" to="." method="OnStartClick"]
