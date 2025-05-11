@@ -40,7 +40,7 @@ public partial class CameraSystem : BaseSystem
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_followNode is null)
+        if (!IsInstanceValid(_followNode))
         {
             return;
         }

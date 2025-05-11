@@ -34,7 +34,7 @@ public partial class EnemyWaveSpawner : Node2D
         }
 
         _player ??= GetCharacter();
-        if (_player is not null && _player.GlobalPosition.DistanceTo(_spawnArea.GlobalPosition) < _spawnDistance)
+        if (IsInstanceValid(_player) && _player.GlobalPosition.DistanceTo(_spawnArea.GlobalPosition) < _spawnDistance)
         {
             return;
         }
