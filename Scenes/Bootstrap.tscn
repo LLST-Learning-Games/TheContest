@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://q0x8s57p4m8l"]
+[gd_scene load_steps=6 format=3 uid="uid://q0x8s57p4m8l"]
 
 [ext_resource type="Script" uid="uid://dytb2ksmj64gc" path="res://Systems/Bootstrap.cs" id="1_llmnf"]
 [ext_resource type="PackedScene" uid="uid://cop1s0k8641k6" path="res://Systems/SystemLoader.tscn" id="3_blela"]
+[ext_resource type="PackedScene" uid="uid://oujqu1wqgqm7" path="res://Art/Shaders/crt_overlay.tscn" id="3_ejojg"]
+[ext_resource type="Shader" uid="uid://co1hx1k5ultlb" path="res://Art/Shaders/CRT.gdshader" id="4_ejojg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejojg"]
+shader = ExtResource("4_ejojg")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 2.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.03
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Bootstrap" type="Node2D" node_paths=PackedStringArray("_canvas")]
 script = ExtResource("1_llmnf")
@@ -10,3 +36,6 @@ _canvas = NodePath("MainMenuCanvas")
 [node name="SystemLoader" parent="." instance=ExtResource("3_blela")]
 
 [node name="MainMenuCanvas" type="CanvasLayer" parent="."]
+
+[node name="CRT_Overlay" parent="MainMenuCanvas" instance=ExtResource("3_ejojg")]
+material = SubResource("ShaderMaterial_ejojg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cdom5m82i6fit"]
+[gd_scene load_steps=20 format=4 uid="uid://cdom5m82i6fit"]
 
 [ext_resource type="TileSet" uid="uid://bo4kqn80agbmc" path="res://Environment/TileMap_48px/TileSet_48.tres" id="1_4exq4"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="2_bq22f"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_sml4d"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_a3gyn"]
 [ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="10_bq22f"]
+[ext_resource type="PackedScene" uid="uid://oujqu1wqgqm7" path="res://Art/Shaders/crt_overlay.tscn" id="11_0vxr6"]
+[ext_resource type="Shader" uid="uid://co1hx1k5ultlb" path="res://Art/Shaders/CRT.gdshader" id="12_v62de"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
@@ -28,6 +30,30 @@ size = Vector2(376, 353)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5s6u"]
 size = Vector2(652.5, 469)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8saeu"]
+shader = ExtResource("12_v62de")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 2.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.03
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Scene" type="Node2D"]
 
@@ -185,6 +211,9 @@ text = "Wealth this map:"
 
 [node name="GameOverButton" parent="CanvasLayer" instance=ExtResource("8_sml4d")]
 visible = false
+
+[node name="CRT_Overlay" parent="CanvasLayer" instance=ExtResource("11_0vxr6")]
+material = SubResource("ShaderMaterial_8saeu")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-96, -8)

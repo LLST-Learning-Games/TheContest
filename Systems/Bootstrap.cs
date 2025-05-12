@@ -26,6 +26,7 @@ public partial class Bootstrap : Node2D
         var mainMenu = SceneManager.GetScenePrefab("MainMenu");
         _mainScreenUi = mainMenu.Instantiate<Control>();
         _canvas.AddChild(_mainScreenUi);
+        _canvas.MoveChild(_mainScreenUi, 0);
         ConnectStartButton();
         ConnectCustomizeButton();
     }
@@ -67,5 +68,6 @@ public partial class Bootstrap : Node2D
         var customizationScene = SceneManager.GetScenePrefab("NeuroPulseCustomizer");
         var instantiated = customizationScene.Instantiate();
         _canvas.AddChild(instantiated);
+        _canvas.MoveChild(instantiated, 1);
     }
 }
