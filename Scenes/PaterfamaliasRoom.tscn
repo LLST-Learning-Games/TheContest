@@ -231,7 +231,7 @@ text = "You feel the familiar pinch as the NeuroInduction Current takes hold..."
 label_settings = ExtResource("2_83uuk")
 autowrap_mode = 2
 script = ExtResource("6_ggnpx")
-_narrativeSteps = Array[String](["The bones of the FATHER rest silently before you.", "You feel the familiar pinch as the NeuroInduction Current takes hold...", "As the induction takes hold, his eyes glitter and his voice rasps in the dark..."])
+_narrativeSteps = Array[String](["The bones of the FATHER rest silently before you.", "You feel the familiar pinch as the NeuroInduction Current takes hold of your senses...", "As the induction sends sparks across your vision, his eyes begin to glitter and his voice rasps in the dark:"])
 
 [node name="Skeleton" type="TextureRect" parent="."]
 layout_mode = 1
