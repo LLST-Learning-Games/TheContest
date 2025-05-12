@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbqjtr62lb0on"]
+[gd_scene load_steps=5 format=3 uid="uid://dbqjtr62lb0on"]
 
 [ext_resource type="Texture2D" uid="uid://dxynjivlpyh4n" path="res://Art/Ui/MainMenu.png" id="1_05sey"]
+[ext_resource type="Script" uid="uid://dci45f02fhmyi" path="res://Scenes/DialogRoomButton.cs" id="2_ix07p"]
+[ext_resource type="PackedScene" uid="uid://spf1ql7jyb4h" path="res://Scenes/PaterfamaliasRoom.tscn" id="3_tjqjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na84l"]
 line_spacing = 10.0
@@ -35,15 +37,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_05sey")
 
-[node name="Button" type="Button" parent="ColorRect" groups=["StartButton"]]
+[node name="StartGameButton" type="Button" parent="ColorRect" groups=["StartButton"]]
+layout_mode = 2
+offset_left = 173.0
+offset_top = 591.0
+offset_right = 347.0
+offset_bottom = 622.0
+text = "Proceed to The Arena"
+
+[node name="DialogueRoomButton" type="Button" parent="ColorRect" node_paths=PackedStringArray("_parent")]
 layout_mode = 2
 offset_left = 482.0
 offset_top = 391.0
 offset_right = 656.0
 offset_bottom = 422.0
-text = "Proceed to The Arena"
+text = "Visit Hall of the Father"
+script = ExtResource("2_ix07p")
+_dialogScene = ExtResource("3_tjqjj")
+_parent = NodePath("..")
 
-[node name="Button2" type="Button" parent="ColorRect" groups=["CustomizeButton"]]
+[node name="CustomizeWeaponButton" type="Button" parent="ColorRect" groups=["CustomizeButton"]]
 layout_mode = 2
 offset_left = 926.0
 offset_top = 425.0
@@ -78,3 +91,5 @@ offset_bottom = 56.0
 text = "House Of The Father"
 label_settings = SubResource("LabelSettings_na84l")
 horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/DialogueRoomButton" to="ColorRect/DialogueRoomButton" method="OnClick"]

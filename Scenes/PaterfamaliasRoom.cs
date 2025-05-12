@@ -9,6 +9,7 @@ public partial class PaterfamaliasRoom : Control
     [Export] private NarrativeLabel _narrativeLabel_Father;
     [Export] private Button _communeWithPaterButton;
     [Export] private Button _advanceConversationButton;
+    [Export] private ColorRect _screenFade;
 
     
     public override void _Ready()
@@ -62,5 +63,13 @@ public partial class PaterfamaliasRoom : Control
     public async void OnAdvanceConversationClick()
     {
         await _narrativeLabel_Father.AdvanceNarrative();
+    }
+
+    public async void OnLeaveClick()
+    {
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(_screenFade, "modulate:a", 1, 1);
+        await ToSignal(tween, "finished");
+        QueueFree();
     }
 }
