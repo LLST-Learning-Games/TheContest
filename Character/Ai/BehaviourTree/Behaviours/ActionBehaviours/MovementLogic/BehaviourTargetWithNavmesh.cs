@@ -6,10 +6,14 @@ namespace Behaviours;
 public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
 {
     [Export] private double _updateTime = 0.1;
+    [Export] public float SightDistance = 1000f;
+    [Export] public uint CollisionMask = 1 << 4;
     private NavigationAgent2D _navAgent;
     private Node2D _navMeshTarget;
     private Vector2 _nextPosition = Vector2.Zero;
     private double _currentTime = 0;
+    private RigidBody2D _actorBody;
+    
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
     {
         if (_navAgent == null)
@@ -17,6 +21,8 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             _navAgent = GetNavAgent(blackboard);
         }
 
+        GetRigidBodyFromBlackboard(blackboard);
+        
         if (_navMeshTarget == null)
         {
             _navMeshTarget = GetNavMeshTarget();
@@ -54,13 +60,56 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             return null;
         }
         Node2D target = playerGroup[0] as Node2D;
-        if (target == null)
+        
+        if (HasLineOfSightToTarget(target))
         {
-            _state = BehaviourState.Failure;
+            return target;
         }
-        return target;
+        return null;
+    }
+    
+    private void GetRigidBodyFromBlackboard(BehaviourTreeBlackboard blackboard)
+    {
+        if (blackboard.Actor is not RigidBody2D actor)
+        {
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+            }
+            _state = BehaviourState.Failure;
+            return;
+        }
+        _actorBody = actor;
     }
 
+    private bool HasLineOfSightToTarget(Node2D target)
+    {
+        if (_actorBody.GlobalPosition.DistanceTo(target.GlobalPosition) >= SightDistance)
+        {
+            return false;
+        }
+        
+        var spaceState = target.GetWorld2D().DirectSpaceState;
+
+        var query = new PhysicsRayQueryParameters2D
+        {
+            From = _actorBody.GlobalPosition,
+            To = target.GlobalPosition,
+            CollisionMask = CollisionMask,
+            HitFromInside = true
+        };
+
+        var result = spaceState.IntersectRay(query);
+
+        if (result.Count == 0)
+        {
+            // Nothing in the way — clear line of sight
+            return true;
+        }
+        
+        return false;
+    }
+    
     private NavigationAgent2D GetNavAgent(BehaviourTreeBlackboard blackboard)
     {
         if (blackboard.Actor is not Enemy actor)

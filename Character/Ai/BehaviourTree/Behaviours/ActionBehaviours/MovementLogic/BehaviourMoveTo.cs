@@ -19,6 +19,10 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 
         _state = BehaviourState.Running;
         GetLocationFromBlackboard(blackboard);
+        if (_state == BehaviourState.Failure)
+        {
+            return _state;
+        }
         GetRigidBodyFromBlackboard(blackboard);
         
         if (blackboard.IsVerbose && _currentTime == 0)

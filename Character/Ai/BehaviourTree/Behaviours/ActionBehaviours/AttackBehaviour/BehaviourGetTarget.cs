@@ -43,7 +43,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         Node2D target = targetGroup[0] as Node2D;
         if (HasLineOfSightToTarget(target))
         {
-            return targetGroup[0] as Node2D;
+            return target;
         }
 
         return null;

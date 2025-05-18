@@ -28,7 +28,7 @@ size = Vector2(376, 353)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5s6u"]
 size = Vector2(652.5, 469)
 
-[node name="Scene" type="Node2D"]
+[node name="Scene2" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="." groups=["CurrentMap"]]
 position = Vector2(475, 173)
