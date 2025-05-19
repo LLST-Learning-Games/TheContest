@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_u734x")
 Id = "cash"
-StartingBalance = 500.0
+StartingBalance = 25.0

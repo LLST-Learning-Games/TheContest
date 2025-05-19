@@ -28,6 +28,23 @@ public partial class PulseGraphEdit : GraphEdit
             SystemLoader.OnSystemLoadComplete += LookupProjectileData;
         }
     }
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event is InputEventKey eventKey)
+        {
+            if (eventKey.Pressed && !eventKey.Echo &&eventKey.Keycode == Key.X)
+            {
+                DebugAwardCurrency();
+            }
+        }
+    }
+
+    private void DebugAwardCurrency()
+    {
+        CurrencySystem currencySystem = SystemLoader.GetSystem<CurrencySystem>();
+        var currency = currencySystem.GetCurrency("cash");
+        currency.UpdateCurrencyByDelta(50);
+    }
     
     private void LookupProjectileData()
     {
