@@ -11,7 +11,7 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_2cdwd")
 _sprite = NodePath("AnimatedSprite2D")
 _explosionArea = NodePath("Area2D")
-_damageToDealOnExplosion = 100
+_damageToDealOnExplosion = 60
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 10

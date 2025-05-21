@@ -47,7 +47,7 @@ tile_map_data = PackedByteArray("AAAAAAIAAAACAAkAAAD8/wIAAAAAAAkAAAD8/wEAAAAAAAg
 tile_set = ExtResource("1_4exq4")
 
 [node name="EnemyWaveSpawner_Tank" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
-position = Vector2(1045, 571)
+position = Vector2(-19, 2627)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_v62de")
 _maxEnemies = 1
@@ -111,6 +111,15 @@ _maxEnemies = 2
 position = Vector2(4, 36)
 shape = SubResource("RectangleShape2D_ya8by")
 
+[node name="EnemyWaveSpawner7" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+position = Vector2(5173, 2795)
+_spawnArea = NodePath("Area2D/CollisionShape2D")
+_maxEnemies = 2
+
+[node name="CollisionShape2D" parent="Map/EnemyWaveSpawner7/Area2D" index="0"]
+position = Vector2(4, 36)
+shape = SubResource("RectangleShape2D_ya8by")
+
 [node name="EnemyWaveSpawner_Hunter" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
 position = Vector2(2021, -597)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
@@ -163,11 +172,24 @@ shape = SubResource("RectangleShape2D_62i8n")
 [node name="Timer" parent="Map/EnemyWaveSpawner_Hunter5" index="1"]
 wait_time = 1.5
 
+[node name="EnemyWaveSpawner_Hunter6" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+position = Vector2(1165, 3451)
+_spawnArea = NodePath("Area2D/CollisionShape2D")
+_enemyPrefab = ExtResource("3_0vxr6")
+_maxEnemies = 1
+
+[node name="CollisionShape2D" parent="Map/EnemyWaveSpawner_Hunter6/Area2D" index="0"]
+position = Vector2(-388, -161.5)
+shape = SubResource("RectangleShape2D_62i8n")
+
+[node name="Timer" parent="Map/EnemyWaveSpawner_Hunter6" index="1"]
+wait_time = 1.5
+
 [node name="EnemyWaveSpawner_Hunter2" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
 position = Vector2(3253, 11)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
-_maxEnemies = 1
+_maxEnemies = 3
 
 [node name="CollisionShape2D" parent="Map/EnemyWaveSpawner_Hunter2/Area2D" index="0"]
 position = Vector2(105.75, 789.5)
@@ -175,6 +197,30 @@ shape = SubResource("RectangleShape2D_h5s6u")
 
 [node name="Timer" parent="Map/EnemyWaveSpawner_Hunter2" index="1"]
 wait_time = 1.5
+
+[node name="EnemyWaveSpawner_Tank2" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+position = Vector2(4101, 1091)
+_spawnArea = NodePath("Area2D/CollisionShape2D")
+_enemyPrefab = ExtResource("3_v62de")
+_maxEnemies = 1
+
+[node name="CollisionShape2D" parent="Map/EnemyWaveSpawner_Tank2/Area2D" index="0"]
+position = Vector2(-773, -283)
+
+[node name="Timer" parent="Map/EnemyWaveSpawner_Tank2" index="1"]
+wait_time = 2.0
+
+[node name="EnemyWaveSpawner_Tank3" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+position = Vector2(1893, 4883)
+_spawnArea = NodePath("Area2D/CollisionShape2D")
+_enemyPrefab = ExtResource("3_v62de")
+_maxEnemies = 1
+
+[node name="CollisionShape2D" parent="Map/EnemyWaveSpawner_Tank3/Area2D" index="0"]
+position = Vector2(-773, -283)
+
+[node name="Timer" parent="Map/EnemyWaveSpawner_Tank3" index="1"]
+wait_time = 2.0
 
 [node name="ExitZone" parent="Map" node_paths=PackedStringArray("_escapeUi") instance=ExtResource("4_v62de")]
 position = Vector2(6445, 2987)
@@ -221,9 +267,13 @@ position = Vector2(-444, -329)
 [editable path="Map/EnemyWaveSpawner4"]
 [editable path="Map/EnemyWaveSpawner5"]
 [editable path="Map/EnemyWaveSpawner6"]
+[editable path="Map/EnemyWaveSpawner7"]
 [editable path="Map/EnemyWaveSpawner_Hunter"]
 [editable path="Map/EnemyWaveSpawner_Hunter3"]
 [editable path="Map/EnemyWaveSpawner_Hunter4"]
 [editable path="Map/EnemyWaveSpawner_Hunter5"]
+[editable path="Map/EnemyWaveSpawner_Hunter6"]
 [editable path="Map/EnemyWaveSpawner_Hunter2"]
+[editable path="Map/EnemyWaveSpawner_Tank2"]
+[editable path="Map/EnemyWaveSpawner_Tank3"]
 [editable path="CanvasLayer/CashUi2"]

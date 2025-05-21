@@ -23,4 +23,4 @@ script = ExtResource("5_fhrdo")
 [node name="MoveTo" type="Node" parent="Root/HuntBehaviour"]
 script = ExtResource("6_wa27n")
 _successDistance = 5.0
-_moveSpeed = 900000.0
+_moveSpeed = 800000.0

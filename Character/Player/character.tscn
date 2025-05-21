@@ -32,7 +32,7 @@ shape = SubResource("RectangleShape2D_ato57")
 
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("_characterBody2D") instance=ExtResource("3_7mpp7")]
 _characterBody2D = NodePath("..")
-_speed = 200.0
+_speed = 225.0
 
 [node name="PlayerProjectileSpawnComponent" parent="." node_paths=PackedStringArray("_defaultWeapon", "_energyUi") instance=ExtResource("4_l3pay")]
 _defaultWeapon = NodePath("Weapon_1")

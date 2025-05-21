@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d08fpbt26dnwv"]
+[gd_scene load_steps=13 format=3 uid="uid://d08fpbt26dnwv"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_2ifby"]
 [ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="2_sckx8"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_m2hrl"]
 [ext_resource type="PackedScene" uid="uid://bu2s8kq5b2ljs" path="res://Character/Ai/EntityBrain.tscn" id="7_vofs0"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="8_5nom5"]
+[ext_resource type="Script" uid="uid://bgu2l0o504k5v" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourAttack.cs" id="8_mp3ti"]
+[ext_resource type="Script" uid="uid://b5x0o5p1hd3mg" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/BehaviourIdle.cs" id="9_ukhuv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gyvxm"]
 rough = true
@@ -61,14 +63,26 @@ _moveSpeed = 700000.0
 [node name="Idle" parent="EntityBrain/Root/MoveBehaviour" index="2"]
 _idleTime = 2.0
 
+[node name="GetTarget" parent="EntityBrain/Root/AttackBehaviour" index="0"]
+SightDistance = 500.0
+
 [node name="AttackTarget" parent="EntityBrain/Root/AttackBehaviour" index="1"]
-_attackTime = 1.0
+_attackTime = 0.25
+
+[node name="AttackTarget2" type="Node" parent="EntityBrain/Root/AttackBehaviour" index="3"]
+script = ExtResource("8_mp3ti")
+_attackTime = 0.25
+
+[node name="Idle2" type="Node" parent="EntityBrain/Root/AttackBehaviour" index="4"]
+script = ExtResource("9_ukhuv")
+_idleTime = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.06098, 1)
-energy = 0.5
+color = Color(1, 0.48, 0.48, 1)
+energy = 0.75
 texture = ExtResource("8_5nom5")
-texture_scale = 2.0
+texture_scale = 3.0
 
 [editable path="EnemyProjectileSpawnComponent"]
 [editable path="EntityBrain"]

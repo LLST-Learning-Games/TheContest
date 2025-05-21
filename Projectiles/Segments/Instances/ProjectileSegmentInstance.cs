@@ -8,6 +8,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
 {
     [Export] private AnimatedSprite2D _sprite;
     [Export] private Area2D _triggerArea;
+    [Export] private Light2D _light;
     private List<ProjectileSegmentDefinition> _children;
 
     private Array<Node2D> _bodiesPresentOnInitialization;
@@ -23,6 +24,7 @@ public partial class ProjectileSegmentInstance : RigidBody2D
         _sprite.SetSpriteFrames(data.SpriteFrames);
         _sprite.Play();
         _sprite.Modulate = data.Colour;
+        _light.Color = data.Colour;
         _children = new(children);
         Scale = data.Scale;
         _triggerArea.BodyEntered += OnTriggerEntered;
