@@ -1,8 +1,10 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://bo4kqn80agbmc"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://bo4kqn80agbmc"]
 
 [ext_resource type="Texture2D" uid="uid://kgafwx1am8jy" path="res://Art/Tiles/vaporwave_b.png" id="1_q2vr6"]
 [ext_resource type="Texture2D" uid="uid://cwt0qomrfs2gj" path="res://Art/Tiles/vaporwave_d.png" id="1_wpook"]
 [ext_resource type="Texture2D" uid="uid://cbmg7efrj7jcy" path="res://Art/Tiles/non-rm-a2-square.png" id="2_wpook"]
+[ext_resource type="Texture2D" uid="uid://b2lgj4utfqmur" path="res://Art/Tiles/vaporwave_c.png" id="4_ncs86"]
+[ext_resource type="Texture2D" uid="uid://1vifrmsufuik" path="res://Art/Tiles/vaporwave_e.png" id="5_v1e3y"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_wpook"]
 tile_data = PackedInt32Array(0, 524288, 6, 65536, 524288, 7, 131072, 524288, 8, 196608, 524288, 8, 262144, 524288, 9, 1, 589824, 6, 65537, 589824, 7, 2, 589824, 6, 65538, 589824, 7, 3, 589824, 6, 65539, 589824, 7, 4, 589824, 6, 65540, 589824, 7, 5, 589824, 6, 65541, 589824, 7, 6, 655360, 6, 65542, 655360, 7, 131078, 655360, 8, 196614, 655360, 8, 262150, 655360, 9)
@@ -940,6 +942,14 @@ texture_region_size = Vector2i(48, 48)
 37:1/0 = 0
 37:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ncs86")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ihtud"]
+texture = ExtResource("4_ncs86")
+texture_region_size = Vector2i(48, 48)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08tur"]
+texture = ExtResource("5_v1e3y")
+texture_region_size = Vector2i(48, 48)
+
 [resource]
 tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 16
@@ -953,4 +963,6 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_e0afs")
 sources/2 = SubResource("TileSetAtlasSource_ncs86")
 sources/0 = SubResource("TileSetAtlasSource_v1e3y")
+sources/3 = SubResource("TileSetAtlasSource_ihtud")
+sources/4 = SubResource("TileSetAtlasSource_08tur")
 pattern_0 = SubResource("TileMapPattern_wpook")
