@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_r8oet")
-_speed = 10000.0
+_speed = 12000.0
 _damageToDealOnCollision = 25
 _stopMotionOnCollision = true
 IncludeInLibrary = true
@@ -18,7 +18,7 @@ Colour = Color(1, 1, 1, 1)
 Scale = Vector2(1, 1)
 Cost = 10
 AllowedChildCount = 1
-Delay = 0.5
+Delay = 0.4
 EnergyDrain = 10.0
 InstancePrefab = ExtResource("2_0hrnw")
 ShouldInheritCollisions = false

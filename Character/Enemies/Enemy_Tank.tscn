@@ -62,7 +62,7 @@ _moveSpeed = 700000.0
 _idleTime = 2.0
 
 [node name="AttackTarget" parent="EntityBrain/Root/AttackBehaviour" index="1"]
-_attackTime = 2.0
+_attackTime = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.06098, 1)
