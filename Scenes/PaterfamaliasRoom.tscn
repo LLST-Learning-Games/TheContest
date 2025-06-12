@@ -193,7 +193,7 @@ _data = {
 &"RESET": SubResource("Animation_83uuk")
 }
 
-[node name="PaterfamaliasRoom" type="Control" node_paths=PackedStringArray("_animationPlayer", "_narrativeLabel_Narrator", "_narrativeLabel_Father", "_communeWithPaterButton", "_advanceConversationButton", "_screenFade")]
+[node name="PaterfamaliasRoom" type="Control" node_paths=PackedStringArray("_animationPlayer", "_narrativeLabel_Narrator", "_narrativeLabel_Father", "_narrativeLabel_EndTemp", "_communeWithPaterButton", "_advanceConversationButton", "_screenFade")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,6 +204,7 @@ script = ExtResource("1_e5ydy")
 _animationPlayer = NodePath("AnimationPlayer")
 _narrativeLabel_Narrator = NodePath("NarrativeLabel_Narrator")
 _narrativeLabel_Father = NodePath("NarrativeLabel_Father")
+_narrativeLabel_EndTemp = NodePath("NarrativeLabel_End")
 _communeWithPaterButton = NodePath("StartButton")
 _advanceConversationButton = NodePath("ConverseButton")
 _screenFade = NodePath("ScreenFade")
@@ -222,16 +223,31 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1115.0
-offset_top = 31.0
-offset_right = -586.0
-offset_bottom = 230.0
+offset_left = -1133.0
+offset_top = 17.0
+offset_right = -512.0
+offset_bottom = 184.0
 grow_horizontal = 0
 text = "You feel the familiar pinch as the NeuroInduction Current takes hold..."
 label_settings = ExtResource("2_83uuk")
 autowrap_mode = 2
 script = ExtResource("6_ggnpx")
 _narrativeSteps = Array[String](["The bones of the FATHER rest silently before you.", "You feel the familiar pinch as the NeuroInduction Current takes hold of your senses...", "As the induction sends sparks across your vision, his eyes begin to glitter and his voice rasps in the dark:"])
+
+[node name="NarrativeLabel_End" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -947.0
+offset_top = 531.0
+offset_right = -326.0
+offset_bottom = 698.0
+grow_horizontal = 0
+text = "His bones are silent. He speaks no more."
+label_settings = ExtResource("2_83uuk")
+autowrap_mode = 2
 
 [node name="Skeleton" type="TextureRect" parent="."]
 layout_mode = 1
@@ -289,10 +305,10 @@ _narrativeSteps = Array[String](["Finally you stand before me all wreathed in li
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 574.0
-offset_top = 39.0
-offset_right = 703.0
-offset_bottom = 93.0
+offset_left = 654.0
+offset_top = 31.0
+offset_right = 820.0
+offset_bottom = 85.0
 text = "Commune with your
 PATERFAMALIAS"
 

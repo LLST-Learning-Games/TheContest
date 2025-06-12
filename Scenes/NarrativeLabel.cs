@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
@@ -7,6 +8,7 @@ public partial class NarrativeLabel : Label
     private const double FADE_DURATION = 0.5;
     [Export] private Array<string> _narrativeSteps;
 
+    public Action OnNarrativeEnds;
     private int _currentStep = 0;
 
     public override void _Ready()
@@ -31,6 +33,7 @@ public partial class NarrativeLabel : Label
         if (_currentStep >= _narrativeSteps.Count)
         {
             ResetNarrative();
+            OnNarrativeEnds?.Invoke();
             return;
         }
         Text = _narrativeSteps[_currentStep];

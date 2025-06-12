@@ -7,6 +7,7 @@ public partial class PaterfamaliasRoom : Control
     [Export] private AnimationPlayer _animationPlayer;
     [Export] private NarrativeLabel _narrativeLabel_Narrator;
     [Export] private NarrativeLabel _narrativeLabel_Father;
+    [Export] private Label _narrativeLabel_EndTemp;
     [Export] private Button _communeWithPaterButton;
     [Export] private Button _advanceConversationButton;
     [Export] private ColorRect _screenFade;
@@ -17,10 +18,11 @@ public partial class PaterfamaliasRoom : Control
         base._Ready();
         _animationPlayer.Play("OnPaterEnter");
         _animationPlayer.AnimationFinished += OnFatherEnterAnimationComplete;
+        _narrativeLabel_Father.OnNarrativeEnds += OnFatherNarrativeEnds;
         HideButton(_communeWithPaterButton);
         HideButton(_advanceConversationButton);
     }
-
+    
     private void HideButton(Button button)
     {
         var buttonModulate = button.Modulate;
@@ -65,6 +67,20 @@ public partial class PaterfamaliasRoom : Control
         await _narrativeLabel_Father.AdvanceNarrative();
     }
 
+    private void OnFatherNarrativeEnds()
+    {
+        HideButton(_advanceConversationButton);
+        _animationPlayer.PlayBackwards("OnPaterGlow");
+        _animationPlayer.AnimationFinished += FadeEndLabelIn;
+    }
+    
+    private async void FadeEndLabelIn(StringName animName)
+    {
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(_narrativeLabel_EndTemp, "modulate:a", 1, 0.5);
+        await ToSignal(tween, "finished");
+    }
+    
     public async void OnLeaveClick()
     {
         Tween tween = GetTree().CreateTween();

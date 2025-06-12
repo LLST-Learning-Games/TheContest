@@ -61,6 +61,8 @@ public partial class Bootstrap : Node2D
         SystemLoader.OnGameplayEnd();
         _gameplaySceneInstantiated.QueueFree();
         InstantiateMainMenu();
+        var familyHouse = _mainScreenUi.GetNode<Control>("ColorRect/FamilyHouse_Control");
+        familyHouse.Visible = true;
     }
 
     private void OnCustomizeWeaponSelect()

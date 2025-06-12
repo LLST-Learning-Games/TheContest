@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://x5dqi6htbqo5"]
+[gd_scene load_steps=4 format=3 uid="uid://x5dqi6htbqo5"]
 
+[ext_resource type="Script" uid="uid://cpey8keug1xwi" path="res://Scenes/MainMenu.cs" id="1_8saeu"]
 [ext_resource type="LabelSettings" uid="uid://d1xt8ui48hwhs" path="res://Scenes/TextSettings.tres" id="1_853f1"]
 [ext_resource type="PackedScene" uid="uid://dbqjtr62lb0on" path="res://Scenes/FamilyHouse.tscn" id="1_tt5f1"]
 
@@ -8,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_8saeu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
