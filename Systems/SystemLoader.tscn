@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ulsvplmtfi1e" path="res://Projectiles/ProjectileLibrary.tscn" id="4_b0gg8"]
 [ext_resource type="Script" uid="uid://b7614wfd2fbhp" path="res://Systems/SceneManagerSystem/SceneManagerSystem.cs" id="5_ifnho"]
 [ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
-[ext_resource type="PackedScene" uid="uid://cdom5m82i6fit" path="res://Scenes/TestMap_48px.tscn" id="7_1j2ki"]
+[ext_resource type="PackedScene" uid="uid://cdom5m82i6fit" path="res://Scenes/RoomBasedMapTest.tscn" id="7_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="8_rmhsp"]
 [ext_resource type="Script" uid="uid://bsw216m72i8mr" path="res://Systems/CameraSystem/CameraSystem.cs" id="10_nvh5w"]
 

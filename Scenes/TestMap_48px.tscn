@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cdom5m82i6fit"]
+[gd_scene load_steps=18 format=4 uid="uid://tgcrs1cs7upi"]
 
 [ext_resource type="TileSet" uid="uid://bo4kqn80agbmc" path="res://Environment/TileMap_48px/TileSet_48.tres" id="1_4exq4"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="2_bq22f"]
