@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdom5m82i6fit"]
 
 [ext_resource type="Script" uid="uid://3273bmgx7u6c" path="res://Environment/Rooms/RoomMap.cs" id="1_dhci3"]
-[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="2_rxsff"]
+[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Character/Enemies/EmptyRoom.tscn" id="2_rxsff"]
 [ext_resource type="PackedScene" uid="uid://crevd71bgfav8" path="res://Character/Player/character.tscn" id="5_b8f6h"]
 [ext_resource type="PackedScene" uid="uid://jicy8s60x7k3" path="res://Ui/CashUi.tscn" id="6_t3vu3"]
 [ext_resource type="PackedScene" uid="uid://c1aono5acfnlg" path="res://Ui/EscapeUi.tscn" id="7_bxgkc"]
