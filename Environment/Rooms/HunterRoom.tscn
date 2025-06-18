@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_lnjsj"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="2_t06hs"]
 
-[node name="EmptyRoom" instance=ExtResource("1_lnjsj")]
+[node name="HunterRoom" instance=ExtResource("1_lnjsj")]
 
 [node name="HunterEnemy" parent="." index="2" instance=ExtResource("2_t06hs")]
 z_index = 1

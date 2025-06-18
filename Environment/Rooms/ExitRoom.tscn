@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ddtp17eqi5bsf" path="res://Environment/Exit/exit_zone.tscn" id="2_bayuw"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="3_vxelq"]
 
-[node name="EmptyRoom" instance=ExtResource("1_xxun2")]
+[node name="ExitRoom" instance=ExtResource("1_xxun2")]
 
 [node name="ExitZone" parent="." index="2" instance=ExtResource("2_bayuw")]
 position = Vector2(544, 304)
