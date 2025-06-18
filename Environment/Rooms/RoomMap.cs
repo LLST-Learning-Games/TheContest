@@ -1,16 +1,17 @@
 using Godot;
-using System;
 using System.Collections.Generic;
+using Godot.Collections;
 
 public partial class RoomMap : NavigationRegion2D
 {
     [Export] private Vector2I _roomMapSize = new Vector2I(3, 3);
-    [Export] private PackedScene _roomPrefab;
+    [Export] private Array<PackedScene> _roomPrefabs;
     
     [Export] private Vector2I _roomSizeInTiles = new Vector2I(24, 13);
     [Export] private int _tileSizeInPixels = 48;
 
     private List<Room> _rooms;
+    private readonly RandomNumberGenerator _rng = new();
     
     public override void _Ready()
     {
@@ -37,6 +38,7 @@ public partial class RoomMap : NavigationRegion2D
 
     private Room SelectRandomRoom()
     {
-        return _roomPrefab.Instantiate<Room>();
+        int i = _rng.RandiRange(0,_roomPrefabs.Count - 1);
+        return _roomPrefabs[i].Instantiate<Room>();
     }
 }

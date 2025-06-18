@@ -11,6 +11,7 @@ public partial class ExitZone : Area2D
     private double _currentTime = 0;
     public override void _Ready()
     {
+        _escapeUi = GetNode<EscapeUi>("/root/Bootstrap/Scene/CanvasLayer/EscapeUi");
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
         _isPlayerPresent = false;

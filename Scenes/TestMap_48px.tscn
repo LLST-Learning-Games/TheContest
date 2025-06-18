@@ -222,13 +222,11 @@ position = Vector2(-773, -283)
 [node name="Timer" parent="Map/EnemyWaveSpawner_Tank3" index="1"]
 wait_time = 2.0
 
-[node name="ExitZone" parent="Map" node_paths=PackedStringArray("_escapeUi") instance=ExtResource("4_v62de")]
+[node name="ExitZone" parent="Map" instance=ExtResource("4_v62de")]
 position = Vector2(6445, 2987)
-_escapeUi = NodePath("../../CanvasLayer/EscapeUi")
 
-[node name="ExitZone2" parent="Map" node_paths=PackedStringArray("_escapeUi") instance=ExtResource("4_v62de")]
+[node name="ExitZone2" parent="Map" instance=ExtResource("4_v62de")]
 position = Vector2(1189, 5395)
-_escapeUi = NodePath("../../CanvasLayer/EscapeUi")
 
 [node name="Character" parent="." groups=["Player"] instance=ExtResource("5_b8f6h")]
 position = Vector2(-632, -320)

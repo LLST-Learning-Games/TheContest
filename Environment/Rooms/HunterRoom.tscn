@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://butye0v00fxd2"]
+
+[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_lnjsj"]
+[ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="2_t06hs"]
+
+[node name="EmptyRoom" instance=ExtResource("1_lnjsj")]
+
+[node name="HunterEnemy" parent="." index="2" instance=ExtResource("2_t06hs")]
+position = Vector2(104, 312)
+
+[node name="HunterEnemy2" parent="." index="3" instance=ExtResource("2_t06hs")]
+position = Vector2(568, 48)
+
+[node name="HunterEnemy3" parent="." index="4" instance=ExtResource("2_t06hs")]
+position = Vector2(1064, 312)
+
+[node name="HunterEnemy4" parent="." index="5" instance=ExtResource("2_t06hs")]
+position = Vector2(584, 576)

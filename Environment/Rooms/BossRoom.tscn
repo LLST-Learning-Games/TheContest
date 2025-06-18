@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b325e61aglbt1"]
+
+[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_evlt8"]
+[ext_resource type="PackedScene" uid="uid://d08fpbt26dnwv" path="res://Character/Enemies/Enemy_Tank.tscn" id="2_mjvcd"]
+
+[node name="EmptyRoom" instance=ExtResource("1_evlt8")]
+
+[node name="Enemy_Tank" parent="." index="2" instance=ExtResource("2_mjvcd")]
+z_index = 1
+position = Vector2(576, 312)

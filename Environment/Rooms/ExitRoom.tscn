@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://rpn3vigxhtol"]
+
+[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_xxun2"]
+[ext_resource type="PackedScene" uid="uid://ddtp17eqi5bsf" path="res://Environment/Exit/exit_zone.tscn" id="2_bayuw"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="3_vxelq"]
+
+[node name="EmptyRoom" instance=ExtResource("1_xxun2")]
+
+[node name="ExitZone" parent="." index="2" instance=ExtResource("2_bayuw")]
+position = Vector2(544, 304)
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="3"]
+position = Vector2(520, 312)
+texture = ExtResource("3_vxelq")
