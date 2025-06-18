@@ -6,13 +6,17 @@
 [node name="EmptyRoom" instance=ExtResource("1_lnjsj")]
 
 [node name="HunterEnemy" parent="." index="2" instance=ExtResource("2_t06hs")]
+z_index = 1
 position = Vector2(104, 312)
 
 [node name="HunterEnemy2" parent="." index="3" instance=ExtResource("2_t06hs")]
+z_index = 1
 position = Vector2(568, 48)
 
 [node name="HunterEnemy3" parent="." index="4" instance=ExtResource("2_t06hs")]
+z_index = 1
 position = Vector2(1064, 312)
 
 [node name="HunterEnemy4" parent="." index="5" instance=ExtResource("2_t06hs")]
+z_index = 1
 position = Vector2(584, 576)
