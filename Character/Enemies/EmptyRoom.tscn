@@ -15,7 +15,9 @@ tile_set = ExtResource("2_0ghs4")
 [node name="Obstacles" type="TileMapLayer" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("3_nk85v")]
+z_index = 1
 position = Vector2(1032, 512)
 
 [node name="Pickup" parent="." instance=ExtResource("4_0ghs4")]
+z_index = 1
 position = Vector2(88, 88)

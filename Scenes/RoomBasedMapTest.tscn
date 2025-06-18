@@ -14,6 +14,7 @@ script = ExtResource("1_dhci3")
 _roomPrefab = ExtResource("2_rxsff")
 
 [node name="Character" parent="." groups=["Player"] instance=ExtResource("5_b8f6h")]
+z_index = 2
 position = Vector2(520, 280)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
