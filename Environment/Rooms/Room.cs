@@ -1,8 +1,10 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class Room : Node2D
 {
+    [Export] private Array<PassageData> _Passages = new Array<PassageData>();
     // ==================
     // Maybe we don't want this to live here?
     // This data has been migrated to RoomMap since it must be constant.
@@ -22,3 +24,5 @@ public partial class Room : Node2D
     //     return _roomSizeInTiles * tileSize;
     // }
 }
+
+
