@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PassageData" load_steps=2 format=3 uid="uid://ciyl70jfoo7uv"]
+
+[ext_resource type="Script" uid="uid://cxmooll2ewo5n" path="res://Environment/Rooms/Passages/PassageData.cs" id="1_1ttwv"]
+
+[resource]
+script = ExtResource("1_1ttwv")
+PassageDirection = 1
+TileLocations = Array[Vector2i]([Vector2i(23, 4), Vector2i(23, 5), Vector2i(23, 6), Vector2i(23, 7), Vector2i(23, 8)])
+TileSourceId = 2
+TileAtlasCoords = Vector2i(1, 25)
+metadata/_custom_type_script = "uid://cxmooll2ewo5n"
