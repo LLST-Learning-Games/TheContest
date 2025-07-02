@@ -39,6 +39,18 @@ offset_bottom = 39.0
 grow_vertical = 0
 text = "CONFIRM NEUROPULSE"
 
+[node name="DebugUnlock" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 199.0
+offset_bottom = 39.0
+grow_vertical = 0
+text = "DEBUG UNLOCK ALL"
+
 [node name="PulseGraphEdit" type="GraphEdit" parent="."]
 layout_mode = 0
 offset_left = 16.0

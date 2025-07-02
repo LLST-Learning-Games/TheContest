@@ -74,7 +74,7 @@ offset_bottom = 202.0
 [node name="NeuroPulseFactoryControl" parent="." instance=ExtResource("3_qpe54")]
 layout_mode = 1
 
-[node name="PulseGraphEdit" parent="NeuroPulseFactoryControl" index="3" node_paths=PackedStringArray("_descriptionLabel")]
+[node name="PulseGraphEdit" parent="NeuroPulseFactoryControl" index="4" node_paths=PackedStringArray("_descriptionLabel")]
 _descriptionLabel = NodePath("../../InformationPanel/DescriptionLabel")
 
 [node name="PulseLibraryControl" type="Control" parent="." node_paths=PackedStringArray("_container", "_descriptionLabel")]
@@ -157,5 +157,6 @@ offset_right = 40.0
 
 [connection signal="pressed" from="NeuroPulseFactoryControl_OLD/ConfirmButton" to="NeuroPulseFactoryControl_OLD" method="OnConfirmSelection"]
 [connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl/PulseGraphEdit" method="OnConfirmSelection"]
+[connection signal="pressed" from="NeuroPulseFactoryControl/DebugUnlock" to="PulseLibraryControl" method="DebugShowProjectileDataIgnoringLocks"]
 
 [editable path="NeuroPulseFactoryControl"]

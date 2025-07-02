@@ -11,6 +11,7 @@ public partial class ProjectileLibrary : BaseSystem
 	[Export] private string _collisionPath = "res://Projectiles/Segments/CollisionSegment";
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _trajectories;
 	private Godot.Collections.Dictionary<string, ProjectileSegmentData> _collisions;
+	private HashSet<string> _unlockedSegments = new();
 	
 	[Export] public NeuroPulse PlayerPulse { get; private set; }
 	
@@ -56,6 +57,11 @@ public partial class ProjectileLibrary : BaseSystem
 					continue;
 				}
 				dictionary.Add(resource.Id, resource);
+				if (resource.StartUnlocked)
+				{
+					_unlockedSegments.Add(resource.Id);
+				}
+				
 				GD.Print($"[{GetType().Name}] Loaded trajectory: " + fileName);
 			}
 		}
@@ -92,9 +98,47 @@ public partial class ProjectileLibrary : BaseSystem
 		return GetCollisionResource(projectileName);
 	}
 	
+	
+	public ProjectileSegmentData GetUnlockedResource(string projectileName)
+	{
+		var data = GetTrajectoryResource(projectileName);
+		if (data != null)
+		{
+			return data;
+		}
+		return GetCollisionResource(projectileName);
+	}
+	
+	public void UnlockPulseId(string id) => _unlockedSegments.Add(id);
+	
 	public ICollection<string> GetTrajectoryIds() => _trajectories.Keys;
 	public ICollection<string> GetCollisionIds() => _collisions.Keys;
 	
 	public IEnumerable<string> GetAllPulseIds() => GetTrajectoryIds().Concat(GetCollisionIds());
+
+	public List<string> GetAllUnlockableIds()
+	{
+		var unlockableIds = new List<string>();
+		foreach (var data in _trajectories.Values)
+		{
+			if (data.Unlockable)
+			{
+				unlockableIds.Add(data.Id);
+			}
+		}
+		
+		foreach (var data in _collisions.Values)
+		{
+			if (data.Unlockable)
+			{
+				unlockableIds.Add(data.Id);
+			}
+		}
+
+		return unlockableIds;
+	}
+	public List<string> GetAllUnlockedPulseIds() => _unlockedSegments.ToList();
+	
+	
 
 }

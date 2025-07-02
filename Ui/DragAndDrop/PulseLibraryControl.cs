@@ -27,7 +27,20 @@ public partial class PulseLibraryControl : Control
 
     private void LookupProjectileData()
     {
-        var ids = _library.GetAllPulseIds();
+        ClearDraggableUiList();
+        var ids = _library.GetAllUnlockedPulseIds();
+        PopulateDraggables(ids);
+    }
+    
+    private void DebugShowProjectileDataIgnoringLocks()
+    {
+        ClearDraggableUiList();
+        var ids = _library.GetAllPulseIds().ToList();
+        PopulateDraggables(ids);
+    }
+
+    private void PopulateDraggables(List<string> ids)
+    {
         foreach (var id in ids)
         {
             var newDraggable = _draggablePrefab.Instantiate<Draggable>();
@@ -37,5 +50,15 @@ public partial class PulseLibraryControl : Control
             _draggables.Add(newDraggable);
             _container.AddChild(newDraggable);
         }
+    }
+
+    private void ClearDraggableUiList()
+    {
+        foreach(var draggable in _draggables)
+        {
+            draggable.QueueFree();
+        }
+
+        _draggables.Clear();
     }
 }

@@ -6,6 +6,8 @@ public abstract partial class ProjectileSegmentData : Resource
 {
     [Export] public bool IncludeInLibrary = true;
     [Export] public string Id;
+    [Export] public bool StartUnlocked;
+    [Export] public bool Unlockable = true;
     [Export] public Texture2D Icon;
     [Export] public SpriteFrames SpriteFrames;
     [Export] public Color Colour = Colors.White;
