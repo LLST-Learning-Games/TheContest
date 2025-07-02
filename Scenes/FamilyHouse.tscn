@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbqjtr62lb0on"]
+[gd_scene load_steps=6 format=3 uid="uid://dbqjtr62lb0on"]
 
 [ext_resource type="Texture2D" uid="uid://dxynjivlpyh4n" path="res://Art/Ui/MainMenu.png" id="1_05sey"]
 [ext_resource type="Script" uid="uid://dci45f02fhmyi" path="res://Scenes/DialogRoomButton.cs" id="2_ix07p"]
 [ext_resource type="PackedScene" uid="uid://spf1ql7jyb4h" path="res://Scenes/PaterfamaliasRoom.tscn" id="3_tjqjj"]
+[ext_resource type="FontFile" uid="uid://dfok40iiqypgc" path="res://Art/Fonts/planet_kosmos/PLANK___.TTF" id="4_tjqjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na84l"]
 line_spacing = 10.0
 paragraph_spacing = 10.0
+font = ExtResource("4_tjqjj")
 font_size = 38
 font_color = Color(0.933333, 0, 1, 1)
 shadow_size = 7
-shadow_color = Color(0.3905, 0.31, 1, 1)
+shadow_color = Color(0.285564, 0.000275308, 0.865293, 1)
 shadow_offset = Vector2(2, 2)
 
 [node name="FamilyHouse_Control" type="Control"]
@@ -68,17 +70,18 @@ Weapon"
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 layout_mode = 0
-offset_left = 354.0
-offset_top = 35.0
-offset_right = 809.0
-offset_bottom = 98.0
+offset_left = 149.0
+offset_top = 31.0
+offset_right = 702.0
+offset_bottom = 94.0
+scale = Vector2(1.54936, 1.76)
 color = Color(1, 1, 0.666667, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 450.0
+offset_right = 547.0
 offset_bottom = 59.0
 color = Color(0, 0, 0, 1)
 

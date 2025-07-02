@@ -1,9 +1,12 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://dttvytf7diudb"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dttvytf7diudb"]
+
+[ext_resource type="FontFile" uid="uid://c2d7gnh6mpl7m" path="res://Art/Fonts/dot_matrix/DOTMATRI.TTF" id="1_t3qg2"]
 
 [resource]
 line_spacing = -12.545
 paragraph_spacing = 10.0
-font_size = 38
+font = ExtResource("1_t3qg2")
+font_size = 43
 font_color = Color(0.59, 0.59, 0.59, 1)
 shadow_size = 7
 shadow_color = Color(0.305966, 0.257622, 0.0128643, 1)
