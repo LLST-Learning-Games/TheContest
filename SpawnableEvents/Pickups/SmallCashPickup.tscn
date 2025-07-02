@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxylu8n8gn2c5"]
 
-[ext_resource type="Script" uid="uid://debnoisftoaaj" path="res://SpawnableEvents/Pickup.cs" id="1_ej2kh"]
+[ext_resource type="Script" uid="uid://debnoisftoaaj" path="res://SpawnableEvents/Pickups/Pickup.cs" id="1_ej2kh"]
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="2_jf3t3"]
 [ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/ProgressBarWorldUi.tscn" id="3_jf3t3"]
 [ext_resource type="Texture2D" uid="uid://cg47wyfavlbkg" path="res://Art/Ui/xbox_button_a.png" id="4_2vurf"]
@@ -15,9 +15,9 @@ region = Rect2(72, 40, 8, 8)
 
 [node name="Pickup" type="Node2D" node_paths=PackedStringArray("_area2D", "_pickupProgressBar")]
 script = ExtResource("1_ej2kh")
-_rewardId = "newCash"
 _area2D = NodePath("Area2D")
 _pickupProgressBar = NodePath("ProgressBar")
+_pickupBehaviour = null
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 10

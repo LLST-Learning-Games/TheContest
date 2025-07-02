@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="5_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://dpd4iad4gi2nl" path="res://Character/Enemies/HunterEnemy.tscn" id="6_ni31j"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="6_y2354"]
-[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="7_xlvrw"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="7_xlvrw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m7jmp"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)

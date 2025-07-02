@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d1c3y3onul8bu"]
+
+[ext_resource type="Script" uid="uid://pteb3jnojtb7" path="res://SpawnableEvents/Pickups/PickupBehaviour/CashRewardPickupBehaviour.cs" id="1_ibw6h"]
+
+[resource]
+script = ExtResource("1_ibw6h")
+_rewardAmount = 25.0
+_rewardId = "cash"

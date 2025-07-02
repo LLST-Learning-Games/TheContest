@@ -6,11 +6,10 @@ namespace TheContest.Projectiles.SpawnableEvents;
 
 public partial class Pickup : Node2D
 {
-    [Export] private float _rewardAmount = 10f;
-    [Export] private string _rewardId = "cash";
     [Export] private Area2D _area2D;
     [Export] private double _pickupTime = 0.2;
     [Export] private ProgressBarUi _pickupProgressBar;
+    [Export] private PickupBehaviour _pickupBehaviour;
 
     private bool _isInArea = false;
     private double _elapsedPickupTime = 0;
@@ -78,9 +77,7 @@ public partial class Pickup : Node2D
 
     private void PickItUp()
     {
-        var wallet = SystemLoader.GetSystem<CurrencySystem>();
-        var currency = wallet.GetCurrency(_rewardId);
-        currency.UpdateCurrencyByDelta(_rewardAmount);
+        _pickupBehaviour.PickItUp();
         QueueFree();
     }
 

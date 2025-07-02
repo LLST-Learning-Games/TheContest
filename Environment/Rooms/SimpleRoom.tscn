@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_vg4aa"]
 [ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="2_4j0hs"]
-[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="3_2jsrw"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="3_2jsrw"]
 
 [node name="SimpleRoom" instance=ExtResource("1_vg4aa")]
 

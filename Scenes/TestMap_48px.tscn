@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c1aono5acfnlg" path="res://Ui/EscapeUi.tscn" id="7_bxgkc"]
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_sml4d"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_a3gyn"]
-[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickup.tscn" id="10_bq22f"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="10_bq22f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
