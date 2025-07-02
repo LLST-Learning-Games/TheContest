@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://crawc2wtn0gxh"]
 
-[ext_resource type="Script" uid="uid://pteb3jnojtb7" path="res://SpawnableEvents/Pickups/PickupBehaviour/CashRewardPickupBehaviour.cs" id="1_gseoj"]
+[ext_resource type="Script" uid="uid://pteb3jnojtb7" path="res://SpawnableEvents/Pickups/PickupBehaviour/CashRewardPickupBehaviour.cs" id="1_n158o"]
 
 [resource]
-script = ExtResource("1_gseoj")
+script = ExtResource("1_n158o")
 _rewardAmount = 10.0
-_rewardId = "cash"
+_rewardId = "newCash"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d08fpbt26dnwv"]
 
 [ext_resource type="Script" uid="uid://gox7dx2ufi8t" path="res://Character/Enemies/Enemy.cs" id="1_2ifby"]
-[ext_resource type="PackedScene" uid="uid://bpq2thvfej8fl" path="res://SpawnableEvents/Pickups/LargeCashPickup.tscn" id="2_mp3ti"]
+[ext_resource type="PackedScene" uid="uid://dsrkkuoeg3a15" path="res://SpawnableEvents/Pickups/NeuroPulseUnlockPickup.tscn" id="2_mp3ti"]
 [ext_resource type="Texture2D" uid="uid://bq05keh3y8dsh" path="res://Art/Characters/TogaEnemy.png" id="3_mp3ti"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="4_ukhuv"]
 [ext_resource type="PackedScene" uid="uid://c15y044mkacgd" path="res://Character/Enemies/EnemyProjectileSpawnComponent.tscn" id="5_ht48e"]

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkcbhmmb1ft7b"]
+
+[ext_resource type="Script" uid="uid://b87ei1tqnbarp" path="res://SpawnableEvents/Pickups/PickupBehaviour/UnlockNeuropulseSegmentPickupBehaviour.cs" id="1_eg5tx"]
+
+[resource]
+script = ExtResource("1_eg5tx")

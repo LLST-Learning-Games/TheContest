@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_ibw6h")
 _rewardAmount = 25.0
-_rewardId = "cash"
+_rewardId = "newCash"

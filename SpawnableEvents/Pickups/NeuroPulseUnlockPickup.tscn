@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsrkkuoeg3a15"]
+
+[ext_resource type="Script" uid="uid://debnoisftoaaj" path="res://SpawnableEvents/Pickups/Pickup.cs" id="1_g23kg"]
+[ext_resource type="Resource" uid="uid://bkcbhmmb1ft7b" path="res://SpawnableEvents/Pickups/PickupBehaviour/RandomNeuroPulsePickup.tres" id="2_g23kg"]
+[ext_resource type="Texture2D" uid="uid://dk6llp1sk5l7e" path="res://Art/colored_tilemap_packed.png" id="3_g23kg"]
+[ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/ProgressBarWorldUi.tscn" id="4_wwhxm"]
+[ext_resource type="Texture2D" uid="uid://cg47wyfavlbkg" path="res://Art/Ui/xbox_button_a.png" id="5_ydx78"]
+[ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="6_7ad0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_611fu"]
+radius = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o8he"]
+atlas = ExtResource("3_g23kg")
+region = Rect2(64, 32, 8, 8)
+
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("_area2D", "_pickupProgressBar")]
+script = ExtResource("1_g23kg")
+_area2D = NodePath("Area2D")
+_pickupTime = 0.5
+_pickupProgressBar = NodePath("ProgressBar")
+_pickupBehaviour = ExtResource("2_g23kg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 10
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_611fu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_4o8he")
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_wwhxm")]
+position = Vector2(5, 22)
+
+[node name="Sprite2D_BarFull" parent="ProgressBar/Container" index="1"]
+modulate = Color(0.916774, 0.520841, 3.85046e-07, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ProgressBar"]
+modulate = Color(0.917647, 0.521569, 0, 1)
+position = Vector2(-20, 0)
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("5_ydx78")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.933333, 0, 1, 1)
+texture = ExtResource("6_7ad0c")
+
+[editable path="ProgressBar"]

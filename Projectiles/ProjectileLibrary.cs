@@ -121,7 +121,7 @@ public partial class ProjectileLibrary : BaseSystem
 		var unlockableIds = new List<string>();
 		foreach (var data in _trajectories.Values)
 		{
-			if (data.Unlockable)
+			if (data.Unlockable && !_unlockedSegments.Contains(data.Id))
 			{
 				unlockableIds.Add(data.Id);
 			}
@@ -129,7 +129,7 @@ public partial class ProjectileLibrary : BaseSystem
 		
 		foreach (var data in _collisions.Values)
 		{
-			if (data.Unlockable)
+			if (data.Unlockable && !_unlockedSegments.Contains(data.Id))
 			{
 				unlockableIds.Add(data.Id);
 			}

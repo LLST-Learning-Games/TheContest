@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://6apvc6blstl2"]
+[gd_scene load_steps=5 format=3 uid="uid://6apvc6blstl2"]
 
 [ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_f6ru7"]
 [ext_resource type="PackedScene" uid="uid://c47qe5lm46qiv" path="res://Character/Enemies/Enemy.tscn" id="2_eqdt3"]
-[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="3_xno16"]
+[ext_resource type="PackedScene" uid="uid://dsrkkuoeg3a15" path="res://SpawnableEvents/Pickups/NeuroPulseUnlockPickup.tscn" id="3_eqdt3"]
+[ext_resource type="PackedScene" uid="uid://bpq2thvfej8fl" path="res://SpawnableEvents/Pickups/LargeCashPickup.tscn" id="4_xno16"]
 
 [node name="MobRoom" instance=ExtResource("1_f6ru7")]
 
@@ -26,10 +27,8 @@ position = Vector2(80, 536)
 z_index = 1
 position = Vector2(600, 288)
 
-[node name="Pickup" parent="." index="7" instance=ExtResource("3_xno16")]
-z_index = 1
-position = Vector2(544, 312)
+[node name="Pickup" parent="." index="7" instance=ExtResource("3_eqdt3")]
+position = Vector2(536, 288)
 
-[node name="Pickup2" parent="." index="8" instance=ExtResource("3_xno16")]
-z_index = 1
-position = Vector2(592, 344)
+[node name="Pickup2" parent="." index="8" instance=ExtResource("4_xno16")]
+position = Vector2(608, 344)
