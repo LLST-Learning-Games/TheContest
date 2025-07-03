@@ -127,6 +127,8 @@ public partial class PulseGraphEdit : GraphEdit
         RecursivelyGeneratePulseTree(trajectoryDefinition, _rootPulse);
         
         var newWeapon = Library.Factory.ExportNeuroPulse();
+        newWeapon.SetMaxEnergy(Library.PlayerPulse.MaxEnergy);
+        newWeapon.SetRechargeRate(Library.PlayerPulse.RechargeRate);
         Library.SetPlayerPulse(newWeapon);
         
         GetParent().GetParent().QueueFree();        // clear the selection UI

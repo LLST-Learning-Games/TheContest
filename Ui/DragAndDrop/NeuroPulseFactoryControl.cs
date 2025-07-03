@@ -90,6 +90,8 @@ public partial class NeuroPulseFactoryControl : Control
         RecursivelyGeneratePulseTree(trajectoryDefinition, _rootPulse);
         
         var newWeapon = Library.Factory.ExportNeuroPulse();
+        newWeapon.SetMaxEnergy(Library.PlayerPulse.MaxEnergy);
+        newWeapon.SetRechargeRate(Library.PlayerPulse.RechargeRate);
         Library.SetPlayerPulse(newWeapon);
         
         GetParent().QueueFree();        // clear the selection UI

@@ -14,6 +14,7 @@ public partial class NeuroPulse : Node
 
     public ProjectileSegmentDefinition StartingSegment => _startingSegment;
     public float MaxEnergy => _maxEnergy;
+    public float RechargeRate => _rechargeRate;
     public bool CanFire => _currentEnergy > 0;
     public Action<float> OnEnergyUpdated;
 
@@ -30,6 +31,18 @@ public partial class NeuroPulse : Node
         }
     }
 
+    public void UpdateMaxEnergyBy(float delta)
+    {
+        _maxEnergy += delta;
+    }
+    
+    public void UpdateRechargeRateBy(float delta)
+    {
+        _rechargeRate += delta;
+    }
+    
+    public void SetMaxEnergy(float maxEnergy) => _maxEnergy = maxEnergy;
+    public void SetRechargeRate(float rechargeRate) => _rechargeRate = rechargeRate;
 
     public void Fire(Vector2 globalPosition, float direction) => _startingSegment.Fire(globalPosition, direction, this);
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxovvp355lpee"]
+[gd_scene load_steps=7 format=3 uid="uid://cxovvp355lpee"]
 
 [ext_resource type="Script" uid="uid://cyqun5x8yaund" path="res://Ui/DragAndDrop/NeuroPulseFactoryControl.cs" id="1_qpe54"]
 [ext_resource type="PackedScene" uid="uid://b313w1jhrp4vp" path="res://Ui/DragAndDrop/draggable.tscn" id="2_k3doa"]
 [ext_resource type="PackedScene" uid="uid://cdgeyafoosf8p" path="res://Ui/DragAndDrop_v2/NeuroPulseFactoryGraphControl.tscn" id="3_qpe54"]
+[ext_resource type="Script" uid="uid://c44oybx5dap6f" path="res://Scenes/PulseUpgradePanel.cs" id="5_k3doa"]
 [ext_resource type="Script" uid="uid://bsybvc1h1xmvq" path="res://Ui/DragAndDrop/PulseLibraryControl.cs" id="5_mrf8q"]
 [ext_resource type="PackedScene" uid="uid://jicy8s60x7k3" path="res://Ui/CashUi.tscn" id="6_k3doa"]
 
@@ -83,6 +84,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 392.0
 offset_top = -158.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -116,6 +118,117 @@ offset_top = 0.0279999
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="PulseUpgradePanel" type="Control" parent="." node_paths=PackedStringArray("_energyLabel", "_rechargeLabel")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_right = -784.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("5_k3doa")
+_energyLabel = NodePath("EnergyControl/StatValueLabel")
+_rechargeLabel = NodePath("RechargeControl/StatValueLabel")
+
+[node name="ColorRect" type="ColorRect" parent="PulseUpgradePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[node name="Label" type="Label" parent="PulseUpgradePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Upgrade NeuroPulse:"
+
+[node name="FlowContainer" type="FlowContainer" parent="PulseUpgradePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.234
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0279999
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="EnergyControl" type="Control" parent="PulseUpgradePanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -110.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StatLabel" type="Label" parent="PulseUpgradePanel/EnergyControl"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+text = "Max Energy:"
+
+[node name="StatValueLabel" type="Label" parent="PulseUpgradePanel/EnergyControl"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 141.965
+offset_right = 241.965
+grow_vertical = 2
+text = "100"
+
+[node name="EnergyButton" type="Button" parent="PulseUpgradePanel/EnergyControl"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 311.0
+offset_bottom = 31.0
+text = "Upgrade: $10"
+
+[node name="RechargeControl" type="Control" parent="PulseUpgradePanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StatLabel" type="Label" parent="PulseUpgradePanel/RechargeControl"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+text = "Recharge Rate:"
+
+[node name="StatValueLabel" type="Label" parent="PulseUpgradePanel/RechargeControl"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 141.965
+offset_right = 241.965
+grow_vertical = 2
+text = "10	"
+
+[node name="RechargeButton" type="Button" parent="PulseUpgradePanel/RechargeControl"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 311.0
+offset_bottom = 31.0
+text = "Upgrade: $10"
 
 [node name="InformationPanel" type="Control" parent="."]
 layout_mode = 1
@@ -158,5 +271,7 @@ offset_right = 40.0
 [connection signal="pressed" from="NeuroPulseFactoryControl_OLD/ConfirmButton" to="NeuroPulseFactoryControl_OLD" method="OnConfirmSelection"]
 [connection signal="pressed" from="NeuroPulseFactoryControl/ConfirmButton" to="NeuroPulseFactoryControl/PulseGraphEdit" method="OnConfirmSelection"]
 [connection signal="pressed" from="NeuroPulseFactoryControl/DebugUnlock" to="PulseLibraryControl" method="DebugShowProjectileDataIgnoringLocks"]
+[connection signal="pressed" from="PulseUpgradePanel/EnergyControl/EnergyButton" to="PulseUpgradePanel" method="UpgradeMaxEnergy"]
+[connection signal="pressed" from="PulseUpgradePanel/RechargeControl/RechargeButton" to="PulseUpgradePanel" method="UpgradeRechargeRate"]
 
 [editable path="NeuroPulseFactoryControl"]

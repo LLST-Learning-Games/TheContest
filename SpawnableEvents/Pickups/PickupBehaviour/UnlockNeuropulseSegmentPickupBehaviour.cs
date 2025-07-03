@@ -20,6 +20,13 @@ public partial class UnlockNeuropulseSegmentPickupBehaviour : PickupBehaviour
     {
         var library = SystemLoader.GetSystem<ProjectileLibrary>();
         var ids = library.GetAllUnlockableIds();
+        int maxIndex = ids.Count - 1;
+        if (maxIndex < 0)
+        {
+            GD.Print($"[{GetType().Name}] You've already unlocked everything!");
+            return;
+        }
+        
         int index = rng.RandiRange(0, ids.Count - 1);
         var id = ids[index];
         

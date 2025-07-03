@@ -16,7 +16,7 @@ public partial class Currency : Node
         Balance = definition.StartingBalance;
     }
     
-    public bool CanAfford(float amount) => amount >= Balance;
+    public bool CanAfford(float amount) => amount <= Balance;
     
     public void UpdateCurrencyByDelta(float delta)
     {
