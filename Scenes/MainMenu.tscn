@@ -4,12 +4,14 @@
 [ext_resource type="LabelSettings" uid="uid://d1xt8ui48hwhs" path="res://Scenes/TextSettings.tres" id="1_853f1"]
 [ext_resource type="PackedScene" uid="uid://dbqjtr62lb0on" path="res://Scenes/FamilyHouse.tscn" id="1_tt5f1"]
 
-[node name="MainMenu_Control" type="Control"]
+[node name="MainMenu_Control" type="Control" node_paths=PackedStringArray("_familyHouse", "_narrativeParent")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_8saeu")
+_familyHouse = NodePath("ColorRect/FamilyHouse_Control")
+_narrativeParent = NodePath("ColorRect/FamilyHouse_Control/ColorRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -52,4 +54,6 @@ text = "Enter The Contest"
 [node name="FamilyHouse_Control" parent="ColorRect" instance=ExtResource("1_tt5f1")]
 visible = false
 
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Button" to="ColorRect/FamilyHouse_Control" method="show"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Button" to="." method="OnStartNewGame"]
+
+[editable path="ColorRect/FamilyHouse_Control"]

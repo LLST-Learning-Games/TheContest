@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cop1s0k8641k6"]
+[gd_scene load_steps=12 format=3 uid="uid://cop1s0k8641k6"]
 
 [ext_resource type="Script" uid="uid://bms7r5emi0col" path="res://Systems/SystemLoader.cs" id="1_q1yjg"]
 [ext_resource type="Script" uid="uid://7vtieglcw6ci" path="res://Systems/CurrencySystem/CurrencySystem.cs" id="2_b0gg8"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://x5dqi6htbqo5" path="res://Scenes/MainMenu.tscn" id="7_0q3xv"]
 [ext_resource type="PackedScene" uid="uid://cdom5m82i6fit" path="res://Scenes/RoomBasedMapTest.tscn" id="7_1j2ki"]
 [ext_resource type="PackedScene" uid="uid://cxovvp355lpee" path="res://Scenes/DragAndDropNeuroPulseUi.tscn" id="8_rmhsp"]
+[ext_resource type="PackedScene" uid="uid://dy374fe6nojsh" path="res://Scenes/Dialogues/OnAwakePaterfamaliasRoom.tscn" id="10_4fx3q"]
 [ext_resource type="Script" uid="uid://bsw216m72i8mr" path="res://Systems/CameraSystem/CameraSystem.cs" id="10_nvh5w"]
 
 [node name="SystemLoader" type="Node" node_paths=PackedStringArray("_systemBootstrap")]
@@ -28,7 +29,8 @@ script = ExtResource("5_ifnho")
 _scenePrefabs = Dictionary[String, PackedScene]({
 "Gameplay": ExtResource("7_1j2ki"),
 "MainMenu": ExtResource("7_0q3xv"),
-"NeuroPulseCustomizer": ExtResource("8_rmhsp")
+"NeuroPulseCustomizer": ExtResource("8_rmhsp"),
+"OnAwakeNarrative": ExtResource("10_4fx3q")
 })
 
 [node name="CameraSystem" type="Node" parent="." node_paths=PackedStringArray("_camera")]

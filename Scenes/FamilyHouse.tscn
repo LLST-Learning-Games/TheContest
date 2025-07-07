@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbqjtr62lb0on"]
 
 [ext_resource type="Texture2D" uid="uid://dxynjivlpyh4n" path="res://Art/Ui/MainMenu.png" id="1_05sey"]
-[ext_resource type="Script" uid="uid://dci45f02fhmyi" path="res://Scenes/DialogRoomButton.cs" id="2_ix07p"]
-[ext_resource type="PackedScene" uid="uid://spf1ql7jyb4h" path="res://Scenes/PaterfamaliasRoom.tscn" id="3_tjqjj"]
+[ext_resource type="Script" uid="uid://dci45f02fhmyi" path="res://Scenes/Dialogues/DialogRoomButton.cs" id="2_ix07p"]
+[ext_resource type="PackedScene" uid="uid://spf1ql7jyb4h" path="res://Scenes/Dialogues/PaterfamaliasRoom.tscn" id="3_tjqjj"]
 [ext_resource type="FontFile" uid="uid://dfok40iiqypgc" path="res://Art/Fonts/planet_kosmos/PLANK___.TTF" id="4_tjqjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na84l"]

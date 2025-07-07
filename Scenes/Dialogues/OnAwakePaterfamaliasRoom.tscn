@@ -1,17 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://spf1ql7jyb4h"]
+[gd_scene load_steps=13 format=3 uid="uid://dy374fe6nojsh"]
 
-[ext_resource type="Script" uid="uid://dnn5toxx0qclt" path="res://Scenes/PaterfamaliasRoom.cs" id="1_e5ydy"]
-[ext_resource type="Texture2D" uid="uid://q27cahbvx4n" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-skeleton.png" id="1_qmt4p"]
-[ext_resource type="LabelSettings" uid="uid://dttvytf7diudb" path="res://Scenes/TextSettings_Grey.tres" id="2_83uuk"]
-[ext_resource type="Texture2D" uid="uid://dqh2g6xhvl3mf" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-detail-only.png" id="2_rnv61"]
-[ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="3_e5ydy"]
-[ext_resource type="Script" uid="uid://b2brstlqju1rj" path="res://Scenes/NarrativeLabel.cs" id="6_ggnpx"]
-[ext_resource type="FontFile" uid="uid://c2d7gnh6mpl7m" path="res://Art/Fonts/dot_matrix/DOTMATRI.TTF" id="7_83uuk"]
+[ext_resource type="Script" uid="uid://dnn5toxx0qclt" path="res://Scenes/Dialogues/PaterfamaliasRoom.cs" id="1_e84ue"]
+[ext_resource type="LabelSettings" uid="uid://dttvytf7diudb" path="res://Scenes/TextSettings_Grey.tres" id="2_bmwje"]
+[ext_resource type="Script" uid="uid://b2brstlqju1rj" path="res://Scenes/Dialogues/NarrativeLabel.cs" id="3_6pduk"]
+[ext_resource type="Texture2D" uid="uid://q27cahbvx4n" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-skeleton.png" id="4_h743r"]
+[ext_resource type="Texture2D" uid="uid://dqh2g6xhvl3mf" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-detail-only.png" id="5_3oqqx"]
+[ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="6_yx1r6"]
+[ext_resource type="FontFile" uid="uid://c2d7gnh6mpl7m" path="res://Art/Fonts/dot_matrix/DOTMATRI.TTF" id="7_ds355"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p4bnj"]
 line_spacing = -12.545
 paragraph_spacing = 10.0
-font = ExtResource("7_83uuk")
+font = ExtResource("7_ds355")
 font_size = 56
 font_color = Color(0.933333, 0, 1, 1)
 shadow_size = 7
@@ -210,7 +210,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_e5ydy")
+script = ExtResource("1_e84ue")
 _animationPlayer = NodePath("AnimationPlayer")
 _narrativeLabel_Narrator = NodePath("NarrativeLabel_Narrator")
 _narrativeLabel_Father = NodePath("NarrativeLabel_Father")
@@ -238,11 +238,11 @@ offset_top = 17.0
 offset_right = -512.0
 offset_bottom = 184.0
 grow_horizontal = 0
-text = "You feel the familiar pinch as the NeuroInduction Current takes hold..."
-label_settings = ExtResource("2_83uuk")
+text = "An icy jolt through your mind sends sparks across your vision. Electric jewels glitter in an inky black sea."
+label_settings = ExtResource("2_bmwje")
 autowrap_mode = 2
-script = ExtResource("6_ggnpx")
-_narrativeSteps = Array[String](["The bones of the FATHER rest silently before you.", "You feel the familiar pinch as the NeuroInduction Current takes hold of your senses...", "As the induction sends sparks across your vision, his eyes begin to glitter and his voice rasps in the dark:"])
+script = ExtResource("3_6pduk")
+_narrativeSteps = Array[String](["Your eyes open. Have you been here before? Have you used your eyes before?", "Bones. You seen bones before you. How did you get here?", "An icy jolt sends sparks across your vision. Electric jewels glitter in an inky black sea."])
 
 [node name="NarrativeLabel_End" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -256,7 +256,7 @@ offset_right = -335.0
 offset_bottom = 713.0
 grow_horizontal = 0
 text = "His bones are silent. He speaks no more."
-label_settings = ExtResource("2_83uuk")
+label_settings = ExtResource("2_bmwje")
 autowrap_mode = 2
 
 [node name="Skeleton" type="TextureRect" parent="."]
@@ -268,7 +268,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("1_qmt4p")
+texture = ExtResource("4_h743r")
 
 [node name="DetailOnly" type="TextureRect" parent="."]
 visible = false
@@ -283,7 +283,7 @@ offset_left = -1152.0
 offset_top = -648.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("2_rnv61")
+texture = ExtResource("5_3oqqx")
 
 [node name="Neon" type="TextureRect" parent="."]
 visible = false
@@ -295,7 +295,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("3_e5ydy")
+texture = ExtResource("6_yx1r6")
 
 [node name="NarrativeLabel_Father" type="Label" parent="."]
 layout_mode = 1
@@ -307,11 +307,11 @@ offset_top = 33.0
 offset_right = -33.0
 offset_bottom = 232.0
 grow_horizontal = 0
-text = "Finally you stand before me all wreathed in light, my golden child..."
+text = "Soon, you will have your chance to prove your Worth on the Contest Floor."
 label_settings = SubResource("LabelSettings_p4bnj")
 autowrap_mode = 2
-script = ExtResource("6_ggnpx")
-_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "Is there anything more glorious than you?", "I have such confidence that you will uphold our Great Name on the Arena Floor."])
+script = ExtResource("3_6pduk")
+_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "I know that today we have achieved our zenith as a FAMILY INCORPORATE.", "I know with great certainty that there never has been a sibling more glorious than you.", "I have such confidence that you will uphold our Great Name on the Contest Floor.", "You are the Child fortold to carry our FAMILY to the Glroy we deserve.", "Soon, you will have your chance to prove your Worth to your FAMILY.", "You will lead us as, together, we will return again to the 1%."])
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0

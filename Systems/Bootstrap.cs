@@ -7,7 +7,7 @@ public partial class Bootstrap : Node2D
 {
     [Export] private CanvasLayer _canvas;
     
-    private Control _mainScreenUi;
+    private MainMenu _mainScreenUi;
     private Node _gameplaySceneInstantiated;
     
     private SceneManagerSystem SceneManager => _sceneManager ?? SystemLoader.GetSystem<SceneManagerSystem>();
@@ -24,7 +24,7 @@ public partial class Bootstrap : Node2D
     private void InstantiateMainMenu()
     {
         var mainMenu = SceneManager.GetScenePrefab("MainMenu");
-        _mainScreenUi = mainMenu.Instantiate<Control>();
+        _mainScreenUi = mainMenu.Instantiate<MainMenu>();
         _canvas.AddChild(_mainScreenUi);
         _canvas.MoveChild(_mainScreenUi, 0);
         ConnectStartButton();
@@ -55,14 +55,21 @@ public partial class Bootstrap : Node2D
         SystemLoader.OnGameplayStart();
     }
 
-    public void RestartGame()
+    public void RestartGame(bool shouldPlayNarrative = false)
     {
         OnGameplayEnd?.Invoke();
         SystemLoader.OnGameplayEnd();
         _gameplaySceneInstantiated.QueueFree();
         InstantiateMainMenu();
-        var familyHouse = _mainScreenUi.GetNode<Control>("ColorRect/FamilyHouse_Control");
-        familyHouse.Visible = true;
+
+        if(shouldPlayNarrative)
+        {
+            _mainScreenUi.OnStartNewGame();
+        }
+        else
+        {
+            _mainScreenUi.ShowFamilyHouse();
+        }
     }
 
     private void OnCustomizeWeaponSelect()

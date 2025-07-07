@@ -29,7 +29,7 @@ public partial class GameOverUi : Button
     public override void _Pressed()
     {
         var bootstrap = GetTree().Root.GetNode<Bootstrap>("Bootstrap");
-        bootstrap.RestartGame();
+        bootstrap.RestartGame(shouldPlayNarrative: true);
         base._Pressed();
     }
 
