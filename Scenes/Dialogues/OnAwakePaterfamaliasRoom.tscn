@@ -238,11 +238,11 @@ offset_top = 17.0
 offset_right = -512.0
 offset_bottom = 184.0
 grow_horizontal = 0
-text = "An icy jolt through your mind sends sparks across your vision. Electric jewels glitter in an inky black sea."
+text = "The sparks resolve into a human shapes, strangely familiar, and a comforting voice echoes in the dark:"
 label_settings = ExtResource("2_bmwje")
 autowrap_mode = 2
 script = ExtResource("3_6pduk")
-_narrativeSteps = Array[String](["Your eyes open. Have you been here before? Have you used your eyes before?", "Bones. You seen bones before you. How did you get here?", "An icy jolt sends sparks across your vision. Electric jewels glitter in an inky black sea."])
+_narrativeSteps = Array[String](["Your eyes open. Have you been here before? Have you used your eyes before? You see bones before you...", "An icy jolt sends sparks across your vision. Electric jewels glitter in an inky black sea.", "The sparks resolve into a human shapes, strangely familiar, and a comforting voice echoes in the dark:"])
 
 [node name="NarrativeLabel_End" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -302,16 +302,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -562.0
+offset_left = -648.0
 offset_top = 33.0
 offset_right = -33.0
-offset_bottom = 232.0
+offset_bottom = 270.0
 grow_horizontal = 0
-text = "Soon, you will have your chance to prove your Worth on the Contest Floor."
+text = "Prove your Worth, my Child, and you will know my Blessings."
 label_settings = SubResource("LabelSettings_p4bnj")
 autowrap_mode = 2
 script = ExtResource("3_6pduk")
-_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "I know that today we have achieved our zenith as a FAMILY INCORPORATE.", "I know with great certainty that there never has been a sibling more glorious than you.", "I have such confidence that you will uphold our Great Name on the Contest Floor.", "You are the Child fortold to carry our FAMILY to the Glroy we deserve.", "Soon, you will have your chance to prove your Worth to your FAMILY.", "You will lead us as, together, we will return again to the 1%."])
+_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "I know that today we have achieved our zenith as a FAMILY INCORPORATE.", "I feel great certainty that there never has been a sibling more glorious than you.", "Doubtless you will uphold our Great Name on the Contest Floor.", "You are the Child fortold to carry our FAMILY again to the Glory we deserve.", "You will lead us. Together, our Name will be listed again amongst the 1%.", "Prove your Worth, my Child, and you will know my Blessings."])
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0

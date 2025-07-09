@@ -302,16 +302,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -562.0
+offset_left = -712.0
 offset_top = 33.0
 offset_right = -33.0
-offset_bottom = 232.0
+offset_bottom = 315.0
 grow_horizontal = 0
-text = "Finally you stand before me all wreathed in light, my golden child..."
+text = "Trust in the technology of your FAMILY INCORPORATE and you will be invited back to see me. Good luck."
 label_settings = SubResource("LabelSettings_p4bnj")
 autowrap_mode = 2
 script = ExtResource("6_ggnpx")
-_narrativeSteps = Array[String](["Finally you stand before me all wreathed in light, my golden child...", "Is there anything more glorious than you?", "I have such confidence that you will uphold our Great Name on the Arena Floor."])
+_narrativeSteps = Array[String](["My Child, thank you for coming before me. ", "Your sacrifice means everything to your whole family... ", "to your mothers, and to me, your PATERFAMALIAS.", "Fight well, and join the LAERTES in our Halls of Memory, where your name will shine eternal.", "From birth, you have trained for this day. I believe in you. I know you will make us Proud.", "In these halls, you will earn your first Neuropulse Capacitor. ", "Trust in the technology of your FAMILY INCORPORATE and you will be invited back to see me. Good luck."])
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
