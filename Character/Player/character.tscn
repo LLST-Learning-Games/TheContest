@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="5_dtwtn"]
 [ext_resource type="Script" uid="uid://bn3ukbepasjx1" path="res://Projectiles/NeuroPulse.cs" id="5_k81x5"]
 [ext_resource type="Script" uid="uid://dempobbd1gx2g" path="res://Projectiles/Segments/ProjectileSegmentDefinition.cs" id="6_vp6oq"]
-[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_yc63j"]
+[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/WorldspaceUi/HealthBarWorldUi.tscn" id="6_yc63j"]
 [ext_resource type="Resource" uid="uid://cjsctbdcgfuw1" path="res://Projectiles/Segments/TrajectorySegment/ForceBlast.tres" id="7_vp6oq"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_cpcb7"]
 [ext_resource type="PackedScene" uid="uid://c1ds072666y5i" path="res://Ui/ProgressBarWorldUi.tscn" id="11_x1deh"]

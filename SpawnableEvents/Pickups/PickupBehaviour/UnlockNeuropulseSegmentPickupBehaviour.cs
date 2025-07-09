@@ -7,6 +7,8 @@ namespace TheContest.Projectiles.SpawnableEvents;
 public partial class UnlockNeuropulseSegmentPickupBehaviour : PickupBehaviour
 {
     RandomNumberGenerator rng = new RandomNumberGenerator();
+
+    private string _uiText = "";
     
     private ProjectileLibrary Library => _library ??= SystemLoader.GetSystem<ProjectileLibrary>();
     private ProjectileLibrary _library;
@@ -31,6 +33,12 @@ public partial class UnlockNeuropulseSegmentPickupBehaviour : PickupBehaviour
         var id = ids[index];
         
         Library.UnlockPulseId(id);
+        _uiText = Library.GetAnyResource(id).SegmentName;
         GD.Print($"[{GetType().Name}] Unlocked neuropulse segment: {id}");
+    }
+    
+    internal override string SetText()
+    {
+        return "New Pulse:\n" + _uiText;
     }
 }

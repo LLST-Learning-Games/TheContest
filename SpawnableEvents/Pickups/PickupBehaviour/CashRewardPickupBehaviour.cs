@@ -14,4 +14,9 @@ public partial class CashRewardPickupBehaviour : PickupBehaviour
         var currency = wallet.GetCurrency(_rewardId);
         currency.UpdateCurrencyByDelta(_rewardAmount);
     }
+
+    internal override string SetText()
+    {
+        return "$" + _rewardAmount.ToString();
+    }
 }

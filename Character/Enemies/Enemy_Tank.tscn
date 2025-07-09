@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bq05keh3y8dsh" path="res://Art/Characters/TogaEnemy.png" id="3_mp3ti"]
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="4_ukhuv"]
 [ext_resource type="PackedScene" uid="uid://c15y044mkacgd" path="res://Character/Enemies/EnemyProjectileSpawnComponent.tscn" id="5_ht48e"]
-[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="6_m2hrl"]
+[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/WorldspaceUi/HealthBarWorldUi.tscn" id="6_m2hrl"]
 [ext_resource type="PackedScene" uid="uid://bu2s8kq5b2ljs" path="res://Character/Ai/EntityBrain.tscn" id="7_vofs0"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="8_5nom5"]
 [ext_resource type="Script" uid="uid://bgu2l0o504k5v" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourAttack.cs" id="8_mp3ti"]

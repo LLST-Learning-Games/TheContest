@@ -10,6 +10,7 @@ public partial class Pickup : Node2D
     [Export] private double _pickupTime = 0.2;
     [Export] private ProgressBarUi _pickupProgressBar;
     [Export] private PickupBehaviour _pickupBehaviour;
+    [Export] private PackedScene _onPickupUiPrefab;
 
     private bool _isInArea = false;
     private double _elapsedPickupTime = 0;
@@ -78,6 +79,13 @@ public partial class Pickup : Node2D
     private void PickItUp()
     {
         _pickupBehaviour.PickItUp();
+        if (_onPickupUiPrefab != null)
+        {
+            var pickupUi = _onPickupUiPrefab.Instantiate<InfoLabelWorldUi>();
+            pickupUi.SetText(_pickupBehaviour.SetText());
+            GetTree().Root.AddChild(pickupUi);
+            pickupUi.GlobalPosition = GlobalPosition;
+        }
         QueueFree();
     }
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqu2tmxsyds5j"]
+
+[ext_resource type="Script" uid="uid://b037ompl57m8y" path="res://Ui/WorldspaceUi/InfoLabelWorldUi.cs" id="1_bxnsm"]
+[ext_resource type="FontFile" uid="uid://c2d7gnh6mpl7m" path="res://Art/Fonts/dot_matrix/DOTMATRI.TTF" id="2_ceala"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqtrb"]
+line_spacing = -12.545
+paragraph_spacing = 10.0
+font = ExtResource("2_ceala")
+font_size = 30
+font_color = Color(0.933333, 0, 1, 1)
+shadow_color = Color(0.286275, 0, 0.866667, 1)
+
+[node name="InfoLabelWorldUi" type="Node2D" node_paths=PackedStringArray("_label")]
+script = ExtResource("1_bxnsm")
+_label = NodePath("Label")
+_speed = 30.0
+_lifetime = 2.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -96.0
+offset_top = -88.0
+offset_right = 96.0
+offset_bottom = -26.0
+text = "Info"
+label_settings = SubResource("LabelSettings_vqtrb")
+horizontal_alignment = 1
+vertical_alignment = 2

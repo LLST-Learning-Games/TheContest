@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8prpsk3vfgr6" path="res://Character/HealthComponent.tscn" id="3_qbd41"]
 [ext_resource type="Texture2D" uid="uid://3wegahfrm713" path="res://Art/Characters/UglyBoy.png" id="3_xpnp1"]
 [ext_resource type="PackedScene" uid="uid://dcabm03sb0upe" path="res://Character/Ai/EntityBrainHunter.tscn" id="4_qbd41"]
-[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/HealthBarWorldUi.tscn" id="5_0yq5r"]
+[ext_resource type="PackedScene" uid="uid://d08fusp6s2uwn" path="res://Ui/WorldspaceUi/HealthBarWorldUi.tscn" id="5_0yq5r"]
 [ext_resource type="Script" uid="uid://ffmtfd6f1pu0" path="res://Character/Enemies/CollisionDeathTrigger.cs" id="7_xpnp1"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="8_0ymbd"]
 

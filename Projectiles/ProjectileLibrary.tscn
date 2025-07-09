@@ -17,6 +17,8 @@ script = ExtResource("2_8xyce")
 [node name="Weapon_1" type="Node" parent="." node_paths=PackedStringArray("_startingSegment")]
 script = ExtResource("3_itygy")
 _startingSegment = NodePath("Segment_1")
+_maxEnergy = 100.0
+_rechargeRate = 15.0
 
 [node name="Segment_1" type="Node" parent="Weapon_1"]
 script = ExtResource("4_y73fn")
