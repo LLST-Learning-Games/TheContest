@@ -40,6 +40,10 @@ public partial class ProjectileLibrary : BaseSystem
 	{
 		var dictionary = new Godot.Collections.Dictionary<string, ProjectileSegmentData>();
 		var directory = DirAccess.Open(path);
+		if (directory is null)
+		{
+			GD.PrintErr($"[{GetType().Name}] Could not find path {path}.");
+		}
 		directory.ListDirBegin();
 		while (true)
 		{
@@ -48,6 +52,12 @@ public partial class ProjectileLibrary : BaseSystem
 			{
 				break;
 			}
+
+			if (fileName.EndsWith(".remap"))
+			{
+				fileName = fileName.Replace(".remap", "");
+			}
+			
 			if(fileName.EndsWith(".tres"))
 			{
 				var resource = ResourceLoader.Load<ProjectileSegmentData>(path + "/" + fileName);

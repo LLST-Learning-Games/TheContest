@@ -258,6 +258,7 @@ color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [node name="Pickup" parent="." instance=ExtResource("10_bq22f")]
 position = Vector2(-444, -329)
+_onPickupUiPrefab = null
 
 [editable path="Map/EnemyWaveSpawner_Tank"]
 [editable path="Map/EnemyWaveSpawner"]
