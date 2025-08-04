@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c26yiichcm4y1"]
+
+[ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_u4m5d"]
+[ext_resource type="Script" uid="uid://1fbvfvmoj1n2" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourDoFirstValid.cs" id="2_u4m5d"]
+[ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="3_sddlf"]
+[ext_resource type="PackedScene" uid="uid://doamjxtwwmj57" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/AttackBehaviour.tscn" id="4_8rafy"]
+
+[node name="EntityBrainStalker" type="Node" node_paths=PackedStringArray("_root")]
+script = ExtResource("1_u4m5d")
+_root = NodePath("Root")
+_isVerbose = true
+
+[node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
+script = ExtResource("2_u4m5d")
+_children = [NodePath("AttackBehaviour"), NodePath("MoveBehaviour")]
+
+[node name="MoveBehaviour" parent="Root" instance=ExtResource("3_sddlf")]
+
+[node name="GetLocation" parent="Root/MoveBehaviour" index="0"]
+_range = 250.0
+
+[node name="AttackBehaviour" parent="Root" node_paths=PackedStringArray("_children") instance=ExtResource("4_8rafy")]
+_children = [NodePath("GetTarget"), NodePath("AttackTarget")]
+
+[editable path="Root/MoveBehaviour"]
+[editable path="Root/AttackBehaviour"]

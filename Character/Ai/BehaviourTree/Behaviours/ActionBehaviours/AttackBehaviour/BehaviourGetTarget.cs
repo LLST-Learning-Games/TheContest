@@ -19,21 +19,24 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         object target = null;
         if (!blackboard.TreeData.TryGetValue(BehaviourDataKeys.TARGET, out target))
         {
-            target = GetTarget();
+            target = GetTarget(blackboard);
             blackboard.TreeData[BehaviourDataKeys.TARGET] = target;
         }
 
         if (target is null || target is not Node2D)
         {
+            if (blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] No valid target. Returning failure.");
+            }
+
             return BehaviourState.Failure;
         }
-        else
-        {
-            return BehaviourState.Success;
-        }
+
+        return BehaviourState.Success;
     }
 
-    private Node2D GetTarget()
+    private Node2D GetTarget(BehaviourTreeBlackboard blackboard)
     {
         var targetGroup = GetTree().GetNodesInGroup("Player");
         if (targetGroup.Count == 0)
@@ -45,7 +48,12 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         {
             return target;
         }
-
+        
+        if (blackboard.IsVerbose)
+        {
+            GD.Print($"[{GetType().Name}] Found target, but no line of sight.");
+        }
+        
         return null;
     }
 

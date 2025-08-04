@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://tgcrs1cs7upi"]
+[gd_scene load_steps=19 format=4 uid="uid://tgcrs1cs7upi"]
 
 [ext_resource type="TileSet" uid="uid://bo4kqn80agbmc" path="res://Environment/TileMap_48px/TileSet_48.tres" id="1_4exq4"]
 [ext_resource type="PackedScene" uid="uid://sdc4jh73qfo5" path="res://Environment/EnemyWaveSpawner.tscn" id="2_bq22f"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_sml4d"]
 [ext_resource type="Texture2D" uid="uid://5csd6h3ytcjc" path="res://Art/Light/2d_lights_and_shadows_neutral_point_light.webp" id="9_a3gyn"]
 [ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="10_bq22f"]
+[ext_resource type="PackedScene" uid="uid://cx8cqel18nrvc" path="res://Character/Enemies/Enemy_Stalker.tscn" id="12_v62de"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0g0q"]
 size = Vector2(526, 488)
@@ -259,6 +260,9 @@ color = Color(0.29219, 0.29219, 0.29219, 1)
 [node name="Pickup" parent="." instance=ExtResource("10_bq22f")]
 position = Vector2(-444, -329)
 _onPickupUiPrefab = null
+
+[node name="Enemy" parent="." instance=ExtResource("12_v62de")]
+position = Vector2(-507, 258)
 
 [editable path="Map/EnemyWaveSpawner_Tank"]
 [editable path="Map/EnemyWaveSpawner"]
