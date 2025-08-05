@@ -8,10 +8,11 @@
 [node name="EntityBrainHunter" type="Node" node_paths=PackedStringArray("_root")]
 script = ExtResource("1_iawvd")
 _root = NodePath("Root")
+_isVerbose = true
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
 script = ExtResource("2_iawvd")
-_children = [NodePath("HuntBehaviour"), NodePath("MoveBehaviour")]
+_children = [NodePath("HuntBehaviour")]
 
 [node name="HuntBehaviour" parent="Root" instance=ExtResource("3_rkbeo")]
 

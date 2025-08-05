@@ -122,6 +122,7 @@ position = Vector2(4, 36)
 shape = SubResource("RectangleShape2D_ya8by")
 
 [node name="EnemyWaveSpawner_Hunter" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(2021, -597)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -135,6 +136,7 @@ shape = SubResource("RectangleShape2D_00jar")
 wait_time = 1.5
 
 [node name="EnemyWaveSpawner_Hunter3" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(5373, 3107)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -148,6 +150,7 @@ shape = SubResource("RectangleShape2D_00jar")
 wait_time = 1.5
 
 [node name="EnemyWaveSpawner_Hunter4" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(3853, 3019)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -161,6 +164,7 @@ shape = SubResource("RectangleShape2D_00jar")
 wait_time = 1.5
 
 [node name="EnemyWaveSpawner_Hunter5" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(1509, 4803)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -174,6 +178,7 @@ shape = SubResource("RectangleShape2D_62i8n")
 wait_time = 1.5
 
 [node name="EnemyWaveSpawner_Hunter6" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(1165, 3451)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -187,6 +192,7 @@ shape = SubResource("RectangleShape2D_62i8n")
 wait_time = 1.5
 
 [node name="EnemyWaveSpawner_Hunter2" parent="Map" node_paths=PackedStringArray("_spawnArea") instance=ExtResource("2_bq22f")]
+process_mode = 4
 position = Vector2(3253, 11)
 _spawnArea = NodePath("Area2D/CollisionShape2D")
 _enemyPrefab = ExtResource("3_0vxr6")
@@ -229,6 +235,12 @@ position = Vector2(6445, 2987)
 [node name="ExitZone2" parent="Map" instance=ExtResource("4_v62de")]
 position = Vector2(1189, 5395)
 
+[node name="HunterEnemy" parent="Map" instance=ExtResource("3_0vxr6")]
+position = Vector2(-921, 69)
+
+[node name="Enemy_Stalker" parent="Map" instance=ExtResource("12_v62de")]
+position = Vector2(-970, 141)
+
 [node name="Character" parent="." groups=["Player"] instance=ExtResource("5_b8f6h")]
 position = Vector2(-632, -320)
 
@@ -260,9 +272,6 @@ color = Color(0.29219, 0.29219, 0.29219, 1)
 [node name="Pickup" parent="." instance=ExtResource("10_bq22f")]
 position = Vector2(-444, -329)
 _onPickupUiPrefab = null
-
-[node name="Enemy" parent="." instance=ExtResource("12_v62de")]
-position = Vector2(-336, 242)
 
 [editable path="Map/EnemyWaveSpawner_Tank"]
 [editable path="Map/EnemyWaveSpawner"]

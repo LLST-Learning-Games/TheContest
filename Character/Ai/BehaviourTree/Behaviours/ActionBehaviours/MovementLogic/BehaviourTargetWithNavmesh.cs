@@ -38,8 +38,8 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         
         if(_currentTime >= _updateTime || _nextPosition == Vector2.Zero)
         {
-            _nextPosition = _navAgent.GetNextPathPosition();
             _currentTime = 0;
+            _nextPosition = _navAgent.GetNextPathPosition();
             blackboard.TreeData[_destinationTypeKey] = _nextPosition;
             if (_nextPosition != Vector2.Zero)
             {
@@ -121,7 +121,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
     {
         _navAgent = null;
         _nextPosition = Vector2.Zero;
-        _currentTime = 0;
         _navMeshTarget = null;
+        _currentTime = double.MaxValue;
     }
 }

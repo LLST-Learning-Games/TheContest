@@ -19,3 +19,4 @@ script = ExtResource("3_jfqyu")
 script = ExtResource("4_muva7")
 _successDistance = 5.0
 _moveSpeed = 800000.0
+_failTimeout = 2.0

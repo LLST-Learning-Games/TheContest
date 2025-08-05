@@ -35,6 +35,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
                 GD.Print($"[{GetType().Name}] No valid target. Returning failure.");
             }
 
+            blackboard.TreeData.Remove(_keyTargetAs);
             return BehaviourState.Failure;
         }
 
