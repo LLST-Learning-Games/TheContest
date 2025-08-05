@@ -16,7 +16,7 @@ rough = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gof73"]
 size = Vector2(16, 32)
 
-[node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent", "_projectileSpawnComponent")]
+[node name="Enemy_Stalker" type="RigidBody2D" node_paths=PackedStringArray("_healthComponent", "_projectileSpawnComponent", "_navAgent")]
 collision_layer = 4
 collision_mask = 55
 mass = 5.0
@@ -28,13 +28,14 @@ linear_damp = 9.619
 script = ExtResource("1_o5gxr")
 _healthComponent = NodePath("HealthComponent")
 _projectileSpawnComponent = NodePath("EnemyProjectileSpawnComponent")
+_navAgent = NodePath("NavigationAgent2D")
 _onDeathSpawnPrefab = ExtResource("2_naxy3")
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
-modulate = Color(0.865223, 0.601112, 1.15514e-06, 0.580392)
+modulate = Color(0.87, 0.609, 0, 0.752941)
 texture_filter = 1
-position = Vector2(0, -10)
-scale = Vector2(0.0378525, 0.0379535)
+position = Vector2(-4.76837e-07, -9.72545)
+scale = Vector2(0.0581114, 0.0582664)
 texture = ExtResource("3_naxy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -54,7 +55,7 @@ _maxHealth = 250
 _currentTrajectoryId = "EnemyBullet"
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("6_bd2a0")]
-position = Vector2(0, -22)
+position = Vector2(0, -26)
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="EntityBrainStalker" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("8_naxy3")]
@@ -65,3 +66,8 @@ scale = Vector2(1.06098, 1)
 energy = 0.5
 texture = ExtResource("8_hwtik")
 texture_scale = 2.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0

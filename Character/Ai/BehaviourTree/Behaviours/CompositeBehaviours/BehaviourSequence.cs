@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Godot;
 
 
 namespace Behaviours
@@ -18,8 +18,16 @@ namespace Behaviours
             }
             
             foreach (var child in _children)
-            {
+            {                
+                if (blackboard.IsVerbose)
+                {
+                    GD.Print($"[{GetType().Name}] Current behaviour: {child.Name}.");
+                }
                 _state = child.UpdateNode(delta, blackboard);
+                if (blackboard.IsVerbose)
+                {
+                    GD.Print($"[{GetType().Name}] Current state of {child.Name}: {_state}.");
+                }
                 if (_state == BehaviourState.Running)
                 {
                     _currentBehaviour = child;

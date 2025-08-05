@@ -35,6 +35,6 @@ public partial class BehaviourGetRandomLocation : BehaviourActionBase
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
     {
         _randomLocation = Vector2.Zero;
-        blackboard.TreeData[BehaviourDataKeys.LOCATION] = _randomLocation;
+        blackboard.TreeData.Remove(BehaviourDataKeys.LOCATION);
     }
 }

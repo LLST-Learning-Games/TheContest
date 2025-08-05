@@ -262,7 +262,7 @@ position = Vector2(-444, -329)
 _onPickupUiPrefab = null
 
 [node name="Enemy" parent="." instance=ExtResource("12_v62de")]
-position = Vector2(-507, 258)
+position = Vector2(-336, 242)
 
 [editable path="Map/EnemyWaveSpawner_Tank"]
 [editable path="Map/EnemyWaveSpawner"]

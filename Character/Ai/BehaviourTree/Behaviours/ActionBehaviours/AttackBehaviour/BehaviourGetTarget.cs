@@ -6,6 +6,11 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 {
     [Export] public float SightDistance = 1000f;
     [Export] public uint CollisionMask = 1 << 4;
+    [Export] private string _targetGroupName = "Player";
+    [Export] private bool _checkForLineOfSight = true;
+    [Export] private BehaviourDataKeys _keyTargetAs = BehaviourDataKeys.TARGET;
+    [Export] private BehaviourDataKeys _keyLostTargetAs = BehaviourDataKeys.LAST_TARGET;
+    
     
     private RigidBody2D _actorBody;
     
@@ -17,10 +22,10 @@ public partial class BehaviourGetTarget : BehaviourActionBase
             GD.Print($"[{GetType().Name}] Getting target!");
         }
         object target = null;
-        if (!blackboard.TreeData.TryGetValue(BehaviourDataKeys.TARGET, out target))
+        if (!blackboard.TreeData.TryGetValue(_keyTargetAs, out target))
         {
             target = GetTarget(blackboard);
-            blackboard.TreeData[BehaviourDataKeys.TARGET] = target;
+            blackboard.TreeData[_keyTargetAs] = target;
         }
 
         if (target is null || target is not Node2D)
@@ -38,27 +43,34 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 
     private Node2D GetTarget(BehaviourTreeBlackboard blackboard)
     {
-        var targetGroup = GetTree().GetNodesInGroup("Player");
+        var targetGroup = GetTree().GetNodesInGroup(_targetGroupName);
         if (targetGroup.Count == 0)
         {
             return null;
         }
         Node2D target = targetGroup[0] as Node2D;
-        if (HasLineOfSightToTarget(target))
+        
+        if (!HasLineOfSightToTarget(target))
         {
-            return target;
+            if (blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] Found target, but no line of sight.");
+            }
+        
+            blackboard.TreeData[_keyLostTargetAs] = target;
+            return null;
         }
         
-        if (blackboard.IsVerbose)
-        {
-            GD.Print($"[{GetType().Name}] Found target, but no line of sight.");
-        }
-        
-        return null;
+        return target;
     }
 
     private bool HasLineOfSightToTarget(Node2D target)
     {
+        if (!_checkForLineOfSight)
+        {
+            return true;
+        }
+        
         if (_actorBody.GlobalPosition.DistanceTo(target.GlobalPosition) >= SightDistance)
         {
             return false;
@@ -87,7 +99,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
 
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
     {
-        blackboard.TreeData.Remove(BehaviourDataKeys.TARGET);
+        blackboard.TreeData.Remove(_keyTargetAs);
     }
     
     private void GetRigidBodyFromBlackboard(BehaviourTreeBlackboard blackboard)
