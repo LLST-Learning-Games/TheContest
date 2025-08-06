@@ -8,10 +8,13 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
     [Export] private double _updateTime = 0.1;
     [Export] public float SightDistance = 1000f;
     [Export] public uint CollisionMask = 1 << 4;
+    [Export] private BehaviourDataKeys _targetTypeKey = BehaviourDataKeys.TARGET;
+    [Export] private BehaviourDataKeys _destinationTypeKey = BehaviourDataKeys.LOCATION;
+    
     private NavigationAgent2D _navAgent;
     private Node2D _navMeshTarget;
     private Vector2 _nextPosition = Vector2.Zero;
-    private double _currentTime = 0;
+    private double _currentTime = double.MaxValue;
     private RigidBody2D _actorBody;
     
     public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
@@ -25,7 +28,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         
         if (_navMeshTarget == null)
         {
-            _navMeshTarget = GetNavMeshTarget();
+            _navMeshTarget = GetNavMeshTarget(blackboard);
             if (_navMeshTarget == null)
             {
                 return BehaviourState.Failure;
@@ -33,11 +36,11 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             _navAgent.SetTargetPosition(_navMeshTarget.GlobalPosition);
         }
         
-        _currentTime += delta;
         if(_currentTime >= _updateTime || _nextPosition == Vector2.Zero)
         {
+            _currentTime = 0;
             _nextPosition = _navAgent.GetNextPathPosition();
-            blackboard.TreeData[BehaviourDataKeys.LOCATION] = _nextPosition;
+            blackboard.TreeData[_destinationTypeKey] = _nextPosition;
             if (_nextPosition != Vector2.Zero)
             {
                 _state = BehaviourState.Success;
@@ -47,23 +50,29 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
                 _state = BehaviourState.Failure;
             }
         }
+        _currentTime += delta;
         
         
         return _state;
     }
 
-    private Node2D GetNavMeshTarget()
+    private Node2D GetNavMeshTarget(BehaviourTreeBlackboard blackboard)
     {
-        var playerGroup = GetTree().GetNodesInGroup("Player");
-        if (playerGroup.Count == 0)
+        if (!blackboard.TreeData.TryGetValue(_targetTypeKey, out var targetData))
         {
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] No data of type {_targetTypeKey} found.");
+            }
             return null;
         }
-        Node2D target = playerGroup[0] as Node2D;
         
-        if (HasLineOfSightToTarget(target))
+        if (targetData is Node2D target)
         {
-            return target;
+            //if (HasLineOfSightToTarget(target))
+            {
+                return target;
+            }
         }
         return null;
     }
@@ -80,34 +89,6 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             return;
         }
         _actorBody = actor;
-    }
-
-    private bool HasLineOfSightToTarget(Node2D target)
-    {
-        if (_actorBody.GlobalPosition.DistanceTo(target.GlobalPosition) >= SightDistance)
-        {
-            return false;
-        }
-        
-        var spaceState = target.GetWorld2D().DirectSpaceState;
-
-        var query = new PhysicsRayQueryParameters2D
-        {
-            From = _actorBody.GlobalPosition,
-            To = target.GlobalPosition,
-            CollisionMask = CollisionMask,
-            HitFromInside = true
-        };
-
-        var result = spaceState.IntersectRay(query);
-
-        if (result.Count == 0)
-        {
-            // Nothing in the way — clear line of sight
-            return true;
-        }
-        
-        return false;
     }
     
     private NavigationAgent2D GetNavAgent(BehaviourTreeBlackboard blackboard)
@@ -140,7 +121,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
     {
         _navAgent = null;
         _nextPosition = Vector2.Zero;
-        _currentTime = 0;
         _navMeshTarget = null;
+        _currentTime = double.MaxValue;
     }
 }

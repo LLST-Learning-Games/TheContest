@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhcp5hmtpml4g"]
+
+[ext_resource type="Script" uid="uid://1fbvfvmoj1n2" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourDoFirstValid.cs" id="1_l1w5k"]
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_q60yi"]
+[ext_resource type="Script" uid="uid://ger2u4uvbud4" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourGetTarget.cs" id="3_hpwyu"]
+[ext_resource type="Script" uid="uid://bgu2l0o504k5v" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourAttack.cs" id="4_cmtsc"]
+[ext_resource type="Script" uid="uid://ccbshsik7s802" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourTargetWithNavmesh.cs" id="5_uh7de"]
+[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="6_pfd3n"]
+
+[node name="InvestigateLostTargetBehaviour" type="Node" node_paths=PackedStringArray("_children")]
+script = ExtResource("1_l1w5k")
+_children = [NodePath("AttackBehaviour"), NodePath("HuntBehaviour")]
+
+[node name="AttackBehaviour" type="Node" parent="." node_paths=PackedStringArray("_children")]
+script = ExtResource("2_q60yi")
+_children = [NodePath("GetTarget"), NodePath("AttackTarget")]
+
+[node name="GetTarget" type="Node" parent="AttackBehaviour"]
+script = ExtResource("3_hpwyu")
+
+[node name="AttackTarget" type="Node" parent="AttackBehaviour"]
+script = ExtResource("4_cmtsc")
+_attackTime = 2.0
+
+[node name="HuntBehaviour" type="Node" parent="." node_paths=PackedStringArray("_children")]
+script = ExtResource("2_q60yi")
+_children = [NodePath("GetNavMeshTarget"), NodePath("MoveTo")]
+
+[node name="GetNavMeshTarget" type="Node" parent="HuntBehaviour"]
+script = ExtResource("5_uh7de")
+SightDistance = 10000.0
+_targetTypeKey = 11
+
+[node name="MoveTo" type="Node" parent="HuntBehaviour"]
+script = ExtResource("6_pfd3n")
+_successDistance = 25.0
+_moveSpeed = 900000.0

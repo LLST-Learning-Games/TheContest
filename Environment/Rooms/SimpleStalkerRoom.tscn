@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=4 uid="uid://ccro6grnl83l0"]
+
+[ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="1_rodwp"]
+[ext_resource type="TileSet" uid="uid://bo4kqn80agbmc" path="res://Environment/TileMap_48px/TileSet_48.tres" id="2_v1bng"]
+[ext_resource type="PackedScene" uid="uid://dxylu8n8gn2c5" path="res://SpawnableEvents/Pickups/SmallCashPickup.tscn" id="3_v1bng"]
+[ext_resource type="PackedScene" uid="uid://cx8cqel18nrvc" path="res://Character/Enemies/Enemy_Stalker.tscn" id="4_orve7"]
+
+[node name="SimpleStalkerRoom" instance=ExtResource("1_rodwp")]
+
+[node name="Obstacles" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAGAAQAAAAAAAYAAAAGAAUAAAAAAAcAAAAHAAQAAAACAAYAAAAHAAUAAAABAAcAAAAIAAQAAAABAAYAAAAIAAUAAAABAAcAAAAJAAQAAAACAAYAAAAJAAUAAAACAAcAAAAGAAcAAAAAAAgAAAAJAAcAAAACAAgAAAAGAAgAAAAAAAkAAAAHAAgAAAABAAkAAAAJAAgAAAACAAkAAAAGAAYAAAAAAAgAAAAJAAYAAAACAAgAAAAUAAIAAAADAAwAAAAVAAIAAAAEAAwAAAAQAAMAAAAGAAsAAAAOAAQAAAAFAAwAAAARAAUAAAAGAA0AAAAOAAcAAAADAAkAAAAPAAcAAAAEAAkAAAATAAcAAAAFAAkAAAAUAAcAAAAGAAkAAAAOAAgAAAADAAoAAAAPAAgAAAAEAAoAAAATAAgAAAAFAAoAAAAUAAgAAAAGAAoAAAAPAAsAAAAAAA8AAAAQAAsAAAABAA8AAAARAAsAAAACAA8AAAA=")
+tile_set = ExtResource("2_v1bng")
+
+[node name="Pickup" parent="." index="2" instance=ExtResource("3_v1bng")]
+z_index = 1
+position = Vector2(88, 88)
+
+[node name="Enemy_Stalker" parent="." index="3" instance=ExtResource("4_orve7")]
+position = Vector2(836, 362)

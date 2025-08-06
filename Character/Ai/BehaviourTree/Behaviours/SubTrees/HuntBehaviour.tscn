@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyqmr20et4u0q"]
+
+[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="1_ggdtu"]
+[ext_resource type="Script" uid="uid://ger2u4uvbud4" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourGetTarget.cs" id="2_upjpa"]
+[ext_resource type="Script" uid="uid://ccbshsik7s802" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourTargetWithNavmesh.cs" id="3_jfqyu"]
+[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="4_muva7"]
+
+[node name="HuntBehaviour" type="Node" node_paths=PackedStringArray("_children")]
+script = ExtResource("1_ggdtu")
+_children = [NodePath("GetTarget"), NodePath("GetNavMeshTarget"), NodePath("MoveTo")]
+
+[node name="GetTarget" type="Node" parent="."]
+script = ExtResource("2_upjpa")
+
+[node name="GetNavMeshTarget" type="Node" parent="."]
+script = ExtResource("3_jfqyu")
+
+[node name="MoveTo" type="Node" parent="."]
+script = ExtResource("4_muva7")
+_successDistance = 5.0
+_moveSpeed = 800000.0
+_failTimeout = 2.0

@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Godot;
 
 
 namespace Behaviours
 {
-    public partial class BehaviourSequence : BehaviourCompositeBase
+    public partial class BehaviourDoFirstValid : BehaviourCompositeBase
     {
         private BehaviourBase _currentBehaviour;
         public override BehaviourState UpdateNode(double delta, BehaviourTreeBlackboard blackboard)
@@ -18,7 +19,7 @@ namespace Behaviours
             }
             
             foreach (var child in _children)
-            {                
+            {
                 if (blackboard.IsVerbose)
                 {
                     GD.Print($"[{GetType().Name}] Current behaviour: {child.Name}.");
@@ -28,7 +29,7 @@ namespace Behaviours
                 {
                     GD.Print($"[{GetType().Name}] Current state of {child.Name}: {_state}.");
                 }
-                if (_state == BehaviourState.Running)
+                if (_state == BehaviourState.Running || _state == BehaviourState.Success)
                 {
                     _currentBehaviour = child;
                     break;

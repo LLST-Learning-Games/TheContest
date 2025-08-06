@@ -1,26 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://dcabm03sb0upe"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_iawvd"]
-[ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_rkbeo"]
-[ext_resource type="Script" uid="uid://ccbshsik7s802" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourTargetWithNavmesh.cs" id="5_fhrdo"]
-[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="6_wa27n"]
+[ext_resource type="Script" uid="uid://1fbvfvmoj1n2" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourDoFirstValid.cs" id="2_iawvd"]
+[ext_resource type="PackedScene" uid="uid://dyqmr20et4u0q" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/HuntBehaviour.tscn" id="3_rkbeo"]
+[ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="4_fhrdo"]
 
 [node name="EntityBrainHunter" type="Node" node_paths=PackedStringArray("_root")]
 script = ExtResource("1_iawvd")
 _root = NodePath("Root")
+_isVerbose = true
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
-script = ExtResource("2_rkbeo")
+script = ExtResource("2_iawvd")
 _children = [NodePath("HuntBehaviour")]
 
-[node name="HuntBehaviour" type="Node" parent="Root" node_paths=PackedStringArray("_children")]
-script = ExtResource("2_rkbeo")
-_children = [NodePath("GetNavMeshTarget"), NodePath("MoveTo")]
+[node name="HuntBehaviour" parent="Root" instance=ExtResource("3_rkbeo")]
 
-[node name="GetNavMeshTarget" type="Node" parent="Root/HuntBehaviour"]
-script = ExtResource("5_fhrdo")
-
-[node name="MoveTo" type="Node" parent="Root/HuntBehaviour"]
-script = ExtResource("6_wa27n")
-_successDistance = 5.0
-_moveSpeed = 800000.0
+[node name="MoveBehaviour" parent="Root" instance=ExtResource("4_fhrdo")]

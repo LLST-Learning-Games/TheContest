@@ -7,6 +7,8 @@ public partial class BehaviourMoveTo : BehaviourActionBase
     [Export] private float _successDistance = 10f;
     [Export] private float _moveSpeed = 50f;
     [Export] private double _failTimeout = 0.5;
+    [Export] private double _successTimeout = 0.5;
+    [Export] private BehaviourDataKeys _destinationTypeKey = BehaviourDataKeys.LOCATION;
     
     private Vector2 _moveDestination = Vector2.Zero;
     private Vector2 _positionLastTick = Vector2.Zero;
@@ -44,6 +46,8 @@ public partial class BehaviourMoveTo : BehaviourActionBase
             {
                 GD.Print($"[{GetType().Name}] Arrived at {_moveDestination}!");
             }
+            
+            blackboard.TreeData.Remove(_destinationTypeKey);
             _state = BehaviourState.Success;
             return;
         }
@@ -55,6 +59,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
             {
                 GD.Print($"[{GetType().Name}] Could not reach {_moveDestination}!");
             }
+            blackboard.TreeData.Remove(_destinationTypeKey);
             _state = BehaviourState.Failure;
             return;
         }
@@ -65,7 +70,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
 
     private void GetLocationFromBlackboard(BehaviourTreeBlackboard blackboard)
     {
-        if (!blackboard.TreeData.TryGetValue(BehaviourDataKeys.LOCATION, out var locationData))
+        if (!blackboard.TreeData.TryGetValue(_destinationTypeKey, out var locationData))
         {
             if(blackboard.IsVerbose)
             {
