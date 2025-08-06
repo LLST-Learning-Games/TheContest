@@ -28,7 +28,6 @@ _children = [NodePath("GetNavMeshTarget"), NodePath("MoveTo")]
 
 [node name="GetNavMeshTarget" type="Node" parent="HuntBehaviour"]
 script = ExtResource("5_uh7de")
-SightDistance = 10000.0
 _targetTypeKey = 11
 
 [node name="MoveTo" type="Node" parent="HuntBehaviour"]

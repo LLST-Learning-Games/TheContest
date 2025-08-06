@@ -20,6 +20,7 @@
 script = ExtResource("1_dhci3")
 _roomMapSize = Vector2i(4, 4)
 _roomPrefabs = Array[PackedScene]([ExtResource("2_rxsff"), ExtResource("3_a2iqi"), ExtResource("4_uoj3x"), ExtResource("5_ejy48"), ExtResource("6_ssbl8"), ExtResource("7_j4vrc"), ExtResource("8_j4vrc"), ExtResource("8_j4vrc")])
+_enterRoomPrefab = ExtResource("2_rxsff")
 _exitRoomPrefab = ExtResource("6_s0eeh")
 
 [node name="Character" parent="." groups=["Player"] instance=ExtResource("5_b8f6h")]

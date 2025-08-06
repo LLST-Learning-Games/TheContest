@@ -10,6 +10,7 @@ public partial class RoomMap : NavigationRegion2D
     
     [Export] private Vector2I _roomMapSize = new Vector2I(3, 3);
     [Export] private Array<PackedScene> _roomPrefabs;
+    [Export] private PackedScene _enterRoomPrefab;
     [Export] private PackedScene _exitRoomPrefab;
     
     [Export] private Vector2I _roomSizeInTiles = new Vector2I(24, 13);
@@ -29,8 +30,8 @@ public partial class RoomMap : NavigationRegion2D
     private void GenerateRooms()
     {
         Vector2I exitPosition = new Vector2I(
-            _rng.RandiRange(0,_roomMapSize.X - 1), 
-            _rng.RandiRange(0,_roomMapSize.Y - 1));
+            _rng.RandiRange(1,_roomMapSize.X - 1), 
+            _rng.RandiRange(1,_roomMapSize.Y - 1));
         
         GD.Print($"[{GetType().Name}] Selected {exitPosition} for exit room.");
         
@@ -39,7 +40,11 @@ public partial class RoomMap : NavigationRegion2D
             for (int y = 0; y < _roomMapSize.Y; y++)
             {
                 Room newRoom;
-                if (x == exitPosition.X && y == exitPosition.Y)
+                if (x == 0 && y == 0)
+                {
+                    newRoom = _enterRoomPrefab.Instantiate<Room>();
+                }
+                else if (x == exitPosition.X && y == exitPosition.Y)
                 {
                     newRoom = _exitRoomPrefab.Instantiate<Room>();
                 }
@@ -65,6 +70,12 @@ public partial class RoomMap : NavigationRegion2D
             {
                 var room = _rooms[x,y];
                 CloseMapEdges(room,x,y);
+                
+                if (room.Name == "ExitRoom")
+                {
+                    continue;
+                }
+                
                 CloseRandomPassages(room,x,y);
             }
         }

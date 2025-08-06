@@ -41,10 +41,10 @@ texture = ExtResource("1_05sey")
 
 [node name="StartGameButton" type="Button" parent="ColorRect" groups=["StartButton"]]
 layout_mode = 2
-offset_left = 173.0
-offset_top = 591.0
-offset_right = 347.0
-offset_bottom = 622.0
+offset_left = 853.0
+offset_top = 367.0
+offset_right = 1027.0
+offset_bottom = 398.0
 text = "Proceed to The Arena"
 
 [node name="DialogueRoomButton" type="Button" parent="ColorRect" node_paths=PackedStringArray("_parent")]
@@ -60,10 +60,10 @@ _parent = NodePath("..")
 
 [node name="CustomizeWeaponButton" type="Button" parent="ColorRect" groups=["CustomizeButton"]]
 layout_mode = 2
-offset_left = 926.0
-offset_top = 425.0
-offset_right = 1030.0
-offset_bottom = 479.0
+offset_left = 260.0
+offset_top = 540.0
+offset_right = 364.0
+offset_bottom = 617.0
 text = "Customize
 NeuroPulse
 Weapon"

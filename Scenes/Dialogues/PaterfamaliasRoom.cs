@@ -53,7 +53,7 @@ public partial class PaterfamaliasRoom : Control
     private async void OnFatherGlowAnimationComplete(StringName animName)
     {
         await _narrativeLabel_Narrator.AdvanceNarrative();
-        await Task.Delay(2000);
+        await Task.Delay(3500);
         _narrativeLabel_Narrator.ResetNarrative();
         await Task.Delay(1000);
         await _narrativeLabel_Father.InitializeNarrative();
