@@ -13,7 +13,7 @@ public partial class BehaviourIdle : BehaviourBase
     {
         if (blackboard.IsVerbose && _currentTime == 0)
         {
-            GD.Print($"[{GetType().Name}] Begin idle!");
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Begin idle!");
         }
         _currentTime += delta;
         //GD.Print($"[{GetType().Name}] Idling for {_currentTime} seconds!");
@@ -24,7 +24,7 @@ public partial class BehaviourIdle : BehaviourBase
         
         if(blackboard.IsVerbose)
         {
-            GD.Print($"[{GetType().Name}] Idle complete after {_currentTime} seconds!");
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Idle complete after {_currentTime} seconds!");
         }
         return BehaviourState.Success;
     }

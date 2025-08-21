@@ -26,21 +26,25 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
 
         GetRigidBodyFromBlackboard(blackboard);
         
-        if (_navMeshTarget == null)
+        if (_navMeshTarget == null || !blackboard.TreeData.ContainsKey(_destinationTypeKey))
         {
             _navMeshTarget = GetNavMeshTarget(blackboard);
             if (_navMeshTarget == null)
             {
                 return BehaviourState.Failure;
             }
+            if(blackboard.IsVerbose)
+            {
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Updating target position!.");
+            }
             _navAgent.SetTargetPosition(_navMeshTarget.GlobalPosition);
+            _nextPosition = _navAgent.GetNextPathPosition();
+            blackboard.TreeData[_destinationTypeKey] = _nextPosition;
         }
         
         if(_currentTime >= _updateTime || _nextPosition == Vector2.Zero)
         {
             _currentTime = 0;
-            _nextPosition = _navAgent.GetNextPathPosition();
-            blackboard.TreeData[_destinationTypeKey] = _nextPosition;
             if (_nextPosition != Vector2.Zero)
             {
                 _state = BehaviourState.Success;
@@ -62,13 +66,17 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] No data of type {_targetTypeKey} found.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] No navmesh target of type {_targetTypeKey} found.");
             }
             return null;
         }
         
         if (targetData is Node2D target)
         {
+            if(blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found navmesh target {target.Name} under {_targetTypeKey}.");
+            }
             //if (HasLineOfSightToTarget(target))
             {
                 return target;
@@ -83,7 +91,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Actor in blackboard has no RigidBody2D.");
             }
             _state = BehaviourState.Failure;
             return;
@@ -98,7 +106,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Actor in blackboard is not an enemy.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Actor in blackboard is not an enemy.");
             }
             _state = BehaviourState.Failure;
             return null;
@@ -108,7 +116,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Enemy in blackboard has no NavAgent.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Enemy in blackboard has no NavAgent.");
             }
             _state = BehaviourState.Failure;
             return null;

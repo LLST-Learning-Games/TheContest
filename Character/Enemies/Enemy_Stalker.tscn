@@ -45,7 +45,6 @@ scale = Vector2(0.25, 0.250667)
 texture = ExtResource("3_lspov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_gof73")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_2mvg3")]
@@ -60,6 +59,7 @@ _healthComponent = NodePath("../HealthComponent")
 
 [node name="EntityBrainStalker" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("8_naxy3")]
 _actor = NodePath("..")
+_isVerbose = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.06098, 1)

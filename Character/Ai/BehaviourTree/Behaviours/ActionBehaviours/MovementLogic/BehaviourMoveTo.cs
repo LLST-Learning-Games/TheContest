@@ -29,7 +29,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         
         if (blackboard.IsVerbose && _currentTime == 0)
         {
-            GD.Print($"[{GetType().Name}] Begin move to {_moveDestination}!");
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Begin move to {_moveDestination}!");
         }
         _currentTime += delta;
         MoveToLocation(delta, blackboard);
@@ -44,7 +44,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] Arrived at {_moveDestination}!");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Arrived at {_moveDestination}!");
             }
             
             blackboard.TreeData.Remove(_destinationTypeKey);
@@ -57,7 +57,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
             
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] Could not reach {_moveDestination}!");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Could not reach {_moveDestination}!");
             }
             blackboard.TreeData.Remove(_destinationTypeKey);
             _state = BehaviourState.Failure;
@@ -74,7 +74,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] No location in blackboard. Try adding a GetLocation behaviour before this one.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] No location in blackboard. Try adding a GetLocation behaviour before this one.");
             }
             _state = BehaviourState.Failure;
             return;
@@ -86,7 +86,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Invalid object marked as location in Blackboard.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Invalid object marked as location in Blackboard.");
             }
             _state = BehaviourState.Failure;
         }
@@ -98,7 +98,7 @@ public partial class BehaviourMoveTo : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Actor in blackboard has no RigidBody2D.");
             }
             _state = BehaviourState.Failure;
             return;

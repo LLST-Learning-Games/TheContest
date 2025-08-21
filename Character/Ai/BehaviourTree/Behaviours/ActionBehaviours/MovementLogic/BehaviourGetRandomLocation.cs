@@ -18,7 +18,7 @@ public partial class BehaviourGetRandomLocation : BehaviourActionBase
             
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] Found RandomLocation: {_randomLocation}");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found RandomLocation: {_randomLocation}");
             }
         }
 

@@ -19,20 +19,24 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         GetRigidBodyFromBlackboard(blackboard);
         if(blackboard.IsVerbose)
         {
-            GD.Print($"[{GetType().Name}] Getting target!");
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Getting target!");
         }
         object target = null;
         if (!blackboard.TreeData.TryGetValue(_keyTargetAs, out target))
         {
             target = GetTarget(blackboard);
             blackboard.TreeData[_keyTargetAs] = target;
+            if(target != null && blackboard.IsVerbose)
+            {
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found target {target.GetType().Name}, stored in blackboard as {_keyTargetAs}.!");
+            }
         }
 
         if (target is null || target is not Node2D)
         {
             if (blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] No valid target. Returning failure.");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] No valid target. Returning failure.");
             }
 
             blackboard.TreeData.Remove(_keyTargetAs);
@@ -55,7 +59,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         {
             if (blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] Found target, but no line of sight.");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found target, but no line of sight.");
             }
         
             blackboard.TreeData[_keyLostTargetAs] = target;
@@ -109,7 +113,7 @@ public partial class BehaviourGetTarget : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] Actor in blackboard has no RigidBody2D.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Actor in blackboard has no RigidBody2D.");
             }
             _state = BehaviourState.Failure;
             return;

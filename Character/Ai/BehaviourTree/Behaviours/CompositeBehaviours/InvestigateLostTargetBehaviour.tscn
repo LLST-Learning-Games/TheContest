@@ -32,5 +32,5 @@ _targetTypeKey = 11
 
 [node name="MoveTo" type="Node" parent="HuntBehaviour"]
 script = ExtResource("6_pfd3n")
-_successDistance = 25.0
+_successDistance = 20.0
 _moveSpeed = 900000.0

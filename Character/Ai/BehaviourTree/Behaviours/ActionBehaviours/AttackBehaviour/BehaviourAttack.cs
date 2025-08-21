@@ -13,14 +13,14 @@ public partial class BehaviourAttack : BehaviourActionBase
     {
         if(blackboard.IsVerbose && _currentTime == 0)
         {
-            GD.Print($"[{GetType().Name}] Attack starting!");
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Attack starting!");
         }
         _currentTime += delta;
         if (_currentTime > _attackTime)
         {
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] Attack Complete!");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Attack Complete!");
             }
             _state = BehaviourState.Success;
             return _state;
@@ -36,6 +36,11 @@ public partial class BehaviourAttack : BehaviourActionBase
         GetEnemyProjectileSpawnComponent(blackboard);
         
         _spawnComponent.SetTarget(_attackTarget);
+        if(blackboard.IsVerbose)
+        {
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Attacking {_attackTarget.Name}!");
+        }
+        
         if (_state == BehaviourState.Failure)
         {
             ResetBehaviour(blackboard);
@@ -57,7 +62,7 @@ public partial class BehaviourAttack : BehaviourActionBase
             { 
                 if(blackboard.IsVerbose)
                 {
-                    GD.PrintErr($"[{GetType().Name}] Actor in blackboard is not an enemy.");
+                    GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}]  Actor in blackboard is not an enemy.");
                 }
                 _state = BehaviourState.Failure;
                 return;
@@ -74,7 +79,7 @@ public partial class BehaviourAttack : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.PrintErr($"[{GetType().Name}] No target in blackboard. Try adding a GetTarget behaviour before this one.");
+                GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] No target in blackboard. Try adding a GetTarget behaviour before this one.");
             }
             _state = BehaviourState.Failure;
         }
@@ -85,7 +90,7 @@ public partial class BehaviourAttack : BehaviourActionBase
         {
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] No attack target in Blackboard.");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] No attack target in Blackboard.");
             }
             blackboard.TreeData.Remove(BehaviourDataKeys.ENEMY_SPAWN_COMPONENT);
             _state = BehaviourState.Failure;

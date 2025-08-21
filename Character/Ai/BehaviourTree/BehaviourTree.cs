@@ -31,13 +31,14 @@ namespace Behaviours
                 case BehaviourState.Failure:
                     if(_treeData.IsVerbose)
                     {
-                        GD.Print($"[{GetType().Name}] Could not find behaviour node to run. Check the logic in your tree!");
+                        GD.Print($"[{GetType().Name}] [{_treeData.Actor.Name}] Could not find behaviour node to run. Check the logic in your tree!");
                     }
+                    ResetLogic();
                     break;
                 case BehaviourState.Success:
                     if(_treeData.IsVerbose)
                     {
-                        GD.Print($"[{GetType().Name}] Reached end of root behaviour. Resetting logic...");
+                        GD.Print($"[{GetType().Name}] [{_treeData.Actor.Name}] Reached end of root behaviour. Resetting logic...");
                     }
                     ResetLogic();
                     break;
