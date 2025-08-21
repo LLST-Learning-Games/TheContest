@@ -6,6 +6,7 @@ namespace Behaviours;
 public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
 {
     [Export] private double _updateTime = 0.1;
+    [Export] private bool _stopWhenInSight = false;
     [Export] public float SightDistance = 1000f;
     [Export] public uint CollisionMask = 1 << 4;
     [Export] private BehaviourDataKeys _targetTypeKey = BehaviourDataKeys.TARGET;
@@ -37,6 +38,7 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             {
                 GD.PrintErr($"[{GetType().Name}] [{blackboard.Actor.Name}] Updating target position!.");
             }
+            
             _navAgent.SetTargetPosition(_navMeshTarget.GlobalPosition);
             _nextPosition = _navAgent.GetNextPathPosition();
             blackboard.TreeData[_destinationTypeKey] = _nextPosition;
@@ -71,18 +73,27 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
             return null;
         }
         
-        if (targetData is Node2D target)
+        if (targetData is not Node2D target)
+        {
+            return null;
+        }
+        
+        if(blackboard.IsVerbose)
+        {
+            GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found navmesh target {target.Name} under {_targetTypeKey}.");
+        }
+        
+        if (_stopWhenInSight && HasLineOfSightToTarget(target))
         {
             if(blackboard.IsVerbose)
             {
-                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Found navmesh target {target.Name} under {_targetTypeKey}.");
+                GD.Print($"[{GetType().Name}] [{blackboard.Actor.Name}] Has line of sight to target, and should stop when in sight.");
             }
-            //if (HasLineOfSightToTarget(target))
-            {
-                return target;
-            }
+
+            return null;
         }
-        return null;
+        
+        return target;
     }
     
     private void GetRigidBodyFromBlackboard(BehaviourTreeBlackboard blackboard)
@@ -124,7 +135,35 @@ public partial class BehaviourTargetWithNavmesh : BehaviourActionBase
         
         return actor.NavAgent;
     }
+    
+    private bool HasLineOfSightToTarget(Node2D target)
+    {
+        if (_actorBody.GlobalPosition.DistanceTo(target.GlobalPosition) >= SightDistance)
+        {
+            return false;
+        }
+        
+        var spaceState = target.GetWorld2D().DirectSpaceState;
 
+        var query = new PhysicsRayQueryParameters2D
+        {
+            From = _actorBody.GlobalPosition,
+            To = target.GlobalPosition,
+            CollisionMask = CollisionMask,
+            HitFromInside = true
+        };
+
+        var result = spaceState.IntersectRay(query);
+
+        if (result.Count == 0)
+        {
+            // Nothing in the way — clear line of sight
+            return true;
+        }
+        
+        return false;
+    }
+    
     public override void ResetBehaviour(BehaviourTreeBlackboard blackboard)
     {
         _navAgent = null;
