@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Behaviours.Emotions;
 using Godot;
 
 namespace Behaviours
@@ -11,12 +12,13 @@ namespace Behaviours
         private BehaviourTreeBlackboard _treeData;
         private double _currentTime = 0;
 
-        public BehaviourTree(BehaviourCompositeBase rootNode, Node2D actor, double resetLogicTimer = 0, bool isVerbose = false)
+        public BehaviourTree(BehaviourCompositeBase rootNode, LimbicSystem limbicSystem, Node2D actor, double resetLogicTimer = 0, bool isVerbose = false)
         {
             _rootNode = rootNode;
             _resetLogicTimer = resetLogicTimer;
             _treeData = new BehaviourTreeBlackboard 
             {      
+                LimbicSystem = limbicSystem,
                 Actor = actor,
                 Tree = this,
                 IsVerbose = isVerbose

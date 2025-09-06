@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bll8k55d7xcpp"]
+
+[ext_resource type="Script" uid="uid://bjw0sxpf1qr3u" path="res://Character/Ai/BehaviourTree/Emotions/LimbicSystem.cs" id="1_3gwha"]
+[ext_resource type="Script" uid="uid://bjpy5vq74q2kw" path="res://Character/Ai/BehaviourTree/Emotions/Emotions/Emotion.cs" id="2_303ye"]
+
+[node name="LimbicSystem" type="Node" node_paths=PackedStringArray("_emotionBootstrap")]
+script = ExtResource("1_3gwha")
+_emotionBootstrap = [NodePath("Emotion_Fear")]
+
+[node name="Emotion_Fear" type="Node" parent="."]
+script = ExtResource("2_303ye")
+Id = "fear"
+CalmTickInSeconds = 2.0
+_isVerbose = true

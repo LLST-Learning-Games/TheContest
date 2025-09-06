@@ -47,8 +47,9 @@ texture = ExtResource("3_lspov")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gof73")
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_2mvg3")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("_limbicSystem") instance=ExtResource("4_2mvg3")]
 _maxHealth = 250
+_limbicSystem = NodePath("../EntityBrainStalker/LimbicSystem")
 
 [node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("5_4i0t0")]
 _currentTrajectoryId = "EnemyBullet"
@@ -59,7 +60,6 @@ _healthComponent = NodePath("../HealthComponent")
 
 [node name="EntityBrainStalker" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("8_naxy3")]
 _actor = NodePath("..")
-_isVerbose = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.06098, 1)
@@ -71,3 +71,6 @@ texture_scale = 2.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 30.0
+
+[editable path="EntityBrainStalker"]
+[editable path="EntityBrainStalker/Root/MoveBehaviour"]

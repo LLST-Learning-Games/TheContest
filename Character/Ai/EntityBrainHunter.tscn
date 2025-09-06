@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcabm03sb0upe"]
+[gd_scene load_steps=6 format=3 uid="uid://dcabm03sb0upe"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_iawvd"]
 [ext_resource type="Script" uid="uid://1fbvfvmoj1n2" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourDoFirstValid.cs" id="2_iawvd"]
 [ext_resource type="PackedScene" uid="uid://dyqmr20et4u0q" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/HuntBehaviour.tscn" id="3_rkbeo"]
 [ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="4_fhrdo"]
+[ext_resource type="PackedScene" uid="uid://bll8k55d7xcpp" path="res://Character/Ai/BehaviourTree/Emotions/limbic_system.tscn" id="5_rkbeo"]
 
-[node name="EntityBrainHunter" type="Node" node_paths=PackedStringArray("_root")]
+[node name="EntityBrainHunter" type="Node" node_paths=PackedStringArray("_root", "_limbicSystem")]
 script = ExtResource("1_iawvd")
 _root = NodePath("Root")
+_limbicSystem = NodePath("LimbicSystem")
 _isVerbose = true
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
@@ -17,3 +19,5 @@ _children = [NodePath("HuntBehaviour")]
 [node name="HuntBehaviour" parent="Root" instance=ExtResource("3_rkbeo")]
 
 [node name="MoveBehaviour" parent="Root" instance=ExtResource("4_fhrdo")]
+
+[node name="LimbicSystem" parent="." instance=ExtResource("5_rkbeo")]

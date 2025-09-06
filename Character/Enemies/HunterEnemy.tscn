@@ -50,11 +50,13 @@ path_postprocessing = 1
 avoidance_enabled = true
 radius = 30.0
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_qbd41")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("_limbicSystem") instance=ExtResource("3_qbd41")]
 _maxHealth = 50
+_limbicSystem = NodePath("../EntityBrain/LimbicSystem")
 
 [node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("4_qbd41")]
 _actor = NodePath("..")
+_isVerbose = false
 
 [node name="HealthBarWorldUi" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("5_0yq5r")]
 position = Vector2(0, -22)
@@ -70,3 +72,5 @@ scale = Vector2(1.06098, 1)
 energy = 0.5
 texture = ExtResource("8_0ymbd")
 texture_scale = 2.0
+
+[editable path="EntityBrain"]

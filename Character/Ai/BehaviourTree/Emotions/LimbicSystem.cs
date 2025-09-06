@@ -6,7 +6,7 @@ namespace Behaviours.Emotions;
 public partial class LimbicSystem : Node
 {
     [Export] private Array<Emotion> _emotionBootstrap;
-    private Dictionary<string, Emotion> _emotions;
+    private Dictionary<string, Emotion> _emotions = new();
 
     public override void _Ready()
     {
@@ -32,4 +32,13 @@ public partial class LimbicSystem : Node
         return null;
     }
 
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventKey eventKey 
+            && eventKey.Keycode == Key.F)
+        {
+            GD.Print($"[{GetType().Name}] Debug adding fear!");
+            TryUpdateEmotion("fear", 10);
+        }
+    }
 }

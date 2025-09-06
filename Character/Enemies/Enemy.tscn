@@ -37,8 +37,9 @@ texture = ExtResource("3_2w5qr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gof73")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_ye640")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("_limbicSystem") instance=ExtResource("3_ye640")]
 _maxHealth = 250
+_limbicSystem = NodePath("../EntityBrain/LimbicSystem")
 
 [node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("4_p8sn4")]
 _currentTrajectoryId = "EnemyBullet"
@@ -55,3 +56,7 @@ scale = Vector2(1.06098, 1)
 energy = 0.5
 texture = ExtResource("8_gmgm2")
 texture_scale = 2.0
+
+[editable path="EntityBrain"]
+[editable path="EntityBrain/Reasoning/MoveBehaviour"]
+[editable path="EntityBrain/Reasoning/AttackBehaviour"]

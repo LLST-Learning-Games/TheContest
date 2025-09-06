@@ -1,24 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu2s8kq5b2ljs"]
+[gd_scene load_steps=6 format=3 uid="uid://bu2s8kq5b2ljs"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_l30f6"]
 [ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_h1t5d"]
 [ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="3_h1t5d"]
 [ext_resource type="PackedScene" uid="uid://doamjxtwwmj57" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/AttackBehaviour.tscn" id="3_ndrqp"]
+[ext_resource type="PackedScene" uid="uid://bll8k55d7xcpp" path="res://Character/Ai/BehaviourTree/Emotions/limbic_system.tscn" id="5_ogphc"]
 
-[node name="EntityBrain" type="Node" node_paths=PackedStringArray("_root")]
+[node name="EntityBrain" type="Node" node_paths=PackedStringArray("_root", "_limbicSystem")]
 script = ExtResource("1_l30f6")
-_root = NodePath("Root")
+_root = NodePath("Reasoning")
+_limbicSystem = NodePath("LimbicSystem")
 
-[node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
+[node name="Reasoning" type="Node" parent="." node_paths=PackedStringArray("_children")]
 script = ExtResource("2_h1t5d")
 _children = [NodePath("MoveBehaviour"), NodePath("AttackBehaviour")]
 
-[node name="MoveBehaviour" parent="Root" instance=ExtResource("3_h1t5d")]
+[node name="MoveBehaviour" parent="Reasoning" instance=ExtResource("3_h1t5d")]
 
-[node name="GetLocation" parent="Root/MoveBehaviour" index="0"]
+[node name="GetLocation" parent="Reasoning/MoveBehaviour" index="0"]
 _range = 250.0
 
-[node name="AttackBehaviour" parent="Root" instance=ExtResource("3_ndrqp")]
+[node name="AttackBehaviour" parent="Reasoning" instance=ExtResource("3_ndrqp")]
 
-[editable path="Root/MoveBehaviour"]
-[editable path="Root/AttackBehaviour"]
+[node name="LimbicSystem" parent="." instance=ExtResource("5_ogphc")]
+
+[editable path="Reasoning/MoveBehaviour"]
+[editable path="Reasoning/AttackBehaviour"]

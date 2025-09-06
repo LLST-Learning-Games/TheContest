@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c26yiichcm4y1"]
+[gd_scene load_steps=6 format=3 uid="uid://c26yiichcm4y1"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_u4m5d"]
 [ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_v1wje"]
 [ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="3_sddlf"]
 [ext_resource type="PackedScene" uid="uid://dhcp5hmtpml4g" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/InvestigateLostTargetBehaviour.tscn" id="4_u4m5d"]
+[ext_resource type="PackedScene" uid="uid://bll8k55d7xcpp" path="res://Character/Ai/BehaviourTree/Emotions/limbic_system.tscn" id="5_v1wje"]
 
-[node name="EntityBrainStalker" type="Node" node_paths=PackedStringArray("_root")]
+[node name="EntityBrainStalker" type="Node" node_paths=PackedStringArray("_root", "_limbicSystem")]
 script = ExtResource("1_u4m5d")
 _root = NodePath("Root")
+_limbicSystem = NodePath("LimbicSystem")
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
 script = ExtResource("2_v1wje")
@@ -19,5 +21,7 @@ _children = [NodePath("MoveBehaviour"), NodePath("InvestigateLostTargetBehaviour
 _range = 250.0
 
 [node name="InvestigateLostTargetBehaviour" parent="Root" instance=ExtResource("4_u4m5d")]
+
+[node name="LimbicSystem" parent="." instance=ExtResource("5_v1wje")]
 
 [editable path="Root/MoveBehaviour"]

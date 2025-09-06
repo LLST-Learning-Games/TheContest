@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Behaviours.Emotions;
 using Systems;
 
 public partial class HealthComponent : Node
@@ -10,6 +11,8 @@ public partial class HealthComponent : Node
 	[Export] private bool _shouldShake = false;
 	[Export] private float _shakeSize = 5f;
 	[Export] private double _shakeDuration = 0.3;
+	
+	[Export] private LimbicSystem _limbicSystem;
 	
 	private int _currentHealth;
 	
@@ -42,6 +45,11 @@ public partial class HealthComponent : Node
 			OnHealthChanged?.Invoke(_currentHealth);
 			
 			HandleShake(delta);
+		}
+
+		if (_limbicSystem != null)
+		{
+			_limbicSystem.TryUpdateEmotion("fear", -(delta * 100) / _maxHealth );
 		}
 
 		if (_currentHealth == 0)

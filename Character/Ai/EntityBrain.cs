@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Behaviours;
+using Behaviours.Emotions;
 using Godot;
 using Godot.Collections;
 
@@ -7,9 +8,12 @@ public partial class EntityBrain : Node
 {
     private BehaviourTree _behaviourTree;
     [Export] private BehaviourCompositeBase _root;
+    [Export] private LimbicSystem _limbicSystem;
     [Export] private Node2D _actor;
     [Export] private float _resetLogicTimer;
     [Export] private bool _isVerbose;
+    
+    public LimbicSystem LimbicSystem => _limbicSystem;
 
     public override void _Ready()
     {
@@ -26,6 +30,6 @@ public partial class EntityBrain : Node
     {
         GD.Print($"[{GetType().Name}] New BehaviourTree created!");
 
-        return new BehaviourTree(_root, _actor, _resetLogicTimer, _isVerbose);
+        return new BehaviourTree(_root, _limbicSystem, _actor, _resetLogicTimer, _isVerbose);
     }
 }

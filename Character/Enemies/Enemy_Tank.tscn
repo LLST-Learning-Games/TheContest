@@ -40,8 +40,17 @@ texture = ExtResource("3_mp3ti")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gof73")
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_ukhuv")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("_limbicSystem") instance=ExtResource("4_ukhuv")]
 _maxHealth = 400
+_limbicSystem = NodePath("../EntityBrain/LimbicSystem")
+
+[node name="EntityBrain_Root_AttackBehaviour#AttackTarget2" type="Node" parent="."]
+script = ExtResource("8_mp3ti")
+_attackTime = 0.25
+
+[node name="EntityBrain_Root_AttackBehaviour#Idle2" type="Node" parent="."]
+script = ExtResource("9_ukhuv")
+_idleTime = 1.0
 
 [node name="EnemyProjectileSpawnComponent" parent="." instance=ExtResource("5_ht48e")]
 _currentTrajectoryId = "MachineGun"
@@ -54,29 +63,6 @@ _healthComponent = NodePath("../HealthComponent")
 [node name="EntityBrain" parent="." node_paths=PackedStringArray("_actor") instance=ExtResource("7_vofs0")]
 _actor = NodePath("..")
 
-[node name="GetLocation" parent="EntityBrain/Root/MoveBehaviour" index="0"]
-_range = 150.0
-
-[node name="MoveTo" parent="EntityBrain/Root/MoveBehaviour" index="1"]
-_moveSpeed = 700000.0
-
-[node name="Idle" parent="EntityBrain/Root/MoveBehaviour" index="2"]
-_idleTime = 2.0
-
-[node name="GetTarget" parent="EntityBrain/Root/AttackBehaviour" index="0"]
-SightDistance = 500.0
-
-[node name="AttackTarget" parent="EntityBrain/Root/AttackBehaviour" index="1"]
-_attackTime = 0.25
-
-[node name="AttackTarget2" type="Node" parent="EntityBrain/Root/AttackBehaviour" index="3"]
-script = ExtResource("8_mp3ti")
-_attackTime = 0.25
-
-[node name="Idle2" type="Node" parent="EntityBrain/Root/AttackBehaviour" index="4"]
-script = ExtResource("9_ukhuv")
-_idleTime = 1.0
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.06098, 1)
 color = Color(1, 0.48, 0.48, 1)
@@ -86,5 +72,5 @@ texture_scale = 3.0
 
 [editable path="EnemyProjectileSpawnComponent"]
 [editable path="EntityBrain"]
-[editable path="EntityBrain/Root/MoveBehaviour"]
-[editable path="EntityBrain/Root/AttackBehaviour"]
+[editable path="EntityBrain/Reasoning/MoveBehaviour"]
+[editable path="EntityBrain/Reasoning/AttackBehaviour"]
