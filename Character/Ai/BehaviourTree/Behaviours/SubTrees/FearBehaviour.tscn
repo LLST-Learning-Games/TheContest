@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://h8l5rlutqm3n"]
+
+[ext_resource type="Script" uid="uid://bgwx76sblfuko" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequenceAbortIfFail.cs" id="1_ftl1x"]
+[ext_resource type="Script" uid="uid://b8lurvm2p3v7a" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/FleeBehaviour/BehaviourCheckEmotion.cs" id="2_qrolq"]
+[ext_resource type="Script" uid="uid://ger2u4uvbud4" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/AttackBehaviour/BehaviourGetTarget.cs" id="3_n73q0"]
+[ext_resource type="Script" uid="uid://bu65mxyxxw3pl" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/FleeBehaviour/BehaviourFindSafeLocation.cs" id="4_lqnab"]
+[ext_resource type="Script" uid="uid://7jh41t832fve" path="res://Character/Ai/BehaviourTree/Behaviours/ActionBehaviours/MovementLogic/BehaviourMoveTo.cs" id="5_kywe8"]
+
+[node name="FearBehaviour" type="Node" node_paths=PackedStringArray("_children")]
+script = ExtResource("1_ftl1x")
+_children = [NodePath("CheckForFear"), NodePath("GetTarget"), NodePath("FindSafeFromTargetLocation"), NodePath("MoveTo")]
+
+[node name="CheckForFear" type="Node" parent="."]
+script = ExtResource("2_qrolq")
+
+[node name="GetTarget" type="Node" parent="."]
+script = ExtResource("3_n73q0")
+_checkForLineOfSight = false
+
+[node name="FindSafeFromTargetLocation" type="Node" parent="."]
+script = ExtResource("4_lqnab")
+
+[node name="MoveTo" type="Node" parent="."]
+script = ExtResource("5_kywe8")
+_successDistance = 5.0
+_moveSpeed = 900000.0

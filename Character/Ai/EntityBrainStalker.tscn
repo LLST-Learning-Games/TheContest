@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c26yiichcm4y1"]
+[gd_scene load_steps=7 format=3 uid="uid://c26yiichcm4y1"]
 
 [ext_resource type="Script" uid="uid://bpg1stqrjnayq" path="res://Character/Ai/EntityBrain.cs" id="1_u4m5d"]
 [ext_resource type="Script" uid="uid://bjtllwo6ywwkv" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/BehaviourSequence.cs" id="2_v1wje"]
+[ext_resource type="PackedScene" uid="uid://h8l5rlutqm3n" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/FearBehaviour.tscn" id="3_8rafy"]
 [ext_resource type="PackedScene" uid="uid://b8pf1gw8qmto5" path="res://Character/Ai/BehaviourTree/Behaviours/SubTrees/MoveBehaviour.tscn" id="3_sddlf"]
 [ext_resource type="PackedScene" uid="uid://dhcp5hmtpml4g" path="res://Character/Ai/BehaviourTree/Behaviours/CompositeBehaviours/InvestigateLostTargetBehaviour.tscn" id="4_u4m5d"]
 [ext_resource type="PackedScene" uid="uid://bll8k55d7xcpp" path="res://Character/Ai/BehaviourTree/Emotions/limbic_system.tscn" id="5_v1wje"]
@@ -13,7 +14,9 @@ _limbicSystem = NodePath("LimbicSystem")
 
 [node name="Root" type="Node" parent="." node_paths=PackedStringArray("_children")]
 script = ExtResource("2_v1wje")
-_children = [NodePath("MoveBehaviour"), NodePath("InvestigateLostTargetBehaviour")]
+_children = [NodePath("FearBehaviour"), NodePath("MoveBehaviour"), NodePath("InvestigateLostTargetBehaviour")]
+
+[node name="FearBehaviour" parent="Root" instance=ExtResource("3_8rafy")]
 
 [node name="MoveBehaviour" parent="Root" instance=ExtResource("3_sddlf")]
 

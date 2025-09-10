@@ -58,5 +58,6 @@ texture = ExtResource("8_gmgm2")
 texture_scale = 2.0
 
 [editable path="EntityBrain"]
+[editable path="EntityBrain/Reasoning/FearBehaviour"]
 [editable path="EntityBrain/Reasoning/MoveBehaviour"]
 [editable path="EntityBrain/Reasoning/AttackBehaviour"]

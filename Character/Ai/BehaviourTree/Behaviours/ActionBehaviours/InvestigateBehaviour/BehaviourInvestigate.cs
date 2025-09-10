@@ -1,4 +1,4 @@
-namespace Behaviours.InvestigateBehaviour;
+namespace Behaviours;
 
 public partial class BehaviourInvestigate : BehaviourActionBase
 {
