@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdom5m82i6fit"]
+[gd_scene load_steps=15 format=3 uid="uid://cdom5m82i6fit"]
 
 [ext_resource type="Script" uid="uid://3273bmgx7u6c" path="res://Environment/Rooms/RoomMap.cs" id="1_dhci3"]
 [ext_resource type="PackedScene" uid="uid://bpuk3u3wduxbt" path="res://Environment/Rooms/EmptyRoom.tscn" id="2_rxsff"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://x4xsntshn343" path="res://Environment/Rooms/HallwayRoom.tscn" id="7_j4vrc"]
 [ext_resource type="PackedScene" uid="uid://xa5rqqrxfrlf" path="res://Environment/Rooms/HallwayStalkerRoom.tscn" id="8_j4vrc"]
 [ext_resource type="PackedScene" uid="uid://bkibeva0o84yp" path="res://Ui/game_over_button.tscn" id="8_sml4d"]
+[ext_resource type="PackedScene" uid="uid://djy2v50rqjlr2" path="res://Scenes/Dialogues/GameplayDialogue/GameplayDialogue.tscn" id="14_qcjav"]
 
 [node name="Scene" type="Node2D"]
 
@@ -43,6 +44,8 @@ text = "Wealth this map:"
 
 [node name="GameOverButton" parent="CanvasLayer" instance=ExtResource("8_sml4d")]
 visible = false
+
+[node name="GameplayDialogue" parent="CanvasLayer" instance=ExtResource("14_qcjav")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.29219, 0.29219, 0.29219, 1)

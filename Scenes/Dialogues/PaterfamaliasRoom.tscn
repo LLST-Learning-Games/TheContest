@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://spf1ql7jyb4h"]
+[gd_scene load_steps=12 format=3 uid="uid://spf1ql7jyb4h"]
 
 [ext_resource type="Script" uid="uid://dnn5toxx0qclt" path="res://Scenes/Dialogues/PaterfamaliasRoom.cs" id="1_e5ydy"]
 [ext_resource type="Texture2D" uid="uid://q27cahbvx4n" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-skeleton.png" id="1_qmt4p"]
@@ -6,17 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqh2g6xhvl3mf" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-detail-only.png" id="2_rnv61"]
 [ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="3_e5ydy"]
 [ext_resource type="Script" uid="uid://b2brstlqju1rj" path="res://Scenes/Dialogues/NarrativeLabel.cs" id="6_ggnpx"]
-[ext_resource type="FontFile" uid="uid://c2d7gnh6mpl7m" path="res://Art/Fonts/dot_matrix/DOTMATRI.TTF" id="7_83uuk"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_p4bnj"]
-line_spacing = -12.545
-paragraph_spacing = 10.0
-font = ExtResource("7_83uuk")
-font_size = 56
-font_color = Color(0.933333, 0, 1, 1)
-shadow_size = 7
-shadow_color = Color(0.3905, 0.31, 1, 1)
-shadow_offset = Vector2(2, 2)
+[ext_resource type="LabelSettings" uid="uid://ctpoq16f43mn4" path="res://Scenes/Dialogues/PaterfamaliasFont.tres" id="7_lnssa"]
 
 [sub_resource type="Animation" id="Animation_p4bnj"]
 resource_name = "OnPaterEnter"
@@ -308,7 +298,7 @@ offset_right = -33.0
 offset_bottom = 315.0
 grow_horizontal = 0
 text = "Trust in the technology of your FAMILY INCORPORATE and you will be invited back to see me. Good luck."
-label_settings = SubResource("LabelSettings_p4bnj")
+label_settings = ExtResource("7_lnssa")
 autowrap_mode = 2
 script = ExtResource("6_ggnpx")
 _narrativeSteps = Array[String](["My Child, thank you for coming before me. ", "Your sacrifice means everything to your whole family... ", "to your mothers, and to me, your PATERFAMALIAS.", "Fight well, and join the LAERTES in our Halls of Memory, where your name will shine eternal.", "From birth, you have trained for this day. I believe in you. I know you will make us Proud.", "In these halls, you will earn your first Neuropulse Capacitor. ", "Trust in the technology of your FAMILY INCORPORATE and you will be invited back to see me. Good luck."])

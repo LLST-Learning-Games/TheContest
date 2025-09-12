@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://djy2v50rqjlr2"]
+
+[ext_resource type="LabelSettings" uid="uid://didxmjcb6kubh" path="res://Scenes/Dialogues/GameplayDialogue/PaterfamaliasFontGameplay.tres" id="1_ejp3c"]
+[ext_resource type="Texture2D" uid="uid://cw1yiw3m44imx" path="res://Art/Characters/Paterfamalias/Paterfamalias-test-neon.png" id="2_8exlr"]
+
+[sub_resource type="Animation" id="Animation_w8uyc"]
+resource_name = "GameplayDialogue"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.1, 7.83333, 10),
+"transitions": PackedFloat32Array(0.2, 0.2, 1, 5, 1),
+"update": 0,
+"values": [Vector2(192, 675), Vector2(192, 675), Vector2(192, 512), Vector2(192, 512), Vector2(192, 675)]
+}
+
+[sub_resource type="Animation" id="Animation_r1nil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [512.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 512)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6d13c"]
+_data = {
+&"GameplayDialogue": SubResource("Animation_w8uyc"),
+&"RESET": SubResource("Animation_r1nil")
+}
+
+[node name="GameplayDialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -136.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0.5, 0)
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.737255)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Survive and earn my favour, my golden child..."
+label_settings = ExtResource("1_ejp3c")
+autowrap_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 112.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.737255)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -72.0
+offset_right = 576.0
+offset_bottom = 216.0
+mouse_filter = 2
+texture = ExtResource("2_8exlr")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6d13c")
+}
+autoplay = "GameplayDialogue"
